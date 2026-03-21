@@ -726,6 +726,22 @@
             .about-grid { grid-template-columns: 1fr; }
         }
 
+        .badge-paper {
+            font-family: 'IBM Plex Mono', 'Noto Sans KR', monospace;
+            font-size: 0.65em; /* 제목 크기에 맞게 축소 */
+            font-weight: 800;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--accent-dim);
+            vertical-align: middle;
+            margin: 0 var(--sp-2);
+            position: relative;
+            top: -2px; /* 시각적 중앙 정렬 */
+            letter-spacing: 0.5px;
+        }
+
     </style>
 </head>
 <body>
@@ -1355,7 +1371,7 @@
                 <!-- ── 프로젝트 4: CareLink ── -->
         <div class="project-card">
             <div class="project-header">
-                <h3 class="project-title">CareLink — 노인 건강 모니터링 &amp; AI 진단 플랫폼</h3>
+                <h3 class="project-title">CareLink — 노인 건강 모니터링 &amp; AI 진단 플랫폼 <span class="badge-paper">논문</span></h3>
                 <div class="project-meta">
                     <span>📅 2025.10 – 2026.03</span>
                     <span>👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
@@ -1528,4 +1544,3 @@
                     <span class="tech-tag">Spring Boot 3</span>
                     <span class="tech-tag">FastAPI</span>
                     <span class="tech-tag">PyTorch</span>
-                    <span class=
