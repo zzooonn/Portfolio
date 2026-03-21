@@ -102,12 +102,16 @@
         a { text-decoration: none; color: inherit; }
         code {
             font-family: 'IBM Plex Mono', 'Consolas', monospace;
-            font-size: 0.875em;
-            background: var(--bg-subtle);
+            font-size: 0.95em;
+            font-weight: 600;
+            background: var(--accent-light);
             color: var(--accent);
-            padding: 2px 6px;
+            padding: 2px 7px;
             border-radius: var(--radius-sm);
+            border: 1px solid var(--accent-dim);
         }
+        /* strong 안 code도 굵기 유지 */
+        strong code { font-weight: 700; }
 
         /* ── 레이아웃 ── */
         .container  { max-width: 1080px; margin: 0 auto; padding: var(--sp-16) var(--sp-5); }
@@ -562,6 +566,8 @@
             padding: 0 !important;
             border-radius: 0 !important;
             font-size: inherit !important;
+            font-weight: inherit !important;
+            border: none !important;
         }
         /* span 인라인 배경이 있을 경우에도 강제 제거 */
         .code-snippet-box pre span {
@@ -655,11 +661,10 @@
             <h1>조현준</h1>
             <p class="profile-role">Systems &amp; AI Full-Stack Engineer</p>
             <p class="profile-bio">
-                MIPS 어셈블리부터 PyTorch 모델 서빙까지,
-                밑바닥부터 쌓아온 엔지니어입니다.
+                낯선 환경에서 OS부터 AI까지, 직접 구현하며 실력을 증명한 엔지니어입니다.
             </p>
             <div class="profile-links">
-                <a href="mailto:kevinjo11@naver.com"><i class="fas fa-envelope"></i> kevinjo11@naver.com</a>
+                <a href="/cdn-cgi/l/email-protection#c0aba5b6a9aeaaaff1f180aea1b6a5b2eea3afad"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="127977647b7c787d2323527c736477603c717d7f">[email&#160;protected]</span></a>
                 <a href="tel:01099907147"><i class="fas fa-phone"></i> 010-9990-7147</a>
                 <a href="https://github.com/zzooonn" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
             </div>
@@ -682,13 +687,14 @@
                 </div>
             </div>
 
-            <div class="resume-item">
-                <div class="resume-icon"><i class="fas fa-university"></i></div>
-                <div class="resume-content">
-                    <h4>北京航空航天大学 (BUAA)</h4>
-                    <p>软件学院 (School of Software) · 학사</p>
-                    <p>2020.09 – 2026.07 (졸업 예정)</p>
-                </div>
+            <div class="resume-icon"><i class="fas fa-university"></i></div>
+            <div class="resume-content">
+                <h4>北京航空航天大学 (BUAA)</h4>
+                <p>软件学院 (School of Software) · 학사</p>
+                <p>2020.09 – 2026.07 (졸업 예정)</p>
+                <p style="font-size:var(--text-xs); color:var(--accent); font-weight:700; margin-top:4px;">
+                    <i class="fas fa-award"></i> 중국 교육부 학과 평가 소프트웨어공학 전국 1위 (A+)
+                </p>
             </div>
         </div>
 
@@ -702,7 +708,7 @@
                         <span class="badge-highlight">Level 6</span>
                     </div>
                     <p>ID: 100318 · 2025.10.25</p>
-                    <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">북경 유학 6년 — 중국어로 기술 토론·팀 협업·문서 작성 수행</p>
+                    <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">북경 유학 8년 — 중국어로 기술 토론·팀 협업·문서 작성 수행</p>
                 </div>
             </div>
             <div class="resume-item">
@@ -713,7 +719,6 @@
                         <span class="badge-highlight">IH · Intermediate High</span>
                     </div>
                     <p>ID: 2C5955731527 · 2025.12.22</p>
-                    <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">한·중·영 3개국어 다국적 팀 기술 스택 조율 경험 보유</p>
                 </div>
             </div>
         </div>
@@ -798,69 +803,69 @@
             </div>
             <div class="project-body">
 
-                <div class="p-section">
+            <div class="p-section">
                     <p class="p-desc">
-                        GXemul 시뮬레이터 위에서 Bare-metal부터 시작해 가상 메모리(TLB) · 프로세스 스케줄링 ·
-                        파이프(Pipe) IPC · 파일 시스템까지 동작하는 완전한 마이크로커널 OS를 독자 구현했습니다.
+                        GXemul 환경에서 커널 부팅부터 가상 메모리, 프로세스/시스템콜, pipe IPC, 파일시스템까지 단계적으로 구현했습니다. 
+                        특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 실습했습니다.
                     </p>
                 </div>
 
                 <div class="p-section">
                     <h4 class="p-section-title">주요 개발 내용</h4>
                     <ul class="contribution-list">
-                        <li>2단계 페이지 테이블 및 TLB Fast Refill 메커니즘으로 가상 메모리 시스템 구축.</li>
-                        <li>PCB + CP0 타이머 인터럽트 기반 선점형 라운드 로빈 스케줄링 구현.</li>
-                        <li>메모리 복사 비용을 줄이기 위한 <strong>Copy-on-Write(COW) 방식의 <code>fork()</code></strong> 시스템 콜 최적화 설계.</li>
-                        <li>FS를 커널에서 분리하여 <strong>사용자 공간 FS 서버 프로세스와 IPC로 통신하는 마이크로커널 I/O 아키텍처</strong> 구축.</li>
+                        <li><strong>가상 메모리 체계 구축:</strong> 2단계 페이지 테이블 기반 가상 메모리와 TLB Fast Refill 메커니즘 구현.</li>
+                        <li><strong>프로세스 최적화:</strong> <code>fork()</code> 시스템 콜에 <strong>Copy-on-Write(COW)</strong> 방식을 적용하여 메모리 복사 비용 최적화.</li>
+                        <li><strong>IPC 메커니즘:</strong> pipe IPC 및 파일 디스크립터 복제/참조 관리 로직 구현.</li>
+                        <li><strong>마이크로커널 아키텍처:</strong> 커널 내부 파일시스템 대신 <strong>사용자 공간 FS 서버와 IPC로 통신</strong>하는 구조 설계.</li>
                     </ul>
                 </div>
 
-                <div class="p-section">
-                    <h4 class="p-section-title">트러블슈팅</h4>
-                    <div class="ts-wrapper">
-                        <div class="ts-header">
-                            <h3 class="ts-title">Pipe 통신 구현 중 Context Switch로 인한 Race Condition 해결</h3>
-                            <span class="ts-badge">Kernel / IPC</span>
+            <div class="p-section">
+            <h4 class="p-section-title">트러블슈팅</h4>
+            <div class="ts-wrapper">
+                <div class="ts-header">
+                    <h3 class="ts-title">Pipe IPC 구현 중 매핑 순서에 따른 참조 수(pageref) 판정 오류 해결</h3>
+                    <span class="ts-badge">Kernel / IPC</span>
+                </div>
+                <div class="ts-layout">
+                    <div class="ts-content-area">
+                        <div>
+                            <div class="ts-block-title problem">상황</div>
+                            <p class="ts-text"><code>dup()</code> 및 <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션이 발생했습니다. 이로 인해 파이프 상대편이 닫힌 것으로 오인하여 통신이 비정상 종료되는 버그가 있었습니다.</p>
                         </div>
-                        <div class="ts-layout">
-                            <div class="ts-content-area">
-                                <div>
-                                    <div class="ts-block-title problem">상황</div>
-                                    <p class="ts-text"><code>dup()</code>으로 파이프 FD를 복제하는 도중 <strong>타이머 인터럽트로 Context Switch</strong>가 발생하여 <code>pageref</code> 갱신이 꼬이면서 자식 프로세스가 쓰기 단이 닫힌 것으로 오인해 강제 종료되는 버그가 있었습니다.</p>
-                                </div>
-                                <div>
-                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">대안 탐색</div>
-                                    <p class="ts-text">인터럽트 비활성화(cli/sti)로 임계 구간을 보호하는 방법과 매핑 순서 재배치 두 가지를 검토했습니다. 인터럽트 비활성화는 교육용 OS 설계 원칙상 금지되어 있어, <strong>매핑 해제·연결 순서를 변경해 항상 안전한 불변식을 유지</strong>하는 방향을 선택했습니다.</p>
-                                </div>
-                                <div>
-                                    <div class="ts-block-title solution">해결</div>
-                                    <p class="ts-text"><code>pageref(fd) ≤ pageref(pipe)</code> 조건이 항상 유지되도록 <strong>unmap·map 순서를 재배치(Reordering)</strong>하여 원자성 부족 문제를 우회하고 안전한 IPC 환경을 구축했습니다.</p>
-                                </div>
+                        <div>
+                            <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">대안 탐색</div>
+                            <p class="ts-text">인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 별도의 락 없이도 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 최적화 방안을 선택했습니다.</p>
+                        </div>
+                        <div>
+                            <div class="ts-block-title solution">해결</div>
+                            <p class="ts-text"><code>pageref(fd) ≤ pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. 원자성이 보장되지 않는 구간에서도 참조 수를 기반으로 한 파이프 생존 판정이 항상 올바르게 작동하도록 설계하여 IPC의 안정성을 확보했습니다.</p>
+                        </div>
+                    </div>
+                    <div class="ts-img-area">
+                        <div class="code-snippet-box">
+                            <div class="code-snippet-header">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                                <span class="code-filename">pipe.c — Atomic-like Mapping Sequence</span>
                             </div>
-                            <div class="ts-img-area">
-                                <div class="code-snippet-box">
-                                    <div class="code-snippet-header">
-                                        <span class="code-dot red"></span>
-                                        <span class="code-dot yellow"></span>
-                                        <span class="code-dot green"></span>
-                                        <span class="code-filename">pipe.c — Mapping Sequence Fix</span>
-                                    </div>
-<pre><code><span style="color:#5c6370;">// fd와 pipe 해제 순서가 핵심인 close 로직</span>
-<span style="color:#c678dd;">void</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">int</span> fdnum) {
-  <span style="color:#5c6370;">// [수정 후] fd를 먼저 해제 →
-  // pageref(fd) ≤ pageref(pipe) 유지</span>
-  <span style="color:#56b6c2;">syscall_mem_unmap</span>(0, fd_to_va(fdnum));
-  <span style="color:#56b6c2;">syscall_mem_unmap</span>(0, pipe_to_va(fdnum));
-}</code></pre>
-                                </div>
-                                <div class="ts-takeaway-box">
-                                    <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
-                                    <p class="ts-text">하드웨어 타이머로 인해 코드는 언제든 멈출 수 있음을 체감했습니다. <strong>선점형 스케줄링 환경에서는 동시성과 실행 순서를 항상 의심하고 방어적으로 설계</strong>해야 한다는 기본기를 다졌습니다.</p>
-                                </div>
-                            </div>
+        <pre><code><span style="color:#5c6370;">// 해제 순서 조정을 통해 불변식 유지</span>
+        <span style="color:#c678dd;">void</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">int</span> fdnum) {
+        <span style="color:#5c6370;">// [Fix] FD를 먼저 해제하여 
+        // pageref(fd)가 pipe보다 커지는 찰나의 순간을 방지</span>
+        <span style="color:#56b6c2;">syscall_mem_unmap</span>(0, fd_to_va(fdnum));
+        <span style="color:#56b6c2;">syscall_mem_unmap</span>(0, pipe_to_va(fdnum));
+        }</code></pre>
+                        </div>
+                        <div class="ts-takeaway-box">
+                            <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
+                            <p class="ts-text">선점형 스케줄링 환경에서는 '완성된 결과'뿐만 아니라 <strong>'과정 중의 중간 상태'도 안전해야 함</strong>을 깨달았습니다. 코드 실행 순서만으로 동시성 문제를 해결하며, 방어적 설계와 불변식 유지의 중요성을 체감했습니다.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
                 <div class="p-section">
                     <h4 class="p-section-title">사용 기술</h4>
@@ -1122,49 +1127,49 @@
                         <text x="492" y="825" font-size="10" fill="#5f3dc4">DJL: 별도 서버 없이 내장</text>
                         </svg>
                     </div>
-                    <p class="p-desc">
-                        Elasticsearch 전문 검색과 Redis 캐싱을 적용한 학술 성과 공유 플랫폼.
-                        요구사항 분석·아키텍처 설계·RFC 문서 작성부터 배포까지 소프트웨어 공학의
-                        전체 협업 프로세스를 경험한 핵심 프로젝트입니다.
+                <p class="p-desc">
+                        Elasticsearch, Redis, MinIO 등 다중 인프라를 활용한 학술 성과 공유 플랫폼입니다.
+                        요구사항 분석부터 아키텍처 설계, RFC 문서화 및 프론트·백엔드 통합 구현까지 
+                        소프트웨어 공학의 전체 개발 사이클을 준수하며 진행한 팀 프로젝트입니다.
                     </p>
                 </div>
 
                 <div class="p-section">
                     <h4 class="p-section-title">주요 개발 내용</h4>
                     <ul class="contribution-list">
-                        <li><strong>문서 기반 협업 환경 구축:</strong> RFC 및 API 명세서 작성, <code>docs/</code>에 설계 문서 체계화하여 팀 내 소통 비용 최소화.</li>
-                        <li><strong>다중 인프라 통합:</strong> Spring Boot 3 (Java 21) 기반 REST API에 Elasticsearch·Redis·MinIO를 성공적으로 연동.</li>
-                        <li><strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>가 Controller의 반환값을 <code>code/message/data</code> 형태로 자동 래핑하고, <code>BusinessException</code> 상속 체계로 예외를 도메인별로 일관화.</li>
-                        <li><strong>프론트엔드 연동:</strong> Vue 3 + TypeScript + Vite 환경과의 데이터 통신 및 인터페이스 통합 수행.</li>
+                        <li><strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.</li>
+                        <li><strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.</li>
+                        <li><strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>를 통한 응답 자동 래핑(code/message/data) 및 <code>BusinessException</code> 상속 체계 기반의 전역 예외 처리 로직 구현.</li>
+                        <li><strong>프론트엔드 연동 및 통합:</strong> Vue 3 + TypeScript + Vite 환경과의 API 통신 구조 설계 및 프론트-백엔드 인터페이스 통합 수행.</li>
                     </ul>
                 </div>
 
-                <div class="p-section">
-                    <h4 class="p-section-title">트러블슈팅</h4>
-                    <div class="ts-wrapper">
-                        <div class="ts-header">
-                            <h3 class="ts-title">백엔드 인프라 파편화 및 API 공통 규약 불일치 해결</h3>
-                            <span class="ts-badge">백엔드 / 협업</span>
-                        </div>
-                        <div class="ts-layout">
-                            <div class="ts-content-area">
-                                <div>
-                                    <div class="ts-block-title problem">상황</div>
-                                    <p class="ts-text">팀원 간 로컬 설정(.env, AI 모델 경로)이 엇갈려 인프라 기동 실패가 잦았습니다. 여기에 <strong>API 응답 구조까지 제각각이어서 프론트 연동에 심각한 병목</strong>이 발생했습니다.</p>
-                                </div>
-                                <div>
-                                    <div class="ts-block-title solution">해결</div>
-                                    <p class="ts-text">README 기준으로 기동 환경을 통일하고, Controller는 비즈니스 데이터만 반환하면 <strong><code>ResponseResultHandler</code>가 <code>code/message/data</code> 형태로 자동 래핑</strong>하도록 아키텍처를 개선했습니다. BusinessException 규약도 강제하여 혼선을 제거했습니다.</p>
-                                </div>
+<div class="p-section">
+                <h4 class="p-section-title">트러블슈팅</h4>
+                <div class="ts-wrapper">
+                    <div class="ts-header">
+                        <h3 class="ts-title">백엔드 실행 환경 파편화 및 API 응답 규약 불일치 해결</h3>
+                        <span class="ts-badge">백엔드 / 협업</span>
+                    </div>
+                    <div class="ts-layout">
+                        <div class="ts-content-area">
+                            <div>
+                                <div class="ts-block-title problem">상황</div>
+                                <p class="ts-text">팀원 간 로컬 환경 설정(.env, AI 모델 경로) 차이로 인한 <strong>인프라 기동 실패</strong>가 발생했습니다. 또한, 개발자별로 상이한 API 응답 구조로 인해 프론트엔드에서 데이터 파싱 오류가 빈번하게 나타났습니다.</p>
                             </div>
-                            <div class="ts-img-area">
-                                <div class="code-snippet-box">
-                                    <div class="code-snippet-header">
-                                        <span class="code-dot red"></span>
-                                        <span class="code-dot yellow"></span>
-                                        <span class="code-dot green"></span>
-                                        <span class="code-filename">ResponseResultHandler.java</span>
-                                    </div>
+                            <div>
+                                <div class="ts-block-title solution">해결</div>
+                                <p class="ts-text">README 기반 기동 프로세스를 확립하고, <strong><code>ResponseBodyAdvice</code>를 활용해 모든 응답을 <code>code/message/data</code> 구조로 자동 래핑</strong>하는 아키텍처를 적용했습니다. 이를 통해 예외 상황에서도 일관된 데이터 규약을 유지하도록 강제했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="ts-img-area">
+                            <div class="code-snippet-box">
+                                <div class="code-snippet-header">
+                                    <span class="code-dot red"></span>
+                                    <span class="code-dot yellow"></span>
+                                    <span class="code-dot green"></span>
+                                    <span class="code-filename">ResponseResultHandler.java</span>
+                                </div>
 <pre><code><span style="color:#c678dd;">@RestControllerAdvice</span>
 <span style="color:#c678dd;">public class</span> <span style="color:#e5c07b;">ResponseResultHandler</span>
     <span style="color:#c678dd;">implements</span> <span style="color:#e5c07b;">ResponseBodyAdvice</span>&lt;Object&gt; {
@@ -1174,36 +1179,34 @@
     <span style="color:#5c6370;">// 이미 공통 래퍼면 그대로 반환</span>
     <span style="color:#c678dd;">if</span> (body <span style="color:#c678dd;">instanceof</span> ResultWrapper)
       <span style="color:#c678dd;">return</span> body;
-    <span style="color:#5c6370;">// 데이터를 code/message/data로 래핑</span>
+    <span style="color:#5c6370;">// 데이터를 규약에 맞춰 자동 래핑</span>
     <span style="color:#c678dd;">return</span> <span style="color:#61afef;">ResultWrapper.success</span>(body);
   }
 }</code></pre>
-                                </div>
-                                <div class="ts-takeaway-box">
-                                    <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
-                                    <p class="ts-text">다중 스택 협업에서는 개인 역량보다 <strong>인터페이스 규약을 시스템적으로 강제하는 아키텍처 설계</strong>가 팀 전체 생산성에 직결됨을 배웠습니다.</p>
-                                </div>
+                            </div>
+                            <div class="ts-takeaway-box">
+                                <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
+                                <p class="ts-text">협업 시 발생할 수 있는 휴먼 에러를 줄이기 위해서는 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 기여한다는 점을 체감했습니다.</p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="p-section">
-                    <h4 class="p-section-title">사용 기술</h4>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Vue 3</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Spring Boot 3 (Java 21)</span>
-                        <span class="tech-tag">Elasticsearch</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">MinIO</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">DJL Embedding</span>
-                        <span class="tech-tag">Docker Compose</span>
-                    </div>
+            <div class="p-section">
+                <h4 class="p-section-title">사용 기술</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Spring Boot 3 (Java 21)</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Elasticsearch</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">MinIO</span>
+                    <span class="tech-tag">Vue 3</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Docker Compose</span>
+                    <span class="tech-tag">Vite</span>
                 </div>
             </div>
-        </div>
 
                 <!-- ── 프로젝트 4: CareLink ── -->
         <div class="project-card">
@@ -1299,19 +1302,21 @@
                         <text x="460" y="706" font-size="11" fill="#993C1D">모바일 → AI: 직접 호출 (2초 주기)</text>
                         </svg>
                     </div>
+<div class="project-body">
+                <div class="p-section">
                     <p class="p-desc">
-                        환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다.
-                        모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된
-                        마이크로서비스 아키텍처를 독자 설계·구현했습니다.
+                        환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 
+                        모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 
+                        <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.
                     </p>
                 </div>
 
                 <div class="p-section">
                     <h4 class="p-section-title">주요 개발 내용</h4>
                     <ul class="contribution-list">
-                        <li><strong>3-Tier 마이크로서비스 아키텍처 설계:</strong> 비즈니스 로직(Spring Boot)과 AI 연산(FastAPI/PyTorch)의 책임을 물리적으로 분리하여 서버 리소스 효율 극대화.</li>
-                        <li><strong>AI 모델 경량화:</strong> PTB-XL 2만 건으로 CNN-CBAM-GRU 하이브리드 모델 구축. 파라미터 ~567K로 경량화하면서 <strong>Macro AUC 93.31%, Macro F1 74.97%</strong> 달성.</li>
-                        <li><strong>클라이언트 최적화 및 보안:</strong> JWT 401 만료 자동 로그아웃 흐름 처리. AsyncStorage Cache-First 전략으로 첫 화면 표시 시간 <strong>0.22ms</strong>, 전체 동기화 완료 <strong>653ms(p95: 721ms)</strong> 달성.</li>
+                        <li><strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성 확보.</li>
+                        <li><strong>심전도(ECG) 진단 모델 최적화:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API 구축 및 실시간 진단 기능 구현.</li>
+                        <li><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름 구현 및 AsyncStorage를 활용한 <strong>Cache-First 전략</strong>으로 클라이언트 응답성 개선.</li>
                     </ul>
                 </div>
 
@@ -1325,28 +1330,20 @@
                         <div class="ts-layout">
                             <div class="ts-content-area">
                                 <div>
-                                    <div class="ts-block-title problem">① 상황 — 대용량 모델 실시간 지연</div>
-                                    <p class="ts-text">초기 1D-ResNet 적용 시 모바일에서 평균 추론 지연 <strong>2,300ms(p95: 2,395ms)</strong>, 배터리 소모 문제가 발생했습니다.</p>
+                                    <div class="ts-block-title problem">① 상황 — 실시간 추론 지연 및 배터리 소모</div>
+                                    <p class="ts-text">초기 모델 적용 시 모바일 환경에서 높은 추론 지연과 배터리 소모가 관측되어 실시간 모니터링 서비스에 부적합한 문제가 있었습니다.</p>
                                 </div>
                                 <div>
-                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">① 대안 탐색</div>
-                                    <p class="ts-text">온디바이스 추론(TFLite)과 서버 사이드 경량 모델 두 가지를 검토했습니다. 온디바이스는 모델 업데이트 배포가 어렵고, 12-lead ECG 입력 크기가 모바일 메모리 한계에 가까워 <strong>서버 사이드 경량화</strong>를 선택했습니다.</p>
-                                </div>
-                                <div>
-                                    <div class="ts-block-title solution">① 해결 — CBAM+Bi-GRU 경량 구조 재설계</div>
-                                    <p class="ts-text">파라미터 ~567K의 CBAM + Bi-GRU 구조로 재설계. Macro AUC 93.31%를 유지하면서 추론 지연 <strong>p50 2,283ms → 서비스 허용 범위 내 안정화</strong>했습니다.</p>
+                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">① 해결 방안</div>
+                                    <p class="ts-text">온디바이스 대비 모델 업데이트가 용이하고 모바일 메모리 부담이 적은 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모델 구조 경량화를 통해 서비스 가능 수준으로 지연 시간을 안정화했습니다.</p>
                                 </div>
                                 <div>
                                     <div class="ts-block-title problem">② 상황 — 저메모리 EC2의 OOM 장애</div>
-                                    <p class="ts-text">AWS 프리티어 환경에서 <code>docker compose up --build</code> 실행 시 PyTorch 빌드 중 OOM으로 서버 다운이 발생했습니다.</p>
-                                </div>
-                                <div>
-                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">② 대안 탐색</div>
-                                    <p class="ts-text">Swap 메모리 확대, EC2 사양 업그레이드, 이미지 사전 빌드 세 가지를 검토했습니다. Swap 확대는 디스크 I/O 병목을, 사양 업그레이드는 비용 문제를 유발하므로 <strong>CI 빌드 후 레지스트리 Push → 서버 Pull-only</strong> 전략을 선택했습니다.</p>
+                                    <p class="ts-text">AWS 프리티어 환경에서 <code>docker compose up --build</code> 실행 시 PyTorch 빌드 과정의 메모리 부족으로 서버가 다운되는 현상이 발생했습니다.</p>
                                 </div>
                                 <div>
                                     <div class="ts-block-title solution">② 해결 — Pull-only 배포 전략</div>
-                                    <p class="ts-text">로컬/CI에서 이미지를 사전 빌드해 GHCR에 Push하고, <strong>운영 서버는 Pull-only 전략</strong>으로 안정화했습니다.</p>
+                                    <p class="ts-text">로컬/CI 환경에서 이미지를 사전 빌드해 GHCR에 Push하고, <strong>운영 서버는 Pull-only 전략</strong>을 취하여 배포 시의 메모리 점유율을 최소화했습니다.</p>
                                 </div>
                             </div>
                             <div class="ts-img-area">
@@ -1372,22 +1369,22 @@
                                 </div>
                                 <div class="ts-takeaway-box">
                                     <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
-                                    <p class="ts-text">무조건 정확한 모델이 정답이 아니며, 인프라 제약을 선제적으로 고려한 <strong>아키텍처 분리와 Pull-only 배포 파이프라인 설계</strong>가 서비스 안정성을 결정짓는다는 것을 체득했습니다.</p>
+                                    <p class="ts-text">제한된 인프라 자원에서 장애를 예방하기 위해서는, 단편적인 성능 튜닝보다 <strong>인프라 제약과 모델 사양을 종합적으로 고려하여 아키텍처 수준에서 트레이드오프를 조율하는 설계</strong>가 전체 시스템 안정성에 직결된다는 점을 체감했습니다.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="p-section">
-                    <h4 class="p-section-title">사용 기술</h4>
-                    <div class="tech-tags">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Spring Boot 3</span>
-                        <span class="tech-tag">FastAPI</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">Docker Compose</span>
-                        <span class="tech-tag">GitHub Actions</span>
-                        <span class="tech-tag">AWS EC2</span>
-                    </div>
+            <div class="p-section">
+                <h4 class="p-section-title">사용 기술</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Spring Boot 3</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker Compose</span>
+                </div>
+            </div>
