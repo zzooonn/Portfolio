@@ -182,6 +182,7 @@
             font-size: var(--text-base);
             color: var(--text-secondary);
             line-height: 1.8;
+            max-width: 560px;
         }
         .profile-links {
             margin-top: var(--sp-6);
@@ -283,6 +284,22 @@
             margin-bottom: var(--sp-1);
             font-family: 'IBM Plex Mono', monospace;
         }
+        .badge-paper {
+            font-family: 'IBM Plex Mono', 'Noto Sans KR', monospace;
+            font-size: 0.65em; /* 제목 크기에 맞게 축소 */
+            font-weight: 800;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--accent-dim);
+            vertical-align: middle;
+            margin: 0 var(--sp-2);
+            position: relative;
+            top: -2px; /* 시각적 중앙 정렬 */
+            letter-spacing: 0.5px;
+        }
+
 
         /* =============================================
            3. 스킬 섹션
@@ -726,22 +743,6 @@
             .about-grid { grid-template-columns: 1fr; }
         }
 
-        .badge-paper {
-            font-family: 'IBM Plex Mono', 'Noto Sans KR', monospace;
-            font-size: 0.65em; /* 제목 크기에 맞게 축소 */
-            font-weight: 800;
-            background: var(--accent-light);
-            color: var(--accent);
-            padding: 3px 10px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--accent-dim);
-            vertical-align: middle;
-            margin: 0 var(--sp-2);
-            position: relative;
-            top: -2px; /* 시각적 중앙 정렬 */
-            letter-spacing: 0.5px;
-        }
-
     </style>
 </head>
 <body>
@@ -760,7 +761,7 @@
                 낯선 환경에서 OS부터 AI까지, 직접 구현하며 실력을 증명한 엔지니어입니다.
             </p>
             <div class="profile-links">
-                <a href="/cdn-cgi/l/email-protection#bad1dfccd3d4d0d58b8bfad4dbccdfc894d9d5d7"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="cca7a9baa5a2a6a3fdfd8ca2adbaa9bee2afa3a1">[email&#160;protected]</span></a>
+                <a href="/cdn-cgi/l/email-protection#117a7467787f7b7e2020517f706774633f727e7c"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="721917041b1c181d4343321c130417005c111d1f">[email&#160;protected]</span></a>
                 <a href="https://github.com/zzooonn" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
@@ -1078,15 +1079,15 @@
                             <div class="ts-content-area">
                                 <div>
                                     <div class="ts-block-title problem">상황</div>
-                                    <p class="ts-text">세미콜론·괄호 누락 시 컴파일러가 강제 종료(Panic)되거나, 렉서가 이미 다음 줄 토큰을 읽어 <strong>엉뚱한 위치에 구문 오류를 보고하는 고질적 이슈</strong>가 발생했습니다.</p>
+                                    <p class="ts-text">세미콜론이 누락된 코드를 파싱할 때 <strong>동일한 오류가 중복 출력</strong>되는 현상이 발생했습니다. 파서의 토큰 스트림을 로깅하며 추적한 결과, 오류 복구 과정에서 <strong>토큰 포인터가 두 칸 전진하여</strong> 다음 위치에서 에러가 재발하는 구조적 결함을 확인했습니다.</p>
                                 </div>
                                 <div>
                                     <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">대안 탐색</div>
-                                    <p class="ts-text">에러 발생 즉시 파싱을 중단하는 방식과, 에러를 기록하고 파싱을 이어가는 회복(Recovery) 방식을 검토했습니다. 중단 방식은 첫 번째 오류 이후 모든 후속 오류를 놓치는 문제가 있어, <strong>직전 토큰 위치를 추적해 복수 오류를 한 번에 보고</strong>하는 Recovery 방식을 선택했습니다.</p>
+                                    <p class="ts-text">문제의 증상과 원인 발생 지점이 달랐기에, 임시 토큰 위치 보정 방식과 파서 구조 자체를 변경하는 방식을 검토했습니다. 전자는 동일한 결함이 다른 구문에서 재발할 수 있어, <strong>근본적인 구조 개선</strong>이 필요하다고 판단했습니다.</p>
                                 </div>
                                 <div>
                                     <div class="ts-block-title solution">해결</div>
-                                    <p class="ts-text">에러 복구(Error Recovery) 메커니즘을 설계했습니다. <strong><code>getPreviousToken()</code>으로 직전 토큰 위치를 추적</strong>하여 정확한 에러 라인을 기록한 뒤 파닉 없이 파싱을 계속 이어나가도록 처리했습니다.</p>
+                                    <p class="ts-text"><strong><code>getPreviousToken()</code>을 새롭게 설계</strong>하여 복구 직후 이전 토큰 위치를 정확히 참조하도록 파서 구조를 변경했습니다. 그 결과 오류 발생 시에도 파싱이 중단되지 않고 <strong>안정적인 복구 흐름</strong>을 완성했습니다.</p>
                                 </div>
                             </div>
                             <div class="ts-img-area">
@@ -1368,19 +1369,21 @@
                 </div>
             </div>
 
-                <!-- ── 프로젝트 4: CareLink ── -->
-        <div class="project-card">
+<div class="project-card">
             <div class="project-header">
                 <h3 class="project-title">CareLink — 노인 건강 모니터링 &amp; AI 진단 플랫폼 <span class="badge-paper">논문</span></h3>
                 <div class="project-meta">
                     <span>📅 2025.10 – 2026.03</span>
                     <span>👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
                 </div>
+                <div class="project-links-bar" style="margin-top: var(--sp-4); display: flex; flex-wrap: wrap; gap: var(--sp-2);">
+                    <a href="#" class="project-link-btn github" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 99px; font-size: var(--text-xs); font-weight: 700; border: 1px solid var(--accent-dim); background: var(--accent-light); color: var(--accent); font-family: 'IBM Plex Mono', monospace; transition: all 0.2s ease;"><i class="fab fa-github"></i> Repository</a>
+                    <a href="#" class="project-link-btn paper" style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 99px; font-size: var(--text-xs); font-weight: 700; border: 1px solid #ffe3e3; background: #fff5f5; color: var(--color-skill-ai); font-family: 'IBM Plex Mono', monospace; transition: all 0.2s ease;"><i class="fas fa-file-pdf"></i> 논문 원문 (Thesis)</a>
+                </div>
             </div>
+            
             <div class="project-body">
-
                 <div class="p-section">
-                    <!-- CareLink 아키텍처 다이어그램 -->
                     <div style="width:100%; background:#fff; border:1px solid var(--border-default); border-radius:var(--radius-md); padding:24px 28px; margin-bottom:var(--sp-5);">
                         <p style="font-size:var(--text-xs); font-family:'IBM Plex Mono',monospace; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px;">System Architecture — React Native · Spring Boot · FastAPI · PostgreSQL · AWS EC2 + Docker</p>
                         <svg width="100%" viewBox="0 0 680 720" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
@@ -1389,28 +1392,23 @@
                                 <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </marker>
                         </defs>
-                        <!-- AWS EC2 + Docker 외곽 -->
                         <rect x="8" y="280" width="664" height="424" rx="14" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"/>
                         <rect x="18" y="269" width="138" height="20" rx="5" fill="#f0f0ff"/>
                         <text x="87" y="283" text-anchor="middle" font-size="11" fill="#5b58ff" font-weight="600">AWS EC2 + Docker</text>
-                        <!-- TIER 1: 모바일 -->
                         <text x="340" y="16" text-anchor="middle" font-size="11" fill="#666">모바일 클라이언트</text>
                         <rect x="150" y="24" width="380" height="68" rx="11" fill="#e1f5ee" stroke="#1D9E75" stroke-width="0.5"/>
                         <text x="340" y="50" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#0b5c3a">React Native / Expo</text>
                         <text x="340" y="72" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1D9E75">AsyncStorage · JWT · expo-notifications · Expo Router</text>
-                        <!-- 모바일 → Spring (좌) -->
                         <line x1="255" y1="92" x2="197" y2="325" stroke="#0F6E56" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"/>
                         <line x1="178" y1="325" x2="236" y2="92" stroke="#0F6E56" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"/>
                         <rect x="100" y="194" width="138" height="32" rx="5" fill="#fff" opacity="0.96"/>
                         <text x="169" y="207" text-anchor="middle" font-size="11" fill="#0F6E56" font-weight="600">REST API / HTTPS</text>
                         <text x="169" y="220" text-anchor="middle" font-size="11" fill="#0F6E56">JWT Bearer token</text>
-                        <!-- 모바일 → AI (우) -->
                         <line x1="425" y1="92" x2="496" y2="522" stroke="#993C1D" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"/>
                         <line x1="514" y1="522" x2="443" y2="92" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"/>
                         <rect x="418" y="278" width="140" height="32" rx="5" fill="#fff" opacity="0.96"/>
                         <text x="488" y="291" text-anchor="middle" font-size="11" fill="#993C1D" font-weight="600">REST API / JSON</text>
                         <text x="488" y="304" text-anchor="middle" font-size="11" fill="#993C1D">ECG Inference API</text>
-                        <!-- TIER 2-A: Spring Boot -->
                         <rect x="18" y="316" width="334" height="192" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
                         <text x="185" y="312" text-anchor="middle" font-size="11" fill="#666">백엔드 컨테이너 · port 8080</text>
                         <rect x="30" y="327" width="310" height="58" rx="9" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
@@ -1422,7 +1420,6 @@
                         <rect x="192" y="397" width="148" height="44" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
                         <text x="266" y="416" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#364fc7">비즈니스 로직</text>
                         <text x="266" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">보호자 연결 · 뉴스 · 알림</text>
-                        <!-- TIER 2-B: PostgreSQL -->
                         <rect x="368" y="316" width="304" height="192" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
                         <text x="520" y="312" text-anchor="middle" font-size="11" fill="#666">DB 컨테이너 · port 5432</text>
                         <rect x="380" y="327" width="280" height="58" rx="9" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
@@ -1431,11 +1428,9 @@
                         <rect x="380" y="397" width="280" height="44" rx="8" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
                         <text x="520" y="416" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2b8a3e">핵심 테이블</text>
                         <text x="520" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">users · vitals · guardian_link · medications</text>
-                        <!-- Spring → PostgreSQL -->
                         <line x1="354" y1="422" x2="378" y2="422" stroke="#5c7cfa" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"/>
                         <line x1="378" y1="436" x2="354" y2="436" stroke="#5c7cfa" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"/>
                         <text x="366" y="416" text-anchor="middle" font-size="10" fill="#5c7cfa">JPA</text>
-                        <!-- TIER 3: FastAPI AI -->
                         <rect x="18" y="532" width="654" height="148" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
                         <text x="345" y="528" text-anchor="middle" font-size="11" fill="#666">AI 추론 컨테이너 · port 8000</text>
                         <rect x="30" y="543" width="278" height="56" rx="9" fill="#faece7" stroke="#993C1D" stroke-width="0.5"/>
@@ -1453,7 +1448,6 @@
                         <text x="492" y="601" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">5개 슈퍼클래스 멀티라벨 분류</text>
                         <text x="492" y="619" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">NORM · STTC · MI · CD · HYP</text>
                         <text x="492" y="637" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">모델 파일: best_model_multilabel.pth</text>
-                        <!-- 범례 -->
                         <rect x="18" y="692" width="654" height="20" rx="5" fill="#f1f3f5" opacity="0.8"/>
                         <text x="38"  y="706" font-size="11" fill="#0F6E56" font-weight="600">─── 요청</text>
                         <text x="110" y="706" font-size="11" fill="#0F6E56">- - - 응답</text>
@@ -1462,8 +1456,6 @@
                         <text x="460" y="706" font-size="11" fill="#993C1D">모바일 → AI: 직접 호출 (2초 주기)</text>
                         </svg>
                     </div>
-<div class="project-body">
-                <div class="p-section">
                     <p class="p-desc">
                         환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 
                         모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 
@@ -1478,6 +1470,21 @@
                         <li><strong>심전도(ECG) 진단 모델 최적화:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API 구축 및 실시간 진단 기능 구현.</li>
                         <li><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름 구현 및 AsyncStorage를 활용한 <strong>Cache-First 전략</strong>으로 클라이언트 응답성 개선.</li>
                     </ul>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">시스템 성능 최적화 및 평가 지표</h4>
+                    <div style="background: var(--bg-subtle); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: var(--sp-6); margin-bottom: var(--sp-4);">
+                        <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: var(--sp-4);">
+                            <i class="fas fa-chart-bar" style="color: var(--accent);"></i> 논문 제6장 실험 데이터를 바탕으로 시스템의 실시간성과 안정성을 검증했습니다.
+                        </p>
+                        <ul class="contribution-list">
+                            <li><strong>처리량(TPS) 최적화:</strong> 20명 동시 접속 API 부하 테스트 결과, 지연 없이 <strong>TPS 59.04</strong>를 달성하며 트래픽 증가에 따른 선형적 자원 배분 효율성을 입증했습니다.</li>
+                            <li><strong>실시간 AI 추론 속도:</strong> 복잡한 CNN-CBAM-GRU 모델임에도 12-lead ECG 데이터(10초 분량, 500Hz) 추론 속도를 <strong>평균 2.28초 (상위 95% 2.4초 이내)</strong>로 단축하여 모바일 헬스케어 환경의 실시간성을 확보했습니다.</li>
+                            <li><strong>시스템 견고성 확보:</strong> 비정상 입력값(NaN, 데이터 길이 불일치 등)에 대한 Boundary Value Analysis 결과, 서버 다운 없이 <strong>에러율 0% 및 Graceful Rejection</strong>을 달성했습니다.</li>
+                            <li><strong>모델 성능 우위 입증:</strong> Ablation Study로 설계 타당성을 검증하고, Per-Class AUROC 측정 결과 비교 모델(ResNet1D) 대비 <strong>HYP 클래스 등에서 명확한 성능 우위(0.8764)</strong>를 확인했습니다.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="p-section">
@@ -1497,6 +1504,7 @@
                                     <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">① 해결 방안</div>
                                     <p class="ts-text">온디바이스 대비 모델 업데이트가 용이하고 모바일 메모리 부담이 적은 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모델 구조 경량화를 통해 서비스 가능 수준으로 지연 시간을 안정화했습니다.</p>
                                 </div>
+                                <hr style="border: 0; border-top: 1px dashed var(--border-default);">
                                 <div>
                                     <div class="ts-block-title problem">② 상황 — 저메모리 EC2의 OOM 장애</div>
                                     <p class="ts-text">AWS 프리티어 환경에서 <code>docker compose up --build</code> 실행 시 PyTorch 빌드 과정의 메모리 부족으로 서버가 다운되는 현상이 발생했습니다.</p>
@@ -1535,12 +1543,18 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="p-section">
-                <h4 class="p-section-title">사용 기술</h4>
-                <div class="tech-tags">
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">Spring Boot 3</span>
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">PyTorch</span>
+                <div class="p-section">
+                    <h4 class="p-section-title">사용 기술</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Spring Boot 3</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">AWS EC2</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </div>
