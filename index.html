@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조현준 | Software Engineer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* =============================================
+           디자인 시스템 토큰 (단일 소스)
+           =============================================
+           
+           개선 원칙:
+           1. 단일 액센트 컬러(--accent) + 단계적 변형으로 색상 산만함 제거
+           2. 모듈식 스페이싱 스케일 도입 (4px 배수)
+           3. 타이포그래피 스케일 명시 (7단계)
+           4. 카드·박스 컴포넌트 값 통일
+           5. 인라인 스타일 → CSS 클래스로 전환
+        ============================================= */
+        :root {
+            /* ── 색상 (원본 유지) ── */
+            --bg-page:      #f8f9fa;
+            --bg-surface:   #ffffff;
+            --bg-subtle:    #f8f9fa;
+            --bg-code:      #282c34;
+
+            --accent:       #5b58ff;        /* 원본 --color-ts-title */
+            --accent-light: #f0f0ff;
+            --accent-dim:   #c5c4ff;
+
+            --color-cert:        #0ca678;
+            --color-skill-sys:   #5c7cfa;
+            --color-skill-ai:    #fa5252;
+            --color-skill-be:    #40c057;
+            --color-skill-fe:    #15aabf;
+            --color-skill-etc:   #495057;
+
+            --text-primary:   #1d1d1f;
+            --text-secondary: #444444;
+            --text-muted:     #666666;
+            --text-on-accent: #ffffff;
+            --text-code:      #abb2bf;
+
+            --border-default: #dee2e6;
+            --border-strong:  #ced4da;
+
+            /* ── 스페이싱 스케일 (4px 배수) ── */
+            --sp-1:  4px;
+            --sp-2:  8px;
+            --sp-3:  12px;
+            --sp-4:  16px;
+            --sp-5:  20px;
+            --sp-6:  24px;
+            --sp-8:  32px;
+            --sp-10: 40px;
+            --sp-12: 48px;
+            --sp-16: 64px;
+            --sp-20: 80px;
+
+            /* ── 타이포그래피 스케일 ── */
+            --text-xs:   0.875rem;   /* 14px */
+            --text-sm:   1rem;       /* 16px */
+            --text-base: 1.125rem;   /* 18px */
+            --text-md:   1.25rem;    /* 20px */
+            --text-lg:   1.5rem;     /* 24px */
+            --text-xl:   1.75rem;    /* 28px */
+            --text-2xl:  2.5rem;     /* 40px */
+            --text-3xl:  3.25rem;    /* 52px */
+
+            /* ── 반경·그림자 ── */
+            --radius-sm:  6px;
+            --radius-md:  12px;
+            --radius-lg:  16px;
+            --radius-xl:  24px;
+            --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md:  0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg:  0 8px 30px rgba(0,0,0,0.08);
+
+            /* ── 애니메이션 ── */
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration: 0.2s;
+        }
+
+        /* ── 리셋 & 베이스 ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 18px;}
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.75;
+            word-break: keep-all;
+            font-size: var(--text-base);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        code {
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            font-size: 0.875em;
+            background: var(--bg-subtle);
+            color: var(--accent);
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ── 레이아웃 ── */
+        .container  { max-width: 1080px; margin: 0 auto; padding: var(--sp-16) var(--sp-5); }
+        section     { margin-bottom: var(--sp-20); }
+
+        /* ── 섹션 타이틀 (통일) ── */
+        .section-title {
+            font-size: var(--text-2xl);
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--sp-10);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-3);
+        }
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 1.2em;
+            background: var(--accent);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* =============================================
+           1. 프로필 섹션
+        ============================================= */
+        .profile-wrapper {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-12);
+            margin-bottom: var(--sp-12);
+            background: var(--bg-surface);
+            padding: var(--sp-12);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-default);
+            box-shadow: var(--shadow-md);
+        }
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-default);
+            flex-shrink: 0;
+            background: var(--bg-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .profile-info h1 {
+            font-size: var(--text-3xl);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: var(--sp-2);
+        }
+        .profile-info .profile-role {
+            font-size: var(--text-md);
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: var(--sp-5);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .profile-info .profile-bio {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 560px;
+        }
+        .profile-links {
+            margin-top: var(--sp-6);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--sp-3);
+        }
+        .profile-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+            background: var(--bg-subtle);
+            padding: var(--sp-2) var(--sp-4);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-default);
+            transition: background var(--duration) var(--ease-out),
+                        color var(--duration) var(--ease-out),
+                        transform var(--duration) var(--ease-out),
+                        border-color var(--duration) var(--ease-out);
+        }
+        .profile-links a:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+            border-color: var(--accent-dim);
+            transform: translateY(-2px);
+        }
+
+        /* =============================================
+           2. 학력 & 어학 그리드
+        ============================================= */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-6);
+            margin-bottom: var(--sp-20);
+        }
+
+        /* ── 공통 카드 컴포넌트 ── */
+        .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-default);
+            box-shadow: var(--shadow-sm);
+            padding: var(--sp-8);
+        }
+        .card-title {
+            font-size: var(--text-lg);
+            font-weight: 800;
+            margin-bottom: var(--sp-6);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-3);
+            color: var(--text-primary);
+        }
+        .card-title i { color: var(--accent); }
+
+    .resume-item {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-4);
+        margin-bottom: var(--sp-5);
+    }
+        .resume-item:last-child { margin-bottom: 0; }
+
+        .resume-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-light);
+            border: 1px solid var(--accent-dim);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .resume-content h4 {
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--sp-1);
+        }
+        .resume-content p {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .resume-content .badge-highlight {
+            display: inline-block;
+            background: var(--color-cert);
+            color: var(--text-on-accent);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 8px;
+            margin-bottom: var(--sp-1);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* =============================================
+           3. 스킬 섹션
+           — 단일 액센트 기반으로 색상 재조정
+             카테고리별 색상 제거, 강도(intensity)로 구분
+        ============================================= */
+        .skills-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--sp-8);
+        }
+        .skill-category { margin-bottom: var(--sp-8); }
+        .skill-category:last-child { margin-bottom: 0; }
+
+        .skill-cat-label {
+            font-size: var(--text-sm);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--sp-3);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .skill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--sp-2);
+        }
+        .skill-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+            padding: var(--sp-2) var(--sp-4);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: transform var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
+        }
+        .skill-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+        /* 원본 카테고리별 색상 */
+        .skill-chip.sys  { background: #edf2ff; color: #364fc7; border-color: #dbe4ff; }
+        .skill-chip.ai   { background: #fff5f5; color: #c92a2a; border-color: #ffe3e3; }
+        .skill-chip.be   { background: #ebfbee; color: #2b8a3e; border-color: #d3f9d8; }
+        .skill-chip.fe   { background: #e3fafc; color: #0b7285; border-color: #c5f6fa; }
+        .skill-chip.etc  { background: #f8f9fa; color: #343a40; border-color: #dee2e6; }
+
+        /* =============================================
+           4. 프로젝트 섹션
+        ============================================= */
+        .project-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-default);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--sp-10);
+            overflow: hidden;
+        }
+        .project-card:last-child { margin-bottom: 0; }
+
+        .project-header {
+            padding: var(--sp-8) var(--sp-10);
+            border-bottom: 1px solid var(--border-default);
+            background: var(--bg-subtle);
+        }
+        .project-title {
+            font-size: var(--text-xl);
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--sp-3);
+            color: var(--text-primary);
+        }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--sp-4);
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .project-body { padding: var(--sp-10); }
+
+        /* ── 프로젝트 내부 섹션 ── */
+        .p-section { margin-bottom: var(--sp-10); }
+        .p-section:last-child { margin-bottom: 0; }
+
+        .p-section-title {
+            font-size: var(--text-base);
+            font-weight: 800;
+            margin-bottom: var(--sp-5);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-3);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .p-section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 1em;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .project-preview {
+            width: 100%;
+            height: 240px;
+            background: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--sp-5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            border: 2px dashed var(--border-strong);
+            gap: var(--sp-3);
+        }
+        .p-desc {
+            font-size: var(--text-md);
+            color: var(--text-secondary);
+            line-height: 1.85;
+        }
+
+        .contribution-list { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
+        .contribution-list li {
+            position: relative;
+            padding-left: var(--sp-6);
+            color: var(--text-secondary);
+            font-size: var(--text-base);
+            line-height: 1.8;
+        }
+        .contribution-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .contribution-list li strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        /* ── 테크 태그 ── */
+        .tech-tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+        .tech-tag {
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            padding: var(--sp-1) var(--sp-3);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            border: 1px solid var(--border-default);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* =============================================
+           5. 트러블슈팅 — 통일된 컴포넌트
+        ============================================= */
+        .ts-wrapper {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            padding: var(--sp-8);
+            margin-top: var(--sp-6);
+        }
+        .ts-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--sp-4);
+            margin-bottom: var(--sp-6);
+            padding-bottom: var(--sp-5);
+            border-bottom: 1px solid var(--border-default);
+            flex-wrap: wrap;
+        }
+        .ts-title {
+            font-size: var(--text-base);
+            font-weight: 800;
+            color: var(--text-primary);
+            flex: 1;
+            line-height: 1.5;
+        }
+        .ts-badge {
+            background: var(--accent);
+            color: var(--text-on-accent);
+            padding: var(--sp-1) var(--sp-4);
+            border-radius: 99px;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            white-space: nowrap;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .ts-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: var(--sp-8);
+            align-items: start;
+        }
+        .ts-content-area { display: flex; flex-direction: column; gap: var(--sp-6); }
+
+        .ts-block-title {
+            font-size: var(--text-sm);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--sp-2);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .ts-block-title.problem { color: #dc2626; }
+        .ts-block-title.solution { color: #16a34a; }
+
+        .ts-text {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .ts-text strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ── 우측: 코드 + 알게된 점 ── */
+        .ts-img-area { display: flex; flex-direction: column; gap: var(--sp-4); }
+
+        /* ── 코드 스니펫 ── */
+        .code-snippet-box {
+            background: var(--bg-code);
+            border-radius: var(--radius-md);
+            padding: var(--sp-5);
+            overflow-x: auto;
+            box-shadow: var(--shadow-md);
+        }
+        .code-snippet-header {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-2);
+            margin-bottom: var(--sp-4);
+            padding-bottom: var(--sp-3);
+            border-bottom: 1px solid #2d3139;
+        }
+        .code-dot {
+            width: 11px; height: 11px;
+            border-radius: 50%;
+        }
+        .code-dot.red    { background: #e06c75; }
+        .code-dot.yellow { background: #e5c07b; }
+        .code-dot.green  { background: #98c379; }
+        .code-filename {
+            margin-left: var(--sp-2);
+            color: #7f848e;
+            font-size: var(--text-xs);
+            font-weight: 600;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .code-snippet-box pre {
+            margin: 0;
+            color: #abb2bf;
+            font-family: 'IBM Plex Mono', 'Consolas', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            white-space: pre;
+        }
+        /* 전역 code 태그의 밝은 배경·색상·패딩이
+           코드 스니펫 내부를 오염시키지 않도록 완전 리셋 */
+        .code-snippet-box code,
+        .code-snippet-box pre code {
+            background: transparent !important;
+            color: inherit !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            font-size: inherit !important;
+        }
+        /* span 인라인 배경이 있을 경우에도 강제 제거 */
+        .code-snippet-box pre span {
+            background: transparent !important;
+        }
+
+        /* ── 알게된 점 박스 ── */
+        .ts-takeaway-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            padding: var(--sp-5);
+        }
+        .ts-takeaway-title {
+            font-size: var(--text-sm);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--sp-3);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-2);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .ts-takeaway-title i { color: #f59e0b; }
+
+        /* =============================================
+           반응형
+        ============================================= */
+        @media (max-width: 860px) {
+            .profile-wrapper { flex-direction: column; text-align: center; gap: var(--sp-6); padding: var(--sp-8); }
+            .profile-links { justify-content: center; }
+            .resume-grid  { grid-template-columns: 1fr; }
+            .skills-layout { grid-template-columns: 1fr; }
+            .ts-layout    { grid-template-columns: 1fr; }
+            .project-body { padding: var(--sp-6); }
+            .project-header { padding: var(--sp-6); }
+            .profile-img { width: 120px; height: 120px; }
+            .profile-info h1 { font-size: var(--text-2xl); }
+        }
+
+        /* =============================================
+           페이지 진입 애니메이션
+        ============================================= */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .profile-wrapper   { animation: fadeUp 0.5s var(--ease-out) both; }
+        .resume-grid       { animation: fadeUp 0.5s var(--ease-out) 0.1s both; }
+        section#skills     { animation: fadeUp 0.5s var(--ease-out) 0.15s both; }
+        section#projects   { animation: fadeUp 0.5s var(--ease-out) 0.2s both; }
+        
+        /* 1. 페이지 나눔 계산을 막아버리는 고질적인 버그 속성 강제 해제 */
+        .project-card {
+            overflow: visible !important;
+        }
+
+        /* 2. 통째로 다음 장으로 넘겨버릴 박스들에 방탄 조끼 입히기 */
+        .ts-wrapper,
+        .ts-takeaway-box,
+        .code-snippet-box,
+        .skill-category,
+        .resume-item,
+        .card {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            display: inline-block !important; /* Flex/Grid 무시 방지용 */
+            width: 100% !important;
+        }
+
+        /* 3. 제목만 덩그러니 남고 내용이 다음 장으로 가는 것 방지 */
+        h1, h2, h3, h4, .section-title, .p-section-title, .skill-cat-label {
+            page-break-after: avoid !important;
+            break-after: avoid !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ═══════════════════════════════════════
+         1. 프로필
+    ═══════════════════════════════════════ -->
+    <div class="profile-wrapper">
+        <div class="profile-img" style="background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-dim) 100%); font-size: 2.8rem; font-weight: 900; color: var(--accent); letter-spacing: -2px;">조현</div>
+        <div class="profile-info">
+            <h1>조현준</h1>
+            <p class="profile-role">Systems &amp; AI Full-Stack Engineer</p>
+            <p class="profile-bio">
+                MIPS 어셈블리부터 PyTorch 모델 서빙까지,
+                밑바닥부터 쌓아온 엔지니어입니다.
+            </p>
+            <div class="profile-links">
+                <a href="mailto:kevinjo11@naver.com"><i class="fas fa-envelope"></i> kevinjo11@naver.com</a>
+                <a href="tel:01099907147"><i class="fas fa-phone"></i> 010-9990-7147</a>
+                <a href="https://github.com/zzooonn" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         2. 학력 & 어학
+    ═══════════════════════════════════════ -->
+    <div class="resume-grid">
+        <div class="card">
+            <h3 class="card-title"><i class="fas fa-graduation-cap"></i> 학력</h3>
+
+            <div class="resume-item">
+                <div class="resume-icon"><i class="fas fa-school"></i></div>
+                <div class="resume-content">
+                    <h4>北京汇文中学</h4>
+                    <p>북경 회문고등학교(졸업)</p>
+                    <p>2017.09 – 2020.07</p>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-icon"><i class="fas fa-university"></i></div>
+                <div class="resume-content">
+                    <h4>北京航空航天大学 (BUAA)</h4>
+                    <p>软件学院 (School of Software) · 학사</p>
+                    <p>2020.09 – 2026.07 (졸업 예정)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title"><i class="fas fa-globe-asia"></i> 어학 &amp; 글로벌 역량</h3>
+            <div class="resume-item">
+                <div class="resume-icon"><i class="fa-solid fa-language"></i></div>
+                <div class="resume-content">
+                    <div class="resume-head">
+                        <h4>TSC (중국어 회화)</h4>
+                        <span class="badge-highlight">Level 6</span>
+                    </div>
+                    <p>ID: 100318 · 2025.10.25</p>
+                    <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">북경 유학 6년 — 중국어로 기술 토론·팀 협업·문서 작성 수행</p>
+                </div>
+            </div>
+            <div class="resume-item">
+                <div class="resume-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                <div class="resume-content">
+                    <div class="resume-head">
+                        <h4>OPIc (영어 회화)</h4>
+                        <span class="badge-highlight">IH · Intermediate High</span>
+                    </div>
+                    <p>ID: 2C5955731527 · 2025.12.22</p>
+                    <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">한·중·영 3개국어 다국적 팀 기술 스택 조율 경험 보유</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         3. 기술 스택
+    ═══════════════════════════════════════ -->
+    <section id="skills">
+        <h2 class="section-title">기술 스택</h2>
+
+        <div class="skills-layout">
+            <div>
+                <div class="skill-category">
+                    <div class="skill-cat-label">핵심 역량 — 시스템 / 로우레벨</div>
+                    <div class="skill-grid">
+                        <span class="skill-chip sys"><i class="fa-brands fa-cuttlefish"></i> C / C++</span>
+                        <span class="skill-chip sys"><i class="fa-solid fa-microchip"></i> MIPS Assembly</span>
+                        <span class="skill-chip sys"><i class="fa-solid fa-code"></i> OS Kernel</span>
+                        <span class="skill-chip sys"><i class="fa-solid fa-code"></i> Compiler</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-cat-label">핵심 역량 — 백엔드 / 데이터베이스</div>
+                    <div class="skill-grid">
+                        <span class="skill-chip be"><i class="fa-brands fa-java"></i> Spring Boot 3</span>
+                        <span class="skill-chip be"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+                        <span class="skill-chip be"><i class="fa-solid fa-magnifying-glass"></i> Elasticsearch</span>
+                        <span class="skill-chip be"><i class="fa-solid fa-layer-group"></i> Redis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="skill-category">
+                    <div class="skill-cat-label">보유 역량 — 프론트엔드 (웹 / 모바일)</div>
+                    <div class="skill-grid">
+                        <span class="skill-chip fe"><i class="fa-brands fa-react"></i> React Native</span>
+                        <span class="skill-chip fe"><i class="fa-brands fa-vuejs"></i> Vue 3</span>
+                        <span class="skill-chip fe"><i class="fa-brands fa-js"></i> TypeScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-cat-label">보유 역량 — AI &amp; ML</div>
+                    <div class="skill-grid">
+                        <span class="skill-chip ai"><i class="fa-brands fa-python"></i> PyTorch</span>
+                        <span class="skill-chip ai"><i class="fa-solid fa-brain"></i> CNN-CBAM-GRU</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-cat-label">보유 역량 — 인프라 / 협업</div>
+                    <div class="skill-grid">
+                        <span class="skill-chip etc"><i class="fa-brands fa-docker"></i> Docker</span>
+                        <span class="skill-chip etc">MinIO</span>
+                        <span class="skill-chip etc"><i class="fa-brands fa-git-alt"></i> Git</span>
+                        <span class="skill-chip etc">RFC Docs</span>
+                        <span class="skill-chip etc"><i class="fa-brands fa-github"></i> GitHub Actions</span>
+                        <span class="skill-chip etc"><i class="fa-solid fa-bolt"></i> FastAPI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         4. 프로젝트
+    ═══════════════════════════════════════ -->
+    <section id="projects">
+        <h2 class="section-title">프로젝트</h2>
+
+                <!-- ── 프로젝트 1: BUAA OS ── -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">BUAA OS — MIPS 마이크로커널 운영체제</h3>
+                <div class="project-meta">
+                    <span>📅 2024.03 – 2024.07 · BUAA OS Course</span>
+                    <span>👤 OS Kernel Developer (1인 개발)</span>
+                </div>
+            </div>
+            <div class="project-body">
+
+                <div class="p-section">
+                    <p class="p-desc">
+                        GXemul 시뮬레이터 위에서 Bare-metal부터 시작해 가상 메모리(TLB) · 프로세스 스케줄링 ·
+                        파이프(Pipe) IPC · 파일 시스템까지 동작하는 완전한 마이크로커널 OS를 독자 구현했습니다.
+                    </p>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">주요 개발 내용</h4>
+                    <ul class="contribution-list">
+                        <li>2단계 페이지 테이블 및 TLB Fast Refill 메커니즘으로 가상 메모리 시스템 구축.</li>
+                        <li>PCB + CP0 타이머 인터럽트 기반 선점형 라운드 로빈 스케줄링 구현.</li>
+                        <li>메모리 복사 비용을 줄이기 위한 <strong>Copy-on-Write(COW) 방식의 <code>fork()</code></strong> 시스템 콜 최적화 설계.</li>
+                        <li>FS를 커널에서 분리하여 <strong>사용자 공간 FS 서버 프로세스와 IPC로 통신하는 마이크로커널 I/O 아키텍처</strong> 구축.</li>
+                    </ul>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">트러블슈팅</h4>
+                    <div class="ts-wrapper">
+                        <div class="ts-header">
+                            <h3 class="ts-title">Pipe 통신 구현 중 Context Switch로 인한 Race Condition 해결</h3>
+                            <span class="ts-badge">Kernel / IPC</span>
+                        </div>
+                        <div class="ts-layout">
+                            <div class="ts-content-area">
+                                <div>
+                                    <div class="ts-block-title problem">상황</div>
+                                    <p class="ts-text"><code>dup()</code>으로 파이프 FD를 복제하는 도중 <strong>타이머 인터럽트로 Context Switch</strong>가 발생하여 <code>pageref</code> 갱신이 꼬이면서 자식 프로세스가 쓰기 단이 닫힌 것으로 오인해 강제 종료되는 버그가 있었습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">대안 탐색</div>
+                                    <p class="ts-text">인터럽트 비활성화(cli/sti)로 임계 구간을 보호하는 방법과 매핑 순서 재배치 두 가지를 검토했습니다. 인터럽트 비활성화는 교육용 OS 설계 원칙상 금지되어 있어, <strong>매핑 해제·연결 순서를 변경해 항상 안전한 불변식을 유지</strong>하는 방향을 선택했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title solution">해결</div>
+                                    <p class="ts-text"><code>pageref(fd) ≤ pageref(pipe)</code> 조건이 항상 유지되도록 <strong>unmap·map 순서를 재배치(Reordering)</strong>하여 원자성 부족 문제를 우회하고 안전한 IPC 환경을 구축했습니다.</p>
+                                </div>
+                            </div>
+                            <div class="ts-img-area">
+                                <div class="code-snippet-box">
+                                    <div class="code-snippet-header">
+                                        <span class="code-dot red"></span>
+                                        <span class="code-dot yellow"></span>
+                                        <span class="code-dot green"></span>
+                                        <span class="code-filename">pipe.c — Mapping Sequence Fix</span>
+                                    </div>
+<pre><code><span style="color:#5c6370;">// fd와 pipe 해제 순서가 핵심인 close 로직</span>
+<span style="color:#c678dd;">void</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">int</span> fdnum) {
+  <span style="color:#5c6370;">// [수정 후] fd를 먼저 해제 →
+  // pageref(fd) ≤ pageref(pipe) 유지</span>
+  <span style="color:#56b6c2;">syscall_mem_unmap</span>(0, fd_to_va(fdnum));
+  <span style="color:#56b6c2;">syscall_mem_unmap</span>(0, pipe_to_va(fdnum));
+}</code></pre>
+                                </div>
+                                <div class="ts-takeaway-box">
+                                    <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
+                                    <p class="ts-text">하드웨어 타이머로 인해 코드는 언제든 멈출 수 있음을 체감했습니다. <strong>선점형 스케줄링 환경에서는 동시성과 실행 순서를 항상 의심하고 방어적으로 설계</strong>해야 한다는 기본기를 다졌습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">사용 기술</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C</span>
+                        <span class="tech-tag">MIPS Assembly</span>
+                        <span class="tech-tag">MIPS Simulator</span>
+                        <span class="tech-tag">Microkernel</span>
+                        <span class="tech-tag">IPC (Pipe)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- ── 프로젝트 2: SysY 컴파일러 ── -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
+                <div class="project-meta">
+                    <span>📅 2024.10 – 2025.01 · BUAA Compiler Course</span>
+                    <span>👤 Compiler Engineer (1인 개발)</span>
+                </div>
+            </div>
+            <div class="project-body">
+
+                <div class="p-section">
+                    <p class="p-desc">
+                        SysY 언어의 렉서(Lexer) · 재귀 하향 파서(Recursive Descent Parser) ·
+                        중간 코드(P-Code) 생성기 · 가상 머신 인터프리터 전 과정을 바닥부터 독자 설계·구현했습니다.
+                    </p>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">주요 개발 내용</h4>
+                    <ul class="contribution-list">
+                        <li><code>unordered_map</code>으로 키워드 매칭 최적화, Peek 메커니즘으로 다중 문자 연산자(<code>&lt;=</code>, <code>==</code>)를 정확히 분리하는 어휘 분석기 구현.</li>
+                        <li>스코프 레벨 추적 체계를 갖춘 심볼 테이블 직접 설계 — 지역/전역 변수 생명주기 관리 및 변수명 섀도잉 완벽 지원.</li>
+                        <li>자체 설계 명령어 셋(P-Code) 기반의 스택 머신(Stack Machine) 방식 가상 머신 및 인터프리터 구현.</li>
+                    </ul>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">트러블슈팅</h4>
+                    <div class="ts-wrapper">
+                        <div class="ts-header">
+                            <h3 class="ts-title">파서의 Fault-Tolerant 파싱 및 에러 복구 설계</h3>
+                            <span class="ts-badge">Compiler</span>
+                        </div>
+                        <div class="ts-layout">
+                            <div class="ts-content-area">
+                                <div>
+                                    <div class="ts-block-title problem">상황</div>
+                                    <p class="ts-text">세미콜론·괄호 누락 시 컴파일러가 강제 종료(Panic)되거나, 렉서가 이미 다음 줄 토큰을 읽어 <strong>엉뚱한 위치에 구문 오류를 보고하는 고질적 이슈</strong>가 발생했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">대안 탐색</div>
+                                    <p class="ts-text">에러 발생 즉시 파싱을 중단하는 방식과, 에러를 기록하고 파싱을 이어가는 회복(Recovery) 방식을 검토했습니다. 중단 방식은 첫 번째 오류 이후 모든 후속 오류를 놓치는 문제가 있어, <strong>직전 토큰 위치를 추적해 복수 오류를 한 번에 보고</strong>하는 Recovery 방식을 선택했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title solution">해결</div>
+                                    <p class="ts-text">에러 복구(Error Recovery) 메커니즘을 설계했습니다. <strong><code>getPreviousToken()</code>으로 직전 토큰 위치를 추적</strong>하여 정확한 에러 라인을 기록한 뒤 파닉 없이 파싱을 계속 이어나가도록 처리했습니다.</p>
+                                </div>
+                            </div>
+                            <div class="ts-img-area">
+                                <div class="code-snippet-box">
+                                    <div class="code-snippet-header">
+                                        <span class="code-dot red"></span>
+                                        <span class="code-dot yellow"></span>
+                                        <span class="code-dot green"></span>
+                                        <span class="code-filename">Parser.cpp — Error Recovery</span>
+                                    </div>
+<pre><code><span style="color:#c678dd;">void</span> <span style="color:#61afef;">parseErrorPrintfI</span>() {
+  Token cur  = getCurrentToken();
+  Token prev = <span style="color:#56b6c2;">getPreviousToken</span>();
+
+  <span style="color:#c678dd;">if</span> (cur.type == SEMICN) {
+    outputToken(cur);
+    advanceToken();
+  } <span style="color:#c678dd;">else</span> {
+    <span style="color:#5c6370;">// 누락(i) 에러 — 직전 토큰 라인 기록
+    // 파닉 없이 파싱 계속</span>
+    addError(prev.lineNumber, <span style="color:#98c379;">'i'</span>);
+  }
+}</code></pre>
+                                </div>
+                                <div class="ts-takeaway-box">
+                                    <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
+                                    <p class="ts-text">에러 처리는 예외를 던지는 게 아니라, <strong>잘못된 입력 속에서도 문맥을 잃지 않고 정상 궤도로 복귀하도록 설계하는 것</strong>이 견고한 엔지니어링의 핵심임을 깨달았습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">사용 기술</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">C++17</span>
+                        <span class="tech-tag">CMake</span>
+                        <span class="tech-tag">Lexer / Parser</span>
+                        <span class="tech-tag">Stack VM</span>
+                                        </div>
+                </div>
+
+            </div>
+        </div>
+
+                <!-- ── 프로젝트 3: 학술 공유 플랫폼 ── -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
+                <div class="project-meta">
+                    <span>📅 2025.03 – 2025.08 · BUAA SSAD Course</span>
+                    <span>👤 Backend / Full-Stack (팀 프로젝트)</span>
+                </div>
+            </div>
+            <div class="project-body">
+
+                <div class="p-section">
+                    <!-- 학술 플랫폼 아키텍처 다이어그램 -->
+                    <div style="width:100%; background:#fff; border:1px solid var(--border-default); border-radius:var(--radius-md); padding:24px 28px; margin-bottom:var(--sp-5);">
+                        <p style="font-size:var(--text-xs); font-family:'IBM Plex Mono',monospace; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px;">System Architecture — Vue 3 · Spring Boot 3 · PostgreSQL · Elasticsearch · Redis · MinIO · DJL Embedding</p>
+                        <svg width="100%" viewBox="0 0 680 860" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+                        <defs>
+                            <marker id="arrowAP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </marker>
+                        </defs>
+                        <!-- Docker Compose 외곽 -->
+                        <rect x="8" y="258" width="664" height="576" rx="14" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.28"/>
+                        <rect x="18" y="247" width="142" height="20" rx="5" fill="#f0f0ff"/>
+                        <text x="89" y="261" text-anchor="middle" font-size="11" fill="#5b58ff" font-weight="600">Docker Compose 환경</text>
+                        <!-- TIER 1: Vue 3 SPA -->
+                        <text x="340" y="16" text-anchor="middle" font-size="11" fill="#666">프론트엔드 클라이언트</text>
+                        <rect x="140" y="24" width="400" height="68" rx="11" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="340" y="50" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#0b7285">Vue 3 / TypeScript / Vite (SPA)</text>
+                        <text x="340" y="72" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0e9aae">views · components · stores · router · api · types · utils</text>
+                        <!-- Vue → Spring (좌) -->
+                        <line x1="270" y1="92" x2="208" y2="302" stroke="#0b7285" stroke-width="1.3" marker-end="url(#arrowAP)" fill="none"/>
+                        <line x1="188" y1="302" x2="250" y2="92" stroke="#0b7285" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="96" y="180" width="144" height="32" rx="5" fill="#fff" opacity="0.96"/>
+                        <text x="168" y="193" text-anchor="middle" font-size="11" fill="#0b7285" font-weight="600">REST API / HTTP</text>
+                        <text x="168" y="206" text-anchor="middle" font-size="11" fill="#0b7285">JWT Bearer token</text>
+                        <!-- TIER 2-A: Spring Boot -->
+                        <rect x="18" y="294" width="408" height="226" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="222" y="290" text-anchor="middle" font-size="11" fill="#666">백엔드 컨테이너 · port 8080</text>
+                        <rect x="30" y="305" width="384" height="58" rx="9" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="222" y="328" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#364fc7">Spring Boot 3 + Java 21</text>
+                        <text x="222" y="348" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">Spring Security · JWT · JPA/Hibernate · Flyway · Gradle</text>
+                        <rect x="30" y="375" width="186" height="44" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="123" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#364fc7">Controller 계층</text>
+                        <text x="123" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">account · search · storage · scholar</text>
+                        <rect x="228" y="375" width="186" height="44" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="321" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#364fc7">Service 계층</text>
+                        <text x="321" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">search · storage · vector · translate</text>
+                        <rect x="30" y="431" width="186" height="44" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="123" y="450" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#364fc7">Common 규약</text>
+                        <text x="123" y="466" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">ResponseResultHandler · BusinessException</text>
+                        <!-- DJL 강조 -->
+                        <rect x="228" y="431" width="186" height="44" rx="8" fill="#f3f0ff" stroke="#845ef7" stroke-width="0.8"/>
+                        <text x="321" y="450" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#5f3dc4">DJL Embedding (내장)</text>
+                        <text x="321" y="466" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#845ef7">ONNX 모델 · 벡터화 · 번역 서비스</text>
+                        <!-- TIER 2-B: PostgreSQL -->
+                        <rect x="442" y="294" width="230" height="226" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="557" y="290" text-anchor="middle" font-size="11" fill="#666">DB 컨테이너 · port 5432</text>
+                        <rect x="454" y="305" width="206" height="58" rx="9" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
+                        <text x="557" y="328" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#2b8a3e">PostgreSQL 16</text>
+                        <text x="557" y="348" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">주 데이터 저장 · Flyway 마이그레이션</text>
+                        <rect x="454" y="375" width="206" height="44" rx="8" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
+                        <text x="557" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2b8a3e">핵심 테이블</text>
+                        <text x="557" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">users · scholar · announcement · analyze</text>
+                        <rect x="454" y="431" width="206" height="44" rx="8" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
+                        <text x="557" y="450" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2b8a3e">Spring Data JPA</text>
+                        <text x="557" y="466" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">Repository · account · scholar · search</text>
+                        <!-- Spring → PostgreSQL -->
+                        <line x1="428" y1="434" x2="452" y2="434" stroke="#5c7cfa" stroke-width="1.3" marker-end="url(#arrowAP)" fill="none"/>
+                        <line x1="452" y1="448" x2="428" y2="448" stroke="#5c7cfa" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP)" fill="none"/>
+                        <text x="440" y="428" text-anchor="middle" font-size="10" fill="#5c7cfa">JPA</text>
+                        <!-- TIER 3: Elasticsearch -->
+                        <rect x="18" y="548" width="206" height="126" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="121" y="544" text-anchor="middle" font-size="11" fill="#666">검색 컨테이너</text>
+                        <rect x="30" y="559" width="182" height="52" rx="9" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="121" y="580" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#0b7285">Elasticsearch</text>
+                        <text x="121" y="598" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0e9aae">문서 검색 엔진 · Dockerfile.es</text>
+                        <rect x="30" y="623" width="182" height="34" rx="8" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="121" y="644" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0b7285">학술 성과 색인 · 키워드/벡터 검색</text>
+                        <!-- Spring → ES -->
+                        <line x1="121" y1="520" x2="121" y2="546" stroke="#0e9aae" stroke-width="1.3" marker-end="url(#arrowAP)" fill="none"/>
+                        <line x1="135" y1="546" x2="135" y2="520" stroke="#0e9aae" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP)" fill="none"/>
+                        <!-- Redis -->
+                        <rect x="238" y="548" width="206" height="126" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="341" y="544" text-anchor="middle" font-size="11" fill="#666">캐시 컨테이너</text>
+                        <rect x="250" y="559" width="182" height="52" rx="9" fill="#fff5f5" stroke="#fa5252" stroke-width="0.5"/>
+                        <text x="341" y="580" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#c92a2a">Redis</text>
+                        <text x="341" y="598" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#fa5252">분산 캐시 · TTL 관리</text>
+                        <rect x="250" y="623" width="182" height="34" rx="8" fill="#fff5f5" stroke="#fa5252" stroke-width="0.5"/>
+                        <text x="341" y="644" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#c92a2a">API 응답 캐싱 · 세션/토큰 임시 저장</text>
+                        <!-- Spring → Redis -->
+                        <line x1="341" y1="520" x2="341" y2="546" stroke="#fa5252" stroke-width="1.3" marker-end="url(#arrowAP)" fill="none"/>
+                        <line x1="355" y1="546" x2="355" y2="520" stroke="#fa5252" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP)" fill="none"/>
+                        <!-- MinIO -->
+                        <rect x="458" y="548" width="214" height="126" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="565" y="544" text-anchor="middle" font-size="11" fill="#666">오브젝트 스토리지</text>
+                        <rect x="470" y="559" width="190" height="52" rx="9" fill="#f3f0ff" stroke="#845ef7" stroke-width="0.5"/>
+                        <text x="565" y="580" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#5f3dc4">MinIO</text>
+                        <text x="565" y="598" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#845ef7">S3 호환 오브젝트 스토리지</text>
+                        <rect x="470" y="623" width="190" height="34" rx="8" fill="#f3f0ff" stroke="#845ef7" stroke-width="0.5"/>
+                        <text x="565" y="644" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5f3dc4">논문 PDF · 이미지 업로드/다운로드</text>
+                        <!-- Spring → MinIO -->
+                        <line x1="565" y1="520" x2="565" y2="546" stroke="#845ef7" stroke-width="1.3" marker-end="url(#arrowAP)" fill="none"/>
+                        <line x1="579" y1="546" x2="579" y2="520" stroke="#845ef7" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP)" fill="none"/>
+                        <!-- 데이터 흐름 요약 -->
+                        <rect x="18" y="692" width="654" height="148" rx="11" fill="#f8f9fa" stroke="#dee2e6" stroke-width="0.8"/>
+                        <text x="345" y="714" text-anchor="middle" font-size="12" font-weight="600" fill="#1d1d1f">전체 데이터 흐름 시나리오</text>
+                        <!-- 업로드 흐름 -->
+                        <text x="30" y="738" font-size="10" fill="#666" font-weight="600">업로드</text>
+                        <rect x="74"  y="726" width="68" height="22" rx="4" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="108" y="741" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b7285">Vue SPA</text>
+                        <line x1="142" y1="737" x2="152" y2="737" stroke="#5c7cfa" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="153" y="726" width="80" height="22" rx="4" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="193" y="741" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#364fc7">Spring Boot</text>
+                        <line x1="234" y1="737" x2="244" y2="737" stroke="#845ef7" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="245" y="726" width="60" height="22" rx="4" fill="#f3f0ff" stroke="#845ef7" stroke-width="0.5"/>
+                        <text x="275" y="741" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5f3dc4">MinIO</text>
+                        <line x1="306" y1="737" x2="316" y2="737" stroke="#845ef7" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="317" y="726" width="80" height="22" rx="4" fill="#f3f0ff" stroke="#845ef7" stroke-width="0.5"/>
+                        <text x="357" y="741" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5f3dc4">DJL 임베딩</text>
+                        <line x1="398" y1="737" x2="408" y2="737" stroke="#0e9aae" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="409" y="726" width="88" height="22" rx="4" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="453" y="741" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b7285">Elasticsearch</text>
+                        <line x1="498" y1="737" x2="508" y2="737" stroke="#40c057" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="509" y="726" width="88" height="22" rx="4" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
+                        <text x="553" y="741" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2b8a3e">PostgreSQL</text>
+                        <!-- 검색 흐름 -->
+                        <text x="30" y="782" font-size="10" fill="#666" font-weight="600">검색</text>
+                        <rect x="74"  y="770" width="68" height="22" rx="4" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="108" y="785" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b7285">Vue SPA</text>
+                        <line x1="142" y1="781" x2="152" y2="781" stroke="#5c7cfa" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="153" y="770" width="80" height="22" rx="4" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="193" y="785" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#364fc7">Spring Boot</text>
+                        <line x1="234" y1="781" x2="244" y2="781" stroke="#0e9aae" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="245" y="770" width="88" height="22" rx="4" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="289" y="785" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b7285">Elasticsearch</text>
+                        <line x1="334" y1="781" x2="344" y2="781" stroke="#fa5252" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="345" y="770" width="68" height="22" rx="4" fill="#fff5f5" stroke="#fa5252" stroke-width="0.5"/>
+                        <text x="379" y="785" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#c92a2a">Redis 캐시</text>
+                        <line x1="414" y1="781" x2="424" y2="781" stroke="#0e9aae" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="425" y="770" width="68" height="22" rx="4" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="459" y="785" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b7285">결과 반환</text>
+                        <line x1="494" y1="781" x2="504" y2="781" stroke="#0e9aae" stroke-width="1.1" marker-end="url(#arrowAP)" fill="none"/>
+                        <rect x="505" y="770" width="68" height="22" rx="4" fill="#e3fafc" stroke="#15aabf" stroke-width="0.5"/>
+                        <text x="539" y="785" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b7285">Vue 렌더링</text>
+                        <!-- 범례 -->
+                        <rect x="18" y="810" width="654" height="22" rx="5" fill="#f1f3f5" opacity="0.8"/>
+                        <text x="36"  y="825" font-size="10" fill="#0b7285" font-weight="600">─── 요청</text>
+                        <text x="102" y="825" font-size="10" fill="#0b7285">- - - 응답</text>
+                        <text x="168" y="825" font-size="10" fill="#666">│ │ Docker 컨테이너</text>
+                        <text x="318" y="825" font-size="10" fill="#5b58ff">│ │ Docker Compose 경계</text>
+                        <text x="492" y="825" font-size="10" fill="#5f3dc4">DJL: 별도 서버 없이 내장</text>
+                        </svg>
+                    </div>
+                    <p class="p-desc">
+                        Elasticsearch 전문 검색과 Redis 캐싱을 적용한 학술 성과 공유 플랫폼.
+                        요구사항 분석·아키텍처 설계·RFC 문서 작성부터 배포까지 소프트웨어 공학의
+                        전체 협업 프로세스를 경험한 핵심 프로젝트입니다.
+                    </p>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">주요 개발 내용</h4>
+                    <ul class="contribution-list">
+                        <li><strong>문서 기반 협업 환경 구축:</strong> RFC 및 API 명세서 작성, <code>docs/</code>에 설계 문서 체계화하여 팀 내 소통 비용 최소화.</li>
+                        <li><strong>다중 인프라 통합:</strong> Spring Boot 3 (Java 21) 기반 REST API에 Elasticsearch·Redis·MinIO를 성공적으로 연동.</li>
+                        <li><strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>가 Controller의 반환값을 <code>code/message/data</code> 형태로 자동 래핑하고, <code>BusinessException</code> 상속 체계로 예외를 도메인별로 일관화.</li>
+                        <li><strong>프론트엔드 연동:</strong> Vue 3 + TypeScript + Vite 환경과의 데이터 통신 및 인터페이스 통합 수행.</li>
+                    </ul>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">트러블슈팅</h4>
+                    <div class="ts-wrapper">
+                        <div class="ts-header">
+                            <h3 class="ts-title">백엔드 인프라 파편화 및 API 공통 규약 불일치 해결</h3>
+                            <span class="ts-badge">백엔드 / 협업</span>
+                        </div>
+                        <div class="ts-layout">
+                            <div class="ts-content-area">
+                                <div>
+                                    <div class="ts-block-title problem">상황</div>
+                                    <p class="ts-text">팀원 간 로컬 설정(.env, AI 모델 경로)이 엇갈려 인프라 기동 실패가 잦았습니다. 여기에 <strong>API 응답 구조까지 제각각이어서 프론트 연동에 심각한 병목</strong>이 발생했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title solution">해결</div>
+                                    <p class="ts-text">README 기준으로 기동 환경을 통일하고, Controller는 비즈니스 데이터만 반환하면 <strong><code>ResponseResultHandler</code>가 <code>code/message/data</code> 형태로 자동 래핑</strong>하도록 아키텍처를 개선했습니다. BusinessException 규약도 강제하여 혼선을 제거했습니다.</p>
+                                </div>
+                            </div>
+                            <div class="ts-img-area">
+                                <div class="code-snippet-box">
+                                    <div class="code-snippet-header">
+                                        <span class="code-dot red"></span>
+                                        <span class="code-dot yellow"></span>
+                                        <span class="code-dot green"></span>
+                                        <span class="code-filename">ResponseResultHandler.java</span>
+                                    </div>
+<pre><code><span style="color:#c678dd;">@RestControllerAdvice</span>
+<span style="color:#c678dd;">public class</span> <span style="color:#e5c07b;">ResponseResultHandler</span>
+    <span style="color:#c678dd;">implements</span> <span style="color:#e5c07b;">ResponseBodyAdvice</span>&lt;Object&gt; {
+
+  <span style="color:#c678dd;">@Override</span>
+  <span style="color:#c678dd;">public</span> Object <span style="color:#61afef;">beforeBodyWrite</span>(Object body, ...) {
+    <span style="color:#5c6370;">// 이미 공통 래퍼면 그대로 반환</span>
+    <span style="color:#c678dd;">if</span> (body <span style="color:#c678dd;">instanceof</span> ResultWrapper)
+      <span style="color:#c678dd;">return</span> body;
+    <span style="color:#5c6370;">// 데이터를 code/message/data로 래핑</span>
+    <span style="color:#c678dd;">return</span> <span style="color:#61afef;">ResultWrapper.success</span>(body);
+  }
+}</code></pre>
+                                </div>
+                                <div class="ts-takeaway-box">
+                                    <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
+                                    <p class="ts-text">다중 스택 협업에서는 개인 역량보다 <strong>인터페이스 규약을 시스템적으로 강제하는 아키텍처 설계</strong>가 팀 전체 생산성에 직결됨을 배웠습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">사용 기술</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Vue 3</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Spring Boot 3 (Java 21)</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">MinIO</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">DJL Embedding</span>
+                        <span class="tech-tag">Docker Compose</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- ── 프로젝트 4: CareLink ── -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3 class="project-title">CareLink — 노인 건강 모니터링 &amp; AI 진단 플랫폼</h3>
+                <div class="project-meta">
+                    <span>📅 2025.10 – 2026.03</span>
+                    <span>👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
+                </div>
+            </div>
+            <div class="project-body">
+
+                <div class="p-section">
+                    <!-- CareLink 아키텍처 다이어그램 -->
+                    <div style="width:100%; background:#fff; border:1px solid var(--border-default); border-radius:var(--radius-md); padding:24px 28px; margin-bottom:var(--sp-5);">
+                        <p style="font-size:var(--text-xs); font-family:'IBM Plex Mono',monospace; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px;">System Architecture — React Native · Spring Boot · FastAPI · PostgreSQL · AWS EC2 + Docker</p>
+                        <svg width="100%" viewBox="0 0 680 720" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+                        <defs>
+                            <marker id="arrowCL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </marker>
+                        </defs>
+                        <!-- AWS EC2 + Docker 외곽 -->
+                        <rect x="8" y="280" width="664" height="424" rx="14" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"/>
+                        <rect x="18" y="269" width="138" height="20" rx="5" fill="#f0f0ff"/>
+                        <text x="87" y="283" text-anchor="middle" font-size="11" fill="#5b58ff" font-weight="600">AWS EC2 + Docker</text>
+                        <!-- TIER 1: 모바일 -->
+                        <text x="340" y="16" text-anchor="middle" font-size="11" fill="#666">모바일 클라이언트</text>
+                        <rect x="150" y="24" width="380" height="68" rx="11" fill="#e1f5ee" stroke="#1D9E75" stroke-width="0.5"/>
+                        <text x="340" y="50" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#0b5c3a">React Native / Expo</text>
+                        <text x="340" y="72" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1D9E75">AsyncStorage · JWT · expo-notifications · Expo Router</text>
+                        <!-- 모바일 → Spring (좌) -->
+                        <line x1="255" y1="92" x2="197" y2="325" stroke="#0F6E56" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"/>
+                        <line x1="178" y1="325" x2="236" y2="92" stroke="#0F6E56" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"/>
+                        <rect x="100" y="194" width="138" height="32" rx="5" fill="#fff" opacity="0.96"/>
+                        <text x="169" y="207" text-anchor="middle" font-size="11" fill="#0F6E56" font-weight="600">REST API / HTTPS</text>
+                        <text x="169" y="220" text-anchor="middle" font-size="11" fill="#0F6E56">JWT Bearer token</text>
+                        <!-- 모바일 → AI (우) -->
+                        <line x1="425" y1="92" x2="496" y2="522" stroke="#993C1D" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"/>
+                        <line x1="514" y1="522" x2="443" y2="92" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"/>
+                        <rect x="418" y="278" width="140" height="32" rx="5" fill="#fff" opacity="0.96"/>
+                        <text x="488" y="291" text-anchor="middle" font-size="11" fill="#993C1D" font-weight="600">REST API / JSON</text>
+                        <text x="488" y="304" text-anchor="middle" font-size="11" fill="#993C1D">ECG Inference API</text>
+                        <!-- TIER 2-A: Spring Boot -->
+                        <rect x="18" y="316" width="334" height="192" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="185" y="312" text-anchor="middle" font-size="11" fill="#666">백엔드 컨테이너 · port 8080</text>
+                        <rect x="30" y="327" width="310" height="58" rx="9" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="185" y="350" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#364fc7">Spring Boot 3 + Java 21</text>
+                        <text x="185" y="370" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">Spring Security · JWT · JPA/Hibernate · Flyway · Gradle</text>
+                        <rect x="30" y="397" width="148" height="44" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="104" y="416" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#364fc7">REST API 레이어</text>
+                        <text x="104" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">/auth · /vitals · /guardian · /news</text>
+                        <rect x="192" y="397" width="148" height="44" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"/>
+                        <text x="266" y="416" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#364fc7">비즈니스 로직</text>
+                        <text x="266" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">보호자 연결 · 뉴스 · 알림</text>
+                        <!-- TIER 2-B: PostgreSQL -->
+                        <rect x="368" y="316" width="304" height="192" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="520" y="312" text-anchor="middle" font-size="11" fill="#666">DB 컨테이너 · port 5432</text>
+                        <rect x="380" y="327" width="280" height="58" rx="9" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
+                        <text x="520" y="350" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#2b8a3e">PostgreSQL 16</text>
+                        <text x="520" y="370" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">postgres:16-alpine</text>
+                        <rect x="380" y="397" width="280" height="44" rx="8" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"/>
+                        <text x="520" y="416" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2b8a3e">핵심 테이블</text>
+                        <text x="520" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">users · vitals · guardian_link · medications</text>
+                        <!-- Spring → PostgreSQL -->
+                        <line x1="354" y1="422" x2="378" y2="422" stroke="#5c7cfa" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"/>
+                        <line x1="378" y1="436" x2="354" y2="436" stroke="#5c7cfa" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"/>
+                        <text x="366" y="416" text-anchor="middle" font-size="10" fill="#5c7cfa">JPA</text>
+                        <!-- TIER 3: FastAPI AI -->
+                        <rect x="18" y="532" width="654" height="148" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"/>
+                        <text x="345" y="528" text-anchor="middle" font-size="11" fill="#666">AI 추론 컨테이너 · port 8000</text>
+                        <rect x="30" y="543" width="278" height="56" rx="9" fill="#faece7" stroke="#993C1D" stroke-width="0.5"/>
+                        <text x="169" y="564" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#712B13">FastAPI + PyTorch</text>
+                        <text x="169" y="583" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">Python 3.11 · Uvicorn · NumPy · SciPy</text>
+                        <rect x="30" y="612" width="128" height="44" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"/>
+                        <text x="94" y="631" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#712B13">ECG 추론 모델</text>
+                        <text x="94" y="647" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">CNN-CBAM-BiGRU</text>
+                        <rect x="172" y="612" width="136" height="44" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"/>
+                        <text x="240" y="631" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#712B13">POST /predict_window</text>
+                        <text x="240" y="647" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">2초마다 클라이언트 요청</text>
+                        <rect x="322" y="543" width="340" height="113" rx="9" fill="#faece7" stroke="#993C1D" stroke-width="0.5"/>
+                        <text x="492" y="564" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#712B13">PTB-XL 데이터셋 기반 학습</text>
+                        <text x="492" y="583" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">21,837 records · 12-lead · 500Hz</text>
+                        <text x="492" y="601" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">5개 슈퍼클래스 멀티라벨 분류</text>
+                        <text x="492" y="619" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">NORM · STTC · MI · CD · HYP</text>
+                        <text x="492" y="637" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">모델 파일: best_model_multilabel.pth</text>
+                        <!-- 범례 -->
+                        <rect x="18" y="692" width="654" height="20" rx="5" fill="#f1f3f5" opacity="0.8"/>
+                        <text x="38"  y="706" font-size="11" fill="#0F6E56" font-weight="600">─── 요청</text>
+                        <text x="110" y="706" font-size="11" fill="#0F6E56">- - - 응답</text>
+                        <text x="180" y="706" font-size="11" fill="#666">│ │ Docker 컨테이너</text>
+                        <text x="330" y="706" font-size="11" fill="#5b58ff">│ │ AWS EC2 경계</text>
+                        <text x="460" y="706" font-size="11" fill="#993C1D">모바일 → AI: 직접 호출 (2초 주기)</text>
+                        </svg>
+                    </div>
+                    <p class="p-desc">
+                        환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다.
+                        모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된
+                        마이크로서비스 아키텍처를 독자 설계·구현했습니다.
+                    </p>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">주요 개발 내용</h4>
+                    <ul class="contribution-list">
+                        <li><strong>3-Tier 마이크로서비스 아키텍처 설계:</strong> 비즈니스 로직(Spring Boot)과 AI 연산(FastAPI/PyTorch)의 책임을 물리적으로 분리하여 서버 리소스 효율 극대화.</li>
+                        <li><strong>AI 모델 경량화:</strong> PTB-XL 2만 건으로 CNN-CBAM-GRU 하이브리드 모델 구축. 파라미터 ~567K로 경량화하면서 <strong>Macro AUC 93.31%, Macro F1 74.97%</strong> 달성.</li>
+                        <li><strong>클라이언트 최적화 및 보안:</strong> JWT 401 만료 자동 로그아웃 흐름 처리. AsyncStorage Cache-First 전략으로 첫 화면 표시 시간 <strong>0.22ms</strong>, 전체 동기화 완료 <strong>653ms(p95: 721ms)</strong> 달성.</li>
+                    </ul>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">트러블슈팅</h4>
+                    <div class="ts-wrapper">
+                        <div class="ts-header">
+                            <h3 class="ts-title">AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제</h3>
+                            <span class="ts-badge">AI / DevOps</span>
+                        </div>
+                        <div class="ts-layout">
+                            <div class="ts-content-area">
+                                <div>
+                                    <div class="ts-block-title problem">① 상황 — 대용량 모델 실시간 지연</div>
+                                    <p class="ts-text">초기 1D-ResNet 적용 시 모바일에서 평균 추론 지연 <strong>2,300ms(p95: 2,395ms)</strong>, 배터리 소모 문제가 발생했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">① 대안 탐색</div>
+                                    <p class="ts-text">온디바이스 추론(TFLite)과 서버 사이드 경량 모델 두 가지를 검토했습니다. 온디바이스는 모델 업데이트 배포가 어렵고, 12-lead ECG 입력 크기가 모바일 메모리 한계에 가까워 <strong>서버 사이드 경량화</strong>를 선택했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title solution">① 해결 — CBAM+Bi-GRU 경량 구조 재설계</div>
+                                    <p class="ts-text">파라미터 ~567K의 CBAM + Bi-GRU 구조로 재설계. Macro AUC 93.31%를 유지하면서 추론 지연 <strong>p50 2,283ms → 서비스 허용 범위 내 안정화</strong>했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title problem">② 상황 — 저메모리 EC2의 OOM 장애</div>
+                                    <p class="ts-text">AWS 프리티어 환경에서 <code>docker compose up --build</code> 실행 시 PyTorch 빌드 중 OOM으로 서버 다운이 발생했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title" style="color:#d97706; font-size:var(--text-sm); font-weight:800; text-transform:uppercase; letter-spacing:0.06em; font-family:'IBM Plex Mono',monospace; margin-bottom:var(--sp-2);">② 대안 탐색</div>
+                                    <p class="ts-text">Swap 메모리 확대, EC2 사양 업그레이드, 이미지 사전 빌드 세 가지를 검토했습니다. Swap 확대는 디스크 I/O 병목을, 사양 업그레이드는 비용 문제를 유발하므로 <strong>CI 빌드 후 레지스트리 Push → 서버 Pull-only</strong> 전략을 선택했습니다.</p>
+                                </div>
+                                <div>
+                                    <div class="ts-block-title solution">② 해결 — Pull-only 배포 전략</div>
+                                    <p class="ts-text">로컬/CI에서 이미지를 사전 빌드해 GHCR에 Push하고, <strong>운영 서버는 Pull-only 전략</strong>으로 안정화했습니다.</p>
+                                </div>
+                            </div>
+                            <div class="ts-img-area">
+                                <div class="code-snippet-box">
+                                    <div class="code-snippet-header">
+                                        <span class="code-dot red"></span>
+                                        <span class="code-dot yellow"></span>
+                                        <span class="code-dot green"></span>
+                                        <span class="code-filename">docker-compose.ec2.yml</span>
+                                    </div>
+<pre><code><span style="color:#e06c75;">services:</span>
+  <span style="color:#98c379;">backend:</span>
+    <span style="color:#d19a66;">image:</span> ghcr.io/zzooonn/carelink/backend:latest
+    <span style="color:#5c6370;"># build 섹션 제거 (EC2 내 빌드 방지)</span>
+    <span style="color:#e06c75;">deploy:</span>
+      <span style="color:#e06c75;">resources:</span>
+        <span style="color:#e06c75;">limits:</span>
+          <span style="color:#d19a66;">memory:</span> <span style="color:#98c379;">512M</span>
+
+  <span style="color:#98c379;">ai:</span>
+    <span style="color:#d19a66;">image:</span> ghcr.io/zzooonn/carelink/ai:latest
+    <span style="color:#5c6370;"># profile로 분리하여 필요 시에만 실행</span></code></pre>
+                                </div>
+                                <div class="ts-takeaway-box">
+                                    <div class="ts-takeaway-title"><i class="fas fa-lightbulb"></i> 알게된 점</div>
+                                    <p class="ts-text">무조건 정확한 모델이 정답이 아니며, 인프라 제약을 선제적으로 고려한 <strong>아키텍처 분리와 Pull-only 배포 파이프라인 설계</strong>가 서비스 안정성을 결정짓는다는 것을 체득했습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-section">
+                    <h4 class="p-section-title">사용 기술</h4>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Spring Boot 3</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker Compose</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">AWS EC2</span>
+                    </div>
