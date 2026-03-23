@@ -11,6 +11,11 @@
     <meta property="og:title" content="조현준 | Systems &amp; AI Full-Stack Engineer" />
     <meta property="og:description" content="Systems &amp; AI Full-Stack Engineer · BUAA 2026" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/zzooonn" />
+    <meta property="og:image" content="https://opengraph.githubassets.com/1/zzooonn" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="조현준 | Systems &amp; AI Full-Stack Engineer" />
+    <meta name="twitter:description" content="OS 커널, 컴파일러, AI 모델 설계부터 풀스택 서비스까지. BUAA 소프트웨어공학 전국 1위." />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
 
@@ -969,11 +974,48 @@
 
       .cert-card {
         display: flex;
+        align-items: center;
         gap: 0.9rem;
         padding: 1rem;
         border: 1px solid var(--border);
         border-radius: 1rem;
         background: var(--surface-2);
+      }
+
+      .cert-copy {
+        flex: 1;
+        min-width: 0;
+      }
+
+      /* ── 증명서 다운로드 버튼 ── */
+      .cert-dl-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        flex-shrink: 0;
+        padding: 0.38rem 0.75rem;
+        border: 1.5px solid var(--border);
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--text-3);
+        font-size: 0.72rem;
+        font-weight: 700;
+        font-family: "IBM Plex Mono", monospace;
+        text-decoration: none;
+        transition: all 0.2s var(--ease);
+        white-space: nowrap;
+      }
+
+      .cert-dl-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        background: var(--accent-lt);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(91, 88, 255, 0.15);
+      }
+
+      .cert-dl-btn svg {
+        flex-shrink: 0;
       }
 
       .cert-mark {
@@ -1105,10 +1147,11 @@
         align-items: center;
         gap: 0.65rem;
         margin: 0 0 1rem;
-        font-size: 0.78rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
+        font-size: 1.3rem;
+        font-weight: 900;
+        font-family: "Noto Sans KR", sans-serif;
+        text-transform: none;
+        letter-spacing: -0.01em;
       }
 
       .minor-title::before {
@@ -1131,7 +1174,7 @@
         position: relative;
         padding-left: 1.25rem;
         color: var(--text-2);
-        font-size: 0.95rem;
+        font-size: 1rem;
         line-height: 1.85;
       }
 
@@ -1335,8 +1378,8 @@
 
       .trouble-label {
         margin-bottom: 0.25rem;
-        font-size: 0.76rem;
-        font-weight: 800;
+        font-size: 1rem;
+        font-weight: 900;
         letter-spacing: 0.13em;
         text-transform: uppercase;
       }
@@ -1617,6 +1660,66 @@
         .footer-nav { justify-content: flex-start; }
         .hero-dots,
         .hero-line { display: none; }
+        /* SVG 아키텍처 다이어그램 — 모바일 스크롤 안내 */
+        .svg-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      }
+
+      @media (max-width: 640px) {
+        .container { width: min(100% - 24px, 1120px); }
+        .nav-actions .print-button { display: none; }
+
+        /* Hero 이름 폰트 조정 — 좁은 화면에서 줄바꿈 방지 */
+        .hero-title { font-size: clamp(2.8rem, 12vw, 4rem); letter-spacing: -0.03em; }
+
+        /* Hero 소개글 br 태그 무력화 */
+        .hero-intro br { display: none; }
+        .hero-intro { font-size: 0.95rem; }
+
+        .hero-actions { flex-direction: column; }
+        .hero-actions .button { width: 100%; justify-content: center; }
+        .hero-links { flex-direction: column; gap: 0.35rem; }
+        .stats-grid { grid-template-columns: 1fr; }
+
+        /* 프로젝트 패딩 축소 */
+        .project-toggle,
+        .project-inner { padding-left: 1rem; padding-right: 1rem; }
+        .project-head h3 { font-size: 1.05rem; }
+        .project-index { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+
+        /* 트러블슈팅 그리드 — 좁은 화면에서 1열 */
+        .troubleshoot-grid { grid-template-columns: 1fr; }
+
+        /* 코드 박스 폰트 축소 */
+        .code-box pre { font-size: 0.72rem; }
+
+        /* 칩 리스트 줄바꿈 및 폰트 축소 */
+        .chip-list { gap: 0.4rem; }
+        .chip { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
+
+        /* 기술 태그 축소 */
+        .tag-list .tag { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+
+        /* 스킬 요약 바 — 좁은 화면 2열 */
+        .skill-summary { flex-wrap: wrap; gap: 0.5rem; justify-content: flex-start; }
+        .summary-item { width: calc(50% - 0.25rem); }
+
+        /* 섹션 타이틀 축소 */
+        .section-heading { font-size: 1.6rem; margin-bottom: 2rem; }
+
+        /* about 카드 패딩 축소 */
+        .about-card { padding: 1.25rem; }
+
+        /* 언어 능숙도 바 레이블 */
+        .bar-label, .bar-value { width: 1.8rem; font-size: 0.68rem; }
+
+        /* 푸터 */
+        .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      }
+
+      @media (max-width: 380px) {
+        .hero-title { font-size: clamp(2.4rem, 13vw, 3rem); }
+        .chip { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+        .stats-grid { grid-template-columns: 1fr; }
       }
 
       /* ── 툴팁 ── */
@@ -1685,16 +1788,14 @@
       .about-card:nth-child(2):hover { border-color: #c2410c; }
       .about-card:nth-child(3):hover { border-color: #1d4ed8; }
 
-      @media (max-width: 640px) {
-        .container { width: min(100% - 24px, 1120px); }
-        .nav-actions .print-button { display: none; }
-        .hero-actions { flex-direction: column; }
-        .hero-actions .button { width: 100%; }
-        .hero-links { flex-direction: column; gap: 0.35rem; }
-        .stats-grid { grid-template-columns: 1fr; }
-        .project-toggle,
-        .project-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
-        .project-head h3 { font-size: 1.15rem; }
+      /* ── 코드 박스 가로 스크롤 (모바일) ── */
+      .code-box {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .code-box pre {
+        white-space: pre;
+        overflow-x: visible;
       }
 
       @media print {
@@ -1705,18 +1806,26 @@
         .nav-drawer,
         .hero-bg,
         .footer-actions,
-        .hero-actions .button:nth-child(3) { display: none !important; }
+        .cert-dl-btn,
+        .hero-actions .button:nth-child(2),
+        .hero-actions .button:nth-child(3),
+        .project-chevron { display: none !important; }
 
         /* ── 기본 레이아웃 ── */
         body {
           background: #fff !important;
-          font-size: 10pt;
+          font-size: 9.5pt;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
         .hero { padding-top: 0; }
-        .section, .footer { padding: 1.2rem 0; }
+        .section, .footer { padding: 1rem 0; }
         .container { width: 100% !important; padding: 0 1.2rem !important; }
+
+        /* ── Hero 그리드 — PDF에서 1열로 ── */
+        .hero-grid { grid-template-columns: 1fr !important; }
+        .hero-card-wrap { display: none !important; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr) !important; margin-top: 0; }
 
         /* ── 애니메이션/전환 완전 해제 ── */
         *, *::before, *::after {
@@ -1734,9 +1843,17 @@
         /* ── 프로젝트 아코디언 전부 열기 ── */
         .project-body { max-height: none !important; opacity: 1 !important; }
         .project-inner {
-          padding-top: 1.5rem !important;
-          border-top-color: var(--border) !important;
+          padding-top: 1.2rem !important;
+          border-top: 1px solid #e2e8f0 !important;
         }
+        /* 아코디언 헤더 배경 제거 */
+        .project-toggle {
+          background: transparent !important;
+          padding-bottom: 0 !important;
+        }
+
+        /* ── 트러블슈팅 그리드 — PDF 1열로 ── */
+        .troubleshoot-grid { grid-template-columns: 1fr !important; }
 
         /* ── 코드 박스 색 유지 ── */
         .code-box {
@@ -1745,6 +1862,7 @@
           box-shadow: none !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
+          overflow: visible !important;
         }
         .code-top {
           background: var(--code-bg) !important;
@@ -1753,13 +1871,16 @@
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
-        .code-box pre,
-        .code-box code {
+        .code-box pre {
           color: #abb2bf !important;
           background: transparent !important;
+          white-space: pre-wrap !important;
+          word-break: break-all !important;
+          font-size: 7.5pt !important;
         }
+        .code-box code { background: transparent !important; border: none !important; }
 
-        /* ── 언어 능숙도 막대: PDF에서는 JS 없이 고정 폭으로 출력 ── */
+        /* ── 언어 능숙도 막대 — PDF에서 JS 없이 고정 폭 ── */
         .bar-track {
           background: #e2e8f0 !important;
           -webkit-print-color-adjust: exact;
@@ -1773,7 +1894,7 @@
         .bar-fill.bar-cn { width: 95% !important; }
         .bar-fill.bar-us { width: 72% !important; }
 
-        /* ── 페이지 나눔: 카드 내부에서 잘리지 않도록 ── */
+        /* ── 페이지 나눔 — 카드 내부에서 잘리지 않도록 ── */
         .info-card,
         .about-card,
         .skill-panel,
@@ -1784,35 +1905,31 @@
         .timeline-item,
         .code-box,
         .takeaway,
-        .troubleshoot-grid,
-        .svg-wrap {
-          break-inside: avoid;
-          page-break-inside: avoid;
-        }
+        .arrow-list li,
+        .svg-wrap { break-inside: avoid; page-break-inside: avoid; }
 
         /* ── 제목 뒤에서 페이지 안 나뉨 ── */
         .section-heading,
         .minor-title,
-        h2, h3, h4 {
-          break-after: avoid;
-          page-break-after: avoid;
-        }
+        h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
 
-        /* ── 그리드 자체는 넘어가도 되고, 자식 카드는 내부에서 안 잘림 ── */
+        /* ── 그리드: 자식 카드 단위로 다음 페이지 자동 ── */
         .panel-grid-2,
         .about-grid,
         .skill-grid,
-        .stats-grid {
-          break-inside: auto;
-          page-break-inside: auto;
-        }
+        .stats-grid { break-inside: auto; page-break-inside: auto; }
         .panel-grid-2 > *,
         .about-grid > *,
         .skill-grid > *,
-        .stats-grid > * {
-          break-inside: avoid;
-          page-break-inside: avoid;
-        }
+        .stats-grid > * { break-inside: avoid; page-break-inside: avoid; }
+
+        /* ── SVG 다이어그램 — PDF에서 크기 제한 ── */
+        .svg-wrap svg { max-width: 100%; height: auto; }
+        .svg-wrap { overflow: hidden !important; }
+
+        /* ── 스킬 패널 hover 효과 제거 ── */
+        .skill-panel:hover { transform: none; box-shadow: none; }
+        .about-card:hover { transform: none; }
       }
     
     </style>
@@ -1876,7 +1993,7 @@
             <div class="hero-copy">
               <div class="status-pill mono">
                 <span class="pulse-dot"></span>
-                Available for opportunities · <strong>2026.07</strong> 졸업 예정
+                <strong>2026.07</strong> 졸업 예정
               </div>
 
               <h1 class="hero-title">조현준<span>.</span></h1>
@@ -1888,20 +2005,14 @@
               </div>
 
               <p class="hero-intro">
-                OS 커널과 컴파일러를 바닥부터 구현하고,<br />
-                실제 서비스와 AI 모델까지 혼자 설계·배포한 엔지니어입니다.<br />
-                <strong>낯선 문제 앞에서 도망치지 않고, 직접 부딪혀 해답을 찾습니다.</strong>
+                <strong>중국 소프트웨어공학 전국 1위, BUAA(북항대)</strong>에서 보낸 8년.<br />
+                OS 커널을 직접 구현하며 얻은 근본적인 통찰로 복잡한 AI 모델의 최적화를 이끌어냅니다.
               </p>
 
               <div class="hero-actions">
                 <a class="button primary" href="#projects">프로젝트 보기</a>
                 <a class="button" href="mailto:kevinjo11@naver.com">연락하기</a>
                 <button class="button js-print" type="button">PDF로 저장</button>
-              </div>
-
-              <div class="hero-links">
-                <a href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer">github.com/zzooonn</a>
-                <a href="mailto:kevinjo11@naver.com">kevinjo11@naver.com</a>
               </div>
             </div>
 
@@ -1912,15 +2023,15 @@
                 <p class="hero-card-subtitle mono"><span class="subtitle-dot"></span>Systems &amp; AI Full-Stack Engineer</p>
 
                 <div class="badge-row mono">
-                  <span class="tag green">TSC Lv.6 CN</span>
-                  <span class="tag teal">OPIc IH US</span>
+                  <span class="tag green">TSC Lv.6(CN)</span>
+                  <span class="tag teal">OPIc IH(ENG)</span>
                   <span class="tag accent">BUAA · SW Engineering</span>
                 </div>
 
                 <div class="hero-mini-grid">
                   <div class="mini-card"><strong>4+</strong><span>주요 프로젝트</span></div>
                   <div class="mini-card"><strong>6</strong><span>TSC 중국어 레벨</span></div>
-                  <div class="mini-card"><strong>A+</strong><span>BUAA SW 전국순위</span></div>
+                  <div class="mini-card"><strong>A+</strong><span>BUAA SW 중국순위</span></div>
                   <div class="mini-card"><strong>3</strong><span>사용 언어 (한·중·영)</span></div>
                 </div>
               </article>
@@ -1938,7 +2049,7 @@
             </article>
             <article class="stat-card">
               <span class="stat-icon amber-surface">🏆</span>
-              <div class="stat-copy"><strong>A+</strong><span>BUAA SW 전국순위</span></div>
+              <div class="stat-copy"><strong>A+</strong><span>BUAA SW 중국순위</span></div>
             </article>
             <article class="stat-card">
               <span class="stat-icon teal-surface">🗣</span>
@@ -1986,24 +2097,32 @@
                   <span class="cert-mark mono" style="background:var(--green-lt);color:var(--green)">CN</span>
                   <div class="cert-copy">
                     <h4>TSC 중국어 회화 <span class="tag green mono">Level 6</span></h4>
-                    <p class="mono">최고 등급 — 원어민 수준 비즈니스 커뮤니케이션</p>
+                    <p class="mono">원어민 수준 비즈니스 커뮤니케이션</p>
                     <small class="mono">ID: 100318 · 2025.10.25</small>
                   </div>
+                  <a class="cert-dl-btn" href="TSC score.pdf" download="TSC_score.pdf" title="TSC 성적표 다운로드">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    PDF
+                  </a>
                 </div>
                 <div class="cert-card">
                   <span class="cert-mark mono" style="background:var(--teal-lt);color:var(--teal)">US</span>
                   <div class="cert-copy">
                     <h4>OPIc 영어 회화 <span class="tag teal mono">IH · Intermediate High</span></h4>
-                    <p class="mono">업무·학술 환경에서 유창한 영어 소통</p>
+                    <p class="mono">업무 환경에서 유창한 영어 소통</p>
                     <small class="mono">ID: 2C5955731527 · 2025.12.22</small>
                   </div>
+                  <a class="cert-dl-btn" href="OPIC score.pdf" download="OPIC_score.pdf" title="OPIc 성적표 다운로드">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    PDF
+                  </a>
                 </div>
               </div>
               <div class="minor-title mono" style="margin-top:0">언어 능숙도</div>
               <div class="language-bars" data-language-bars>
                 <div class="bar-row"><span class="bar-label mono">KR</span><div class="bar-track"><div class="bar-fill accent bar-kr" data-width="100%"></div></div><span class="bar-value mono">100%</span></div>
-                <div class="bar-row"><span class="bar-label mono">CN</span><div class="bar-track"><div class="bar-fill green bar-cn" data-width="95%"></div></div><span class="bar-value mono">95%</span></div>
-                <div class="bar-row"><span class="bar-label mono">US</span><div class="bar-track"><div class="bar-fill teal bar-us" data-width="72%"></div></div><span class="bar-value mono">72%</span></div>
+                <div class="bar-row"><span class="bar-label mono">CN</span><div class="bar-track"><div class="bar-fill green bar-cn" data-width="93%"></div></div><span class="bar-value mono">93%</span></div>
+                <div class="bar-row"><span class="bar-label mono">ENG</span><div class="bar-track"><div class="bar-fill teal bar-us" data-width="72%"></div></div><span class="bar-value mono">72%</span></div>
               </div>
             </article>
           </div>
@@ -2017,7 +2136,11 @@
             <article class="about-card reveal">
               <span class="icon-box icon-accent">📚</span>
               <h3>학습 자세</h3>
-              <p class="body-text">새로운 기술을 만날 때 공식 문서부터 읽고, 직접 구현하며 내재화합니다. MIPS OS 커널을 바닥부터 디버깅했던 경험처럼, 막히는 순간에도 포기하지 않고 가설을 세우고 검증하는 과정을 통해 집요하게 문제를 풀어갑니다.</p>
+              <p class="body-text">
+                막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다.<br />
+                새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고,<br />
+                MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증을 반복</strong>합니다.
+              </p>
               <div class="tag-list mono"><span class="tag accent">가설 검증형</span><span class="tag accent">문서화 습관</span></div>
             </article>
             <article class="about-card reveal">
@@ -2029,8 +2152,14 @@
             <article class="about-card reveal">
               <span class="icon-box icon-blue">🤝</span>
               <h3>협업 방식</h3>
-              <p class="body-text">한·중·영 3개국어로 다국적 팀과 소통할 수 있습니다. 의견을 조율할 때는 주관적 직관보다 객관적 지표를 바탕으로 논의하며, 합의된 내용은 RFC 문서로 명확히 기록합니다.</p>
-              <div class="tag-list mono"><span class="tag blue">한·중·영</span><span class="tag blue">RFC 문서화</span><span class="tag slate">데이터 기반</span></div>
+                <p class="body-text">
+                  <strong>기술 스택 충돌을 데이터로 중재</strong>한 경험이 있습니다.<br>
+                  학술 플랫폼 프로젝트에서 Vue 3vs React, 화웨이 Cloud vs AWS를 두고 의견이 갈렸을 때, 
+                  <strong>성능, 생태계 데이터를 직접 수집</strong>해 팀을 설득했습니다.<br>
+                  합의 내용은 <strong>RFC 문서로 기록</strong>하고, <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있도록 했습니다.
+                </p>
+
+              <div class="tag-list mono"><span class="tag blue">한·중·영</span><span class="tag blue">RFC 문서화</span><span class="tag slate">데이터 기반 설득</span><span class="tag slate">기술 중재</span></div>
             </article>
           </div>
         </div>
@@ -2045,6 +2174,7 @@
               <div class="skill-label mono"><span class="dot-accent">●</span> 시스템 / 로우레벨</div>
               <div class="chip-list">
                 <span class="chip tag accent">🐦‍⬛ C / C++</span>
+                <span class="chip tag accent">☕ Java</span>
                 <span class="chip tag accent">🔩 MIPS Assembly</span>
                 <span class="chip tag accent">⚙️ OS Kernel</span>
                 <span class="chip tag accent">🔧 Compiler</span>
@@ -2073,7 +2203,7 @@
               <div class="top-line top-pink"></div>
               <div class="skill-label mono"><span class="dot-pink">●</span> AI &amp; ML</div>
               <div class="chip-list">
-                <span class="chip tag pink">🔥 PyTorch</span>
+                <span class="chip tag pink">🐍 Python</span>
                 <span class="chip tag pink">🫀 CNN-CBAM-GRU</span>
                 <span class="chip tag pink">🚀 FastAPI</span>
               </div>
@@ -2091,9 +2221,9 @@
               </div>
             </article>
             <div class="skill-summary reveal">
-              <div class="summary-item"><span>💻</span><strong>4+</strong><span>언어</span></div>
-              <div class="summary-item"><span>📦</span><strong>3+</strong><span>프레임워크</span></div>
-              <div class="summary-item"><span>🐳</span><strong>5+</strong><span>인프라 도구</span></div>
+              <div class="summary-item"><span>💻</span><strong>6+</strong><span>언어</span></div>
+              <div class="summary-item"><span>📦</span><strong>5+</strong><span>프레임워크</span></div>
+              <div class="summary-item"><span>🐳</span><strong>6+</strong><span>인프라 도구</span></div>
               <div class="summary-item"><span>🧠</span><strong>2</strong><span>AI 모델 구현</span></div>
             </div>
           </div>
@@ -2119,15 +2249,18 @@
 
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
-                <p class="body-text">GXemul 환경에서 커널 부팅부터 가상 메모리, 프로세스/시스템콜, pipe IPC, 파일시스템까지 단계적으로 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 실습했습니다.</p>
+                <p class="body-text">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
 
                 <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
+                  <h4 class="minor-title mono">주요 개발 내용 (Lab0 – Lab6)</h4>
                   <ul class="arrow-list">
-                    <li><strong>가상 메모리 체계 구축:</strong> 2단계 페이지 테이블 기반 가상 메모리와 TLB Fast Refill 메커니즘 구현.</li>
-                    <li><strong>프로세스 최적화:</strong> <code>fork()</code> 시스템 콜에 <strong>Copy-on-Write(COW)</strong> 방식을 적용하여 메모리 복사 비용 최적화.</li>
-                    <li><strong>IPC 메커니즘:</strong> pipe IPC 및 파일 디스크립터 복제/참조 관리 로직 구현.</li>
-                    <li><strong>마이크로커널 아키텍처:</strong> 커널 내부 파일시스템 대신 <strong>사용자 공간 FS 서버와 IPC로 통신</strong>하는 구조 설계.</li>
+                    <li><strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.</li>
+                    <li><strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.</li>
+                    <li><strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
+                    <li><strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.</li>
+                    <li><strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.</li>
+                    <li><strong>Pipe IPC 메커니즘 (Lab5):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.</li>
+                    <li><strong>사용자 공간 파일시스템 (Lab6):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.</li>
                   </ul>
                 </div>
 
@@ -2176,7 +2309,7 @@
 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">MIPS Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span></div>
+                  <div class="tag-list mono"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
                 </div>
               </div>
             </div>
@@ -2197,48 +2330,77 @@
 
             <div class="project-body" id="project-02-body">
               <div class="project-inner">
-                <p class="body-text">SysY 언어의 렉서(Lexer), 재귀 하향 파서(Recursive Descent Parser), P-Code 생성기, 스택 머신 기반 가상 머신 인터프리터를 바닥부터 직접 설계·구현했습니다.</p>
-
+                <p class="body-text">
+                  SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>
+                  초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.
+                </p>
                 <div>
                   <h4 class="minor-title mono">주요 개발 내용</h4>
                   <ul class="arrow-list">
-                    <li><strong>정교한 에러 처리:</strong> 파싱 중 세미콜론·괄호 누락, 미선언 변수, 상수 재대입 등 다양한 에러 유형을 판별하는 에러 핸들링 로직 설계.</li>
-                    <li><strong>계층적 심볼 테이블:</strong> 중첩 스코프를 올바르게 관리하는 계층적 심볼 테이블 설계 및 타입·상수 검증 로직 구현.</li>
-                    <li><strong>P-Code 가상 머신 구현:</strong> 스택 기반 VM을 직접 설계하여 배열 인덱싱, 함수 호출/반환, I/O를 완벽 지원.</li>
+                    <li><strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.</li>
+                    <li><strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.</li>
+                    <li><strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.</li>
+                    <li><strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 '문맥 복귀 신호'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.</li>
+                    <li><strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.</li>
+                    <li><strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.</li>
                   </ul>
                 </div>
 
                 <div>
                   <h4 class="minor-title mono">트러블슈팅</h4>
+                  <p class="body-text" style="margin-bottom: 0.75rem;">
+                    이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 
+                    그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.
+                  </p>
+                  <ul class="arrow-list" style="margin-bottom: 1.25rem;">
+                    <li><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
+                    <li><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
+                    <li><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
+                  </ul>
+                  <p class="body-text">
+                    아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color: #ef4444; font-weight: 900;">‘구문 누락 복구’</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.
+                  </p>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">배열 파라미터 전달 시 P-Code 스택 주소 오류</div>
-                      <span class="badge-primary mono">Compiler / VM</span>
+                      <div class="troubleshoot-title">Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
+                      <span class="badge-primary mono">Compiler / Parser</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
                           <div class="trouble-label problem mono">상황</div>
-                          <p class="body-text">함수에 배열을 인자로 전달하면, <strong>값이 아닌 base address가 복사</strong>되어야 하지만, 단순 <code>LOD/STO</code>를 사용하면 주소 대신 값이 전달되어 런타임 오류가 발생했습니다.</p>
+                          <p class="body-text">세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label alt mono">대안 탐색</div>
+                          <p class="body-text">에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label sol mono">해결</div>
-                          <p class="body-text">배열 파라미터인지 여부를 심볼 테이블에 기록하고, 배열 인자일 경우 <strong><code>LOD(base_addr)</code> → <code>STO</code></strong> 대신 <strong><code>LDA(base_addr)</code> → <code>STO</code></strong>로 주소를 직접 전달하도록 코드 생성 단계를 수정했습니다.</p>
+                          <p class="body-text">에러를 '파싱 중단 사유'가 아닌 <strong>'문맥 복귀 신호'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.</p>
                         </div>
                       </div>
                       <div>
                         <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">codegen.cpp — Array Parameter Fix</span></div>
-                          <pre><code><span style="color:#5c6370;">// 배열 파라미터: 주소 전달</span>
-<span style="color:#c678dd;">if</span> (sym.isArrayParam) {
-  <span style="color:#61afef;">emit</span>(LDA, sym.level, sym.addr);
-} <span style="color:#c678dd;">else</span> {
-  <span style="color:#61afef;">emit</span>(LOD, sym.level, sym.addr);
+                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">Parser.cpp — Error Recovery</span></div>
+                          <pre><code><span style="color:#5c6370;">// 누락 토큰 에러: 파싱 중단 없이 복귀</span>
+<span style="color:#c678dd;">void</span> <span style="color:#61afef;">parseErrorPrintfI</span>() {
+  <span style="color:#e5c07b;">Token</span> cur  = <span style="color:#61afef;">getCurrentToken</span>();
+  <span style="color:#e5c07b;">Token</span> prev = <span style="color:#61afef;">getPreviousToken</span>();
+
+  <span style="color:#c678dd;">if</span> (cur.type == SEMICN) {
+    <span style="color:#61afef;">outputToken</span>(cur);
+    <span style="color:#61afef;">advanceToken</span>();
+  } <span style="color:#c678dd;">else</span> {
+    <span style="color:#5c6370;">// 직전 유효 토큰 라인 기준으로 에러 기록
+    // → 포인터 이중 전진 방지, 연쇄 오진 차단</span>
+    <span style="color:#61afef;">addError</span>(prev.lineNumber, <span style="color:#98c379;">'i'</span>);
+  }
 }</code></pre>
                         </div>
                         <div class="takeaway">
                           <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">컴파일러에서는 '값(value)'과 '주소(address)'의 구분이 코드 생성의 핵심이며, <strong>심볼 테이블에 충분한 메타정보를 기록해야 올바른 코드 생성이 가능</strong>하다는 점을 체감했습니다.</p>
+                          <p class="body-text">에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.</p>
                         </div>
                       </div>
                     </div>
@@ -2533,18 +2695,18 @@
                   <h4 class="minor-title mono">시스템 성능 최적화 및 평가 지표</h4>
                   <ul class="arrow-list">
                     <li><strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.</li>
-                    <li><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,279.84ms, P50 2,279.16ms, P95 2,400.15ms</strong>.</li>
+                    <li><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.</li>
                     <li><strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.</li>
-                    <li><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 입력은 서버 다운 없이 에러 응답으로 처리.</li>
+                    <li><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.</li>
                   </ul>
                 </div>
 
                 <div>
                   <h4 class="minor-title mono">ECG 분류 모델 성능</h4>
                   <ul class="arrow-list">
-                    <li><strong>Macro F1:</strong> 74.97% · <strong>Macro AUC:</strong> 93.31% · <strong>HYP F1:</strong> 54.67%</li>
+                    <li><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:0.85em;">(comparison_results.csv 기준)</span></li>
                     <li><strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)</li>
-                    <li><strong>손실 함수:</strong> MultiLabel Focal Loss (γ=2.0, α=0.25) + Dynamic Pos-Weight</li>
+                    <li><strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용</li>
                   </ul>
                 </div>
 
@@ -2600,7 +2762,7 @@
 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag teal">React Native</span><span class="tag green">Spring Boot 3</span><span class="tag pink">FastAPI</span><span class="tag pink">PyTorch</span><span class="tag green">PostgreSQL</span><span class="tag slate">AWS EC2</span><span class="tag slate">Docker</span><span class="tag slate">GitHub Actions</span></div>
+                  <div class="tag-list mono"><span class="tag teal">React Native</span><span class="tag green">Spring Boot 3</span><span class="tag pink">FastAPI</span><span class="tag pink">Python</span><span class="tag green">PostgreSQL</span><span class="tag slate">AWS EC2</span><span class="tag slate">Docker</span><span class="tag slate">GitHub Actions</span></div>
                 </div>
               </div>
             </div>
@@ -2632,7 +2794,7 @@
         </div>
 
         <div class="footer-bottom">
-          <span class="footer-copy mono">© 2026 조현준 · Built with <span class="footer-heart">♥</span> HTML + CSS + JS</span>
+          <span class="footer-copy mono">© 2026 조현준 포트폴리오</span>
           <div class="footer-actions">
             <a class="icon-link" href="mailto:kevinjo11@naver.com" aria-label="메일 보내기">✉</a>
             <a class="icon-link" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer" aria-label="GitHub 열기"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
@@ -2884,23 +3046,25 @@
     });
 
     /* ================================================================
-       12. 스킬 패널 마우스 Tilt 효과
+       12. 스킬 패널 마우스 Tilt 효과 (데스크탑만)
     ================================================================ */
-    document.querySelectorAll('.skill-panel').forEach(panel => {
-      panel.addEventListener('mousemove', e => {
-        const r = panel.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width  - 0.5) * 6;
-        const y = ((e.clientY - r.top)  / r.height - 0.5) * 6;
-        panel.style.transform = `perspective(600px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.skill-panel').forEach(panel => {
+        panel.addEventListener('mousemove', e => {
+          const r = panel.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width  - 0.5) * 6;
+          const y = ((e.clientY - r.top)  / r.height - 0.5) * 6;
+          panel.style.transform = `perspective(600px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;
+        });
+        panel.addEventListener('mouseleave', () => {
+          panel.style.transform = '';
+          panel.style.transition = 'transform 0.4s var(--ease)';
+        });
+        panel.addEventListener('mouseenter', () => {
+          panel.style.transition = 'transform 0.12s ease';
+        });
       });
-      panel.addEventListener('mouseleave', () => {
-        panel.style.transform = '';
-        panel.style.transition = 'transform 0.4s var(--ease)';
-      });
-      panel.addEventListener('mouseenter', () => {
-        panel.style.transition = 'transform 0.12s ease';
-      });
-    });
+    }
     </script>
   </body>
 </html>
