@@ -618,8 +618,8 @@
         position: relative;
         display: inline-grid;
         place-items: center;
-        width: 5rem;
-        height: 5rem;
+        width: 10rem;
+        height: 10rem;
         margin-bottom: 1.25rem;
         border: 1px solid var(--accent-dim);
         border-radius: 1rem;
@@ -629,6 +629,7 @@
         font-size: 1.85rem;
         font-weight: 900;
         letter-spacing: -0.06em;
+        overflow: hidden;
       }
 
       .hero-card-title {
@@ -646,6 +647,13 @@
         color: var(--text-3);
         font-size: 0.78rem;
       }
+
+      .hero-card-mark img {
+        width: 100%;      /* 부모 너비에 맞춤 */
+        height: 100%;     /* 부모 높이에 맞춤 */
+        object-fit: cover; /* 비율을 유지하면서 틀을 가득 채움 (증명사진에 적합) */
+        object-position: center; /* 이미지의 중앙을 기준으로 맞춤 */
+        }
 
       .subtitle-dot {
         width: 0.4rem;
@@ -2032,7 +2040,9 @@
 
             <div class="hero-card-wrap">
               <article class="hero-card">
-                <div class="hero-card-mark">조현</div>
+                <div class="hero-card-mark">
+                    <img src="photo.jpg" alt="조현">
+                </div>
                 <h2 class="hero-card-title">조현준</h2>
                 <p class="hero-card-subtitle mono"><span class="subtitle-dot"></span>Systems &amp; AI Full-Stack Engineer</p>
 
@@ -2043,7 +2053,7 @@
                 </div>
 
                 <div class="hero-mini-grid">
-                  <div class="mini-card"><strong>4+</strong><span>주요 프로젝트</span></div>
+                  <div class="mini-card"><strong>4</strong><span>주요 프로젝트</span></div>
                   <div class="mini-card"><strong>6</strong><span>TSC 중국어 레벨</span></div>
                   <div class="mini-card"><strong>A+</strong><span>BUAA SW 중국순위</span></div>
                   <div class="mini-card"><strong>3</strong><span>사용 언어 (한·중·영)</span></div>
@@ -2055,7 +2065,7 @@
           <div class="stats-grid reveal">
             <article class="stat-card">
               <span class="stat-icon accent-surface">📁</span>
-              <div class="stat-copy"><strong>4+</strong><span>주요 프로젝트</span></div>
+              <div class="stat-copy"><strong>4</strong><span>주요 프로젝트</span></div>
             </article>
             <article class="stat-card">
               <span class="stat-icon green-surface">🌏</span>
@@ -2248,20 +2258,16 @@
               </div>
             </article>
             <div class="skill-summary reveal">
-              <div class="summary-item"><span>💻</span><strong>6+</strong><span>언어</span></div>
-              <div class="summary-item"><span>📦</span><strong>5+</strong><span>프레임워크</span></div>
-              <div class="summary-item"><span>🐳</span><strong>6+</strong><span>인프라 도구</span></div>
+              <div class="summary-item"><span>💻</span><strong>6</strong><span>언어</span></div>
+              <div class="summary-item"><span>📦</span><strong>4</strong><span>프레임워크</span></div>
+              <div class="summary-item"><span>🐳</span><strong>6</strong><span>인프라 도구</span></div>
               <div class="summary-item"><span>🧠</span><strong>2</strong><span>AI 모델 구현</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects" class="section">
-        <div class="container">
-          <h2 class="section-heading">프로젝트</h2>
-
-          <article class="project-card reveal is-open">
+      <article class="project-card reveal is-open">
             <button class="project-toggle" type="button" aria-expanded="true" aria-controls="project-01-body">
               <span class="project-index mono">01</span>
               <div class="project-head">
@@ -2273,24 +2279,24 @@
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
-
+ 
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
                 <p class="body-text">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
-
+ 
                 <div>
                   <h4 class="minor-title mono">주요 개발 내용 (Lab0 – Lab6)</h4>
                   <ul class="arrow-list">
                     <li><strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.</li>
                     <li><strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.</li>
-                    <li><strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
+                    <li><strong>프로세스 스케줄링 (Lab3):</strong> struct Env 기반 프로세스 관리 구조 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
                     <li><strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.</li>
-                    <li><strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.</li>
-                    <li><strong>Pipe IPC 메커니즘 (Lab5):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.</li>
-                    <li><strong>사용자 공간 파일시스템 (Lab6):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.</li>
+                    <li><strong>Copy-on-Write fork() 구현 (Lab4):</strong> 사용자 공간에서 COW 기반 <code>fork()</code>를 구현했습니다. 쓰기 가능한 페이지는 공유 후 <strong>TLB Mod 예외</strong>가 발생할 때만 실제 복사되도록 설계해 메모리 복사 비용을 지연시켰습니다.</li>
+                    <li><strong>Pipe IPC 메커니즘 (Lab6):</strong> 공유 페이지 기반 pipe와 파일 디스크립터 복제(<code>dup</code>)를 구현했습니다. <code>pageref</code> 기반 닫힘 판정과 <code>map/unmap</code> 순서를 함께 설계해 pipe 상태를 안정적으로 유지했습니다.</li>
+                    <li><strong>사용자 공간 파일시스템 (Lab5):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템을 구현했습니다. 블록 캐시, 파일 열기·매핑·크기 조정·동기화 경로를 구성했습니다.</li>
                   </ul>
                 </div>
-
+ 
                 <div>
                   <h4 class="minor-title mono">트러블슈팅</h4>
                   <div class="troubleshoot">
@@ -2315,14 +2321,15 @@
                       </div>
                       <div>
                         <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">pipe.c — Atomic-like Mapping Sequence</span></div>
+                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">pipe.c / fd.c — Invariant-Preserving map/unmap Order</span></div>
                           <pre><code><span style="color:#5c6370;">// 해제 순서 조정으로 불변식 유지</span>
-<span style="color:#c678dd;">void</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">int</span> fdnum) {
+<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">struct Fd</span> *fd) {
   <span style="color:#5c6370;">// [Fix] FD를 먼저 해제하여
   // pageref(fd) &gt; pageref(pipe)
   //   찰나의 순간을 방지</span>
-  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd_to_va(fdnum));
-  <span style="color:#61afef;">syscall_mem_unmap</span>(0, pipe_to_va(fdnum));
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd);
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, (<span style="color:#c678dd;">void</span> *)<span style="color:#61afef;">fd2data</span>(fd));
+  <span style="color:#c678dd;">return</span> 0;
 }</code></pre>
                         </div>
                         <div class="takeaway">
@@ -2333,7 +2340,7 @@
                     </div>
                   </div>
                 </div>
-
+ 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
                     <div class="tag-list mono">
@@ -2349,487 +2356,6 @@
               </div>
             </div>
           </article>
-
-          <article class="project-card reveal">
-            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body">
-              <span class="project-index mono">02</span>
-              <div class="project-head">
-                <h3>SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
-                <div class="project-meta mono">
-                  <span>🗓 2024.10 – 2025.01 · BUAA Compiler Course</span>
-                  <span>👤 Compiler Engineer (1인 개발)</span>
-                </div>
-              </div>
-              <span class="project-chevron" aria-hidden="true">⌄</span>
-            </button>
-
-            <div class="project-body" id="project-02-body">
-              <div class="project-inner">
-                <p class="body-text">
-                  SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>
-                  초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.
-                </p>
-                <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
-                  <ul class="arrow-list">
-                    <li><strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.</li>
-                    <li><strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.</li>
-                    <li><strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.</li>
-                    <li><strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 '문맥 복귀 신호'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.</li>
-                    <li><strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.</li>
-                    <li><strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
-                  <p class="body-text" style="margin-bottom: 0.75rem;">
-                    이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 
-                    그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.
-                  </p>
-                  <ul class="arrow-list" style="margin-bottom: 1.25rem;">
-                    <li><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
-                    <li><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
-                    <li><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
-                  </ul>
-                  <p class="body-text">
-                    아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color: #ef4444; font-weight: 900;">‘구문 누락 복구’</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.
-                  </p>
-                  <div class="troubleshoot">
-                    <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
-                      <span class="badge-primary mono">Compiler / Parser</span>
-                    </div>
-                    <div class="troubleshoot-grid">
-                      <div>
-                        <div class="trouble-block">
-                          <div class="trouble-label problem mono">상황</div>
-                          <p class="body-text">세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label alt mono">대안 탐색</div>
-                          <p class="body-text">에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label sol mono">해결</div>
-                          <p class="body-text">에러를 '파싱 중단 사유'가 아닌 <strong>'문맥 복귀 신호'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.</p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">Parser.cpp — Error Recovery</span></div>
-                          <pre><code><span style="color:#5c6370;">// 누락 토큰 에러: 파싱 중단 없이 복귀</span>
-<span style="color:#c678dd;">void</span> <span style="color:#61afef;">parseErrorPrintfI</span>() {
-  <span style="color:#e5c07b;">Token</span> cur  = <span style="color:#61afef;">getCurrentToken</span>();
-  <span style="color:#e5c07b;">Token</span> prev = <span style="color:#61afef;">getPreviousToken</span>();
-
-  <span style="color:#c678dd;">if</span> (cur.type == SEMICN) {
-    <span style="color:#61afef;">outputToken</span>(cur);
-    <span style="color:#61afef;">advanceToken</span>();
-  } <span style="color:#c678dd;">else</span> {
-    <span style="color:#5c6370;">// 직전 유효 토큰 라인 기준으로 에러 기록
-    // → 포인터 이중 전진 방지, 연쇄 오진 차단</span>
-    <span style="color:#61afef;">addError</span>(prev.lineNumber, <span style="color:#98c379;">'i'</span>);
-  }
-}</code></pre>
-                        </div>
-                        <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C++17</span>
-                      <span class="tag accent"><i class="devicon-cmake-plain"></i> CMake</span>
-                      <span class="tag accent">Lexer / Parser</span>
-                      <span class="tag accent">P-Code VM</span>
-                      <span class="tag accent">Symbol Table</span>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body">
-              <span class="project-index mono">03</span>
-              <div class="project-head">
-                <h3>학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
-                <div class="project-meta mono">
-                  <span>🗓 2025.03 – 2025.08 · BUAA SSAD Course</span>
-                  <span>👤 Backend / Full-Stack (팀 프로젝트)</span>
-                </div>
-              </div>
-              <span class="project-chevron" aria-hidden="true">⌄</span>
-            </button>
-
-            <div class="project-body" id="project-03-body">
-              <div class="project-inner">
-                <div>
-                  <h4 class="minor-title mono">시스템 아키텍처</h4>
-                  <div class="svg-wrap">
-                    <p class="mono">System Architecture — Vue 3 · Spring Boot 3 · Maven · PostgreSQL 18 · Elasticsearch · Redis · MinIO · Vector Service · OpenAlex / ORCID / LLM</p>
-                    <svg width="100%" viewBox="0 0 720 1020" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-                      <defs>
-                        <marker id="arrowAP2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </marker>
-                      </defs>
-                      <rect x="8" y="260" width="704" height="710" rx="16" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
-                      <rect x="18" y="248" width="168" height="22" rx="5" fill="#f0f0ff"></rect>
-                      <text x="102" y="263" text-anchor="middle" font-size="12" fill="#5b58ff" font-weight="700">Docker Compose 환경</text>
-                      <text x="360" y="18" text-anchor="middle" font-size="12" fill="#888" font-weight="600" letter-spacing="0.5">프론트엔드 클라이언트</text>
-                      <rect x="100" y="26" width="520" height="76" rx="11" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1"></rect>
-                      <text x="360" y="54" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#0b5c3a">Vue 3 / TypeScript / Vite (SPA)</text>
-                      <text x="360" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#1D9E75">views · components · Pinia stores · router · api · types · utils</text>
-                      <line x1="280" y1="102" x2="225" y2="300" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none" opacity="0.6"></line>
-                      <line x1="205" y1="300" x2="260" y2="102" stroke="#1D9E75" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP2)" fill="none" opacity="0.6"></line>
-                      <rect x="96" y="185" width="164" height="38" rx="5" fill="#fff" opacity="0.96"></rect>
-                      <text x="178" y="200" text-anchor="middle" font-size="12" fill="#0b5c3a" font-weight="700">REST API / HTTP</text>
-                      <text x="178" y="215" text-anchor="middle" font-size="11" fill="#0b5c3a">JWT Bearer · JSON</text>
-                      <rect x="18" y="300" width="428" height="265" rx="14" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
-                      <text x="232" y="296" text-anchor="middle" font-size="11" fill="#888" font-weight="600">백엔드 컨테이너 · port 8080</text>
-                      <rect x="30" y="312" width="404" height="66" rx="9" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.8"></rect>
-                      <text x="232" y="339" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#364fc7">Spring Boot 3 + Java 21</text>
-                      <text x="232" y="361" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">Spring Security · JWT Filter · JPA/Hibernate · Flyway · Maven</text>
-                      <rect x="30" y="390" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="127" y="412" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#364fc7">Controller 계층 A</text>
-                      <text x="127" y="430" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5c7cfa">account · general · search · output</text>
-                      <rect x="239" y="390" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="336" y="412" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#364fc7">Controller 계층 B</text>
-                      <text x="336" y="430" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#5c7cfa">scholar · analyze · announcement · storage · update</text>
-                      <rect x="30" y="456" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="127" y="478" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#364fc7">Service 계층</text>
-                      <text x="127" y="496" text-anchor="middle" dominant-baseline="central" font-size="9.8" fill="#5c7cfa">search · output · scholar · analyze · vector</text>
-                      <rect x="239" y="456" width="195" height="52" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="336" y="478" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#712B13">Scheduler / Tasks</text>
-                      <text x="336" y="496" text-anchor="middle" dominant-baseline="central" font-size="9.8" fill="#993C1D">metrics update · hot point sync · summary refresh</text>
-                      <rect x="460" y="300" width="252" height="190" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
-                      <text x="586" y="296" text-anchor="middle" font-size="11" fill="#888" font-weight="600">주 데이터 저장소</text>
-                      <rect x="472" y="312" width="228" height="66" rx="9" fill="#ebfbee" stroke="#40c057" stroke-width="0.8"></rect>
-                      <text x="586" y="339" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#2b8a3e">PostgreSQL 18</text>
-                      <text x="586" y="361" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">주 트랜잭션 데이터 관리</text>
-                      <rect x="472" y="390" width="228" height="40" rx="9" fill="#f1f3f5" stroke="#40c057" stroke-width="0.5"></rect>
-                      <text x="586" y="410" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="#2b8a3e">JPA Repository · entities</text>
-                      <line x1="435" y1="410" x2="465" y2="410" stroke="#5c7cfa" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
-                      <line x1="465" y1="425" x2="435" y2="425" stroke="#5c7cfa" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrowAP2)" fill="none"></line>
-                      <text x="450" y="405" text-anchor="middle" font-size="10" fill="#5c7cfa" font-weight="700">JPA</text>
-                      <rect x="18" y="600" width="218" height="120" rx="13" fill="#e1f5ee" stroke="#1D9E75" stroke-width="1" opacity="0.6"></rect>
-                      <text x="127" y="595" text-anchor="middle" font-size="11" fill="#666">검색 엔진</text>
-                      <text x="127" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#0b5c3a">Elasticsearch</text>
-                      <text x="127" y="645" text-anchor="middle" font-size="11" fill="#0b5c3a">문서 색인 · 검색 필터</text>
-                      <rect x="30" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#1D9E75" stroke-width="0.5"></rect>
-                      <text x="127" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0b5c3a">keyword · criteria search</text>
-                      <rect x="252" y="600" width="218" height="120" rx="13" fill="#faece7" stroke="#993C1D" stroke-width="1" opacity="0.6"></rect>
-                      <text x="361" y="595" text-anchor="middle" font-size="11" fill="#666">캐시 / 카운터</text>
-                      <text x="361" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#712B13">Redis</text>
-                      <text x="361" y="645" text-anchor="middle" font-size="11" fill="#712B13">방문 수 · 조회 수 · 데이터 캐싱</text>
-                      <rect x="264" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="361" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#712B13">heartbeat / view count</text>
-                      <rect x="486" y="600" width="218" height="120" rx="13" fill="#faece7" stroke="#993C1D" stroke-width="1" opacity="0.6"></rect>
-                      <text x="595" y="595" text-anchor="middle" font-size="11" fill="#666">오브젝트 스토리지</text>
-                      <text x="595" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#712B13">MinIO</text>
-                      <text x="595" y="645" text-anchor="middle" font-size="11" fill="#712B13">S3 호환 파일 저장소</text>
-                      <rect x="498" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="595" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#712B13">avatars · uploaded assets</text>
-                      <line x1="127" y1="565" x2="127" y2="592" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
-                      <line x1="361" y1="565" x2="361" y2="592" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
-                      <line x1="595" y1="565" x2="595" y2="592" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
-                      <rect x="18" y="760" width="684" height="135" rx="13" fill="#f1f3f5" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
-                      <text x="360" y="755" text-anchor="middle" font-size="11" fill="#666" font-weight="600">AI / 외부 연동 레이어</text>
-                      <rect x="30" y="775" width="200" height="55" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="130" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#712B13">Vector Service</text>
-                      <text x="130" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#993C1D">DJL / Python vector-server</text>
-                      <rect x="242" y="775" width="200" height="55" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="342" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#712B13">LLM / Translation</text>
-                      <text x="342" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#993C1D">query parse · language utility</text>
-                      <rect x="454" y="775" width="238" height="55" rx="8" fill="#fff9db" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="573" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#712B13">OpenAlex / ORCID API</text>
-                      <text x="573" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#993C1D">External Academic Metadata</text>
-                      <rect x="30" y="850" width="662" height="30" rx="7" fill="#f1f3f5" stroke="#adb5bd" stroke-width="0.5"></rect>
-                      <text x="361" y="865" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#666" font-weight="600">Backend orchestrates storage, search, cache, and external AI/data services</text>
-                      <rect x="18" y="930" width="684" height="36" rx="8" fill="#f1f3f5"></rect>
-                      <text x="36" y="952" font-size="11" fill="#0F6E56" font-weight="700">─── 요청</text>
-                      <text x="100" y="952" font-size="11" fill="#0F6E56">- - - 응답</text>
-                      <text x="170" y="952" font-size="11" fill="#666">│ │ Docker 컨테이너</text>
-                      <text x="340" y="952" font-size="11" fill="#5b58ff">│ │ Docker Compose 경계</text>
-                    </svg>
-                  </div>
-                </div>
-
-                <p class="body-text">Vue 3 기반 SPA와 Spring Boot 3 백엔드, PostgreSQL·Elasticsearch·Redis·MinIO·벡터 서비스를 결합해 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 통합한 플랫폼을 구축했습니다. <strong>팀 내 백엔드 전담</strong>으로 인프라 통합 레이어 설계, 공통 API 응답 규약 구현, 프론트-백엔드 인터페이스 통합을 주도했습니다.</p>
-
-                <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
-                  <ul class="arrow-list">
-                    <li><strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.</li>
-                    <li><strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.</li>
-                    <li><strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>를 통한 응답 자동 래핑(code/message/data) 및 <code>BusinessException</code> 상속 체계 기반의 전역 예외 처리 로직 구현.</li>
-                    <li><strong>프론트엔드 연동 및 통합:</strong> Vue 3 + TypeScript + Vite 환경과의 API 통신 구조 설계 및 프론트-백엔드 인터페이스 통합 수행.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
-                  <div class="troubleshoot">
-                    <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">백엔드 실행 환경 파편화 및 API 응답 규약 불일치 해결</div>
-                      <span class="badge-primary mono">백엔드 / 협업</span>
-                    </div>
-                    <div class="troubleshoot-grid">
-                      <div>
-                        <div class="trouble-block">
-                          <div class="trouble-label problem mono">상황</div>
-                          <p class="body-text">팀원 간 로컬 환경 설정(.env, AI 모델 경로) 차이로 인한 <strong>인프라 기동 실패</strong>가 발생했습니다. 또한, 개발자별로 상이한 API 응답 구조로 인해 프론트엔드에서 데이터 파싱 오류가 빈번하게 나타났습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label sol mono">해결</div>
-                          <p class="body-text">README 기반 기동 프로세스를 확립하고, <strong><code>ResponseBodyAdvice</code>를 활용해 모든 응답을 <code>code/message/data</code> 구조로 자동 래핑</strong>하는 아키텍처를 적용했습니다.</p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">ResponseResultHandler.java</span></div>
-                          <pre><code><span style="color:#c678dd;">@RestControllerAdvice</span>
-<span style="color:#c678dd;">public class</span> <span style="color:#e5c07b;">ResponseResultHandler</span>
-    <span style="color:#c678dd;">implements</span> <span style="color:#e5c07b;">ResponseBodyAdvice</span>&lt;Object&gt; {
-
-  <span style="color:#c678dd;">@Override</span>
-  <span style="color:#c678dd;">public</span> Object <span style="color:#61afef;">beforeBodyWrite</span>(Object body, ...) {
-    <span style="color:#5c6370;">// 이미 공통 래퍼면 그대로 반환</span>
-    <span style="color:#c678dd;">if</span> (body <span style="color:#c678dd;">instanceof</span> ResultWrapper)
-      <span style="color:#c678dd;">return</span> body;
-    <span style="color:#5c6370;">// 데이터를 규약에 맞춰 자동 래핑</span>
-    <span style="color:#c678dd;">return</span> <span style="color:#61afef;">ResultWrapper.success</span>(body);
-  }
-}</code></pre>
-                        </div>
-                        <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">협업 시 발생할 수 있는 휴먼 에러를 줄이기 위해서는 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 기여한다는 점을 체감했습니다.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
-                      <span class="tag green"><i class="devicon-maven-plain"></i> Maven</span>
-                      <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
-                      <span class="tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
-                      <span class="tag green"><i class="devicon-redis-plain"></i> Redis</span>
-                      <span class="tag slate">MinIO</span>
-                      <span class="tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span>
-                      <span class="tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span>
-                      <span class="tag slate"><i class="devicon-docker-plain"></i> Docker Compose</span>
-                      <span class="tag teal"><i class="devicon-vite-plain"></i> Vite</span>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body">
-              <span class="project-index mono">04</span>
-              <div class="project-head">
-                <h3>CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼 <span class="project-extra mono">논문</span></h3>
-                <div class="project-meta mono">
-                  <span>🗓 2025.10 – 2026.03</span>
-                  <span>👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
-                </div>
-              </div>
-              <span class="project-chevron" aria-hidden="true">⌄</span>
-            </button>
-
-            <div class="project-body" id="project-04-body">
-              <div class="project-inner">
-                <div>
-                  <h4 class="minor-title mono">시스템 아키텍처</h4>
-                  <div class="svg-wrap">
-                    <p class="mono">System Architecture — React Native · Spring Boot · FastAPI · PostgreSQL · AWS EC2 + Docker</p>
-                    <svg width="100%" viewBox="0 0 680 800" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-                      <defs>
-                        <marker id="arrowCL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </marker>
-                      </defs>
-                      <rect x="8" y="260" width="664" height="480" rx="14" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
-                      <rect x="18" y="248" width="150" height="22" rx="5" fill="#f0f0ff"></rect>
-                      <text x="93" y="262" text-anchor="middle" font-size="11" fill="#5b58ff" font-weight="700">AWS EC2 + Docker</text>
-                      <text x="340" y="20" text-anchor="middle" font-size="11" fill="#666">모바일 클라이언트</text>
-                      <rect x="130" y="30" width="420" height="70" rx="11" fill="#e1f5ee" stroke="#1D9E75" stroke-width="0.5"></rect>
-                      <text x="340" y="55" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#0b5c3a">React Native / Expo</text>
-                      <text x="340" y="75" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1D9E75">AsyncStorage · JWT · expo-notifications · Expo Router</text>
-                      <line x1="280" y1="100" x2="204" y2="290" stroke="#0F6E56" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"></line>
-                      <line x1="184" y1="290" x2="260" y2="100" stroke="#0F6E56" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"></line>
-                      <rect x="110" y="175" width="150" height="34" rx="5" fill="#fff" opacity="0.96"></rect>
-                      <text x="185" y="188" text-anchor="middle" font-size="11" fill="#0F6E56" font-weight="700">REST API / HTTPS</text>
-                      <text x="185" y="202" text-anchor="middle" font-size="11" fill="#0F6E56">JWT Bearer token</text>
-                      <rect x="24" y="290" width="360" height="220" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
-                      <text x="204" y="286" text-anchor="middle" font-size="11" fill="#666">백엔드 컨테이너 · port 8080</text>
-                      <rect x="36" y="305" width="336" height="60" rx="9" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="204" y="325" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#364fc7">Spring Boot 3 + Java 21</text>
-                      <text x="204" y="345" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5c7cfa">Spring Security · JWT · JPA/Hibernate · Flyway · Gradle</text>
-                      <rect x="36" y="375" width="160" height="50" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="116" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#364fc7">REST API 레이어</text>
-                      <text x="116" y="410" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#5c7cfa">/auth · /vitals · /guardian · /api/ecg</text>
-                      <rect x="208" y="375" width="164" height="50" rx="8" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="290" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#364fc7">비즈니스 로직</text>
-                      <text x="290" y="410" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#5c7cfa">보호자 연결 · 알림 · ECG 프록시</text>
-                      <rect x="36" y="435" width="336" height="34" rx="6" fill="#edf2ff" stroke="#5c7cfa" stroke-width="0.5"></rect>
-                      <text x="204" y="452" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#364fc7">AI 통신 프록시 (RestTemplate)</text>
-                      <rect x="400" y="290" width="260" height="220" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
-                      <text x="530" y="286" text-anchor="middle" font-size="11" fill="#666">DB 컨테이너 · port 5432</text>
-                      <rect x="412" y="305" width="236" height="60" rx="9" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"></rect>
-                      <text x="530" y="325" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#2b8a3e">PostgreSQL 16</text>
-                      <text x="530" y="345" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#40c057">postgres:16-alpine</text>
-                      <rect x="412" y="375" width="236" height="40" rx="8" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"></rect>
-                      <text x="530" y="395" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#2b8a3e">핵심 테이블</text>
-                      <rect x="412" y="425" width="236" height="30" rx="6" fill="#ebfbee" stroke="#40c057" stroke-width="0.5"></rect>
-                      <text x="530" y="440" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2b8a3e">users · vitals · guardian_link · medications</text>
-                      <line x1="384" y1="395" x2="400" y2="395" stroke="#5c7cfa" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"></line>
-                      <line x1="400" y1="410" x2="384" y2="410" stroke="#5c7cfa" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"></line>
-                      <text x="392" y="388" text-anchor="middle" font-size="10" fill="#5c7cfa" font-weight="700">JPA</text>
-                      <line x1="190" y1="470" x2="190" y2="540" stroke="#993C1D" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"></line>
-                      <line x1="210" y1="540" x2="210" y2="470" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"></line>
-                      <rect x="220" y="490" width="180" height="30" rx="5" fill="#fff" opacity="0.96"></rect>
-                      <text x="310" y="504" text-anchor="middle" font-size="11" fill="#993C1D" font-weight="700">Internal API Call</text>
-                      <text x="310" y="516" text-anchor="middle" font-size="10.5" fill="#993C1D">/api/ecg ↔ /predict_window</text>
-                      <rect x="24" y="550" width="636" height="160" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
-                      <text x="342" y="546" text-anchor="middle" font-size="11" fill="#666">AI 추론 컨테이너 · internal port 8000</text>
-                      <rect x="36" y="565" width="270" height="60" rx="9" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="171" y="585" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#712B13">FastAPI + PyTorch</text>
-                      <text x="171" y="605" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D">Python 3.11 · Uvicorn · NumPy · SciPy</text>
-                      <rect x="36" y="635" width="130" height="50" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="101" y="652" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#712B13">ECG 모델</text>
-                      <text x="101" y="670" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#993C1D">CNN-CBAM-GRU</text>
-                      <rect x="176" y="635" width="130" height="50" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="241" y="652" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#712B13">Inference API</text>
-                      <text x="241" y="670" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#993C1D">POST /predict_window</text>
-                      <rect x="320" y="565" width="328" height="120" rx="8" fill="#faece7" stroke="#993C1D" stroke-width="0.5"></rect>
-                      <text x="484" y="585" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#712B13">PTB-XL 데이터셋 기반 학습</text>
-                      <text x="484" y="610" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#993C1D">21,837 records · 12-lead · 500Hz</text>
-                      <text x="484" y="630" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#993C1D">5개 슈퍼클래스 멀티라벨 분류</text>
-                      <text x="484" y="650" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#993C1D">NORM · STTC · MI · CD · HYP</text>
-                      <text x="484" y="670" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#993C1D">모델 파일: best_model_multilabel.pth</text>
-                      <rect x="18" y="725" width="646" height="34" rx="7" fill="#f1f3f5" opacity="0.8"></rect>
-                      <text x="38" y="742" font-size="11" fill="#0F6E56" font-weight="700">─── 요청</text>
-                      <text x="110" y="742" font-size="11" fill="#0F6E56">- - - 응답</text>
-                      <text x="180" y="742" font-size="11" fill="#666">│ │ Docker 컨테이너</text>
-                      <text x="330" y="742" font-size="11" fill="#5b58ff">│ │ AWS EC2 경계</text>
-                      <text x="460" y="742" font-size="11" fill="#993C1D">모바일 → 백엔드 → AI 프록시 구조</text>
-                    </svg>
-                  </div>
-                </div>
-
-                <p class="body-text">환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.</p>
-
-                <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
-                  <ul class="arrow-list">
-                    <li><strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성을 확보했습니다.</li>
-                    <li><strong>심전도(ECG) 진단 모델 구현:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API를 구축하고 실시간 진단 기능을 연동했습니다.</li>
-                    <li><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">시스템 성능 최적화 및 평가 지표</h4>
-                  <ul class="arrow-list">
-                    <li><strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.</li>
-                    <li><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.</li>
-                    <li><strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.</li>
-                    <li><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">ECG 분류 모델 성능</h4>
-                  <ul class="arrow-list">
-                    <li><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:0.85em;">(comparison_results.csv 기준)</span></li>
-                    <li><strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)</li>
-                    <li><strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
-                  <div class="troubleshoot">
-                    <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제</div>
-                      <span class="badge-primary mono">AI / DevOps</span>
-                    </div>
-                    <div class="troubleshoot-grid">
-                      <div>
-                        <div class="trouble-block">
-                          <div class="trouble-label problem mono">① 상황 — 실시간 추론 지연</div>
-                          <p class="body-text">초기 구조에서는 추론 지연과 모바일 환경의 자원 부담이 커서, 실시간 모니터링 서비스에 바로 적용하기 어려운 문제가 있었습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label sol mono">① 해결</div>
-                          <p class="body-text">모델 업데이트 유연성과 모바일 메모리 부담 완화를 위해 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모바일은 백엔드 프록시를 통해 결과만 전달받도록 구조를 분리했습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label problem mono">② 상황 — 저메모리 EC2 OOM</div>
-                          <p class="body-text">AWS 저사양 인스턴스에서 컨테이너 빌드 또는 AI 서비스 동시 구동 시 메모리 사용량이 급증하면서 운영 안정성이 떨어지는 문제가 있었습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label sol mono">② 해결 — Pull-only 배포</div>
-                          <p class="body-text">로컬 또는 CI 환경에서 이미지를 사전 빌드해 레지스트리에 Push하고, 운영 서버는 Pull-only 전략으로 전환했습니다. <strong>mem_limit</strong> 기반 자원 제한과 AI 컨테이너의 <strong>profile 분리</strong>를 적용했습니다.</p>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">docker-compose.ec2-lite.yml</span></div>
-                          <pre><code><span style="color:#e06c75;">services:</span>
-  <span style="color:#98c379;">backend:</span>
-    <span style="color:#d19a66;">image:</span> ghcr.io/zzooonn/carelink/backend:latest
-    <span style="color:#5c6370;"># build 섹션 제거 (EC2 내 빌드 방지)</span>
-    <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">384m</span>
-
-  <span style="color:#98c379;">ai:</span>
-    <span style="color:#d19a66;">image:</span> ghcr.io/zzooonn/carelink/ai:latest
-    <span style="color:#e06c75;">profiles:</span> <span style="color:#98c379;">["ai"]</span>
-    <span style="color:#5c6370;"># 필요 시에만 분리 실행</span>
-    <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">512m</span></code></pre>
-                        </div>
-                        <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag teal"><i class="devicon-react-original"></i> React Native</span>
-                      <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
-                      <span class="tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span>
-                      <span class="tag pink"><i class="devicon-python-plain"></i> Python</span>
-                      <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
-                      <span class="tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
-                      <span class="tag slate"><i class="devicon-docker-plain"></i> Docker</span>
-                      <span class="tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer class="footer">
