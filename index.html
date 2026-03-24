@@ -16,8 +16,10 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="조현준 | Systems &amp; AI Full-Stack Engineer" />
     <meta name="twitter:description" content="OS 커널, 컴파일러, AI 모델 설계부터 풀스택 서비스까지. BUAA 소프트웨어공학 전국 1위." />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap");
 
       :root {
         --background: #f4f6fa;
@@ -29,8 +31,8 @@
         --accent-lt: #f5f3ff;
         --accent-dim: #ddd6fe;
         --border: #e2e8f0;
-        --text-2: #475569;
-        --text-3: #64748b;
+        --text-2: #334155;
+        --text-3: #475569;
         --green: #10b981;
         --green-lt: #ecfdf5;
         --teal: #0ea5e9;
@@ -60,7 +62,7 @@
         margin: 0;
         background: var(--background);
         color: var(--foreground);
-        font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: "Noto Sans KR", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         line-height: 1.75;
         word-break: keep-all;
       }
@@ -80,7 +82,7 @@
 
       code {
         font-family: "IBM Plex Mono", monospace;
-        font-size: 0.88em;
+        font-size: 1em;
         font-weight: 600;
         padding: 0.12rem 0.42rem;
         border-radius: 0.45rem;
@@ -122,8 +124,8 @@
 
       .body-text {
         margin: 0;
-        font-size: 0.97rem;
-        line-height: 1.85;
+        font-size: 1.1rem;
+        line-height: 1.7;
         color: var(--text-2);
       }
 
@@ -533,10 +535,10 @@
       }
 
       .hero-intro {
-        max-width: 38rem;
+        max-width: 42rem;
         margin: 0 0 2.5rem;
         color: var(--text-2);
-        font-size: 1.02rem;
+        font-size: 1.1rem;
       }
 
       .hero-intro strong {
@@ -709,7 +711,7 @@
         display: block;
         margin-top: 0.1rem;
         color: var(--text-3);
-        font-size: 0.76rem;
+        font-size: 1rem;
       }
 
       .stats-grid {
@@ -926,7 +928,7 @@
       }
 
       .timeline-item + .timeline-item {
-        margin-top: 1.5rem;
+        margin-top: 2.5rem;
       }
 
       .timeline-point {
@@ -935,8 +937,8 @@
         left: -1.45rem;
         display: inline-grid;
         place-items: center;
-        width: 0.95rem;
-        height: 0.95rem;
+        width: 1.1rem;
+        height: 1.1rem;
         border: 2px solid var(--primary);
         border-radius: 999px;
         background: var(--card);
@@ -945,25 +947,29 @@
       }
 
       .timeline-item h4 {
-        margin: 0 0 0.15rem;
-        font-size: 1rem;
-        font-weight: 900;
+        margin: 0 0 0.4rem;
+        font-size: 1.4rem;
+        font-weight: 700;
       }
 
       .timeline-item p,
       .timeline-item small {
         display: block;
         margin: 0;
+        font-size: 1.2rem;
       }
 
       .timeline-item p {
+        margin-bottom: 0.3rem;
         color: var(--text-2);
-        font-size: 0.94rem;
+        font-size: 0.97rem;
+        font-weight: 500;
       }
 
       .timeline-item small {
         color: var(--text-3);
-        font-size: 0.76rem;
+        font-size: 0.95rem;
+        font-weight: 300;
       }
 
       .cert-list {
@@ -984,6 +990,7 @@
 
       .cert-copy {
         flex: 1;
+        font-size: 1.15rem; 
         min-width: 0;
       }
 
@@ -1042,7 +1049,7 @@
       .cert-copy small {
         display: block;
         margin: 0;
-        font-size: 0.76rem;
+        font-size: 0.85rem;
         color: var(--text-3);
       }
 
@@ -1113,13 +1120,20 @@
       .chip {
         display: inline-flex;
         align-items: center;
-        gap: 0.35rem;
-        padding: 0.65rem 0.95rem;
+        gap: 0.45rem;
+        padding: 0.75rem 0.95rem;
         border: 1px solid var(--border);
         border-radius: 999px;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         font-weight: 700;
         transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+      }
+
+      .chip i {
+        font-size: 1.15rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .chip:hover {
@@ -1268,7 +1282,7 @@
         border-radius: 999px;
         background: var(--surface-2);
         color: var(--text-3);
-        font-size: 0.76rem;
+        font-size: 0.9rem;
       }
 
       .project-chevron {
@@ -1421,7 +1435,7 @@
         padding: 1rem;
         color: #abb2bf;
         font-family: "IBM Plex Mono", monospace;
-        font-size: 0.79rem;
+        font-size: 0.9rem;
         line-height: 1.65;
         white-space: pre;
       }
@@ -1566,7 +1580,7 @@
         display: flex;
         align-items: center;
         gap: 0.35rem;
-        font-size: 0.76rem;
+        font-size: 0.85rem;
         color: var(--text-3);
       }
 
@@ -1814,7 +1828,7 @@
         /* ── 기본 레이아웃 ── */
         body {
           background: #fff !important;
-          font-size: 9.5pt;
+          font-size: 11.5pt;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
@@ -2137,29 +2151,42 @@
               <span class="icon-box icon-accent">📚</span>
               <h3>학습 자세</h3>
               <p class="body-text">
-                막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다.<br />
-                새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고,<br />
-                MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증을 반복</strong>합니다.
+                막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다.
+                새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고,
+                MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.
               </p>
-              <div class="tag-list mono"><span class="tag accent">가설 검증형</span><span class="tag accent">문서화 습관</span></div>
+              <div class="tag-list mono">
+                <span class="tag accent">🧐 가설 검증형</span>
+                <span class="tag accent">✍️ 문서화 습관</span>
+              </div>
             </article>
-            <article class="about-card reveal">
-              <span class="icon-box icon-orange">🧗</span>
-              <h3>취미 &amp; 라이프스타일</h3>
-              <p class="body-text">암벽 클라이밍을 즐깁니다. 최적의 루트를 분석하고, 실패를 거듭하며 마침내 완등하는 과정이 엔지니어링 문제 해결과 꼭 닮아있다고 느낍니다. 코드를 넘어선 일상에서도 끊임없이 도전하고 길을 찾는 것을 좋아합니다.</p>
-              <div class="tag-list mono"><span class="tag orange">클라이밍</span><span class="tag orange">루트파인딩</span></div>
-            </article>
+
             <article class="about-card reveal">
               <span class="icon-box icon-blue">🤝</span>
               <h3>협업 방식</h3>
-                <p class="body-text">
-                  <strong>기술 스택 충돌을 데이터로 중재</strong>한 경험이 있습니다.<br>
-                  학술 플랫폼 프로젝트에서 Vue 3vs React, 화웨이 Cloud vs AWS를 두고 의견이 갈렸을 때, 
-                  <strong>성능, 생태계 데이터를 직접 수집</strong>해 팀을 설득했습니다.<br>
-                  합의 내용은 <strong>RFC 문서로 기록</strong>하고, <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있도록 했습니다.
-                </p>
+              <p class="body-text">
+                기술 스택 충돌을 <strong>데이터로 중재</strong>합니다.
+                성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다.
+                <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.
+              </p>
+              <div class="tag-list mono">
+                <span class="tag blue">🌐 한·중·영</span>
+                <span class="tag blue">📄 RFC 문서화</span>
+                <span class="tag slate">📊 데이터 기반 설득</span>
+              </div>
+            </article>
 
-              <div class="tag-list mono"><span class="tag blue">한·중·영</span><span class="tag blue">RFC 문서화</span><span class="tag slate">데이터 기반 설득</span><span class="tag slate">기술 중재</span></div>
+            <article class="about-card reveal">
+              <span class="icon-box icon-orange">🧗</span>
+              <h3>취미 &amp; 라이프스타일</h3>
+              <p class="body-text">
+                <strong>암벽 클라이밍</strong>을 즐깁니다.<br />
+                최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.
+              </p>
+              <div class="tag-list mono">
+                <span class="tag orange">🧗 클라이밍</span>
+                <span class="tag orange">🧩 루트파인딩</span>
+              </div>
             </article>
           </div>
         </div>
@@ -2173,51 +2200,51 @@
               <div class="top-line top-accent"></div>
               <div class="skill-label mono"><span class="dot-accent">●</span> 시스템 / 로우레벨</div>
               <div class="chip-list">
-                <span class="chip tag accent">🐦‍⬛ C / C++</span>
-                <span class="chip tag accent">☕ Java</span>
-                <span class="chip tag accent">🔩 MIPS Assembly</span>
-                <span class="chip tag accent">⚙️ OS Kernel</span>
-                <span class="chip tag accent">🔧 Compiler</span>
+                <span class="chip tag accent"><i class="devicon-cplusplus-plain"></i> C / C++</span>
+                <span class="chip tag accent"><i class="devicon-java-plain"></i> Java</span>
+                <span class="chip tag accent">MIPS Assembly</span>
+                <span class="chip tag accent">OS Kernel</span>
+                <span class="chip tag accent">Compiler</span>
               </div>
             </article>
             <article class="skill-panel reveal">
               <div class="top-line top-green"></div>
               <div class="skill-label mono"><span class="dot-green">●</span> 백엔드 / 데이터베이스</div>
               <div class="chip-list">
-                <span class="chip tag green">🍃 Spring Boot 3</span>
-                <span class="chip tag green">🐘 PostgreSQL</span>
-                <span class="chip tag green">🔍 Elasticsearch</span>
-                <span class="chip tag green">⚡ Redis</span>
+                <span class="chip tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
+                <span class="chip tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                <span class="chip tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
+                <span class="chip tag green"><i class="devicon-redis-plain"></i> Redis</span>
               </div>
             </article>
             <article class="skill-panel reveal">
               <div class="top-line top-teal"></div>
               <div class="skill-label mono"><span class="dot-teal">●</span> 프론트엔드 (웹 / 모바일)</div>
               <div class="chip-list">
-                <span class="chip tag teal">⚛️ React Native</span>
-                <span class="chip tag teal">💚 Vue 3</span>
-                <span class="chip tag teal">📘 TypeScript</span>
+                <span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span>
+                <span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span>
+                <span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span>
               </div>
             </article>
             <article class="skill-panel reveal">
               <div class="top-line top-pink"></div>
               <div class="skill-label mono"><span class="dot-pink">●</span> AI &amp; ML</div>
               <div class="chip-list">
-                <span class="chip tag pink">🐍 Python</span>
-                <span class="chip tag pink">🫀 CNN-CBAM-GRU</span>
-                <span class="chip tag pink">🚀 FastAPI</span>
+                <span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span>
+                <span class="chip tag pink">CNN-CBAM-GRU</span>
+                <span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span>
               </div>
             </article>
             <article class="skill-panel wide reveal">
               <div class="top-line top-slate"></div>
               <div class="skill-label mono"><span class="dot-slate">●</span> 인프라 / 협업</div>
               <div class="chip-list">
-                <span class="chip tag slate">🐳 Docker</span>
-                <span class="chip tag slate">🗄️ MinIO</span>
-                <span class="chip tag slate">🌿 Git</span>
-                <span class="chip tag slate">📄 RFC Docs</span>
-                <span class="chip tag slate">🤖 GitHub Actions</span>
-                <span class="chip tag slate">☁️ AWS EC2</span>
+                <span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span>
+                <span class="chip tag slate">MinIO</span>
+                <span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span>
+                <span class="chip tag slate">RFC Docs</span>
+                <span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
+                <span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
               </div>
             </article>
             <div class="skill-summary reveal">
@@ -2309,7 +2336,15 @@
 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
+                    <div class="tag-list mono">
+                      <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span>
+                      <span class="tag accent">MIPS Assembly</span>
+                      <span class="tag slate">GXemul Simulator</span>
+                      <span class="tag accent">Microkernel</span>
+                      <span class="tag accent">IPC (Pipe)</span>
+                      <span class="tag accent">Virtual Memory</span>
+                      <span class="tag accent">File System</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -2409,7 +2444,13 @@
 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag accent">C++17</span><span class="tag accent">CMake</span><span class="tag accent">Lexer / Parser</span><span class="tag accent">P-Code VM</span><span class="tag accent">Symbol Table</span></div>
+                    <div class="tag-list mono">
+                      <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C++17</span>
+                      <span class="tag accent"><i class="devicon-cmake-plain"></i> CMake</span>
+                      <span class="tag accent">Lexer / Parser</span>
+                      <span class="tag accent">P-Code VM</span>
+                      <span class="tag accent">Symbol Table</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -2580,7 +2621,18 @@
 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag green">Spring Boot 3 (Java 21)</span><span class="tag green">Maven</span><span class="tag green">PostgreSQL</span><span class="tag green">Elasticsearch</span><span class="tag green">Redis</span><span class="tag slate">MinIO</span><span class="tag teal">Vue 3</span><span class="tag teal">TypeScript</span><span class="tag slate">Docker Compose</span><span class="tag teal">Vite</span></div>
+                    <div class="tag-list mono">
+                      <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
+                      <span class="tag green"><i class="devicon-maven-plain"></i> Maven</span>
+                      <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                      <span class="tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
+                      <span class="tag green"><i class="devicon-redis-plain"></i> Redis</span>
+                      <span class="tag slate">MinIO</span>
+                      <span class="tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span>
+                      <span class="tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span>
+                      <span class="tag slate"><i class="devicon-docker-plain"></i> Docker Compose</span>
+                      <span class="tag teal"><i class="devicon-vite-plain"></i> Vite</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -2762,7 +2814,16 @@
 
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag teal">React Native</span><span class="tag green">Spring Boot 3</span><span class="tag pink">FastAPI</span><span class="tag pink">Python</span><span class="tag green">PostgreSQL</span><span class="tag slate">AWS EC2</span><span class="tag slate">Docker</span><span class="tag slate">GitHub Actions</span></div>
+                    <div class="tag-list mono">
+                      <span class="tag teal"><i class="devicon-react-original"></i> React Native</span>
+                      <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
+                      <span class="tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span>
+                      <span class="tag pink"><i class="devicon-python-plain"></i> Python</span>
+                      <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                      <span class="tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
+                      <span class="tag slate"><i class="devicon-docker-plain"></i> Docker</span>
+                      <span class="tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
+                    </div>
                 </div>
               </div>
             </div>
