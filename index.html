@@ -4,2016 +4,324 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>조현준 | Systems &amp; AI Full-Stack Engineer</title>
-    <meta
-      name="description"
-      content="조현준 - Systems &amp; AI Full-Stack Engineer. OS 커널, 컴파일러, AI 모델 설계부터 풀스택 서비스까지."
-    />
-    <meta property="og:title" content="조현준 | Systems &amp; AI Full-Stack Engineer" />
-    <meta property="og:description" content="Systems &amp; AI Full-Stack Engineer · BUAA 2026" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://github.com/zzooonn" />
-    <meta property="og:image" content="https://opengraph.githubassets.com/1/zzooonn" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="조현준 | Systems &amp; AI Full-Stack Engineer" />
-    <meta name="twitter:description" content="OS 커널, 컴파일러, AI 모델 설계부터 풀스택 서비스까지. BUAA 소프트웨어공학 전국 1위." />
+    <meta name="description" content="조현준 - Systems &amp; AI Full-Stack Engineer. OS 커널, 컴파일러, AI 모델 설계부터 풀스택 서비스까지." />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap");
-
       :root {
-        --background: #f4f6fa;
-        --foreground: #111827;
-        --card: #ffffff;
-        --surface-2: #f8faff;
-        --primary: #5b58ff;
-        --primary-deep: #3730a3;
-        --accent-lt: #f5f3ff;
-        --accent-dim: #ddd6fe;
-        --border: #e2e8f0;
-        --text-2: #334155;
-        --text-3: #475569;
-        --green: #10b981;
-        --green-lt: #ecfdf5;
-        --teal: #0ea5e9;
-        --teal-lt: #ecfeff;
-        --pink: #ec4899;
-        --pink-lt: #fdf2f8;
-        --amber: #f59e0b;
-        --amber-lt: #fef3c7;
-        --slate: #64748b;
-        --slate-lt: #f1f5f9;
-        --code-bg: #1e2430;
-        --shadow-sm: 0 10px 30px rgba(15, 23, 42, 0.05);
-        --shadow-md: 0 16px 40px rgba(15, 23, 42, 0.08);
-        --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.1);
-        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --background: #f4f6fa; --foreground: #111827; --card: #ffffff; --surface-2: #f8faff;
+        --primary: #5b58ff; --primary-deep: #3730a3; --accent-lt: #f5f3ff; --accent-dim: #ddd6fe;
+        --border: #e2e8f0; --text-2: #334155; --text-3: #475569; --green: #10b981; --green-lt: #ecfdf5;
+        --teal: #0ea5e9; --teal-lt: #ecfeff; --pink: #ec4899; --pink-lt: #fdf2f8; --amber: #f59e0b;
+        --amber-lt: #fef3c7; --slate: #64748b; --slate-lt: #f1f5f9; --code-bg: #1e2430;
+        --shadow-sm: 0 10px 30px rgba(15,23,42,0.05); --shadow-md: 0 16px 40px rgba(15,23,42,0.08);
+        --shadow-lg: 0 24px 60px rgba(15,23,42,0.1); --ease: cubic-bezier(0.16,1,0.3,1);
       }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        background: var(--background);
-        color: var(--foreground);
-        font-family: "Noto Sans KR", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        line-height: 1.75;
-        word-break: keep-all;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button {
-        font: inherit;
-      }
-
-      strong {
-        color: var(--foreground);
-      }
-
-      code {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 1em;
-        font-weight: 600;
-        padding: 0.12rem 0.42rem;
-        border-radius: 0.45rem;
-        background: var(--accent-lt);
-        color: var(--primary);
-        border: 1px solid var(--accent-dim);
-      }
-
-      .mono {
-        font-family: "IBM Plex Mono", monospace;
-      }
-
-      .container {
-        width: min(1120px, calc(100% - 48px));
-        margin: 0 auto;
-      }
-
-      .section {
-        padding: 5rem 0;
-      }
-
-      .section-heading {
-        display: flex;
-        align-items: center;
-        gap: 0.9rem;
-        margin: 0 0 3rem;
-        font-size: clamp(1.8rem, 2vw, 2.25rem);
-        font-weight: 900;
-        letter-spacing: -0.03em;
-      }
-
-      .section-heading::before {
-        content: "";
-        width: 0.3rem;
-        height: 2rem;
-        border-radius: 999px;
-        background: linear-gradient(180deg, var(--primary), var(--accent-dim));
-      }
-
-      .body-text {
-        margin: 0;
-        font-size: 1.1rem;
-        line-height: 1.7;
-        color: var(--text-2);
-      }
-
-      .site-nav {
-        position: fixed;
-        inset: 0 0 auto;
-        z-index: 100;
-        height: 64px;
-        border-bottom: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.88);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        transition: box-shadow 0.3s ease;
-      }
-
-      .site-nav.scrolled {
-        box-shadow: 0 4px 24px rgba(15, 23, 42, 0.07);
-      }
-
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        gap: 1rem;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        margin-right: auto;
-        font-weight: 900;
-        text-decoration: none;
-      }
-
-      .brand-mark {
-        display: inline-grid;
-        place-items: center;
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 999px;
-        background: var(--primary);
-        color: #fff;
-        font-size: 0.9rem;
-        box-shadow: 0 6px 16px rgba(91,88,255,0.28);
-        transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
-      }
-
-      .brand:hover .brand-mark {
-        transform: rotate(-8deg) scale(1.1);
-      }
-
-      .brand-name {
-        font-size: 1rem;
-      }
-
-      .brand-name span {
-        color: var(--primary);
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 0.15rem;
-        margin-right: 1rem;
-      }
-
-      .nav-link {
-        position: relative;
-        padding: 0.52rem 0.95rem;
-        border-radius: 999px;
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: var(--text-2);
-        transition: background 0.2s ease, color 0.2s ease;
-        text-decoration: none;
-      }
-
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: 4px;
-        left: 50%;
-        transform: translateX(-50%) scaleX(0);
-        width: calc(100% - 1.4rem);
-        height: 2px;
-        border-radius: 999px;
-        background: var(--primary);
-        transition: transform 0.25s cubic-bezier(.34,1.56,.64,1);
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        background: var(--accent-lt);
-        color: var(--primary);
-      }
-
-      .nav-link.active::after {
-        transform: translateX(-50%) scaleX(1);
-      }
-
-      .nav-actions {
-        display: flex;
-        gap: 0.6rem;
-        align-items: center;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.45rem;
-        border: 1.5px solid var(--border);
-        border-radius: 999px;
-        background: transparent;
-        color: var(--text-2);
-        padding: 0.55rem 1.1rem;
-        font-size: 0.88rem;
-        font-weight: 700;
-        cursor: pointer;
-        text-decoration: none;
-        transition: transform 0.25s var(--ease), border-color 0.2s ease, color 0.2s ease,
-          background 0.2s ease, box-shadow 0.25s var(--ease);
-      }
-
-      .button:hover {
-        transform: translateY(-2px);
-        border-color: var(--primary);
-        color: var(--primary);
-        background: var(--accent-lt);
-      }
-
-      .button.primary {
-        color: #fff;
-        background: var(--primary);
-        border-color: var(--primary);
-        box-shadow: 0 14px 30px rgba(91, 88, 255, 0.22);
-      }
-
-      .button.primary:hover {
-        color: #fff;
-        background: #4f46e5;
-        border-color: #4f46e5;
-        box-shadow: 0 18px 36px rgba(91, 88, 255, 0.32);
-      }
-
-      .button.dark {
-        color: #fff;
-        background: var(--foreground);
-        border-color: var(--foreground);
-        gap: 0.5rem;
-      }
-
-      .button.dark:hover {
-        color: #fff;
-        background: var(--primary);
-        border-color: var(--primary);
-        box-shadow: 0 10px 24px rgba(91,88,255,0.25);
-      }
-
-      /* 햄버거 메뉴 (모바일) */
-      .nav-hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        width: 2.2rem;
-        height: 2.2rem;
-        align-items: center;
-        justify-content: center;
-        border: 1.5px solid var(--border);
-        border-radius: 0.7rem;
-        background: transparent;
-        cursor: pointer;
-        padding: 0;
-        transition: border-color 0.2s;
-      }
-
-      .nav-hamburger span {
-        display: block;
-        width: 1.1rem;
-        height: 1.5px;
-        background: var(--text-2);
-        border-radius: 999px;
-        transition: transform 0.3s var(--ease), opacity 0.2s ease;
-      }
-
-      .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-      .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-      .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-      /* 모바일 드로어 */
-      .nav-drawer {
-        display: none;
-        position: fixed;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: rgba(255,255,255,0.97);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border);
-        padding: 1rem 1.5rem 1.5rem;
-        flex-direction: column;
-        gap: 0.4rem;
-        z-index: 99;
-        box-shadow: 0 8px 32px rgba(15,23,42,0.1);
-        transform: translateY(-10px);
-        opacity: 0;
-        transition: transform 0.3s var(--ease), opacity 0.25s ease;
-      }
-
-      .nav-drawer.open {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      .drawer-link {
-        display: flex;
-        align-items: center;
-        gap: 0.65rem;
-        padding: 0.8rem 1rem;
-        border-radius: 0.9rem;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-2);
-        text-decoration: none;
-        transition: background 0.2s, color 0.2s;
-      }
-
-      .drawer-link:hover, .drawer-link.active {
-        background: var(--accent-lt);
-        color: var(--primary);
-      }
-
-      .drawer-link .dl-icon {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 0.6rem;
-        background: var(--border);
-        display: grid;
-        place-items: center;
-        font-size: 0.9rem;
-      }
-
-      .drawer-divider {
-        height: 1px;
-        background: var(--border);
-        margin: 0.5rem 0;
-      }
-
-      .drawer-actions {
-        display: flex;
-        gap: 0.65rem;
-        padding-top: 0.25rem;
-      }
-
-      .hero {
-        position: relative;
-        overflow: hidden;
-        padding-top: 64px;
-      }
-
-      .hero-bg {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        overflow: hidden;
-      }
-
-      .hero-orb {
-        position: absolute;
-        border-radius: 999px;
-      }
-
-      .hero-orb.primary {
-        top: 5rem;
-        right: -8rem;
-        width: 31.25rem;
-        height: 31.25rem;
-        background: radial-gradient(circle, rgba(91, 88, 255, 0.06), transparent 60%);
-      }
-
-      .hero-orb.green {
-        bottom: 0;
-        left: -10rem;
-        width: 25rem;
-        height: 25rem;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.05), transparent 60%);
-      }
-
-      .hero-line {
-        position: absolute;
-        width: 1px;
-        background: linear-gradient(180deg, transparent, var(--border), transparent);
-      }
-
-      .hero-line.one {
-        top: 10rem;
-        left: 25%;
-        height: 16rem;
-      }
-
-      .hero-line.two {
-        top: 15rem;
-        right: 33%;
-        height: 12rem;
-      }
-
-      .hero-dots {
-        position: absolute;
-        top: 8rem;
-        right: 5rem;
-        display: grid;
-        grid-template-columns: repeat(5, 0.25rem);
-        gap: 0.75rem;
-        opacity: 0.15;
-      }
-
-      .hero-dots span {
-        width: 0.25rem;
-        height: 0.25rem;
-        border-radius: 999px;
-        background: var(--primary);
-      }
-
-      .hero-grid {
-        position: relative;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 420px;
-        align-items: center;
-        gap: 4rem;
-        min-height: calc(100vh - 64px);
-        padding: 5rem 0 4rem;
-      }
-
-      .hero-copy > * {
-        opacity: 0;
-        animation: fade-up 0.7s var(--ease) forwards;
-      }
-
-      .hero-copy > *:nth-child(1) { animation-delay: 0.1s; }
-      .hero-copy > *:nth-child(2) { animation-delay: 0.2s; }
-      .hero-copy > *:nth-child(3) { animation-delay: 0.3s; }
-      .hero-copy > *:nth-child(4) { animation-delay: 0.35s; }
-      .hero-copy > *:nth-child(5) { animation-delay: 0.4s; }
-      .hero-copy > *:nth-child(6) { animation-delay: 0.45s; }
-
-      .status-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-        padding: 0.7rem 1rem;
-        margin-bottom: 1.75rem;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        background: var(--card);
-        box-shadow: var(--shadow-sm);
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--text-2);
-      }
-
-      .pulse-dot {
-        width: 0.55rem;
-        height: 0.55rem;
-        border-radius: 999px;
-        background: var(--green);
-        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-        animation: pulse-dot 2s ease infinite;
-      }
-
-      .hero-title {
-        margin: 0 0 1rem;
-        font-size: clamp(3.75rem, 10vw, 8rem);
-        font-weight: 900;
-        line-height: 0.9;
-        letter-spacing: -0.04em;
-      }
-
-      .hero-title span {
-        color: var(--primary);
-      }
-
-      .typed-line {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        margin-bottom: 1.75rem;
-        min-height: 2rem;
-        font-size: 1.05rem;
-        font-weight: 600;
-      }
-
-      .typed-icon {
-        color: var(--text-3);
-        font-size: 0.95rem;
-      }
-
-      .typed-text {
-        color: var(--primary);
-      }
-
-      .typed-line .cursor {
+      * { box-sizing: border-box; } html { scroll-behavior: smooth; }
+      body { margin: 0; background: var(--background); color: var(--foreground); font-family: "Noto Sans KR","Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height: 1.75; word-break: keep-all; }
+      a { color: inherit; text-decoration: none; } button { font: inherit; } strong { color: var(--foreground); }
+      code { font-family: "IBM Plex Mono",monospace; font-size: 1em; font-weight: 600; padding: .12rem .42rem; border-radius: .45rem; background: var(--accent-lt); color: var(--primary); border: 1px solid var(--accent-dim); }
+      .mono { font-family: "IBM Plex Mono",monospace; }
+      .container { width: min(1120px,calc(100% - 48px)); margin: 0 auto; }
+      .section { padding: 5rem 0; }
+      .section-heading { display: flex; align-items: center; gap: .9rem; margin: 0 0 3rem; font-size: clamp(1.8rem,2vw,2.25rem); font-weight: 900; letter-spacing: -.03em; }
+      .section-heading::before { content: ""; width: .3rem; height: 2rem; border-radius: 999px; background: linear-gradient(180deg,var(--primary),var(--accent-dim)); }
+      .body-text { margin: 0; font-size: 1.1rem; line-height: 1.7; color: var(--text-2); }
+
+      /* ══════════════════════════════════
+         PII 블러 처리
+      ══════════════════════════════════ */
+      .pii {
+        filter: blur(6px);
+        user-select: none; -webkit-user-select: none;
+        border-radius: 4px;
+        transition: filter 0.3s ease;
         display: inline-block;
-        width: 0.12rem;
-        height: 1.25rem;
-        background: var(--primary);
-        animation: blink 0.9s step-end infinite;
+        cursor: default;
       }
-
-      .hero-intro {
-        max-width: 42rem;
-        margin: 0 0 2.5rem;
-        color: var(--text-2);
-        font-size: 1.1rem;
-      }
-
-      .hero-intro strong {
-        font-weight: 700;
-      }
-
-      .hero-actions,
-      .hero-links,
-      .tag-list,
-      .chip-list {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .hero-actions {
-        gap: 0.75rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .hero-links {
-        gap: 1.25rem;
-        color: var(--text-3);
-        font-size: 0.92rem;
-      }
-
-      .hero-links a:hover {
-        color: var(--primary);
-      }
-
-      .hero-card-wrap {
-        opacity: 0;
-        animation: slide-in-right 0.7s var(--ease) 0.35s forwards;
-      }
-
-      .hero-card {
-        position: relative;
-        overflow: hidden;
-        padding: 2.25rem;
-        border: 1px solid var(--border);
-        border-radius: 1.5rem;
-        background: var(--card);
-        box-shadow: var(--shadow-lg);
-        transition: box-shadow 0.5s ease;
-      }
-
-      .hero-card:hover {
-        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.14);
-      }
-
-      .hero-card::before {
-        content: "";
-        position: absolute;
-        top: -5rem;
-        right: -5rem;
-        width: 14rem;
-        height: 14rem;
-        border-radius: 999px;
-        background: radial-gradient(circle, rgba(91, 88, 255, 0.1), transparent 70%);
-        transition: transform 0.7s ease;
-      }
-
-      .hero-card:hover::before {
-        transform: scale(1.1);
-      }
-
-      .hero-card::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(91, 88, 255, 0.2), transparent);
-      }
-
-      .hero-card-mark {
-        position: relative;
-        display: inline-grid;
-        place-items: center;
-        width: 10rem;
-        height: 10rem;
-        margin-bottom: 1.25rem;
-        border: 1px solid var(--accent-dim);
+      .pii-img {
+        filter: blur(20px) !important;
         border-radius: 1rem;
-        background: linear-gradient(135deg, var(--accent-lt), #ddd6fe);
-        box-shadow: 0 14px 30px rgba(91, 88, 255, 0.16);
-        color: var(--primary);
-        font-size: 1.85rem;
-        font-weight: 900;
-        letter-spacing: -0.06em;
-        overflow: hidden;
-      }
-
-      .hero-card-title {
-        margin: 0 0 0.25rem;
-        font-size: 1.65rem;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-      }
-
-      .hero-card-subtitle {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        margin: 0 0 1.25rem;
-        color: var(--text-3);
-        font-size: 0.78rem;
-      }
-
-      .hero-card-mark img {
-        width: 100%;      /* 부모 너비에 맞춤 */
-        height: 100%;     /* 부모 높이에 맞춤 */
-        object-fit: cover; /* 비율을 유지하면서 틀을 가득 채움 (증명사진에 적합) */
-        object-position: center; /* 이미지의 중앙을 기준으로 맞춤 */
-        }
-
-      .subtitle-dot {
-        width: 0.4rem;
-        height: 0.4rem;
-        border-radius: 999px;
-        background: var(--green);
-      }
-
-      .badge-row,
-      .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .badge-row {
-        margin-bottom: 1.35rem;
-      }
-
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.38rem 0.8rem;
-        border: 1px solid var(--accent-dim);
-        border-radius: 999px;
-        font-size: 0.75rem;
-        font-weight: 700;
-      }
-
-      .tag.accent { background: var(--accent-lt); color: var(--primary-deep); }
-      .tag.green { background: var(--green-lt); color: #065f46; border-color: #a7f3d0; }
-      .tag.teal { background: var(--teal-lt); color: #1e40af; border-color: #bfdbfe; }
-      .tag.orange { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
-      .tag.blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
-      .tag.pink { background: var(--pink-lt); color: #9d174d; border-color: #fbcfe8; }
-      .tag.slate { background: var(--slate-lt); color: #334155; border-color: var(--border); }
-
-      .hero-mini-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.75rem;
-      }
-
-      .mini-card {
-        padding: 0.9rem;
-        border: 1px solid var(--border);
-        border-radius: 1rem;
-        background: var(--surface-2);
-      }
-
-      .mini-card:hover {
-        border-color: rgba(91, 88, 255, 0.3);
-      }
-
-      .mini-card strong {
-        display: block;
-        font-size: 1.45rem;
-        letter-spacing: -0.03em;
-      }
-
-      .mini-card span {
-        display: block;
-        margin-top: 0.1rem;
-        color: var(--text-3);
-        font-size: 1rem;
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.9rem;
-        margin-top: -2rem;
-      }
-
-      .stat-card {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 1rem;
-        border: 1px solid var(--border);
-        border-radius: 1rem;
-        background: var(--card);
-        box-shadow: var(--shadow-sm);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      }
-
-      .stat-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(91, 88, 255, 0.2);
-        box-shadow: var(--shadow-md);
-      }
-
-      .stat-icon {
-        display: inline-grid;
-        place-items: center;
-        width: 2.6rem;
-        height: 2.6rem;
-        border-radius: 0.85rem;
-        font-size: 1.05rem;
-        transition: transform 0.3s ease;
-      }
-
-      .stat-card:hover .stat-icon {
-        transform: scale(1.1);
-      }
-
-      .accent-surface { background: var(--accent-lt); color: var(--primary); }
-      .green-surface { background: var(--green-lt); color: var(--green); }
-      .amber-surface { background: var(--amber-lt); color: var(--amber); }
-      .teal-surface { background: var(--teal-lt); color: var(--teal); }
-
-      .stat-copy strong {
-        display: block;
-        font-size: 1.4rem;
-        letter-spacing: -0.03em;
-      }
-
-      .stat-copy span {
-        display: block;
-        font-size: 0.78rem;
-        color: var(--text-3);
-      }
-
-      .scroll-hint {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.45rem;
-        margin-top: 3rem;
-        color: var(--text-3);
-        font-size: 0.72rem;
-      }
-
-      .scroll-mouse {
-        position: relative;
-        width: 1.45rem;
-        height: 2.45rem;
-        border: 2px solid var(--border);
-        border-radius: 999px;
-      }
-
-      .scroll-mouse span {
-        position: absolute;
-        top: 0.34rem;
-        left: 50%;
-        width: 0.24rem;
-        height: 0.55rem;
-        border-radius: 999px;
-        background: var(--text-3);
-        transform: translateX(-50%);
-        animation: scroll-down 1.8s ease infinite;
-      }
-
-      .panel-grid-2,
-      .about-grid,
-      .skill-grid {
-        display: grid;
-        gap: 1.25rem;
-      }
-
-      .panel-grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .skill-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .info-card,
-      .about-card,
-      .skill-panel,
-      .skill-summary {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        border-radius: 1.5rem;
-        background: var(--card);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .info-card {
-        padding: 2rem;
-      }
-
-      .about-card {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1.75rem;
-        transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-      }
-
-      .about-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-md);
-      }
-
-      .skill-panel {
-        padding: 1.5rem;
-      }
-
-      .skill-panel.wide,
-      .skill-summary {
-        grid-column: span 2;
-      }
-
-      .skill-summary {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1.2rem 1.5rem;
-      }
-
-      .top-line {
-        position: absolute;
-        inset: 0 0 auto;
-        height: 3px;
-      }
-
-      .top-accent { background: linear-gradient(90deg, var(--primary), var(--accent-dim)); }
-      .top-green { background: linear-gradient(90deg, var(--green), #34d399); }
-      .top-teal { background: linear-gradient(90deg, var(--teal), #38bdf8); }
-      .top-pink { background: linear-gradient(90deg, var(--pink), #f9a8d4); }
-      .top-slate { background: linear-gradient(90deg, var(--slate), #94a3b8); }
-
-      .card-header {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .icon-box {
-        display: inline-grid;
-        place-items: center;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 1rem;
-        font-size: 1.25rem;
-      }
-
-      .icon-accent { background: linear-gradient(135deg, var(--accent-lt), #ede9fe); color: #6d28d9; }
-      .icon-green { background: var(--green-lt); color: var(--green); }
-      .icon-orange { background: linear-gradient(135deg, #fff7ed, #fed7aa); color: #c2410c; }
-      .icon-blue { background: linear-gradient(135deg, #eff6ff, #dbeafe); color: #1d4ed8; }
-
-      .card-header h3,
-      .about-card h3 {
-        margin: 0;
-        font-size: 1.1rem;
-        font-weight: 900;
-        letter-spacing: -0.02em;
-      }
-
-      .timeline {
-        position: relative;
-        padding-left: 1.45rem;
-      }
-
-      .timeline::before {
-        content: "";
-        position: absolute;
-        top: 0.3rem;
-        bottom: 0.3rem;
-        left: 0.38rem;
-        width: 1.5px;
-        background: var(--border);
-      }
-
-      .timeline-item {
-        position: relative;
-      }
-
-      .timeline-item + .timeline-item {
-        margin-top: 2.5rem;
-      }
-
-      .timeline-point {
-        position: absolute;
-        top: 0.2rem;
-        left: -1.45rem;
-        display: inline-grid;
-        place-items: center;
-        width: 1.1rem;
-        height: 1.1rem;
-        border: 2px solid var(--primary);
-        border-radius: 999px;
-        background: var(--card);
-        color: var(--primary);
-        font-size: 0.45rem;
-      }
-
-      .timeline-item h4 {
-        margin: 0 0 0.4rem;
-        font-size: 1.4rem;
-        font-weight: 700;
-      }
-
-      .timeline-item p,
-      .timeline-item small {
-        display: block;
-        margin: 0;
-        font-size: 1.2rem;
-      }
-
-      .timeline-item p {
-        margin-bottom: 0.3rem;
-        color: var(--text-2);
-        font-size: 0.97rem;
-        font-weight: 500;
-      }
-
-      .timeline-item small {
-        color: var(--text-3);
-        font-size: 0.95rem;
-        font-weight: 300;
-      }
-
-      .cert-list {
-        display: grid;
-        gap: 0.8rem;
-        margin-bottom: 1.25rem;
-      }
-
-      .cert-card {
-        display: flex;
-        align-items: center;
-        gap: 0.9rem;
-        padding: 1rem;
-        border: 1px solid var(--border);
-        border-radius: 1rem;
-        background: var(--surface-2);
-      }
-
-      .cert-copy {
-        flex: 1;
-        font-size: 1.15rem; 
-        min-width: 0;
-      }
-
-      /* ── 증명서 다운로드 버튼 ── */
-      .cert-dl-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        flex-shrink: 0;
-        padding: 0.38rem 0.75rem;
-        border: 1.5px solid var(--border);
-        border-radius: 999px;
-        background: var(--card);
-        color: var(--text-3);
-        font-size: 0.72rem;
-        font-weight: 700;
-        font-family: "IBM Plex Mono", monospace;
-        text-decoration: none;
-        transition: all 0.2s var(--ease);
-        white-space: nowrap;
-      }
-
-      .cert-dl-btn:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-        background: var(--accent-lt);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(91, 88, 255, 0.15);
-      }
-
-      .cert-dl-btn svg {
-        flex-shrink: 0;
-      }
-
-      .cert-mark {
-        flex: 0 0 auto;
-        display: inline-grid;
-        place-items: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 0.85rem;
-        font-size: 0.78rem;
-        font-weight: 800;
-      }
-
-      .cert-copy h4 {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0 0 0.1rem;
-        font-size: 0.94rem;
-      }
-
-      .cert-copy p,
-      .cert-copy small {
-        display: block;
-        margin: 0;
-        font-size: 0.85rem;
-        color: var(--text-3);
-      }
-
-      .language-bars {
-        display: grid;
-        gap: 0.75rem;
-      }
-
-      .bar-row {
-        display: flex;
-        align-items: center;
-        gap: 0.65rem;
-      }
-
-      .bar-label,
-      .bar-value {
-        width: 2.2rem;
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: var(--text-3);
-      }
-
-      .bar-value {
-        text-align: right;
-      }
-
-      .bar-track {
-        flex: 1;
-        height: 0.4rem;
-        border-radius: 999px;
-        background: var(--border);
-        overflow: hidden;
-      }
-
-      .bar-fill {
-        width: 0;
-        height: 100%;
-        border-radius: 999px;
-        transition: width 1s var(--ease);
-      }
-
-      .bar-fill.accent { background: linear-gradient(90deg, var(--primary), #7c7afe); }
-      .bar-fill.green { background: linear-gradient(90deg, var(--green), #34d399); }
-      .bar-fill.teal { background: linear-gradient(90deg, var(--teal), #38bdf8); }
-
-      .skill-label {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        margin-bottom: 1rem;
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: var(--text-3);
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
-      .dot-accent { color: var(--primary); }
-      .dot-green { color: var(--green); }
-      .dot-teal { color: var(--teal); }
-      .dot-pink { color: var(--pink); }
-      .dot-slate { color: var(--slate); }
-
-      .chip-list {
-        gap: 0.55rem;
-      }
-
-      .chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        padding: 0.75rem 0.95rem;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        font-size: 0.95rem;
-        font-weight: 700;
-        transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-      }
-
-      .chip i {
-        font-size: 1.15rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .chip:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .summary-item {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-      }
-
-      .summary-item strong {
-        font-size: 1.1rem;
-      }
-
-      .summary-item span:last-child {
-        font-size: 0.92rem;
-        color: var(--text-3);
-      }
-
-      .minor-title {
-        display: flex;
-        align-items: center;
-        gap: 0.65rem;
-        margin: 0 0 1rem;
-        font-size: 1.3rem;
-        font-weight: 900;
-        font-family: "Noto Sans KR", sans-serif;
-        text-transform: none;
-        letter-spacing: -0.01em;
-      }
-
-      .minor-title::before {
-        content: "";
-        width: 3px;
-        height: 1rem;
-        border-radius: 999px;
-        background: linear-gradient(180deg, var(--primary), var(--accent-dim));
-      }
-
-      .arrow-list {
-        display: grid;
-        gap: 0.75rem;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .arrow-list li {
-        position: relative;
-        padding-left: 1.25rem;
-        color: var(--text-2);
-        font-size: 1rem;
-        line-height: 1.85;
-      }
-
-      .arrow-list li::before {
-        content: "→";
-        position: absolute;
-        left: 0;
-        top: 0;
-        color: var(--primary);
-        font-weight: 900;
-      }
-
-      .project-card {
-        overflow: hidden;
-        margin-bottom: 1.5rem;
-        border: 1px solid var(--border);
-        border-radius: 1.5rem;
-        background: var(--card);
-        box-shadow: var(--shadow-md);
-      }
-
-      .project-toggle {
-        display: flex;
-        width: 100%;
-        gap: 1rem;
-        padding: 1.75rem;
-        border: 0;
-        background: transparent;
-        text-align: left;
-        cursor: pointer;
-      }
-
-      .project-index {
-        flex: 0 0 auto;
-        align-self: flex-start;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 2.4rem;
-        padding: 0.35rem 0.65rem;
-        margin-top: 0.15rem;
-        border: 1px solid var(--accent-dim);
-        border-radius: 0.7rem;
-        background: var(--accent-lt);
-        color: var(--primary);
-        font-size: 0.78rem;
-        font-weight: 700;
-      }
-
-      .project-head {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .project-head h3 {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0;
-        font-size: 1.35rem;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-      }
-
-      .project-extra {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.15rem 0.45rem;
-        border: 1px solid var(--accent-dim);
-        border-radius: 0.45rem;
-        background: var(--accent-lt);
-        color: var(--primary);
-        font-size: 0.7rem;
-        font-weight: 700;
-      }
-
-      .project-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.7rem;
-      }
-
-      .project-meta span {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.7rem;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        background: var(--surface-2);
-        color: var(--text-3);
-        font-size: 0.9rem;
-      }
-
-      .project-tagline {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        flex-wrap: wrap;
-        margin-top: 0.45rem;
-      }
-
-      .tagline-summary {
-        font-size: 0.88rem;
-        color: var(--text-3);
-        line-height: 1.5;
-      }
-
-      .tagline-result {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        font-size: 0.78rem;
-        font-family: "IBM Plex Mono", monospace;
-        background: var(--green-lt);
-        color: #059669;
-        border: 1px solid rgba(16,185,129,0.25);
-        padding: 0.15rem 0.6rem;
-        border-radius: 999px;
-        white-space: nowrap;
-        font-weight: 600;
-      }
-
-      .project-chevron {
-        flex: 0 0 auto;
-        display: inline-grid;
-        place-items: center;
-        width: 2.15rem;
-        height: 2.15rem;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        background: var(--surface-2);
-        color: var(--text-3);
-        font-size: 1rem;
-        transition: transform 0.3s var(--ease), background 0.2s ease, color 0.2s ease,
-          border-color 0.2s ease;
-      }
-
-      .project-card.is-open .project-chevron {
-        background: var(--primary);
-        border-color: var(--primary);
-        color: #fff;
-        transform: rotate(180deg);
-      }
-
-      .project-body {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.55s var(--ease), opacity 0.35s ease;
-      }
-
-      .project-card.is-open .project-body {
-        max-height: 9000px;
-        opacity: 1;
-      }
-
-      .project-inner {
-        padding: 0 1.75rem 1.75rem;
-        border-top: 1px solid transparent;
-      }
-
-      .project-card.is-open .project-inner {
-        padding-top: 1.75rem;
-        border-top-color: var(--border);
-      }
-
-      .project-inner > * + * {
-        margin-top: 2rem;
-      }
-
-      .troubleshoot {
-        position: relative;
-        overflow: hidden;
-        padding: 1.75rem;
-        border: 1px solid #dde3ff;
-        border-radius: 1.5rem;
-        background: linear-gradient(135deg, #fafbff, #f5f7ff);
-      }
-
-      .troubleshoot::before {
-        content: "";
-        position: absolute;
-        inset: 0 auto 0 0;
-        width: 4px;
-        background: linear-gradient(180deg, var(--primary), var(--accent-dim));
-      }
-
-      .troubleshoot-head {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        align-items: flex-start;
-        padding-bottom: 1rem;
-        margin-bottom: 1.35rem;
-        border-bottom: 1px solid #dde3ff;
-      }
-
-      .troubleshoot-title {
-        flex: 1;
-        font-size: 0.98rem;
-        font-weight: 900;
-        line-height: 1.75;
-      }
-
-      .badge-primary {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.35rem 0.8rem;
-        border-radius: 999px;
-        background: var(--primary);
-        color: #fff;
-        font-size: 0.72rem;
-        font-weight: 700;
-        box-shadow: 0 10px 22px rgba(91, 88, 255, 0.18);
-      }
-
-      .troubleshoot-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 1.5rem;
-        align-items: start;
-      }
-
-      .trouble-block + .trouble-block {
-        margin-top: 1rem;
-      }
-
-      .trouble-label {
-        margin-bottom: 0.25rem;
-        font-size: 1rem;
-        font-weight: 900;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
-      .trouble-label.problem { color: #dc2626; }
-      .trouble-label.alt { color: #d97706; }
-      .trouble-label.sol { color: #16a34a; }
-
-      .code-box {
-        overflow-x: auto;
-        border-radius: 0.9rem;
-        background: var(--code-bg);
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
-      }
-
-      .code-top {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.8rem 1rem;
-        border-bottom: 1px solid #2d3139;
-        color: #7f848e;
-        font-size: 0.72rem;
-      }
-
-      .code-top span.dot {
-        width: 0.7rem;
-        height: 0.7rem;
-        border-radius: 999px;
-      }
-
-      .code-top .red { background: #e06c75; }
-      .code-top .yellow { background: #e5c07b; }
-      .code-top .green { background: #98c379; }
-      .code-top .filename { margin-left: 0.35rem; }
-
-      .code-box pre {
-        margin: 0;
-        padding: 1rem;
-        color: #abb2bf;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 0.9rem;
-        line-height: 1.65;
-        white-space: pre;
-      }
-
-      .code-box code {
-        background: transparent;
-        border: 0;
-        padding: 0;
-        color: inherit;
-      }
-
-      .takeaway {
-        margin-top: 0.8rem;
-        padding: 1rem;
-        border: 1px solid #fde68a;
-        border-radius: 1rem;
-        background: linear-gradient(135deg, #fffbeb, #fef9c3);
-      }
-
-      .takeaway-title {
-        display: flex;
-        align-items: center;
-        gap: 0.45rem;
-        margin-bottom: 0.35rem;
-        color: #92400e;
-        font-size: 0.98rem;
-        font-weight: 800;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
-      .svg-wrap {
-        overflow-x: auto;
-        border: 1px solid var(--border);
-        border-radius: 1rem;
-        background: var(--surface-2);
-      }
-
-      .svg-wrap p {
-        margin: 0;
-        padding: 0.9rem 1rem 0;
-        color: var(--text-3);
-        font-size: 0.74rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      .svg-wrap svg {
-        display: block;
-        min-width: 600px;
-      }
-
-      .footer {
-        position: relative;
-        overflow: hidden;
-        padding: 3rem 0;
-        border-top: 1px solid var(--border);
-        background: var(--card);
-      }
-
-      .footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(91, 88, 255, 0.2), transparent);
-      }
-
-      .footer-top {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: start;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .footer-brand {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        font-weight: 900;
-      }
-
-      .footer-brand-mark {
-        display: inline-grid;
-        place-items: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 0.9rem;
-        background: var(--primary);
-        box-shadow: 0 14px 30px rgba(91, 88, 255, 0.18);
-        color: #fff;
-        font-size: 0.95rem;
-      }
-
-      .footer-brand-stack {
-        display: flex;
-        flex-direction: column;
-        gap: 0.15rem;
-      }
-
-      .footer-brand-stack strong {
-        font-size: 1.05rem;
-      }
-
-      .footer-brand-stack small {
-        color: var(--text-3);
-        font-size: 0.72rem;
-      }
-
-      .footer-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.25rem;
-        justify-content: flex-end;
-        padding-top: 0.2rem;
-      }
-
-      .footer-nav a {
-        color: var(--text-2);
-        font-size: 0.92rem;
-        font-weight: 600;
-      }
-
-      .footer-nav a:hover {
-        color: var(--primary);
-      }
-
-      .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid var(--border);
-      }
-
-      .footer-copy {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        font-size: 0.85rem;
-        color: var(--text-3);
-      }
-
-      .footer-heart {
-        color: var(--pink);
-      }
-
-      .footer-actions {
-        display: flex;
-        gap: 0.5rem;
-      }
-
-      .icon-link {
-        display: inline-grid;
-        place-items: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        border: 1px solid var(--border);
-        border-radius: 0.75rem;
-        background: var(--surface-2);
-        color: var(--text-2);
-        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
-          border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .icon-link:hover {
-        transform: translateY(-2px);
-        background: var(--primary);
-        border-color: var(--primary);
-        box-shadow: 0 14px 30px rgba(91, 88, 255, 0.18);
-        color: #fff;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(16px);
-        filter: blur(3px);
-        transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), filter 0.6s var(--ease);
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-
-      @keyframes fade-up {
-        from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
-        to { opacity: 1; transform: translateY(0); filter: blur(0); }
-      }
-
-      @keyframes slide-in-right {
-        from { opacity: 0; transform: translateX(20px); filter: blur(4px); }
-        to { opacity: 1; transform: translateX(0); filter: blur(0); }
-      }
-
-      @keyframes pulse-dot {
-        0%, 100% { box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
-        50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.08); }
-      }
-
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-      }
-
-      @keyframes scroll-down {
-        0% { opacity: 1; transform: translate(-50%, 0); }
-        80% { opacity: 0; transform: translate(-50%, 10px); }
-        100% { opacity: 0; }
-      }
-
-      @media (max-width: 1100px) {
-        .hero-grid { grid-template-columns: 1fr; }
-        .hero-card-wrap { display: none; }
-        .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 0; }
-      }
-
-      @media (max-width: 920px) {
-        .section { padding: 4.25rem 0; }
-        .nav-links { display: none; }
-        .nav-hamburger { display: flex; }
-        .nav-drawer { display: flex; }
-        .panel-grid-2,
-        .about-grid,
-        .skill-grid,
-        .troubleshoot-grid,
-        .footer-top { grid-template-columns: 1fr; }
-        .skill-panel.wide,
-        .skill-summary { grid-column: auto; }
-        .footer-nav { justify-content: flex-start; }
-        .hero-dots,
-        .hero-line { display: none; }
-        /* SVG 아키텍처 다이어그램 — 모바일 스크롤 안내 */
-        .svg-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      }
-
-      @media (max-width: 640px) {
-        .container { width: min(100% - 24px, 1120px); }
-        .nav-actions .print-button { display: none; }
-
-        /* Hero 이름 폰트 조정 — 좁은 화면에서 줄바꿈 방지 */
-        .hero-title { font-size: clamp(2.8rem, 12vw, 4rem); letter-spacing: -0.03em; }
-
-        /* Hero 소개글 br 태그 무력화 */
-        .hero-intro br { display: none; }
-        .hero-intro { font-size: 0.95rem; }
-
-        .hero-actions { flex-direction: column; }
-        .hero-actions .button { width: 100%; justify-content: center; }
-        .hero-links { flex-direction: column; gap: 0.35rem; }
-        .stats-grid { grid-template-columns: 1fr; }
-
-        /* 프로젝트 패딩 축소 */
-        .project-toggle,
-        .project-inner { padding-left: 1rem; padding-right: 1rem; }
-        .project-head h3 { font-size: 1.05rem; }
-        .project-index { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
-
-        /* 트러블슈팅 그리드 — 좁은 화면에서 1열 */
-        .troubleshoot-grid { grid-template-columns: 1fr; }
-
-        /* 코드 박스 폰트 축소 */
-        .code-box pre { font-size: 0.72rem; }
-
-        /* 칩 리스트 줄바꿈 및 폰트 축소 */
-        .chip-list { gap: 0.4rem; }
-        .chip { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
-
-        /* 기술 태그 축소 */
-        .tag-list .tag { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
-
-        /* 스킬 요약 바 — 좁은 화면 2열 */
-        .skill-summary { flex-wrap: wrap; gap: 0.5rem; justify-content: flex-start; }
-        .summary-item { width: calc(50% - 0.25rem); }
-
-        /* 섹션 타이틀 축소 */
-        .section-heading { font-size: 1.6rem; margin-bottom: 2rem; }
-
-        /* about 카드 패딩 축소 */
-        .about-card { padding: 1.25rem; }
-
-        /* 언어 능숙도 바 레이블 */
-        .bar-label, .bar-value { width: 1.8rem; font-size: 0.68rem; }
-
-        /* 푸터 */
-        .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-      }
-
-      @media (max-width: 380px) {
-        .hero-title { font-size: clamp(2.4rem, 13vw, 3rem); }
-        .chip { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
-        .stats-grid { grid-template-columns: 1fr; }
-      }
-
-      /* ── 툴팁 ── */
-
-      /* ── 스킬 chip 클릭 파티클 ── */
-      .chip-particle {
-        position: fixed;
-        pointer-events: none;
-        border-radius: 50%;
-        animation: chip-pop 0.6s var(--ease) forwards;
-        z-index: 9999;
-      }
-
-      @keyframes chip-pop {
-        0%   { transform: translate(0,0) scale(1); opacity: 1; }
-        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-      }
-
-      /* ── 숫자 카운터 ── */
-      [data-count] {
-        display: inline-block;
-        transition: transform 0.1s ease;
-      }
-
-      /* ── 스크롤 진행 바 ── */
-      .scroll-progress {
-        position: fixed;
-        top: 64px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: transparent;
-        z-index: 101;
-      }
-
-      .scroll-progress-bar {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, var(--primary), #a78bfa);
-        transition: width 0.1s linear;
-        border-radius: 0 999px 999px 0;
-      }
-
-      /* ── 스킬 패널 hover glow ── */
-      .skill-panel {
-        transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
-      }
-      .skill-panel:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 40px rgba(15,23,42,0.1);
-      }
-
-      /* ── chip 클릭 bounce ── */
-      @keyframes chip-bounce {
-        0%,100% { transform: translateY(-2px) scale(1.02); }
-        50% { transform: translateY(-5px) scale(1.06); }
-      }
-      .chip.bouncing { animation: chip-bounce 0.35s var(--ease); }
-
-      /* ── about-card hover bottom bar ── */
-      .about-card {
-        border-bottom: 3px solid transparent;
-        transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s ease;
-      }
-      .about-card:nth-child(1):hover { border-color: #7c3aed; }
-      .about-card:nth-child(2):hover { border-color: #c2410c; }
-      .about-card:nth-child(3):hover { border-color: #1d4ed8; }
-
-      /* ── 코드 박스 가로 스크롤 (모바일) ── */
-      .code-box {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      .code-box pre {
-        white-space: pre;
-        overflow-x: visible;
-      }
-
-      @media print {
-        /* ── 숨길 요소 ── */
-        .site-nav,
-        .scroll-hint,
-        .scroll-progress,
-        .nav-drawer,
-        .hero-bg,
-        .footer-actions,
-        .cert-dl-btn,
-        .hero-actions .button:nth-child(2),
-        .hero-actions .button:nth-child(3),
-        .project-chevron { display: none !important; }
-
-        /* ── 기본 레이아웃 ── */
-        body {
-          background: #fff !important;
-          font-size: 11.5pt;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-        .hero { padding-top: 0; }
-        .section, .footer { padding: 1rem 0; }
-        .container { width: 100% !important; padding: 0 1.2rem !important; }
-
-        /* ── Hero 그리드 — PDF에서 1열로 ── */
-        .hero-grid { grid-template-columns: 1fr !important; }
-        .hero-card-wrap { display: none !important; }
-        .stats-grid { grid-template-columns: repeat(2, 1fr) !important; margin-top: 0; }
-
-        /* ── 애니메이션/전환 완전 해제 ── */
-        *, *::before, *::after {
-          animation: none !important;
-          transition: none !important;
-        }
-        .hero-copy > *,
-        .hero-card-wrap,
-        .reveal {
-          opacity: 1 !important;
-          transform: none !important;
-          filter: none !important;
-        }
-
-        /* ── 프로젝트 아코디언 전부 열기 ── */
-        .project-body { max-height: none !important; opacity: 1 !important; }
-        .project-inner {
-          padding-top: 1.2rem !important;
-          border-top: 1px solid #e2e8f0 !important;
-        }
-        /* 아코디언 헤더 배경 제거 */
-        .project-toggle {
-          background: transparent !important;
-          padding-bottom: 0 !important;
-        }
-
-        /* ── 트러블슈팅 그리드 — PDF 1열로 ── */
-        .troubleshoot-grid { grid-template-columns: 1fr !important; }
-
-        /* ── 코드 박스 색 유지 ── */
-        .code-box {
-          background: var(--code-bg) !important;
-          border: 1px solid #2d3139 !important;
-          box-shadow: none !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-          overflow: visible !important;
-        }
-        .code-top {
-          background: var(--code-bg) !important;
-          color: #a0a7b4 !important;
-          border-bottom: 1px solid #2d3139 !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-        .code-box pre {
-          color: #abb2bf !important;
-          background: transparent !important;
-          white-space: pre-wrap !important;
-          word-break: break-all !important;
-          font-size: 7.5pt !important;
-        }
-        .code-box code { background: transparent !important; border: none !important; }
-
-        /* ── 언어 능숙도 막대 — PDF에서 JS 없이 고정 폭 ── */
-        .bar-track {
-          background: #e2e8f0 !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-        .bar-fill {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-        .bar-fill.bar-kr { width: 100% !important; }
-        .bar-fill.bar-cn { width: 95% !important; }
-        .bar-fill.bar-us { width: 72% !important; }
-
-        /* ── 페이지 나눔 — 카드 내부에서 잘리지 않도록 ── */
-        .info-card,
-        .about-card,
-        .skill-panel,
-        .project-card,
-        .stat-card,
-        .cert-card,
-        .troubleshoot,
-        .timeline-item,
-        .code-box,
-        .takeaway,
-        .arrow-list li,
-        .svg-wrap { break-inside: avoid; page-break-inside: avoid; }
-
-        /* ── 제목 뒤에서 페이지 안 나뉨 ── */
-        .section-heading,
-        .minor-title,
-        h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
-
-        /* ── 그리드: 자식 카드 단위로 다음 페이지 자동 ── */
-        .panel-grid-2,
-        .about-grid,
-        .skill-grid,
-        .stats-grid { break-inside: auto; page-break-inside: auto; }
-        .panel-grid-2 > *,
-        .about-grid > *,
-        .skill-grid > *,
-        .stats-grid > * { break-inside: avoid; page-break-inside: avoid; }
-
-        /* ── SVG 다이어그램 — PDF에서 크기 제한 ── */
-        .svg-wrap svg { max-width: 100%; height: auto; }
-        .svg-wrap { overflow: hidden !important; }
-
-        /* ── 스킬 패널 hover 효과 제거 ── */
-        .skill-panel:hover { transform: none; box-shadow: none; }
-        .about-card:hover { transform: none; }
-      }
-    
+        transition: filter 0.3s ease;
+      }
+      /* 블러 해제 시 */
+      body.pii-off .pii { filter: none; user-select: auto; -webkit-user-select: auto; }
+      body.pii-off .pii-img { filter: none !important; }
+
+      /* 상단 배너 */
+      .blur-notice-bar {
+        background: linear-gradient(90deg,#5b58ff,#7c7afe);
+        color: #fff; text-align: center; padding: .55rem 1rem;
+        font-size: .82rem; font-weight: 700; letter-spacing: .02em;
+        position: relative; z-index: 200;
+      }
+      .blur-notice-bar span { opacity: .8; font-weight: 400; margin-left: .5rem; }
+
+      /* 하단 토글 버튼 */
+      .blur-toggle-bar {
+        position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300;
+        display: flex; align-items: center; gap: .6rem;
+        padding: .7rem 1.2rem;
+        background: var(--foreground); color: #fff;
+        border: none; border-radius: 999px; cursor: pointer;
+        font-family: "IBM Plex Mono",monospace; font-size: .8rem; font-weight: 700;
+        box-shadow: 0 8px 32px rgba(15,23,42,.25);
+        transition: background .2s, transform .2s;
+      }
+      .blur-toggle-bar:hover { background: var(--primary); transform: translateY(-2px); }
+      body.pii-off .blur-toggle-bar { background: #dc2626; }
+
+      /* ══════════════════════════════════
+         NAVIGATION
+      ══════════════════════════════════ */
+      .site-nav { position: fixed; inset: 0 0 auto; z-index: 100; height: 64px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: box-shadow .3s ease; }
+      .site-nav.scrolled { box-shadow: 0 4px 24px rgba(15,23,42,.07); }
+      .nav-inner { display: flex; align-items: center; height: 100%; gap: 1rem; }
+      .brand { display: flex; align-items: center; gap: .7rem; margin-right: auto; font-weight: 900; text-decoration: none; }
+      .brand-mark { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 999px; background: var(--primary); color: #fff; font-size: .9rem; box-shadow: 0 6px 16px rgba(91,88,255,.28); transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
+      .brand:hover .brand-mark { transform: rotate(-8deg) scale(1.1); }
+      .brand-name { font-size: 1rem; } .brand-name span { color: var(--primary); }
+      .nav-links { display: flex; gap: .15rem; margin-right: 1rem; }
+      .nav-link { position: relative; padding: .52rem .95rem; border-radius: 999px; font-size: .88rem; font-weight: 600; color: var(--text-2); transition: background .2s ease,color .2s ease; text-decoration: none; }
+      .nav-link::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scaleX(0); width: calc(100% - 1.4rem); height: 2px; border-radius: 999px; background: var(--primary); transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+      .nav-link:hover,.nav-link.active { background: var(--accent-lt); color: var(--primary); }
+      .nav-link.active::after { transform: translateX(-50%) scaleX(1); }
+      .nav-actions { display: flex; gap: .6rem; align-items: center; }
+      .button { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; border: 1.5px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-2); padding: .55rem 1.1rem; font-size: .88rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: transform .25s var(--ease),border-color .2s ease,color .2s ease,background .2s ease,box-shadow .25s var(--ease); }
+      .button:hover { transform: translateY(-2px); border-color: var(--primary); color: var(--primary); background: var(--accent-lt); }
+      .button.primary { color: #fff; background: var(--primary); border-color: var(--primary); box-shadow: 0 14px 30px rgba(91,88,255,.22); }
+      .button.primary:hover { color: #fff; background: #4f46e5; border-color: #4f46e5; box-shadow: 0 18px 36px rgba(91,88,255,.32); }
+      .button.dark { color: #fff; background: var(--foreground); border-color: var(--foreground); gap: .5rem; }
+      .button.dark:hover { color: #fff; background: var(--primary); border-color: var(--primary); box-shadow: 0 10px 24px rgba(91,88,255,.25); }
+      .nav-hamburger { display: none; flex-direction: column; gap: 5px; width: 2.2rem; height: 2.2rem; align-items: center; justify-content: center; border: 1.5px solid var(--border); border-radius: .7rem; background: transparent; cursor: pointer; padding: 0; transition: border-color .2s; }
+      .nav-hamburger span { display: block; width: 1.1rem; height: 1.5px; background: var(--text-2); border-radius: 999px; transition: transform .3s var(--ease),opacity .2s ease; }
+      .nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)} .nav-hamburger.open span:nth-child(2){opacity:0} .nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+      .nav-drawer { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(255,255,255,.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem 1.5rem; flex-direction: column; gap: .4rem; z-index: 99; box-shadow: 0 8px 32px rgba(15,23,42,.1); transform: translateY(-10px); opacity: 0; transition: transform .3s var(--ease),opacity .25s ease; }
+      .nav-drawer.open { transform: translateY(0); opacity: 1; }
+      .drawer-link { display: flex; align-items: center; gap: .65rem; padding: .8rem 1rem; border-radius: .9rem; font-size: 1rem; font-weight: 600; color: var(--text-2); text-decoration: none; transition: background .2s,color .2s; }
+      .drawer-link:hover,.drawer-link.active { background: var(--accent-lt); color: var(--primary); }
+      .drawer-link .dl-icon { width: 2rem; height: 2rem; border-radius: .6rem; background: var(--border); display: grid; place-items: center; font-size: .9rem; }
+      .drawer-divider { height: 1px; background: var(--border); margin: .5rem 0; }
+      .drawer-actions { display: flex; gap: .65rem; padding-top: .25rem; }
+
+      /* ══════════════════════════════════
+         HERO
+      ══════════════════════════════════ */
+      .hero { position: relative; overflow: hidden; padding-top: 64px; }
+      .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+      .hero-orb { position: absolute; border-radius: 999px; }
+      .hero-orb.primary { top: 5rem; right: -8rem; width: 31.25rem; height: 31.25rem; background: radial-gradient(circle,rgba(91,88,255,.06),transparent 60%); }
+      .hero-orb.green { bottom: 0; left: -10rem; width: 25rem; height: 25rem; background: radial-gradient(circle,rgba(16,185,129,.05),transparent 60%); }
+      .hero-line { position: absolute; width: 1px; background: linear-gradient(180deg,transparent,var(--border),transparent); }
+      .hero-line.one { top: 10rem; left: 25%; height: 16rem; } .hero-line.two { top: 15rem; right: 33%; height: 12rem; }
+      .hero-dots { position: absolute; top: 8rem; right: 5rem; display: grid; grid-template-columns: repeat(5,.25rem); gap: .75rem; opacity: .15; }
+      .hero-dots span { width: .25rem; height: .25rem; border-radius: 999px; background: var(--primary); }
+      .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0,1fr) 420px; align-items: center; gap: 4rem; min-height: calc(100vh - 64px); padding: 5rem 0 4rem; }
+      .hero-copy > * { opacity: 0; animation: fade-up .7s var(--ease) forwards; }
+      .hero-copy > *:nth-child(1){animation-delay:.1s} .hero-copy > *:nth-child(2){animation-delay:.2s} .hero-copy > *:nth-child(3){animation-delay:.3s} .hero-copy > *:nth-child(4){animation-delay:.35s} .hero-copy > *:nth-child(5){animation-delay:.4s} .hero-copy > *:nth-child(6){animation-delay:.45s}
+      .status-pill { display: inline-flex; align-items: center; gap: .55rem; padding: .7rem 1rem; margin-bottom: 1.75rem; border: 1px solid var(--border); border-radius: 999px; background: var(--card); box-shadow: var(--shadow-sm); font-size: .8rem; font-weight: 600; color: var(--text-2); }
+      .pulse-dot { width: .55rem; height: .55rem; border-radius: 999px; background: var(--green); box-shadow: 0 0 0 3px rgba(16,185,129,.2); animation: pulse-dot 2s ease infinite; }
+      .hero-title { margin: 0 0 1rem; font-size: clamp(3.75rem,10vw,8rem); font-weight: 900; line-height: .9; letter-spacing: -.04em; }
+      .hero-title span { color: var(--primary); }
+      .typed-line { display: flex; align-items: center; gap: .55rem; margin-bottom: 1.75rem; min-height: 2rem; font-size: 1.05rem; font-weight: 600; }
+      .typed-icon { color: var(--text-3); font-size: .95rem; } .typed-text { color: var(--primary); }
+      .typed-line .cursor { display: inline-block; width: .12rem; height: 1.25rem; background: var(--primary); animation: blink .9s step-end infinite; }
+      .hero-intro { max-width: 42rem; margin: 0 0 2.5rem; color: var(--text-2); font-size: 1.1rem; }
+      .hero-intro strong { font-weight: 700; }
+      .hero-actions,.hero-links,.tag-list,.chip-list { display: flex; flex-wrap: wrap; }
+      .hero-actions { gap: .75rem; margin-bottom: 2.5rem; }
+      .hero-links { gap: 1.25rem; color: var(--text-3); font-size: .92rem; }
+      .hero-links a:hover { color: var(--primary); }
+      .hero-card-wrap { opacity: 0; animation: slide-in-right .7s var(--ease) .35s forwards; }
+      .hero-card { position: relative; overflow: hidden; padding: 2.25rem; border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); box-shadow: var(--shadow-lg); transition: box-shadow .5s ease; }
+      .hero-card:hover { box-shadow: 0 20px 60px rgba(15,23,42,.14); }
+      .hero-card::before { content: ""; position: absolute; top: -5rem; right: -5rem; width: 14rem; height: 14rem; border-radius: 999px; background: radial-gradient(circle,rgba(91,88,255,.1),transparent 70%); transition: transform .7s ease; }
+      .hero-card:hover::before { transform: scale(1.1); }
+      .hero-card::after { content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg,transparent,rgba(91,88,255,.2),transparent); }
+      .hero-card-mark { position: relative; display: inline-grid; place-items: center; width: 10rem; height: 10rem; margin-bottom: 1.25rem; border: 1px solid var(--accent-dim); border-radius: 1rem; background: linear-gradient(135deg,var(--accent-lt),#ddd6fe); box-shadow: 0 14px 30px rgba(91,88,255,.16); color: var(--primary); font-size: 1.85rem; font-weight: 900; letter-spacing: -.06em; overflow: hidden; }
+      .hero-card-mark img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+      .hero-card-title { margin: 0 0 .25rem; font-size: 1.65rem; font-weight: 900; letter-spacing: -.03em; }
+      .hero-card-subtitle { display: flex; align-items: center; gap: .35rem; margin: 0 0 1.25rem; color: var(--text-3); font-size: .78rem; }
+      .subtitle-dot { width: .4rem; height: .4rem; border-radius: 999px; background: var(--green); }
+      .badge-row,.tag-list { display: flex; flex-wrap: wrap; gap: .5rem; } .badge-row { margin-bottom: 1.35rem; }
+      .tag { display: inline-flex; align-items: center; gap: .35rem; padding: .38rem .8rem; border: 1px solid var(--accent-dim); border-radius: 999px; font-size: .75rem; font-weight: 700; }
+      .tag.accent{background:var(--accent-lt);color:var(--primary-deep)} .tag.green{background:var(--green-lt);color:#065f46;border-color:#a7f3d0} .tag.teal{background:var(--teal-lt);color:#1e40af;border-color:#bfdbfe} .tag.orange{background:#fff7ed;color:#c2410c;border-color:#fed7aa} .tag.blue{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe} .tag.pink{background:var(--pink-lt);color:#9d174d;border-color:#fbcfe8} .tag.slate{background:var(--slate-lt);color:#334155;border-color:var(--border)}
+      .hero-mini-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; }
+      .mini-card { padding: .9rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-2); }
+      .mini-card:hover { border-color: rgba(91,88,255,.3); }
+      .mini-card strong { display: block; font-size: 1.45rem; letter-spacing: -.03em; }
+      .mini-card span { display: block; margin-top: .1rem; color: var(--text-3); font-size: 1rem; }
+      .stats-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .9rem; margin-top: -2rem; }
+      .stat-card { display: flex; align-items: center; gap: .8rem; padding: 1rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); box-shadow: var(--shadow-sm); transition: transform .3s ease,box-shadow .3s ease,border-color .3s ease; }
+      .stat-card:hover { transform: translateY(-3px); border-color: rgba(91,88,255,.2); box-shadow: var(--shadow-md); }
+      .stat-icon { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: .85rem; font-size: 1.05rem; transition: transform .3s ease; }
+      .stat-card:hover .stat-icon { transform: scale(1.1); }
+      .accent-surface{background:var(--accent-lt);color:var(--primary)} .green-surface{background:var(--green-lt);color:var(--green)} .amber-surface{background:var(--amber-lt);color:var(--amber)} .teal-surface{background:var(--teal-lt);color:var(--teal)}
+      .stat-copy strong { display: block; font-size: 1.4rem; letter-spacing: -.03em; }
+      .stat-copy span { display: block; font-size: .78rem; color: var(--text-3); }
+      .scroll-hint { display: flex; flex-direction: column; align-items: center; gap: .45rem; margin-top: 3rem; color: var(--text-3); font-size: .72rem; }
+      .scroll-mouse { position: relative; width: 1.45rem; height: 2.45rem; border: 2px solid var(--border); border-radius: 999px; }
+      .scroll-mouse span { position: absolute; top: .34rem; left: 50%; width: .24rem; height: .55rem; border-radius: 999px; background: var(--text-3); transform: translateX(-50%); animation: scroll-down 1.8s ease infinite; }
+      .panel-grid-2,.about-grid,.skill-grid { display: grid; gap: 1.25rem; }
+      .panel-grid-2 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .about-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .skill-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
+      .info-card,.about-card,.skill-panel,.skill-summary { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); box-shadow: var(--shadow-sm); }
+      .info-card { padding: 2rem; }
+      .about-card { display: flex; flex-direction: column; gap: 1rem; padding: 1.75rem; transition: transform .25s var(--ease),box-shadow .25s var(--ease); }
+      .about-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+      .skill-panel { padding: 1.5rem; }
+      .skill-panel.wide,.skill-summary { grid-column: span 2; }
+      .skill-summary { display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: .75rem; padding: 1.2rem 1.5rem; }
+      .top-line { position: absolute; inset: 0 0 auto; height: 3px; }
+      .top-accent{background:linear-gradient(90deg,var(--primary),var(--accent-dim))} .top-green{background:linear-gradient(90deg,var(--green),#34d399)} .top-teal{background:linear-gradient(90deg,var(--teal),#38bdf8)} .top-pink{background:linear-gradient(90deg,var(--pink),#f9a8d4)} .top-slate{background:linear-gradient(90deg,var(--slate),#94a3b8)}
+      .card-header { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.5rem; }
+      .icon-box { display: inline-grid; place-items: center; width: 3rem; height: 3rem; border-radius: 1rem; font-size: 1.25rem; }
+      .icon-accent{background:linear-gradient(135deg,var(--accent-lt),#ede9fe);color:#6d28d9} .icon-green{background:var(--green-lt);color:var(--green)} .icon-orange{background:linear-gradient(135deg,#fff7ed,#fed7aa);color:#c2410c} .icon-blue{background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#1d4ed8}
+      .card-header h3,.about-card h3 { margin: 0; font-size: 1.1rem; font-weight: 900; letter-spacing: -.02em; }
+      .timeline { position: relative; padding-left: 1.45rem; }
+      .timeline::before { content: ""; position: absolute; top: .3rem; bottom: .3rem; left: .38rem; width: 1.5px; background: var(--border); }
+      .timeline-item { position: relative; } .timeline-item + .timeline-item { margin-top: 2.5rem; }
+      .timeline-point { position: absolute; top: .2rem; left: -1.45rem; display: inline-grid; place-items: center; width: 1.1rem; height: 1.1rem; border: 2px solid var(--primary); border-radius: 999px; background: var(--card); color: var(--primary); font-size: .45rem; }
+      .timeline-item h4 { margin: 0 0 .4rem; font-size: 1.4rem; font-weight: 700; }
+      .timeline-item p,.timeline-item small { display: block; margin: 0; font-size: 1.2rem; }
+      .timeline-item p { margin-bottom: .3rem; color: var(--text-2); font-size: .97rem; font-weight: 500; }
+      .timeline-item small { color: var(--text-3); font-size: .95rem; font-weight: 300; }
+      .cert-list { display: grid; gap: .8rem; margin-bottom: 1.25rem; }
+      .cert-card { display: flex; align-items: center; gap: .9rem; padding: 1rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-2); }
+      .cert-copy { flex: 1; font-size: 1.15rem; min-width: 0; }
+      .cert-dl-btn { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; padding: .38rem .75rem; border: 1.5px solid var(--border); border-radius: 999px; background: var(--card); color: var(--text-3); font-size: .72rem; font-weight: 700; font-family: "IBM Plex Mono",monospace; text-decoration: none; transition: all .2s var(--ease); white-space: nowrap; cursor: not-allowed; opacity: .6; }
+      .cert-mark { flex: 0 0 auto; display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .85rem; font-size: .78rem; font-weight: 800; }
+      .cert-copy h4 { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0 0 .1rem; font-size: .94rem; }
+      .cert-copy p,.cert-copy small { display: block; margin: 0; font-size: .85rem; color: var(--text-3); }
+      .language-bars { display: grid; gap: .75rem; }
+      .bar-row { display: flex; align-items: center; gap: .65rem; }
+      .bar-label,.bar-value { width: 2.2rem; font-size: .72rem; font-weight: 700; color: var(--text-3); } .bar-value { text-align: right; }
+      .bar-track { flex: 1; height: .4rem; border-radius: 999px; background: var(--border); overflow: hidden; }
+      .bar-fill { width: 0; height: 100%; border-radius: 999px; transition: width 1s var(--ease); }
+      .bar-fill.accent{background:linear-gradient(90deg,var(--primary),#7c7afe)} .bar-fill.green{background:linear-gradient(90deg,var(--green),#34d399)} .bar-fill.teal{background:linear-gradient(90deg,var(--teal),#38bdf8)}
+      .skill-label { display: flex; align-items: center; gap: .55rem; margin-bottom: 1rem; font-size: .78rem; font-weight: 700; color: var(--text-3); letter-spacing: .13em; text-transform: uppercase; }
+      .dot-accent{color:var(--primary)} .dot-green{color:var(--green)} .dot-teal{color:var(--teal)} .dot-pink{color:var(--pink)} .dot-slate{color:var(--slate)}
+      .chip-list { gap: .55rem; }
+      .chip { display: inline-flex; align-items: center; gap: .45rem; padding: .75rem .95rem; border: 1px solid var(--border); border-radius: 999px; font-size: .95rem; font-weight: 700; transition: transform .25s var(--ease),box-shadow .25s var(--ease); }
+      .chip i { font-size: 1.15rem; display: inline-flex; align-items: center; justify-content: center; }
+      .chip:hover { transform: translateY(-2px) scale(1.02); box-shadow: var(--shadow-sm); }
+      .summary-item { display: flex; align-items: center; gap: .55rem; }
+      .summary-item strong { font-size: 1.1rem; }
+      .summary-item span:last-child { font-size: .92rem; color: var(--text-3); }
+      .minor-title { display: flex; align-items: center; gap: .65rem; margin: 0 0 1rem; font-size: 1.3rem; font-weight: 900; font-family: "Noto Sans KR",sans-serif; text-transform: none; letter-spacing: -.01em; }
+      .minor-title::before { content: ""; width: 3px; height: 1rem; border-radius: 999px; background: linear-gradient(180deg,var(--primary),var(--accent-dim)); }
+      .arrow-list { display: grid; gap: .75rem; margin: 0; padding: 0; list-style: none; }
+      .arrow-list li { position: relative; padding-left: 1.25rem; color: var(--text-2); font-size: 1rem; line-height: 1.85; }
+      .arrow-list li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--primary); font-weight: 900; }
+      .project-card { overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border); border-radius: 1.5rem; background: var(--card); box-shadow: var(--shadow-md); }
+      .project-toggle { display: flex; width: 100%; gap: 1rem; padding: 1.75rem; border: 0; background: transparent; text-align: left; cursor: pointer; }
+      .project-index { flex: 0 0 auto; align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; min-width: 2.4rem; padding: .35rem .65rem; margin-top: .15rem; border: 1px solid var(--accent-dim); border-radius: .7rem; background: var(--accent-lt); color: var(--primary); font-size: .78rem; font-weight: 700; }
+      .project-head { flex: 1; min-width: 0; }
+      .project-head h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0; font-size: 1.35rem; font-weight: 900; letter-spacing: -.03em; }
+      .project-extra { display: inline-flex; align-items: center; padding: .15rem .45rem; border: 1px solid var(--accent-dim); border-radius: .45rem; background: var(--accent-lt); color: var(--primary); font-size: .7rem; font-weight: 700; }
+      .project-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+      .project-meta span { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .7rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-2); color: var(--text-3); font-size: .9rem; }
+      .project-tagline { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; margin-top: .45rem; }
+      .tagline-summary { font-size: .88rem; color: var(--text-3); line-height: 1.5; }
+      .tagline-result { display: inline-flex; align-items: center; gap: .3rem; font-size: .78rem; font-family: "IBM Plex Mono",monospace; background: var(--green-lt); color: #059669; border: 1px solid rgba(16,185,129,.25); padding: .15rem .6rem; border-radius: 999px; white-space: nowrap; font-weight: 600; }
+      .project-chevron { flex: 0 0 auto; display: inline-grid; place-items: center; width: 2.15rem; height: 2.15rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-2); color: var(--text-3); font-size: 1rem; transition: transform .3s var(--ease),background .2s ease,color .2s ease,border-color .2s ease; }
+      .project-card.is-open .project-chevron { background: var(--primary); border-color: var(--primary); color: #fff; transform: rotate(180deg); }
+      .project-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .55s var(--ease),opacity .35s ease; }
+      .project-card.is-open .project-body { max-height: 9000px; opacity: 1; }
+      .project-inner { padding: 0 1.75rem 1.75rem; border-top: 1px solid transparent; }
+      .project-card.is-open .project-inner { padding-top: 1.75rem; border-top-color: var(--border); }
+      .project-inner > * + * { margin-top: 2rem; }
+      .troubleshoot { position: relative; overflow: hidden; padding: 1.75rem; border: 1px solid #dde3ff; border-radius: 1.5rem; background: linear-gradient(135deg,#fafbff,#f5f7ff); }
+      .troubleshoot::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: linear-gradient(180deg,var(--primary),var(--accent-dim)); }
+      .troubleshoot-head { display: flex; flex-wrap: wrap; gap: .8rem; align-items: flex-start; padding-bottom: 1rem; margin-bottom: 1.35rem; border-bottom: 1px solid #dde3ff; }
+      .troubleshoot-title { flex: 1; font-size: .98rem; font-weight: 900; line-height: 1.75; }
+      .badge-primary { display: inline-flex; align-items: center; padding: .35rem .8rem; border-radius: 999px; background: var(--primary); color: #fff; font-size: .72rem; font-weight: 700; box-shadow: 0 10px 22px rgba(91,88,255,.18); }
+      .troubleshoot-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: start; }
+      .trouble-block + .trouble-block { margin-top: 1rem; }
+      .trouble-label { margin-bottom: .25rem; font-size: 1rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+      .trouble-label.problem{color:#dc2626} .trouble-label.alt{color:#d97706} .trouble-label.sol{color:#16a34a}
+      .code-box { overflow-x: auto; border-radius: .9rem; background: var(--code-bg); box-shadow: 0 10px 30px rgba(15,23,42,.16); }
+      .code-top { display: flex; align-items: center; gap: .35rem; padding: .8rem 1rem; border-bottom: 1px solid #2d3139; color: #7f848e; font-size: .72rem; }
+      .code-top span.dot { width: .7rem; height: .7rem; border-radius: 999px; }
+      .code-top .red{background:#e06c75} .code-top .yellow{background:#e5c07b} .code-top .green{background:#98c379} .code-top .filename{margin-left:.35rem}
+      .code-box pre { margin: 0; padding: 1rem; color: #abb2bf; font-family: "IBM Plex Mono",monospace; font-size: .9rem; line-height: 1.65; white-space: pre; }
+      .code-box code { background: transparent; border: 0; padding: 0; color: inherit; }
+      .takeaway { margin-top: .8rem; padding: 1rem; border: 1px solid #fde68a; border-radius: 1rem; background: linear-gradient(135deg,#fffbeb,#fef9c3); }
+      .takeaway-title { display: flex; align-items: center; gap: .45rem; margin-bottom: .35rem; color: #92400e; font-size: .98rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+      .svg-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-2); }
+      .svg-wrap p { margin: 0; padding: .9rem 1rem 0; color: var(--text-3); font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .svg-wrap svg { display: block; min-width: 600px; }
+      .footer { position: relative; overflow: hidden; padding: 3rem 0; border-top: 1px solid var(--border); background: var(--card); }
+      .footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(91,88,255,.2),transparent); }
+      .footer-top { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 1.5rem; margin-bottom: 2rem; }
+      .footer-brand { display: flex; align-items: center; gap: .7rem; font-weight: 900; }
+      .footer-brand-mark { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .9rem; background: var(--primary); box-shadow: 0 14px 30px rgba(91,88,255,.18); color: #fff; font-size: .95rem; }
+      .footer-brand-stack { display: flex; flex-direction: column; gap: .15rem; }
+      .footer-brand-stack strong { font-size: 1.05rem; } .footer-brand-stack small { color: var(--text-3); font-size: .72rem; }
+      .footer-nav { display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: flex-end; padding-top: .2rem; }
+      .footer-nav a { color: var(--text-2); font-size: .92rem; font-weight: 600; } .footer-nav a:hover { color: var(--primary); }
+      .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .footer-copy { display: flex; align-items: center; gap: .35rem; font-size: .85rem; color: var(--text-3); }
+      .footer-heart { color: var(--pink); }
+      .footer-actions { display: flex; gap: .5rem; }
+      .icon-link { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--surface-2); color: var(--text-2); transition: transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease; }
+      .icon-link:hover { transform: translateY(-2px); background: var(--primary); border-color: var(--primary); box-shadow: 0 14px 30px rgba(91,88,255,.18); color: #fff; }
+      .reveal { opacity: 0; transform: translateY(16px); filter: blur(3px); transition: opacity .6s var(--ease),transform .6s var(--ease),filter .6s var(--ease); }
+      .reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+      @keyframes fade-up{from{opacity:0;transform:translateY(20px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+      @keyframes slide-in-right{from{opacity:0;transform:translateX(20px);filter:blur(4px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}
+      @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 3px rgba(16,185,129,.2)}50%{box-shadow:0 0 0 6px rgba(16,185,129,.08)}}
+      @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+      @keyframes scroll-down{0%{opacity:1;transform:translate(-50%,0)}80%{opacity:0;transform:translate(-50%,10px)}100%{opacity:0}}
+      @media(max-width:1100px){.hero-grid{grid-template-columns:1fr}.hero-card-wrap{display:none}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}}
+      @media(max-width:920px){.section{padding:4.25rem 0}.nav-links{display:none}.nav-hamburger{display:flex}.nav-drawer{display:flex}.panel-grid-2,.about-grid,.skill-grid,.troubleshoot-grid,.footer-top{grid-template-columns:1fr}.skill-panel.wide,.skill-summary{grid-column:auto}.footer-nav{justify-content:flex-start}.hero-dots,.hero-line{display:none}.svg-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}}
+      @media(max-width:640px){.container{width:min(100% - 24px,1120px)}.nav-actions .print-button{display:none}.hero-title{font-size:clamp(2.8rem,12vw,4rem);letter-spacing:-.03em}.hero-intro br{display:none}.hero-intro{font-size:.95rem}.hero-actions{flex-direction:column}.hero-actions .button{width:100%;justify-content:center}.hero-links{flex-direction:column;gap:.35rem}.stats-grid{grid-template-columns:1fr}.project-toggle,.project-inner{padding-left:1rem;padding-right:1rem}.project-head h3{font-size:1.05rem}.project-index{font-size:.7rem;padding:.25rem .5rem}.troubleshoot-grid{grid-template-columns:1fr}.code-box pre{font-size:.72rem}.chip-list{gap:.4rem}.chip{font-size:.8rem;padding:.5rem .75rem}.tag-list .tag{font-size:.72rem;padding:.3rem .6rem}.skill-summary{flex-wrap:wrap;gap:.5rem;justify-content:flex-start}.summary-item{width:calc(50% - .25rem)}.section-heading{font-size:1.6rem;margin-bottom:2rem}.about-card{padding:1.25rem}.bar-label,.bar-value{width:1.8rem;font-size:.68rem}.footer-bottom{flex-direction:column;align-items:flex-start;gap:.75rem}}
+      @media(max-width:380px){.hero-title{font-size:clamp(2.4rem,13vw,3rem)}.chip{font-size:.75rem;padding:.4rem .6rem}.stats-grid{grid-template-columns:1fr}}
+      .chip-particle{position:fixed;pointer-events:none;border-radius:50%;animation:chip-pop .6s var(--ease) forwards;z-index:9999}
+      @keyframes chip-pop{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0}}
+      .scroll-progress{position:fixed;top:64px;left:0;right:0;height:2px;background:transparent;z-index:101}
+      .scroll-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),#a78bfa);transition:width .1s linear;border-radius:0 999px 999px 0}
+      .skill-panel{transition:transform .25s var(--ease),box-shadow .25s var(--ease)}.skill-panel:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(15,23,42,.1)}
+      @keyframes chip-bounce{0%,100%{transform:translateY(-2px) scale(1.02)}50%{transform:translateY(-5px) scale(1.06)}}
+      .chip.bouncing{animation:chip-bounce .35s var(--ease)}
+      .about-card{border-bottom:3px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s ease}
+      .about-card:nth-child(1):hover{border-color:#7c3aed}.about-card:nth-child(2):hover{border-color:#c2410c}.about-card:nth-child(3):hover{border-color:#1d4ed8}
+      .code-box{overflow-x:auto;-webkit-overflow-scrolling:touch}.code-box pre{white-space:pre;overflow-x:visible}
+      @media print{.site-nav,.scroll-hint,.scroll-progress,.nav-drawer,.hero-bg,.footer-actions,.cert-dl-btn,.hero-actions .button:nth-child(2),.hero-actions .button:nth-child(3),.project-chevron,.blur-notice-bar,.blur-toggle-bar{display:none!important}body{background:#fff!important;font-size:11.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding-top:0}.section,.footer{padding:1rem 0}.container{width:100%!important;padding:0 1.2rem!important}.hero-grid{grid-template-columns:1fr!important}.hero-card-wrap{display:none!important}.stats-grid{grid-template-columns:repeat(2,1fr)!important;margin-top:0}*,*::before,*::after{animation:none!important;transition:none!important}.hero-copy > *,.hero-card-wrap,.reveal{opacity:1!important;transform:none!important;filter:none!important}.pii,.pii-img{filter:none!important}.project-body{max-height:none!important;opacity:1!important}.project-inner{padding-top:1.2rem!important;border-top:1px solid #e2e8f0!important}.project-toggle{background:transparent!important;padding-bottom:0!important}.troubleshoot-grid{grid-template-columns:1fr!important}.code-box{background:var(--code-bg)!important;border:1px solid #2d3139!important;box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:visible!important}.code-top{background:var(--code-bg)!important;color:#a0a7b4!important;border-bottom:1px solid #2d3139!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.code-box pre{color:#abb2bf!important;background:transparent!important;white-space:pre-wrap!important;word-break:break-all!important;font-size:7.5pt!important}.code-box code{background:transparent!important;border:none!important}.bar-track{background:#e2e8f0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill.bar-kr{width:100%!important}.bar-fill.bar-cn{width:95%!important}.bar-fill.bar-us{width:72%!important}.info-card,.about-card,.skill-panel,.project-card,.stat-card,.cert-card,.troubleshoot,.timeline-item,.code-box,.takeaway,.arrow-list li,.svg-wrap{break-inside:avoid;page-break-inside:avoid}.section-heading,.minor-title,h2,h3,h4{break-after:avoid;page-break-after:avoid}.panel-grid-2,.about-grid,.skill-grid,.stats-grid{break-inside:auto;page-break-inside:auto}.panel-grid-2 > *,.about-grid > *,.skill-grid > *,.stats-grid > *{break-inside:avoid;page-break-inside:avoid}.svg-wrap svg{max-width:100%;height:auto}.svg-wrap{overflow:hidden!important}.skill-panel:hover{transform:none;box-shadow:none}.about-card:hover{transform:none}}
     </style>
   </head>
   <body>
+
+    <!-- 🔒 개인정보 보호 배너 -->
+    <div class="blur-notice-bar">
+      🔒 개인정보 보호 모드<span>— 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다</span>
+    </div>
+
     <nav class="site-nav" id="site-nav">
       <div class="container nav-inner">
         <a class="brand" href="#top" aria-label="맨 위로 이동">
           <span class="brand-mark">조</span>
           <span class="brand-name">조현준<span>.</span></span>
         </a>
-
         <div class="nav-links" id="nav-links">
           <a class="nav-link" href="#edu" data-section="edu">학력 / 어학</a>
           <a class="nav-link" href="#about" data-section="about">나에 대해</a>
           <a class="nav-link" href="#skills" data-section="skills">기술 스택</a>
           <a class="nav-link" href="#projects" data-section="projects">프로젝트</a>
         </div>
-
         <div class="nav-actions">
           <button class="button print-button js-print" type="button">📄 PDF</button>
-          <a class="button dark" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer">
+          <a class="button dark" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
-          <button class="nav-hamburger" id="nav-hamburger" aria-label="메뉴 열기">
-            <span></span><span></span><span></span>
-          </button>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
         </div>
       </div>
     </nav>
 
-    <!-- 모바일 드로어 -->
     <div class="nav-drawer" id="nav-drawer">
       <a class="drawer-link" href="#edu"><span class="dl-icon">🎓</span>학력 / 어학</a>
       <a class="drawer-link" href="#about"><span class="dl-icon">🙋</span>나에 대해</a>
@@ -2022,11 +330,10 @@
       <div class="drawer-divider"></div>
       <div class="drawer-actions">
         <button class="button js-print" type="button" style="flex:1">📄 PDF</button>
-        <a class="button dark" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer" style="flex:1">GitHub</a>
+        <a class="button dark" href="#" onclick="return false;" style="flex:1">GitHub</a>
       </div>
     </div>
 
-    <!-- 스크롤 진행 바 -->
     <div class="scroll-progress"><div class="scroll-progress-bar" id="scroll-bar"></div></div>
 
     <main id="top">
@@ -2036,51 +343,44 @@
           <div class="hero-orb green"></div>
           <div class="hero-line one"></div>
           <div class="hero-line two"></div>
-
+          <div class="hero-dots">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
         </div>
-
         <div class="container">
           <div class="hero-grid">
             <div class="hero-copy">
-              <div class="status-pill mono">
-                <span class="pulse-dot"></span>
-                <strong>2026.07</strong> 졸업 예정
-              </div>
-
+              <div class="status-pill mono"><span class="pulse-dot"></span><strong>2026.07</strong> 졸업 예정</div>
               <h1 class="hero-title">조현준<span>.</span></h1>
-
               <div class="typed-line mono">
                 <span class="typed-icon">&gt;_</span>
                 <span class="typed-text" data-typed></span>
                 <span class="cursor"></span>
               </div>
-
               <p class="hero-intro">
-                <strong>중국 소프트웨어공학 전국 1위, BUAA(북항대)</strong>에서 8년.<br />
+                <strong>중국 소프트웨어공학 전국 1위, <span class="pii">BUAA(북항대)</span></strong>에서 8년.<br />
                 OS 커널을 밑바닥부터 직접 구현하고, ECG AI 모델 AUC 92.52%를 달성한 시스템·AI 엔지니어입니다.
               </p>
-
               <div class="hero-actions">
                 <a class="button primary" href="#projects">프로젝트 보기</a>
-                <a class="button" href="mailto:kevinjo11@naver.com">연락하기</a>
+                <a class="button" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨">연락하기</a>
                 <button class="button js-print" type="button">PDF로 저장</button>
               </div>
             </div>
-
             <div class="hero-card-wrap">
               <article class="hero-card">
                 <div class="hero-card-mark">
-                    <img src="photo.jpg" alt="조현">
+                  <img src="photo.jpg" alt="조현준" class="pii-img" />
                 </div>
                 <h2 class="hero-card-title">조현준</h2>
                 <p class="hero-card-subtitle mono"><span class="subtitle-dot"></span>Systems &amp; AI Full-Stack Engineer</p>
-
                 <div class="badge-row mono">
                   <span class="tag green">TSC Lv.6(CN)</span>
                   <span class="tag teal">OPIc IH(ENG)</span>
-                  <span class="tag accent">BUAA · SW Engineering</span>
+                  <span class="tag accent"><span class="pii">BUAA</span> · SW Engineering</span>
                 </div>
-
                 <div class="hero-mini-grid">
                   <div class="mini-card"><strong>4</strong><span>주요 프로젝트</span></div>
                   <div class="mini-card"><strong>6</strong><span>TSC 중국어 레벨</span></div>
@@ -2090,11 +390,7 @@
               </article>
             </div>
           </div>
-
-          <div class="scroll-hint mono">
-            <div class="scroll-mouse"><span></span></div>
-            <span>⌄</span>
-          </div>
+          <div class="scroll-hint mono"><div class="scroll-mouse"><span></span></div><span>⌄</span></div>
         </div>
       </section>
 
@@ -2108,17 +404,17 @@
               <div class="timeline">
                 <div class="timeline-item">
                   <span class="timeline-point">●</span>
-                  <h4>北京汇文中学</h4>
-                  <p>북경 회문고등학교</p>
+                  <h4><span class="pii">北京汇文中学</span></h4>
+                  <p><span class="pii">북경 회문고등학교</span></p>
                   <small class="mono">2017.09 – 2020.07</small>
-                  <div style="margin-top:0.5rem"><span class="tag accent mono">🏅 150년 전통 북경 동성구 명문 공립고교</span></div>
+                  <div style="margin-top:.5rem"><span class="tag accent mono">🏅 150년 전통 북경 동성구 명문 공립고교</span></div>
                 </div>
                 <div class="timeline-item">
                   <span class="timeline-point">●</span>
-                  <h4>北京航空航天大学 (BUAA)</h4>
+                  <h4><span class="pii">北京航空航天大学 (BUAA)</span></h4>
                   <p>软件学院 (School of Software) · 학사</p>
                   <small class="mono">2020.09 – 2026.07 (졸업 예정)</small>
-                  <div style="margin-top:0.5rem"><span class="tag accent mono">🏅 소프트웨어공학 전국 1위 (A+)</span></div>
+                  <div style="margin-top:.5rem"><span class="tag accent mono">🏅 소프트웨어공학 전국 1위 (A+)</span></div>
                 </div>
               </div>
             </article>
@@ -2132,24 +428,24 @@
                   <div class="cert-copy">
                     <h4>TSC 중국어 회화 <span class="tag green mono">Level 6</span></h4>
                     <p class="mono">원어민 수준 비즈니스 커뮤니케이션</p>
-                    <small class="mono">ID: 100318 · 2025.10.25</small>
+                    <small class="mono">ID: <span class="pii">100318</span> · 2025.10.25</small>
                   </div>
-                  <a class="cert-dl-btn" href="TSC score.pdf" download="TSC_score.pdf" title="TSC 성적표 다운로드">
+                  <span class="cert-dl-btn" title="개인정보 보호를 위해 비활성화됨">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     PDF
-                  </a>
+                  </span>
                 </div>
                 <div class="cert-card">
                   <span class="cert-mark mono" style="background:var(--teal-lt);color:var(--teal)">US</span>
                   <div class="cert-copy">
                     <h4>OPIc 영어 회화 <span class="tag teal mono">IH · Intermediate High</span></h4>
                     <p class="mono">업무 환경에서 유창한 영어 소통</p>
-                    <small class="mono">ID: 2C5955731527 · 2025.12.22</small>
+                    <small class="mono">ID: <span class="pii">2C5955731527</span> · 2025.12.22</small>
                   </div>
-                  <a class="cert-dl-btn" href="OPIC score.pdf" download="OPIC_score.pdf" title="OPIc 성적표 다운로드">
+                  <span class="cert-dl-btn" title="개인정보 보호를 위해 비활성화됨">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     PDF
-                  </a>
+                  </span>
                 </div>
               </div>
               <div class="minor-title mono" style="margin-top:0">언어 능숙도</div>
@@ -2170,43 +466,20 @@
             <article class="about-card reveal">
               <span class="icon-box icon-accent">📚</span>
               <h3>학습 자세</h3>
-              <p class="body-text">
-                막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다.
-                새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고,
-                MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.
-              </p>
-              <div class="tag-list mono">
-                <span class="tag accent">🧐 가설 검증형</span>
-                <span class="tag accent">✍️ 문서화 습관</span>
-              </div>
+              <p class="body-text">막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.</p>
+              <div class="tag-list mono"><span class="tag accent">🧐 가설 검증형</span><span class="tag accent">✍️ 문서화 습관</span></div>
             </article>
-
             <article class="about-card reveal">
               <span class="icon-box icon-blue">🤝</span>
               <h3>협업 방식</h3>
-              <p class="body-text">
-                기술 스택 충돌을 <strong>데이터로 중재</strong>합니다.
-                성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다.
-                <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.
-              </p>
-              <div class="tag-list mono">
-                <span class="tag blue">🌐 한·중·영</span>
-                <span class="tag blue">📄 RFC 문서화</span>
-                <span class="tag slate">📊 데이터 기반 설득</span>
-              </div>
+              <p class="body-text">기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.</p>
+              <div class="tag-list mono"><span class="tag blue">🌐 한·중·영</span><span class="tag blue">📄 RFC 문서화</span><span class="tag slate">📊 데이터 기반 설득</span></div>
             </article>
-
             <article class="about-card reveal">
               <span class="icon-box icon-orange">🧗</span>
               <h3>취미 &amp; 라이프스타일</h3>
-              <p class="body-text">
-                <strong>암벽 클라이밍</strong>을 즐깁니다.<br />
-                최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.
-              </p>
-              <div class="tag-list mono">
-                <span class="tag orange">🧗 클라이밍</span>
-                <span class="tag orange">🧩 루트파인딩</span>
-              </div>
+              <p class="body-text"><strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.</p>
+              <div class="tag-list mono"><span class="tag orange">🧗 클라이밍</span><span class="tag orange">🧩 루트파인딩</span></div>
             </article>
           </div>
         </div>
@@ -2216,63 +489,12 @@
         <div class="container">
           <h2 class="section-heading">기술 스택</h2>
           <div class="skill-grid">
-            <article class="skill-panel wide reveal">
-              <div class="top-line top-accent"></div>
-              <div class="skill-label mono"><span class="dot-accent">●</span> 시스템 / 로우레벨</div>
-              <div class="chip-list">
-                <span class="chip tag accent"><i class="devicon-cplusplus-plain"></i> C / C++</span>
-                <span class="chip tag accent"><i class="devicon-java-plain"></i> Java</span>
-                <span class="chip tag accent">MIPS Assembly</span>
-                <span class="chip tag accent">OS Kernel</span>
-                <span class="chip tag accent">Compiler</span>
-              </div>
-            </article>
-            <article class="skill-panel reveal">
-              <div class="top-line top-green"></div>
-              <div class="skill-label mono"><span class="dot-green">●</span> 백엔드 / 데이터베이스</div>
-              <div class="chip-list">
-                <span class="chip tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
-                <span class="chip tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
-                <span class="chip tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
-                <span class="chip tag green"><i class="devicon-redis-plain"></i> Redis</span>
-              </div>
-            </article>
-            <article class="skill-panel reveal">
-              <div class="top-line top-teal"></div>
-              <div class="skill-label mono"><span class="dot-teal">●</span> 프론트엔드 (웹 / 모바일)</div>
-              <div class="chip-list">
-                <span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span>
-                <span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span>
-                <span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span>
-              </div>
-            </article>
-            <article class="skill-panel reveal">
-              <div class="top-line top-pink"></div>
-              <div class="skill-label mono"><span class="dot-pink">●</span> AI &amp; ML</div>
-              <div class="chip-list">
-                <span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span>
-                <span class="chip tag pink">CNN-CBAM-GRU</span>
-                <span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span>
-              </div>
-            </article>
-            <article class="skill-panel wide reveal">
-              <div class="top-line top-slate"></div>
-              <div class="skill-label mono"><span class="dot-slate">●</span> 인프라 / 협업</div>
-              <div class="chip-list">
-                <span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span>
-                <span class="chip tag slate">MinIO</span>
-                <span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span>
-                <span class="chip tag slate">RFC Docs</span>
-                <span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
-                <span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
-              </div>
-            </article>
-            <div class="skill-summary reveal">
-              <div class="summary-item"><span>💻</span><strong>6</strong><span>언어</span></div>
-              <div class="summary-item"><span>📦</span><strong>4</strong><span>프레임워크</span></div>
-              <div class="summary-item"><span>🐳</span><strong>6</strong><span>인프라 도구</span></div>
-              <div class="summary-item"><span>🧠</span><strong>2</strong><span>AI 모델 구현</span></div>
-            </div>
+            <article class="skill-panel wide reveal"><div class="top-line top-accent"></div><div class="skill-label mono"><span class="dot-accent">●</span> 시스템 / 로우레벨</div><div class="chip-list"><span class="chip tag accent"><i class="devicon-cplusplus-plain"></i> C / C++</span><span class="chip tag accent"><i class="devicon-java-plain"></i> Java</span><span class="chip tag accent">MIPS Assembly</span><span class="chip tag accent">OS Kernel</span><span class="chip tag accent">Compiler</span></div></article>
+            <article class="skill-panel reveal"><div class="top-line top-green"></div><div class="skill-label mono"><span class="dot-green">●</span> 백엔드 / 데이터베이스</div><div class="chip-list"><span class="chip tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="chip tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="chip tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span><span class="chip tag green"><i class="devicon-redis-plain"></i> Redis</span></div></article>
+            <article class="skill-panel reveal"><div class="top-line top-teal"></div><div class="skill-label mono"><span class="dot-teal">●</span> 프론트엔드 (웹 / 모바일)</div><div class="chip-list"><span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span><span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span><span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span></div></article>
+            <article class="skill-panel reveal"><div class="top-line top-pink"></div><div class="skill-label mono"><span class="dot-pink">●</span> AI &amp; ML</div><div class="chip-list"><span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span><span class="chip tag pink">CNN-CBAM-GRU</span><span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span></div></article>
+            <article class="skill-panel wide reveal"><div class="top-line top-slate"></div><div class="skill-label mono"><span class="dot-slate">●</span> 인프라 / 협업</div><div class="chip-list"><span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span><span class="chip tag slate">MinIO</span><span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span><span class="chip tag slate">RFC Docs</span><span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span><span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span></div></article>
+            <div class="skill-summary reveal"><div class="summary-item"><span>💻</span><strong>6</strong><span>언어</span></div><div class="summary-item"><span>📦</span><strong>4</strong><span>프레임워크</span></div><div class="summary-item"><span>🐳</span><strong>6</strong><span>인프라 도구</span></div><div class="summary-item"><span>🧠</span><strong>2</strong><span>AI 모델 구현</span></div></div>
           </div>
         </div>
       </section>
@@ -2281,6 +503,7 @@
         <div class="container">
           <h2 class="section-heading">프로젝트</h2>
 
+          <!-- PROJECT 01 -->
           <article class="project-card reveal is-open">
             <button class="project-toggle" type="button" aria-expanded="true" aria-controls="project-01-body">
               <span class="project-index mono">01</span>
@@ -2297,11 +520,9 @@
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
-
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
                 <p class="body-text">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
-
                 <div>
                   <h4 class="minor-title mono">주요 개발 내용 (Lab0 – Lab6)</h4>
                   <ul class="arrow-list">
@@ -2314,7 +535,6 @@
                     <li><strong>사용자 공간 파일시스템 (Lab6):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.</li>
                   </ul>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">트러블슈팅</h4>
                   <div class="troubleshoot">
@@ -2357,23 +577,15 @@
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span>
-                      <span class="tag accent">MIPS Assembly</span>
-                      <span class="tag slate">GXemul Simulator</span>
-                      <span class="tag accent">Microkernel</span>
-                      <span class="tag accent">IPC (Pipe)</span>
-                      <span class="tag accent">Virtual Memory</span>
-                      <span class="tag accent">File System</span>
-                    </div>
+                  <div class="tag-list mono"><span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
                 </div>
               </div>
             </div>
           </article>
 
+          <!-- PROJECT 02 -->
           <article class="project-card reveal">
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body">
               <span class="project-index mono">02</span>
@@ -2390,13 +602,9 @@
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
-
             <div class="project-body" id="project-02-body">
               <div class="project-inner">
-                <p class="body-text">
-                  SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>
-                  초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.
-                </p>
+                <p class="body-text">SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.</p>
                 <div>
                   <h4 class="minor-title mono">주요 개발 내용</h4>
                   <ul class="arrow-list">
@@ -2408,21 +616,15 @@
                     <li><strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.</li>
                   </ul>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">트러블슈팅</h4>
-                  <p class="body-text" style="margin-bottom: 0.75rem;">
-                    이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 
-                    그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.
-                  </p>
-                  <ul class="arrow-list" style="margin-bottom: 1.25rem;">
+                  <p class="body-text" style="margin-bottom:.75rem">이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.</p>
+                  <ul class="arrow-list" style="margin-bottom:1.25rem">
                     <li><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
                     <li><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
                     <li><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
                   </ul>
-                  <p class="body-text">
-                    아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color: #ef4444; font-weight: 900;">‘구문 누락 복구’</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.
-                  </p>
+                  <p class="body-text">아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">'구문 누락 복구'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.</p>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
                       <div class="troubleshoot-title">Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
@@ -2469,21 +671,15 @@
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C++17</span>
-                      <span class="tag accent"><i class="devicon-cmake-plain"></i> CMake</span>
-                      <span class="tag accent">Lexer / Parser</span>
-                      <span class="tag accent">P-Code VM</span>
-                      <span class="tag accent">Symbol Table</span>
-                    </div>
+                  <div class="tag-list mono"><span class="tag accent"><i class="devicon-cplusplus-plain"></i> C++17</span><span class="tag accent"><i class="devicon-cmake-plain"></i> CMake</span><span class="tag accent">Lexer / Parser</span><span class="tag accent">P-Code VM</span><span class="tag accent">Symbol Table</span></div>
                 </div>
               </div>
             </div>
           </article>
 
+          <!-- PROJECT 03 -->
           <article class="project-card reveal">
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body">
               <span class="project-index mono">03</span>
@@ -2500,22 +696,15 @@
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
-
             <div class="project-body" id="project-03-body">
               <div class="project-inner">
-                <p class="body-text">
-                    Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.
-                </p>
+                <p class="body-text">Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.</p>
                 <div>
                   <h4 class="minor-title mono">시스템 아키텍처</h4>
                   <div class="svg-wrap">
                     <p class="mono">System Architecture — Vue 3 · Spring Boot 3 · Maven · PostgreSQL 18 · Elasticsearch · Redis · MinIO · Vector Service · OpenAlex / ORCID / LLM</p>
                     <svg width="100%" viewBox="0 0 720 1020" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-                      <defs>
-                        <marker id="arrowAP2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </marker>
-                      </defs>
+                      <defs><marker id="arrowAP2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs>
                       <rect x="8" y="260" width="704" height="710" rx="16" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
                       <rect x="18" y="248" width="168" height="22" rx="5" fill="#f0f0ff"></rect>
                       <text x="102" y="263" text-anchor="middle" font-size="12" fill="#5b58ff" font-weight="700">Docker Compose 환경</text>
@@ -2597,7 +786,6 @@
                     </svg>
                   </div>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">주요 개발 내용</h4>
                   <ul class="arrow-list">
@@ -2607,7 +795,6 @@
                     <li><strong>프론트엔드 연동 및 통합:</strong> Vue 3 + TypeScript + Vite 환경과의 API 통신 구조 설계 및 프론트-백엔드 인터페이스 통합 수행.</li>
                   </ul>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">트러블슈팅</h4>
                   <div class="troubleshoot">
@@ -2651,26 +838,15 @@
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
-                      <span class="tag green"><i class="devicon-maven-plain"></i> Maven</span>
-                      <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
-                      <span class="tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
-                      <span class="tag green"><i class="devicon-redis-plain"></i> Redis</span>
-                      <span class="tag slate">MinIO</span>
-                      <span class="tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span>
-                      <span class="tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span>
-                      <span class="tag slate"><i class="devicon-docker-plain"></i> Docker Compose</span>
-                      <span class="tag teal"><i class="devicon-vite-plain"></i> Vite</span>
-                    </div>
+                  <div class="tag-list mono"><span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="tag green"><i class="devicon-maven-plain"></i> Maven</span><span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span><span class="tag green"><i class="devicon-redis-plain"></i> Redis</span><span class="tag slate">MinIO</span><span class="tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span><span class="tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span><span class="tag slate"><i class="devicon-docker-plain"></i> Docker Compose</span><span class="tag teal"><i class="devicon-vite-plain"></i> Vite</span></div>
                 </div>
               </div>
             </div>
           </article>
 
+          <!-- PROJECT 04 -->
           <article class="project-card reveal">
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body">
               <span class="project-index mono">04</span>
@@ -2687,7 +863,6 @@
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
-
             <div class="project-body" id="project-04-body">
               <div class="project-inner">
                 <p class="body-text">환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.</p>
@@ -2696,11 +871,7 @@
                   <div class="svg-wrap">
                     <p class="mono">System Architecture — React Native · Spring Boot · FastAPI · PostgreSQL · AWS EC2 + Docker</p>
                     <svg width="100%" viewBox="0 0 680 800" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
-                      <defs>
-                        <marker id="arrowCL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </marker>
-                      </defs>
+                      <defs><marker id="arrowCL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs>
                       <rect x="8" y="260" width="664" height="480" rx="14" fill="none" stroke="#5b58ff" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
                       <rect x="18" y="248" width="150" height="22" rx="5" fill="#f0f0ff"></rect>
                       <text x="93" y="262" text-anchor="middle" font-size="11" fill="#5b58ff" font-weight="700">AWS EC2 + Docker</text>
@@ -2769,7 +940,6 @@
                     </svg>
                   </div>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">주요 개발 내용</h4>
                   <ul class="arrow-list">
@@ -2778,7 +948,6 @@
                     <li><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.</li>
                   </ul>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">시스템 성능 최적화 및 평가 지표</h4>
                   <ul class="arrow-list">
@@ -2788,16 +957,14 @@
                     <li><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.</li>
                   </ul>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">ECG 분류 모델 성능</h4>
                   <ul class="arrow-list">
-                    <li><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:0.85em;">(comparison_results.csv 기준)</span></li>
+                    <li><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(comparison_results.csv 기준)</span></li>
                     <li><strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)</li>
                     <li><strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용</li>
                   </ul>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">트러블슈팅</h4>
                   <div class="troubleshoot">
@@ -2829,12 +996,12 @@
                           <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">docker-compose.ec2-lite.yml</span></div>
                           <pre><code><span style="color:#e06c75;">services:</span>
   <span style="color:#98c379;">backend:</span>
-    <span style="color:#d19a66;">image:</span> ghcr.io/zzooonn/carelink/backend:latest
+    <span style="color:#d19a66;">image:</span> <span class="pii">ghcr.io/zzooonn</span>/carelink/backend:latest
     <span style="color:#5c6370;"># build 섹션 제거 (EC2 내 빌드 방지)</span>
     <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">384m</span>
 
   <span style="color:#98c379;">ai:</span>
-    <span style="color:#d19a66;">image:</span> ghcr.io/zzooonn/carelink/ai:latest
+    <span style="color:#d19a66;">image:</span> <span class="pii">ghcr.io/zzooonn</span>/carelink/ai:latest
     <span style="color:#e06c75;">profiles:</span> <span style="color:#98c379;">["ai"]</span>
     <span style="color:#5c6370;"># 필요 시에만 분리 실행</span>
     <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">512m</span></code></pre>
@@ -2847,23 +1014,14 @@
                     </div>
                   </div>
                 </div>
-
                 <div>
                   <h4 class="minor-title mono">사용 기술</h4>
-                    <div class="tag-list mono">
-                      <span class="tag teal"><i class="devicon-react-original"></i> React Native</span>
-                      <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
-                      <span class="tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span>
-                      <span class="tag pink"><i class="devicon-python-plain"></i> Python</span>
-                      <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
-                      <span class="tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
-                      <span class="tag slate"><i class="devicon-docker-plain"></i> Docker</span>
-                      <span class="tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
-                    </div>
+                  <div class="tag-list mono"><span class="tag teal"><i class="devicon-react-original"></i> React Native</span><span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span><span class="tag pink"><i class="devicon-python-plain"></i> Python</span><span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span><span class="tag slate"><i class="devicon-docker-plain"></i> Docker</span><span class="tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span></div>
                 </div>
               </div>
             </div>
           </article>
+
         </div>
       </section>
     </main>
@@ -2879,289 +1037,96 @@
                 <small class="mono">Systems &amp; AI Full-Stack Engineer</small>
               </div>
             </div>
-            <div class="footer-copy" style="margin-top:0.5rem">BUAA 2026.07 졸업 예정</div>
+            <div class="footer-copy" style="margin-top:.5rem">BUAA 2026.07 졸업 예정</div>
           </div>
           <div></div>
           <nav class="footer-nav">
-            <a href="#edu">학력 / 어학</a>
-            <a href="#about">나에 대해</a>
-            <a href="#skills">기술 스택</a>
-            <a href="#projects">프로젝트</a>
+            <a href="#edu">학력 / 어학</a><a href="#about">나에 대해</a>
+            <a href="#skills">기술 스택</a><a href="#projects">프로젝트</a>
           </nav>
         </div>
-
         <div class="footer-bottom">
           <span class="footer-copy mono">© 2026 조현준 포트폴리오</span>
           <div class="footer-actions">
-            <a class="icon-link" href="mailto:kevinjo11@naver.com" aria-label="메일 보내기">✉</a>
-            <a class="icon-link" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer" aria-label="GitHub 열기"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a class="icon-link" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨" aria-label="메일 비활성화">✉</a>
+            <a class="icon-link" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨" aria-label="GitHub 비활성화"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
             <a class="icon-link js-top" href="#top" aria-label="맨 위로 이동">↑</a>
           </div>
         </div>
       </div>
     </footer>
-    <script>
-    /* ================================================================
-       1. 타이핑 효과
-    ================================================================ */
-    const roles = ["Compiler Engineer", "OS Kernel Developer", "Full-Stack Engineer", "AI Systems Builder"];
-    const typedTarget = document.querySelector("[data-typed]");
-    let roleIndex = 0, charIndex = 0, deleting = false;
 
-    function typeTick() {
-      if (!typedTarget) return;
-      const current = roles[roleIndex];
-      if (!deleting) {
-        charIndex++;
-        typedTarget.textContent = current.slice(0, charIndex);
-        if (charIndex === current.length) { deleting = true; setTimeout(typeTick, 2200); return; }
-      } else {
-        charIndex--;
-        typedTarget.textContent = current.slice(0, charIndex);
-        if (charIndex === 0) { deleting = false; roleIndex = (roleIndex + 1) % roles.length; }
-      }
-      setTimeout(typeTick, deleting ? 48 : 88);
+    <!-- 🔒 블러 토글 버튼 -->
+    <button class="blur-toggle-bar" id="blur-toggle" type="button">
+      🔒 개인정보 블러 켜짐 — 클릭하여 해제
+    </button>
+
+    <script>
+    /* ── 1. 타이핑 효과 ── */
+    const roles = ["Compiler Engineer","OS Kernel Developer","Full-Stack Engineer","AI Systems Builder"];
+    const typedTarget = document.querySelector("[data-typed]");
+    let roleIndex=0,charIndex=0,deleting=false;
+    function typeTick(){
+      if(!typedTarget)return;
+      const current=roles[roleIndex];
+      if(!deleting){charIndex++;typedTarget.textContent=current.slice(0,charIndex);if(charIndex===current.length){deleting=true;setTimeout(typeTick,2200);return;}}
+      else{charIndex--;typedTarget.textContent=current.slice(0,charIndex);if(charIndex===0){deleting=false;roleIndex=(roleIndex+1)%roles.length;}}
+      setTimeout(typeTick,deleting?48:88);
     }
     typeTick();
 
-    /* ================================================================
-       2. 스크롤 진행 바
-    ================================================================ */
-    const scrollBar = document.getElementById('scroll-bar');
-    const nav = document.getElementById('site-nav');
+    /* ── 2. 스크롤 진행 바 ── */
+    const scrollBar=document.getElementById('scroll-bar');const nav=document.getElementById('site-nav');
+    function updateScrollProgress(){const total=document.documentElement.scrollHeight-window.innerHeight;const pct=total>0?(window.scrollY/total)*100:0;if(scrollBar)scrollBar.style.width=pct+'%';if(nav)nav.classList.toggle('scrolled',window.scrollY>10);}
+    window.addEventListener('scroll',updateScrollProgress,{passive:true});updateScrollProgress();
 
-    function updateScrollProgress() {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
-      if (scrollBar) scrollBar.style.width = pct + '%';
-      if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
-    }
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
-    updateScrollProgress();
+    /* ── 3. Reveal ── */
+    const revealObserver=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);revealObserver.unobserve(entry.target);}});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 
-    /* ================================================================
-       3. Reveal (Intersection Observer) - 스태거 포함
-    ================================================================ */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    /* ── 4. 언어 프로그레스 바 ── */
+    const barsContainer=document.querySelector('[data-language-bars]');
+    if(barsContainer){const barsObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.querySelectorAll('.bar-fill').forEach(bar=>{bar.style.width=bar.dataset.width||'0';});barsObserver.unobserve(entry.target);}});},{threshold:0.35});barsObserver.observe(barsContainer);}
 
-    /* ================================================================
-       4. 언어 프로그레스 바
-    ================================================================ */
-    const barsContainer = document.querySelector('[data-language-bars]');
-    if (barsContainer) {
-      const barsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.bar-fill').forEach(bar => {
-              bar.style.width = bar.dataset.width || '0';
-            });
-            barsObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.35 });
-      barsObserver.observe(barsContainer);
-    }
+    /* ── 5. 숫자 카운터 ── */
+    function animateCounter(el){const text=el.textContent.trim();const num=parseFloat(text);if(isNaN(num))return;const suffix=text.replace(/[\d.]/g,'');const duration=1200;const start=performance.now();function tick(now){const elapsed=now-start;const progress=Math.min(elapsed/duration,1);const eased=1-Math.pow(1-progress,3);const current=Math.round(num*eased*10)/10;el.textContent=Number.isInteger(num)?Math.round(current)+suffix:current+suffix;if(progress<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
+    const counterObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.querySelectorAll('strong').forEach(el=>animateCounter(el));counterObserver.unobserve(entry.target);}});},{threshold:0.5});
+    document.querySelectorAll('.stats-grid,.hero-mini-grid,.skill-summary').forEach(el=>counterObserver.observe(el));
 
-    /* ================================================================
-       5. 숫자 카운터 애니메이션
-    ================================================================ */
-    function animateCounter(el) {
-      const text = el.textContent.trim();
-      const num = parseFloat(text);
-      if (isNaN(num)) return;
-      const suffix = text.replace(/[\d.]/g, '');
-      const duration = 1200;
-      const start = performance.now();
+    /* ── 6. 네비게이션 active ── */
+    const navLinks=Array.from(document.querySelectorAll('.nav-link'));const drawerLinks=Array.from(document.querySelectorAll('.drawer-link'));const sections=Array.from(document.querySelectorAll('main section[id]'));
+    function syncActiveLink(){let current='';const offset=window.scrollY+130;sections.forEach(s=>{if(offset>=s.offsetTop)current=s.id;});navLinks.forEach(a=>a.classList.toggle('active',a.dataset.section===current));drawerLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));}
+    syncActiveLink();window.addEventListener('scroll',syncActiveLink,{passive:true});
 
-      function tick(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(num * eased * 10) / 10;
-        el.textContent = Number.isInteger(num) ? Math.round(current) + suffix : current + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
+    /* ── 7. 햄버거 메뉴 ── */
+    const hamburger=document.getElementById('nav-hamburger');const drawer=document.getElementById('nav-drawer');let drawerOpen=false;
+    if(hamburger&&drawer){hamburger.addEventListener('click',()=>{drawerOpen=!drawerOpen;hamburger.classList.toggle('open',drawerOpen);drawer.classList.toggle('open',drawerOpen);hamburger.setAttribute('aria-label',drawerOpen?'메뉴 닫기':'메뉴 열기');});drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawerOpen=false;hamburger.classList.remove('open');drawer.classList.remove('open');});});}
 
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('strong').forEach(el => animateCounter(el));
-          counterObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+    /* ── 8. 기술 칩 파티클 ── */
+    const chipColors={accent:['#7c7afe','#a78bfa','#c4b5fd'],green:['#34d399','#6ee7b7','#10b981'],teal:['#38bdf8','#7dd3fc','#0ea5e9'],pink:['#f472b6','#f9a8d4','#ec4899'],slate:['#94a3b8','#cbd5e1','#64748b']};
+    function spawnParticles(x,y,colors){for(let i=0;i<8;i++){const p=document.createElement('div');p.className='chip-particle';const size=5+Math.random()*6;const angle=(Math.PI*2*i)/8+Math.random()*.5;const dist=30+Math.random()*40;const tx=Math.cos(angle)*dist;const ty=Math.sin(angle)*dist-20;p.style.cssText=`left:${x}px;top:${y}px;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};--tx:${tx}px;--ty:${ty}px;margin-left:${-size/2}px;margin-top:${-size/2}px;`;document.body.appendChild(p);p.addEventListener('animationend',()=>p.remove());}}
+    document.querySelectorAll('.chip').forEach(chip=>{chip.addEventListener('click',e=>{const rect=chip.getBoundingClientRect();const cx=rect.left+rect.width/2;const cy=rect.top+rect.height/2;let colors=chipColors.slate;if(chip.classList.contains('accent'))colors=chipColors.accent;else if(chip.classList.contains('green'))colors=chipColors.green;else if(chip.classList.contains('teal'))colors=chipColors.teal;else if(chip.classList.contains('pink'))colors=chipColors.pink;spawnParticles(cx,cy,colors);chip.classList.remove('bouncing');void chip.offsetWidth;chip.classList.add('bouncing');chip.addEventListener('animationend',()=>chip.classList.remove('bouncing'),{once:true});});});
 
-    document.querySelectorAll('.stats-grid, .hero-mini-grid, .skill-summary').forEach(el => {
-      counterObserver.observe(el);
-    });
+    /* ── 9. 프로젝트 아코디언 ── */
+    const projectCards=Array.from(document.querySelectorAll('.project-card'));
+    projectCards.forEach(card=>{const toggle=card.querySelector('.project-toggle');if(!toggle)return;toggle.addEventListener('click',()=>{const isOpen=card.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(isOpen));});});
+    let beforePrintStates=[];
+    window.addEventListener('beforeprint',()=>{beforePrintStates=projectCards.map(c=>c.classList.contains('is-open'));projectCards.forEach(c=>{c.classList.add('is-open');const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded','true');});});
+    window.addEventListener('afterprint',()=>{projectCards.forEach((c,i)=>{c.classList.toggle('is-open',beforePrintStates[i]);const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded',String(beforePrintStates[i]));});});
 
-    /* ================================================================
-       6. 네비게이션 active 링크
-    ================================================================ */
-    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-    const drawerLinks = Array.from(document.querySelectorAll('.drawer-link'));
-    const sections = Array.from(document.querySelectorAll('main section[id]'));
+    /* ── 10. PDF ── */
+    document.querySelectorAll('.js-print').forEach(b=>b.addEventListener('click',()=>window.print()));
 
-    function syncActiveLink() {
-      let current = '';
-      const offset = window.scrollY + 130;
-      sections.forEach(s => { if (offset >= s.offsetTop) current = s.id; });
-      navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current));
-      drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-    }
-    syncActiveLink();
-    window.addEventListener('scroll', syncActiveLink, { passive: true });
+    /* ── 11. 맨 위로 ── */
+    document.querySelectorAll('.js-top').forEach(b=>{b.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});});
 
-    /* ================================================================
-       7. 모바일 햄버거 + 드로어
-    ================================================================ */
-    const hamburger = document.getElementById('nav-hamburger');
-    const drawer = document.getElementById('nav-drawer');
-    let drawerOpen = false;
+    /* ── 12. PII 블러 토글 ── */
+    const blurToggle=document.getElementById('blur-toggle');
+    let blurOn=true;
+    blurToggle.addEventListener('click',()=>{blurOn=!blurOn;document.body.classList.toggle('pii-off',!blurOn);blurToggle.textContent=blurOn?'🔒 개인정보 블러 켜짐 — 클릭하여 해제':'🔓 개인정보 노출 중 — 클릭하여 재활성화';});
 
-    if (hamburger && drawer) {
-      hamburger.addEventListener('click', () => {
-        drawerOpen = !drawerOpen;
-        hamburger.classList.toggle('open', drawerOpen);
-        drawer.classList.toggle('open', drawerOpen);
-        hamburger.setAttribute('aria-label', drawerOpen ? '메뉴 닫기' : '메뉴 열기');
-      });
-
-      drawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          drawerOpen = false;
-          hamburger.classList.remove('open');
-          drawer.classList.remove('open');
-        });
-      });
-    }
-
-    /* ================================================================
-       8. 기술 칩 클릭 파티클 효과
-    ================================================================ */
-    const chipColors = {
-      accent: ['#7c7afe','#a78bfa','#c4b5fd'],
-      green:  ['#34d399','#6ee7b7','#10b981'],
-      teal:   ['#38bdf8','#7dd3fc','#0ea5e9'],
-      pink:   ['#f472b6','#f9a8d4','#ec4899'],
-      slate:  ['#94a3b8','#cbd5e1','#64748b'],
-    };
-
-    function spawnParticles(x, y, colors) {
-      for (let i = 0; i < 8; i++) {
-        const p = document.createElement('div');
-        p.className = 'chip-particle';
-        const size = 5 + Math.random() * 6;
-        const angle = (Math.PI * 2 * i) / 8 + Math.random() * 0.5;
-        const dist = 30 + Math.random() * 40;
-        const tx = Math.cos(angle) * dist;
-        const ty = Math.sin(angle) * dist - 20;
-        p.style.cssText = `
-          left:${x}px; top:${y}px;
-          width:${size}px; height:${size}px;
-          background:${colors[Math.floor(Math.random() * colors.length)]};
-          --tx:${tx}px; --ty:${ty}px;
-          margin-left:${-size/2}px; margin-top:${-size/2}px;
-        `;
-        document.body.appendChild(p);
-        p.addEventListener('animationend', () => p.remove());
-      }
-    }
-
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', e => {
-        const rect = chip.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-
-        // 색상 감지
-        let colors = chipColors.slate;
-        if (chip.classList.contains('accent')) colors = chipColors.accent;
-        else if (chip.classList.contains('green')) colors = chipColors.green;
-        else if (chip.classList.contains('teal'))  colors = chipColors.teal;
-        else if (chip.classList.contains('pink'))  colors = chipColors.pink;
-
-        spawnParticles(cx, cy, colors);
-
-        chip.classList.remove('bouncing');
-        void chip.offsetWidth; // reflow
-        chip.classList.add('bouncing');
-        chip.addEventListener('animationend', () => chip.classList.remove('bouncing'), { once: true });
-      });
-    });
-
-    /* ================================================================
-       9. 프로젝트 아코디언
-    ================================================================ */
-    const projectCards = Array.from(document.querySelectorAll('.project-card'));
-    projectCards.forEach(card => {
-      const toggle = card.querySelector('.project-toggle');
-      if (!toggle) return;
-      toggle.addEventListener('click', () => {
-        const isOpen = card.classList.toggle('is-open');
-        toggle.setAttribute('aria-expanded', String(isOpen));
-      });
-    });
-
-    let beforePrintStates = [];
-    window.addEventListener('beforeprint', () => {
-      beforePrintStates = projectCards.map(c => c.classList.contains('is-open'));
-      projectCards.forEach(c => {
-        c.classList.add('is-open');
-        const t = c.querySelector('.project-toggle');
-        if (t) t.setAttribute('aria-expanded', 'true');
-      });
-    });
-    window.addEventListener('afterprint', () => {
-      projectCards.forEach((c, i) => {
-        c.classList.toggle('is-open', beforePrintStates[i]);
-        const t = c.querySelector('.project-toggle');
-        if (t) t.setAttribute('aria-expanded', String(beforePrintStates[i]));
-      });
-    });
-
-    /* ================================================================
-       10. PDF 인쇄
-    ================================================================ */
-    document.querySelectorAll('.js-print').forEach(b => b.addEventListener('click', () => window.print()));
-
-    /* ================================================================
-       11. 맨 위로
-    ================================================================ */
-    document.querySelectorAll('.js-top').forEach(b => {
-      b.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    });
-
-    /* ================================================================
-       12. 스킬 패널 마우스 Tilt 효과 (데스크탑만)
-    ================================================================ */
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      document.querySelectorAll('.skill-panel').forEach(panel => {
-        panel.addEventListener('mousemove', e => {
-          const r = panel.getBoundingClientRect();
-          const x = ((e.clientX - r.left) / r.width  - 0.5) * 6;
-          const y = ((e.clientY - r.top)  / r.height - 0.5) * 6;
-          panel.style.transform = `perspective(600px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;
-        });
-        panel.addEventListener('mouseleave', () => {
-          panel.style.transform = '';
-          panel.style.transition = 'transform 0.4s var(--ease)';
-        });
-        panel.addEventListener('mouseenter', () => {
-          panel.style.transition = 'transform 0.12s ease';
-        });
-      });
-    }
+    /* ── 13. 스킬 패널 틸트 ── */
+    if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){document.querySelectorAll('.skill-panel').forEach(panel=>{panel.addEventListener('mousemove',e=>{const r=panel.getBoundingClientRect();const x=((e.clientX-r.left)/r.width-.5)*6;const y=((e.clientY-r.top)/r.height-.5)*6;panel.style.transform=`perspective(600px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;});panel.addEventListener('mouseleave',()=>{panel.style.transform='';panel.style.transition='transform 0.4s var(--ease)';});panel.addEventListener('mouseenter',()=>{panel.style.transition='transform 0.12s ease';});});}
     </script>
   </body>
 </html>
