@@ -289,14 +289,42 @@
       .about-card{border-bottom:3px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s ease}
       .about-card:nth-child(1):hover{border-color:#7c3aed}.about-card:nth-child(2):hover{border-color:#c2410c}.about-card:nth-child(3):hover{border-color:#1d4ed8}
       .code-box{overflow-x:auto;-webkit-overflow-scrolling:touch}.code-box pre{white-space:pre;overflow-x:visible}
-      @media print{.site-nav,.scroll-hint,.scroll-progress,.nav-drawer,.hero-bg,.footer-actions,.cert-dl-btn,.hero-actions .button:nth-child(2),.hero-actions .button:nth-child(3),.project-chevron,.blur-notice-bar,.blur-toggle-bar{display:none!important}body{background:#fff!important;font-size:11.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding-top:0}.section,.footer{padding:1rem 0}.container{width:100%!important;padding:0 1.2rem!important}.hero-grid{grid-template-columns:1fr!important}.hero-card-wrap{display:none!important}.stats-grid{grid-template-columns:repeat(2,1fr)!important;margin-top:0}*,*::before,*::after{animation:none!important;transition:none!important}.hero-copy > *,.hero-card-wrap,.reveal{opacity:1!important;transform:none!important;filter:none!important}.pii,.pii-img{filter:none!important}.project-body{max-height:none!important;opacity:1!important}.project-inner{padding-top:1.2rem!important;border-top:1px solid #e2e8f0!important}.project-toggle{background:transparent!important;padding-bottom:0!important}.troubleshoot-grid{grid-template-columns:1fr!important}.code-box{background:var(--code-bg)!important;border:1px solid #2d3139!important;box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:visible!important}.code-top{background:var(--code-bg)!important;color:#a0a7b4!important;border-bottom:1px solid #2d3139!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.code-box pre{color:#abb2bf!important;background:transparent!important;white-space:pre-wrap!important;word-break:break-all!important;font-size:7.5pt!important}.code-box code{background:transparent!important;border:none!important}.bar-track{background:#e2e8f0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill.bar-kr{width:100%!important}.bar-fill.bar-cn{width:95%!important}.bar-fill.bar-us{width:72%!important}.info-card,.about-card,.skill-panel,.project-card,.stat-card,.cert-card,.troubleshoot,.timeline-item,.code-box,.takeaway,.arrow-list li,.svg-wrap{break-inside:avoid;page-break-inside:avoid}.section-heading,.minor-title,h2,h3,h4{break-after:avoid;page-break-after:avoid}.panel-grid-2,.about-grid,.skill-grid,.stats-grid{break-inside:auto;page-break-inside:auto}.panel-grid-2 > *,.about-grid > *,.skill-grid > *,.stats-grid > *{break-inside:avoid;page-break-inside:avoid}.svg-wrap svg{max-width:100%;height:auto}.svg-wrap{overflow:hidden!important}.skill-panel:hover{transform:none;box-shadow:none}.about-card:hover{transform:none}}
+      /* ══════════════════════════════════
+         LANGUAGE SWITCHER
+      ══════════════════════════════════ */
+      .lang-switcher {
+        position: fixed; bottom: 5.5rem; right: 1.5rem;
+        z-index: 300;
+        display: flex;
+        border: 1.5px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 8px 32px rgba(15,23,42,.15);
+        overflow: hidden;
+      }
+      .lang-btn {
+        padding: .6rem .9rem;
+        border: none; background: transparent;
+        color: var(--text-3);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: .78rem; font-weight: 700;
+        cursor: pointer;
+        transition: background .2s, color .2s;
+      }
+      .lang-btn + .lang-btn { border-left: 1px solid var(--border); }
+      .lang-btn.active { background: var(--primary); color: #fff; }
+      .lang-btn:not(.active):hover { background: var(--accent-lt); color: var(--primary); }
+
+      @media print{.site-nav,.scroll-hint,.scroll-progress,.nav-drawer,.hero-bg,.footer-actions,.cert-dl-btn,.hero-actions .button:nth-child(2),.hero-actions .button:nth-child(3),.project-chevron,.blur-notice-bar,.blur-toggle-bar{display:none!important}body{background:#fff!important;font-size:11.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding-top:0}.section,.footer{padding:1rem 0}.container{width:100%!important;padding:0 1.2rem!important}.hero-grid{grid-template-columns:1fr!important}.hero-card-wrap{display:none!important}.stats-grid{grid-template-columns:repeat(2,1fr)!important;margin-top:0}*,*::before,*::after{animation:none!important;transition:none!important}.hero-copy > *,.hero-card-wrap,.reveal{opacity:1!important;transform:none!important;filter:none!important}.pii,.pii-img{filter:none!important}.project-body{max-height:none!important;opacity:1!important}.project-inner{padding-top:1.2rem!important;border-top:1px solid #e2e8f0!important}.project-toggle{background:transparent!important;padding-bottom:0!important}.troubleshoot-grid{grid-template-columns:1fr!important}.code-box{background:var(--code-bg)!important;border:1px solid #2d3139!important;box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:visible!important}.code-top{background:var(--code-bg)!important;color:#a0a7b4!important;border-bottom:1px solid #2d3139!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.code-box pre{color:#abb2bf!important;background:transparent!important;white-space:pre-wrap!important;word-break:break-all!important;font-size:7.5pt!important}.code-box code{background:transparent!important;border:none!important}.bar-track{background:#e2e8f0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill.bar-kr{width:100%!important}.bar-fill.bar-cn{width:95%!important}.bar-fill.bar-us{width:72%!important}.info-card,.about-card,.skill-panel,.project-card,.stat-card,.cert-card,.troubleshoot,.timeline-item,.code-box,.takeaway,.arrow-list li,.svg-wrap{break-inside:avoid;page-break-inside:avoid}.section-heading,.minor-title,h2,h3,h4{break-after:avoid;page-break-after:avoid}.panel-grid-2,.about-grid,.skill-grid,.stats-grid{break-inside:auto;page-break-inside:auto}.panel-grid-2 > *,.about-grid > *,.skill-grid > *,.stats-grid > *{break-inside:avoid;page-break-inside:avoid}.svg-wrap svg{max-width:100%;height:auto}.svg-wrap{overflow:hidden!important}.skill-panel:hover{transform:none;box-shadow:none}.about-card:hover{transform:none}.lang-switcher{display:none!important}}
     </style>
   </head>
   <body>
 
     <!-- 🔒 개인정보 보호 배너 -->
     <div class="blur-notice-bar">
-      🔒 개인정보 보호 모드<span>— 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다</span>
+      <span data-i18n="pii.banner.title">🔒 개인정보 보호 모드</span><span data-i18n="pii.banner.sub"> — 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다</span>
     </div>
 
     <nav class="site-nav" id="site-nav">
@@ -306,10 +334,10 @@
           <span class="brand-name">조현준<span>.</span></span>
         </a>
         <div class="nav-links" id="nav-links">
-          <a class="nav-link" href="#edu" data-section="edu">학력 / 어학</a>
-          <a class="nav-link" href="#about" data-section="about">나에 대해</a>
-          <a class="nav-link" href="#skills" data-section="skills">기술 스택</a>
-          <a class="nav-link" href="#projects" data-section="projects">프로젝트</a>
+          <a class="nav-link" href="#edu" data-section="edu" data-i18n="nav.edu">학력 / 어학</a>
+          <a class="nav-link" href="#about" data-section="about" data-i18n="nav.about">나에 대해</a>
+          <a class="nav-link" href="#skills" data-section="skills" data-i18n="nav.skills">기술 스택</a>
+          <a class="nav-link" href="#projects" data-section="projects" data-i18n="nav.projects">프로젝트</a>
         </div>
         <div class="nav-actions">
           <button class="button print-button js-print" type="button">📄 PDF</button>
@@ -323,10 +351,10 @@
     </nav>
 
     <div class="nav-drawer" id="nav-drawer">
-      <a class="drawer-link" href="#edu"><span class="dl-icon">🎓</span>학력 / 어학</a>
-      <a class="drawer-link" href="#about"><span class="dl-icon">🙋</span>나에 대해</a>
-      <a class="drawer-link" href="#skills"><span class="dl-icon">🛠️</span>기술 스택</a>
-      <a class="drawer-link" href="#projects"><span class="dl-icon">📁</span>프로젝트</a>
+      <a class="drawer-link" href="#edu"><span class="dl-icon">🎓</span><span data-i18n="nav.edu">학력 / 어학</span></a>
+      <a class="drawer-link" href="#about"><span class="dl-icon">🙋</span><span data-i18n="nav.about">나에 대해</span></a>
+      <a class="drawer-link" href="#skills"><span class="dl-icon">🛠️</span><span data-i18n="nav.skills">기술 스택</span></a>
+      <a class="drawer-link" href="#projects"><span class="dl-icon">📁</span><span data-i18n="nav.projects">프로젝트</span></a>
       <div class="drawer-divider"></div>
       <div class="drawer-actions">
         <button class="button js-print" type="button" style="flex:1">📄 PDF</button>
@@ -352,21 +380,21 @@
         <div class="container">
           <div class="hero-grid">
             <div class="hero-copy">
-              <div class="status-pill mono"><span class="pulse-dot"></span><strong>2026.07</strong> 졸업 예정</div>
+              <div class="status-pill mono"><span class="pulse-dot"></span><strong>2026.07</strong> <span data-i18n="hero.status">졸업 예정</span></div>
               <h1 class="hero-title">조현준<span>.</span></h1>
               <div class="typed-line mono">
                 <span class="typed-icon">&gt;_</span>
                 <span class="typed-text" data-typed></span>
                 <span class="cursor"></span>
               </div>
-              <p class="hero-intro">
+              <p class="hero-intro" data-i18n-html="hero.intro">
                 <strong>중국 소프트웨어공학 전국 1위, <span class="pii">BUAA(북항대)</span></strong>에서 8년.<br />
                 OS 커널을 밑바닥부터 직접 구현하고, ECG AI 모델 AUC 92.52%를 달성한 시스템·AI 엔지니어입니다.
               </p>
               <div class="hero-actions">
-                <a class="button primary" href="#projects">프로젝트 보기</a>
-                <a class="button" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨">연락하기</a>
-                <button class="button js-print" type="button">PDF로 저장</button>
+                <a class="button primary" href="#projects" data-i18n="hero.cta.projects">프로젝트 보기</a>
+                <a class="button" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨" data-i18n="hero.cta.contact">연락하기</a>
+                <button class="button js-print" type="button" data-i18n="hero.cta.pdf">PDF로 저장</button>
               </div>
             </div>
             <div class="hero-card-wrap">
@@ -382,10 +410,10 @@
                   <span class="tag accent"><span class="pii">BUAA</span> · SW Engineering</span>
                 </div>
                 <div class="hero-mini-grid">
-                  <div class="mini-card"><strong>4</strong><span>주요 프로젝트</span></div>
-                  <div class="mini-card"><strong>6</strong><span>TSC 중국어 레벨</span></div>
-                  <div class="mini-card"><strong>A+</strong><span>SW 전국 1등급 학교</span></div>
-                  <div class="mini-card"><strong>3</strong><span>한·중·영</span></div>
+                  <div class="mini-card"><strong>4</strong><span data-i18n="hero.stat1">주요 프로젝트</span></div>
+                  <div class="mini-card"><strong>6</strong><span data-i18n="hero.stat2">TSC 중국어 레벨</span></div>
+                  <div class="mini-card"><strong>A+</strong><span data-i18n="hero.stat3">SW 전국 1등급 학교</span></div>
+                  <div class="mini-card"><strong>3</strong><span data-i18n="hero.stat4">한·중·영</span></div>
                 </div>
               </article>
             </div>
@@ -396,38 +424,38 @@
 
       <section id="edu" class="section">
         <div class="container">
-          <h2 class="section-heading">학력 &amp; 어학</h2>
+          <h2 class="section-heading" data-i18n="section.edu">학력 &amp; 어학</h2>
           <div class="panel-grid-2">
             <article class="info-card reveal">
               <div class="top-line top-accent"></div>
-              <div class="card-header"><span class="icon-box icon-accent">🎓</span><h3>학력</h3></div>
+              <div class="card-header"><span class="icon-box icon-accent">🎓</span><h3 data-i18n="edu.education">학력</h3></div>
               <div class="timeline">
                 <div class="timeline-item">
                   <span class="timeline-point">●</span>
                   <h4><span class="pii">北京汇文中学</span></h4>
-                  <p><span class="pii">북경 회문고등학교</span></p>
+                  <p data-i18n-html="edu.school1.p"><span class="pii">북경 회문고등학교</span></p>
                   <small class="mono">2017.09 – 2020.07</small>
-                  <div style="margin-top:.5rem"><span class="tag accent mono">🏅 150년 전통 북경 동성구 명문 공립고교</span></div>
+                  <div style="margin-top:.5rem"><span class="tag accent mono" data-i18n="edu.school1.tag">🏅 150년 전통 북경 동성구 명문 공립고교</span></div>
                 </div>
                 <div class="timeline-item">
                   <span class="timeline-point">●</span>
                   <h4><span class="pii">北京航空航天大学 (BUAA)</span></h4>
-                  <p>软件学院 (School of Software) · 학사</p>
-                  <small class="mono">2020.09 – 2026.07 (졸업 예정)</small>
-                  <div style="margin-top:.5rem"><span class="tag accent mono">🏅 소프트웨어공학 전국 1위 (A+)</span></div>
+                  <p data-i18n="edu.school2.p">软件学院 (School of Software) · 학사</p>
+                  <small class="mono" data-i18n="edu.school2.small">2020.09 – 2026.07 (졸업 예정)</small>
+                  <div style="margin-top:.5rem"><span class="tag accent mono" data-i18n="edu.school2.tag">🏅 소프트웨어공학 전국 1위 (A+)</span></div>
                 </div>
               </div>
             </article>
 
             <article class="info-card reveal">
               <div class="top-line top-green"></div>
-              <div class="card-header"><span class="icon-box icon-green">🌐</span><h3>어학</h3></div>
+              <div class="card-header"><span class="icon-box icon-green">🌐</span><h3 data-i18n="edu.lang">어학</h3></div>
               <div class="cert-list">
                 <div class="cert-card">
                   <span class="cert-mark mono" style="background:var(--green-lt);color:var(--green)">CN</span>
                   <div class="cert-copy">
-                    <h4>TSC 중국어 회화 <span class="tag green mono">Level 6</span></h4>
-                    <p class="mono">원어민 수준 비즈니스 커뮤니케이션</p>
+                    <h4 data-i18n-html="edu.tsc.title">TSC 중국어 회화 <span class="tag green mono">Level 6</span></h4>
+                    <p class="mono" data-i18n="edu.tsc.desc">원어민 수준 비즈니스 커뮤니케이션</p>
                     <small class="mono">ID: <span class="pii">100318</span> · 2025.10.25</small>
                   </div>
                   <span class="cert-dl-btn" title="개인정보 보호를 위해 비활성화됨">
@@ -438,8 +466,8 @@
                 <div class="cert-card">
                   <span class="cert-mark mono" style="background:var(--teal-lt);color:var(--teal)">US</span>
                   <div class="cert-copy">
-                    <h4>OPIc 영어 회화 <span class="tag teal mono">IH · Intermediate High</span></h4>
-                    <p class="mono">업무 환경에서 유창한 영어 소통</p>
+                    <h4 data-i18n-html="edu.opic.title">OPIc 영어 회화 <span class="tag teal mono">IH · Intermediate High</span></h4>
+                    <p class="mono" data-i18n="edu.opic.desc">업무 환경에서 유창한 영어 소통</p>
                     <small class="mono">ID: <span class="pii">2C5955731527</span> · 2025.12.22</small>
                   </div>
                   <span class="cert-dl-btn" title="개인정보 보호를 위해 비활성화됨">
@@ -448,11 +476,11 @@
                   </span>
                 </div>
               </div>
-              <div class="minor-title mono" style="margin-top:0">언어 능숙도</div>
+              <div class="minor-title mono" style="margin-top:0" data-i18n="edu.proficiency">언어 능숙도</div>
               <div class="language-bars" data-language-bars>
                 <div class="bar-row"><span class="bar-label mono">KR</span><div class="bar-track"><div class="bar-fill accent bar-kr" data-width="100%"></div></div><span class="bar-value mono">100%</span></div>
                 <div class="bar-row"><span class="bar-label mono">CN</span><div class="bar-track"><div class="bar-fill green bar-cn" data-width="93%"></div></div><span class="bar-value mono">93%</span></div>
-                <div class="bar-row"><span class="bar-label mono">ENG</span><div class="bar-track"><div class="bar-fill teal bar-us" data-width="72%"></div></div><span class="bar-value mono">72%</span></div>
+                <div class="bar-row"><span class="bar-label mono">ENG</span><div class="bar-track"><div class="bar-fill teal bar-us" data-width="85%"></div></div><span class="bar-value mono">85%</span></div>
               </div>
             </article>
           </div>
@@ -461,25 +489,25 @@
 
       <section id="about" class="section">
         <div class="container">
-          <h2 class="section-heading">나에 대해</h2>
+          <h2 class="section-heading" data-i18n="section.about">나에 대해</h2>
           <div class="about-grid">
             <article class="about-card reveal">
               <span class="icon-box icon-accent">📚</span>
-              <h3>학습 자세</h3>
-              <p class="body-text">막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.</p>
-              <div class="tag-list mono"><span class="tag accent">🧐 가설 검증형</span><span class="tag accent">✍️ 문서화 습관</span></div>
+              <h3 data-i18n="about.h1">학습 자세</h3>
+              <p class="body-text" data-i18n-html="about.body1">막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.</p>
+              <div class="tag-list mono"><span class="tag accent" data-i18n="about.tag1a">🧐 가설 검증형</span><span class="tag accent" data-i18n="about.tag1b">✍️ 문서화 습관</span></div>
             </article>
             <article class="about-card reveal">
               <span class="icon-box icon-blue">🤝</span>
-              <h3>협업 방식</h3>
-              <p class="body-text">기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.</p>
-              <div class="tag-list mono"><span class="tag blue">🌐 한·중·영</span><span class="tag blue">📄 RFC 문서화</span><span class="tag slate">📊 데이터 기반 설득</span></div>
+              <h3 data-i18n="about.h2">협업 방식</h3>
+              <p class="body-text" data-i18n-html="about.body2">기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.</p>
+              <div class="tag-list mono"><span class="tag blue" data-i18n="about.tag2a">🌐 한·중·영</span><span class="tag blue" data-i18n="about.tag2b">📄 RFC 문서화</span><span class="tag slate" data-i18n="about.tag2c">📊 데이터 기반 설득</span></div>
             </article>
             <article class="about-card reveal">
               <span class="icon-box icon-orange">🧗</span>
-              <h3>취미 &amp; 라이프스타일</h3>
-              <p class="body-text"><strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.</p>
-              <div class="tag-list mono"><span class="tag orange">🧗 클라이밍</span><span class="tag orange">🧩 루트파인딩</span></div>
+              <h3 data-i18n="about.h3">취미 &amp; 라이프스타일</h3>
+              <p class="body-text" data-i18n-html="about.body3"><strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.</p>
+              <div class="tag-list mono"><span class="tag orange" data-i18n="about.tag3a">🧗 클라이밍</span><span class="tag orange" data-i18n="about.tag3b">🧩 루트파인딩</span></div>
             </article>
           </div>
         </div>
@@ -487,74 +515,74 @@
 
       <section id="skills" class="section">
         <div class="container">
-          <h2 class="section-heading">기술 스택</h2>
+          <h2 class="section-heading" data-i18n="section.skills">기술 스택</h2>
           <div class="skill-grid">
-            <article class="skill-panel wide reveal"><div class="top-line top-accent"></div><div class="skill-label mono"><span class="dot-accent">●</span> 시스템 / 로우레벨</div><div class="chip-list"><span class="chip tag accent"><i class="devicon-cplusplus-plain"></i> C / C++</span><span class="chip tag accent"><i class="devicon-java-plain"></i> Java</span><span class="chip tag accent">MIPS Assembly</span><span class="chip tag accent">OS Kernel</span><span class="chip tag accent">Compiler</span></div></article>
-            <article class="skill-panel reveal"><div class="top-line top-green"></div><div class="skill-label mono"><span class="dot-green">●</span> 백엔드 / 데이터베이스</div><div class="chip-list"><span class="chip tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="chip tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="chip tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span><span class="chip tag green"><i class="devicon-redis-plain"></i> Redis</span></div></article>
-            <article class="skill-panel reveal"><div class="top-line top-teal"></div><div class="skill-label mono"><span class="dot-teal">●</span> 프론트엔드 (웹 / 모바일)</div><div class="chip-list"><span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span><span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span><span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span></div></article>
-            <article class="skill-panel reveal"><div class="top-line top-pink"></div><div class="skill-label mono"><span class="dot-pink">●</span> AI &amp; ML</div><div class="chip-list"><span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span><span class="chip tag pink">CNN-CBAM-GRU</span><span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span></div></article>
-            <article class="skill-panel wide reveal"><div class="top-line top-slate"></div><div class="skill-label mono"><span class="dot-slate">●</span> 인프라 / 협업</div><div class="chip-list"><span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span><span class="chip tag slate">MinIO</span><span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span><span class="chip tag slate">RFC Docs</span><span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span><span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span></div></article>
-            <div class="skill-summary reveal"><div class="summary-item"><span>💻</span><strong>6</strong><span>언어</span></div><div class="summary-item"><span>📦</span><strong>4</strong><span>프레임워크</span></div><div class="summary-item"><span>🐳</span><strong>6</strong><span>인프라 도구</span></div><div class="summary-item"><span>🧠</span><strong>2</strong><span>AI 모델 구현</span></div></div>
+            <article class="skill-panel wide reveal"><div class="top-line top-accent"></div><div class="skill-label mono"><span class="dot-accent">●</span> <span data-i18n="skill.sys">시스템 / 로우레벨</span></div><div class="chip-list"><span class="chip tag accent"><i class="devicon-cplusplus-plain"></i> C / C++</span><span class="chip tag accent"><i class="devicon-java-plain"></i> Java</span><span class="chip tag accent">MIPS Assembly</span><span class="chip tag accent">OS Kernel</span><span class="chip tag accent">Compiler</span></div></article>
+            <article class="skill-panel reveal"><div class="top-line top-green"></div><div class="skill-label mono"><span class="dot-green">●</span> <span data-i18n="skill.be">백엔드 / 데이터베이스</span></div><div class="chip-list"><span class="chip tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="chip tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="chip tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span><span class="chip tag green"><i class="devicon-redis-plain"></i> Redis</span></div></article>
+            <article class="skill-panel reveal"><div class="top-line top-teal"></div><div class="skill-label mono"><span class="dot-teal">●</span> <span data-i18n="skill.fe">프론트엔드 (웹 / 모바일)</span></div><div class="chip-list"><span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span><span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span><span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span></div></article>
+            <article class="skill-panel reveal"><div class="top-line top-pink"></div><div class="skill-label mono"><span class="dot-pink">●</span> <span data-i18n="skill.ai">AI &amp; ML</span></div><div class="chip-list"><span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span><span class="chip tag pink">CNN-CBAM-GRU</span><span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span></div></article>
+            <article class="skill-panel wide reveal"><div class="top-line top-slate"></div><div class="skill-label mono"><span class="dot-slate">●</span> <span data-i18n="skill.infra">인프라 / 협업</span></div><div class="chip-list"><span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span><span class="chip tag slate">MinIO</span><span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span><span class="chip tag slate">RFC Docs</span><span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span><span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span></div></article>
+            <div class="skill-summary reveal"><div class="summary-item"><span>💻</span><strong>6</strong><span data-i18n="skill.sum.lang">언어</span></div><div class="summary-item"><span>📦</span><strong>4</strong><span data-i18n="skill.sum.fw">프레임워크</span></div><div class="summary-item"><span>🐳</span><strong>6</strong><span data-i18n="skill.sum.infra">인프라 도구</span></div><div class="summary-item"><span>🧠</span><strong>2</strong><span data-i18n="skill.sum.ai">AI 모델 구현</span></div></div>
           </div>
         </div>
       </section>
 
       <section id="projects" class="section">
         <div class="container">
-          <h2 class="section-heading">프로젝트</h2>
+          <h2 class="section-heading" data-i18n="section.projects">프로젝트</h2>
 
           <!-- PROJECT 01 -->
           <article class="project-card reveal is-open">
             <button class="project-toggle" type="button" aria-expanded="true" aria-controls="project-01-body">
               <span class="project-index mono">01</span>
               <div class="project-head">
-                <h3>BUAA OS — MIPS 마이크로커널 운영체제</h3>
+                <h3 data-i18n="proj1.title">BUAA OS — MIPS 마이크로커널 운영체제</h3>
                 <div class="project-meta mono">
                   <span>🗓 2024.03 – 2024.07 · BUAA OS Course</span>
-                  <span>👤 OS Kernel Developer (1인 개발)</span>
+                  <span data-i18n="proj1.role">👤 OS Kernel Developer (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary">GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현</span>
-                  <span class="tagline-result">✓ Lab 0–6 전 단계 완주</span>
+                  <span class="tagline-summary" data-i18n="proj1.summary">GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현</span>
+                  <span class="tagline-result" data-i18n="proj1.result">✓ Lab 0–6 전 단계 완주</span>
                 </div>
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
-                <p class="body-text">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
+                <p class="body-text" data-i18n-html="p1_intro">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
                 <div>
-                  <h4 class="minor-title mono">주요 개발 내용 (Lab0 – Lab6)</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.labrange">주요 개발 내용 (Lab0 – Lab6)</h4>
                   <ul class="arrow-list">
-                    <li><strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.</li>
-                    <li><strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.</li>
-                    <li><strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
-                    <li><strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.</li>
-                    <li><strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.</li>
-                    <li><strong>Pipe IPC 메커니즘 (Lab5):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.</li>
-                    <li><strong>사용자 공간 파일시스템 (Lab6):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.</li>
+                    <li data-i18n-html="p1_dev_li1"><strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.</li>
+                    <li data-i18n-html="p1_dev_li2"><strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.</li>
+                    <li data-i18n-html="p1_dev_li3"><strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
+                    <li data-i18n-html="p1_dev_li4"><strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.</li>
+                    <li data-i18n-html="p1_dev_li5"><strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.</li>
+                    <li data-i18n-html="p1_dev_li6"><strong>Pipe IPC 메커니즘 (Lab5):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.</li>
+                    <li data-i18n-html="p1_dev_li7"><strong>사용자 공간 파일시스템 (Lab6):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">Pipe IPC 구현 중 매핑 순서에 따른 참조 수(pageref) 판정 오류 해결</div>
+                      <div class="troubleshoot-title" data-i18n-html="p1_tr_head">Pipe IPC 구현 중 매핑 순서에 따른 참조 수(pageref) 판정 오류 해결</div>
                       <span class="badge-primary mono">Kernel / IPC</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono">상황</div>
-                          <p class="body-text"><code>dup()</code> 및 <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션이 발생했습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p1_tr_problem"><code>dup()</code> 및 <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션이 발생했습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label alt mono">대안 탐색</div>
-                          <p class="body-text">인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 방안을 선택했습니다.</p>
+                          <div class="trouble-label alt mono" data-i18n="trouble.alternatives">대안 탐색</div>
+                          <p class="body-text" data-i18n-html="p1_tr_alt">인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 방안을 선택했습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono">해결</div>
-                          <p class="body-text"><code>pageref(fd) &le; pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. IPC의 안정성을 확보했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p1_tr_sol"><code>pageref(fd) &le; pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. IPC의 안정성을 확보했습니다.</p>
                         </div>
                       </div>
                       <div>
@@ -570,15 +598,15 @@
 }</code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">선점형 스케줄링 환경에서는 '완성된 결과'뿐만 아니라 <strong>'과정 중의 중간 상태'도 안전해야 함</strong>을 깨달았습니다.</p>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <p class="body-text" data-i18n-html="p1_takeaway">선점형 스케줄링 환경에서는 '완성된 결과'뿐만 아니라 <strong>'과정 중의 중간 상태'도 안전해야 함</strong>을 깨달았습니다.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list mono"><span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
                 </div>
               </div>
@@ -590,59 +618,59 @@
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body">
               <span class="project-index mono">02</span>
               <div class="project-head">
-                <h3>SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
+                <h3 data-i18n="proj2.title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
                 <div class="project-meta mono">
                   <span>🗓 2024.10 – 2025.01 · BUAA Compiler Course</span>
-                  <span>👤 Compiler Engineer (1인 개발)</span>
+                  <span data-i18n="proj2.role">👤 Compiler Engineer (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary">Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현</span>
-                  <span class="tagline-result">✓ a–m 전 에러 범주 처리 달성</span>
+                  <span class="tagline-summary" data-i18n="proj2.summary">Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현</span>
+                  <span class="tagline-result" data-i18n="proj2.result">✓ a–m 전 에러 범주 처리 달성</span>
                 </div>
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
             <div class="project-body" id="project-02-body">
               <div class="project-inner">
-                <p class="body-text">SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.</p>
+                <p class="body-text" data-i18n-html="p2_intro">SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.</p>
                 <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.dev">주요 개발 내용</h4>
                   <ul class="arrow-list">
-                    <li><strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.</li>
-                    <li><strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.</li>
-                    <li><strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.</li>
-                    <li><strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 '문맥 복귀 신호'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.</li>
-                    <li><strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.</li>
-                    <li><strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.</li>
+                    <li data-i18n-html="p2_dev_li1"><strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.</li>
+                    <li data-i18n-html="p2_dev_li2"><strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.</li>
+                    <li data-i18n-html="p2_dev_li3"><strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.</li>
+                    <li data-i18n-html="p2_dev_li4"><strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 '문맥 복귀 신호'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.</li>
+                    <li data-i18n-html="p2_dev_li5"><strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.</li>
+                    <li data-i18n-html="p2_dev_li6"><strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
-                  <p class="body-text" style="margin-bottom:.75rem">이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.</p>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
+                  <p class="body-text" style="margin-bottom:.75rem" data-i18n-html="p2_tr_intro">이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.</p>
                   <ul class="arrow-list" style="margin-bottom:1.25rem">
-                    <li><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
-                    <li><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
-                    <li><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
+                    <li data-i18n-html="p2_tr_list1"><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
+                    <li data-i18n-html="p2_tr_list2"><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
+                    <li data-i18n-html="p2_tr_list3"><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
                   </ul>
-                  <p class="body-text">아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">'구문 누락 복구'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.</p>
+                  <p class="body-text" data-i18n-html="p2_tr_bridge">아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">'구문 누락 복구'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.</p>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
+                      <div class="troubleshoot-title" data-i18n-html="p2_tr_head">Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
                       <span class="badge-primary mono">Compiler / Parser</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono">상황</div>
-                          <p class="body-text">세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p2_tr_problem">세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label alt mono">대안 탐색</div>
-                          <p class="body-text">에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.</p>
+                          <div class="trouble-label alt mono" data-i18n="trouble.alternatives">대안 탐색</div>
+                          <p class="body-text" data-i18n-html="p2_tr_alt">에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono">해결</div>
-                          <p class="body-text">에러를 '파싱 중단 사유'가 아닌 <strong>'문맥 복귀 신호'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p2_tr_sol">에러를 '파싱 중단 사유'가 아닌 <strong>'문맥 복귀 신호'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.</p>
                         </div>
                       </div>
                       <div>
@@ -664,15 +692,15 @@
 }</code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.</p>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <p class="body-text" data-i18n-html="p2_takeaway">에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list mono"><span class="tag accent"><i class="devicon-cplusplus-plain"></i> C++17</span><span class="tag accent"><i class="devicon-cmake-plain"></i> CMake</span><span class="tag accent">Lexer / Parser</span><span class="tag accent">P-Code VM</span><span class="tag accent">Symbol Table</span></div>
                 </div>
               </div>
@@ -684,23 +712,23 @@
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body">
               <span class="project-index mono">03</span>
               <div class="project-head">
-                <h3>학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
+                <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
                 <div class="project-meta mono">
                   <span>🗓 2025.03 – 2025.08 · BUAA SSAD Course</span>
-                  <span>👤 Backend / Full-Stack (팀 프로젝트)</span>
+                  <span data-i18n="proj3.role">👤 Backend / Full-Stack (팀 프로젝트)</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary">연구자 학술 성과 검색·분석 플랫폼 — ES·Redis·MinIO·Vector 5개 인프라 통합 백엔드 전담</span>
-                  <span class="tagline-result">✓ API 응답 규약 통일로 프론트 파싱 오류 제거</span>
+                  <span class="tagline-summary" data-i18n="proj3.summary">연구자 학술 성과 검색·분석 플랫폼 — ES·Redis·MinIO·Vector 5개 인프라 통합 백엔드 전담</span>
+                  <span class="tagline-result" data-i18n="proj3.result">✓ API 응답 규약 통일로 프론트 파싱 오류 제거</span>
                 </div>
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
             <div class="project-body" id="project-03-body">
               <div class="project-inner">
-                <p class="body-text">Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.</p>
+                <p class="body-text" data-i18n-html="p3_intro">Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.</p>
                 <div>
-                  <h4 class="minor-title mono">시스템 아키텍처</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.arch">시스템 아키텍처</h4>
                   <div class="svg-wrap">
                     <p class="mono">System Architecture — Vue 3 · Spring Boot 3 · Maven · PostgreSQL 18 · Elasticsearch · Redis · MinIO · Vector Service · OpenAlex / ORCID / LLM</p>
                     <svg width="100%" viewBox="0 0 720 1020" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
@@ -787,30 +815,30 @@
                   </div>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.dev">주요 개발 내용</h4>
                   <ul class="arrow-list">
-                    <li><strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.</li>
-                    <li><strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.</li>
-                    <li><strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>를 통한 응답 자동 래핑(code/message/data) 및 <code>BusinessException</code> 상속 체계 기반의 전역 예외 처리 로직 구현.</li>
-                    <li><strong>프론트엔드 연동 및 통합:</strong> Vue 3 + TypeScript + Vite 환경과의 API 통신 구조 설계 및 프론트-백엔드 인터페이스 통합 수행.</li>
+                    <li data-i18n-html="p3_dev_li1"><strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.</li>
+                    <li data-i18n-html="p3_dev_li2"><strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.</li>
+                    <li data-i18n-html="p3_dev_li3"><strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>를 통한 응답 자동 래핑(code/message/data) 및 <code>BusinessException</code> 상속 체계 기반의 전역 예외 처리 로직 구현.</li>
+                    <li data-i18n-html="p3_dev_li4"><strong>프론트엔드 연동 및 통합:</strong> Vue 3 + TypeScript + Vite 환경과의 API 통신 구조 설계 및 프론트-백엔드 인터페이스 통합 수행.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">백엔드 실행 환경 파편화 및 API 응답 규약 불일치 해결</div>
-                      <span class="badge-primary mono">백엔드 / 협업</span>
+                      <div class="troubleshoot-title" data-i18n-html="p3_tr_head">백엔드 실행 환경 파편화 및 API 응답 규약 불일치 해결</div>
+                      <span class="badge-primary mono" data-i18n-html="p3_tr_badge">백엔드 / 협업</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono">상황</div>
-                          <p class="body-text">팀원 간 로컬 환경 설정(.env, AI 모델 경로) 차이로 인한 <strong>인프라 기동 실패</strong>가 발생했습니다. 또한, 개발자별로 상이한 API 응답 구조로 인해 프론트엔드에서 데이터 파싱 오류가 빈번하게 나타났습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p3_tr_problem">팀원 간 로컬 환경 설정(.env, AI 모델 경로) 차이로 인한 <strong>인프라 기동 실패</strong>가 발생했습니다. 또한, 개발자별로 상이한 API 응답 구조로 인해 프론트엔드에서 데이터 파싱 오류가 빈번하게 나타났습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono">해결</div>
-                          <p class="body-text">README 기반 기동 프로세스를 확립하고, <strong><code>ResponseBodyAdvice</code>를 활용해 모든 응답을 <code>code/message/data</code> 구조로 자동 래핑</strong>하는 아키텍처를 적용했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p3_tr_sol">README 기반 기동 프로세스를 확립하고, <strong><code>ResponseBodyAdvice</code>를 활용해 모든 응답을 <code>code/message/data</code> 구조로 자동 래핑</strong>하는 아키텍처를 적용했습니다.</p>
                         </div>
                       </div>
                       <div>
@@ -831,15 +859,15 @@
 }</code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">협업 시 발생할 수 있는 휴먼 에러를 줄이기 위해서는 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 기여한다는 점을 체감했습니다.</p>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <p class="body-text" data-i18n-html="p3_takeaway">협업 시 발생할 수 있는 휴먼 에러를 줄이기 위해서는 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 기여한다는 점을 체감했습니다.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list mono"><span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="tag green"><i class="devicon-maven-plain"></i> Maven</span><span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span><span class="tag green"><i class="devicon-redis-plain"></i> Redis</span><span class="tag slate">MinIO</span><span class="tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span><span class="tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span><span class="tag slate"><i class="devicon-docker-plain"></i> Docker Compose</span><span class="tag teal"><i class="devicon-vite-plain"></i> Vite</span></div>
                 </div>
               </div>
@@ -851,23 +879,23 @@
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body">
               <span class="project-index mono">04</span>
               <div class="project-head">
-                <h3>CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼 <span class="project-extra mono">논문</span></h3>
+                <h3 data-i18n="proj4.title">CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼 <span class="project-extra mono">논문</span></h3>
                 <div class="project-meta mono">
                   <span>🗓 2025.10 – 2026.03</span>
-                  <span>👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
+                  <span data-i18n="proj4.role">👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary">모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱</span>
-                  <span class="tagline-result">✓ ECG AUC 92.52% · TPS 66 · AWS 배포</span>
+                  <span class="tagline-summary" data-i18n="proj4.summary">모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱</span>
+                  <span class="tagline-result" data-i18n="proj4.result">✓ ECG AUC 92.52% · TPS 66 · AWS 배포</span>
                 </div>
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
             <div class="project-body" id="project-04-body">
               <div class="project-inner">
-                <p class="body-text">환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.</p>
+                <p class="body-text" data-i18n-html="p4_intro">환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.</p>
                 <div>
-                  <h4 class="minor-title mono">시스템 아키텍처</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.arch">시스템 아키텍처</h4>
                   <div class="svg-wrap">
                     <p class="mono">System Architecture — React Native · Spring Boot · FastAPI · PostgreSQL · AWS EC2 + Docker</p>
                     <svg width="100%" viewBox="0 0 680 800" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
@@ -941,54 +969,54 @@
                   </div>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">주요 개발 내용</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.dev">주요 개발 내용</h4>
                   <ul class="arrow-list">
-                    <li><strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성을 확보했습니다.</li>
-                    <li><strong>심전도(ECG) 진단 모델 구현:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API를 구축하고 실시간 진단 기능을 연동했습니다.</li>
-                    <li><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.</li>
+                    <li data-i18n-html="p4_dev_li1"><strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성을 확보했습니다.</li>
+                    <li data-i18n-html="p4_dev_li2"><strong>심전도(ECG) 진단 모델 구현:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API를 구축하고 실시간 진단 기능을 연동했습니다.</li>
+                    <li data-i18n-html="p4_dev_li3"><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">시스템 성능 최적화 및 평가 지표</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.perf">시스템 성능 최적화 및 평가 지표</h4>
                   <ul class="arrow-list">
-                    <li><strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.</li>
-                    <li><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.</li>
-                    <li><strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.</li>
-                    <li><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.</li>
+                    <li data-i18n-html="p4_perf_li1"><strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.</li>
+                    <li data-i18n-html="p4_perf_li2"><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.</li>
+                    <li data-i18n-html="p4_perf_li3"><strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.</li>
+                    <li data-i18n-html="p4_perf_li4"><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">ECG 분류 모델 성능</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.ecg">ECG 분류 모델 성능</h4>
                   <ul class="arrow-list">
-                    <li><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(comparison_results.csv 기준)</span></li>
-                    <li><strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)</li>
-                    <li><strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용</li>
+                    <li data-i18n-html="p4_ecg_li1"><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(comparison_results.csv 기준)</span></li>
+                    <li data-i18n-html="p4_ecg_li2"><strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)</li>
+                    <li data-i18n-html="p4_ecg_li3"><strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">트러블슈팅</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title">AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제</div>
+                      <div class="troubleshoot-title" data-i18n-html="p4_tr_head">AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제</div>
                       <span class="badge-primary mono">AI / DevOps</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono">① 상황 — 실시간 추론 지연</div>
-                          <p class="body-text">초기 구조에서는 추론 지연과 모바일 환경의 자원 부담이 커서, 실시간 모니터링 서비스에 바로 적용하기 어려운 문제가 있었습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n-html="p4_tr_label_problem1">① 상황 — 실시간 추론 지연</div>
+                          <p class="body-text" data-i18n-html="p4_tr_problem1">초기 구조에서는 추론 지연과 모바일 환경의 자원 부담이 커서, 실시간 모니터링 서비스에 바로 적용하기 어려운 문제가 있었습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono">① 해결</div>
-                          <p class="body-text">모델 업데이트 유연성과 모바일 메모리 부담 완화를 위해 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모바일은 백엔드 프록시를 통해 결과만 전달받도록 구조를 분리했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n-html="p4_tr_label_sol1">① 해결</div>
+                          <p class="body-text" data-i18n-html="p4_tr_sol1">모델 업데이트 유연성과 모바일 메모리 부담 완화를 위해 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모바일은 백엔드 프록시를 통해 결과만 전달받도록 구조를 분리했습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono">② 상황 — 저메모리 EC2 OOM</div>
-                          <p class="body-text">AWS 저사양 인스턴스에서 컨테이너 빌드 또는 AI 서비스 동시 구동 시 메모리 사용량이 급증하면서 운영 안정성이 떨어지는 문제가 있었습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n-html="p4_tr_label_problem2">② 상황 — 저메모리 EC2 OOM</div>
+                          <p class="body-text" data-i18n-html="p4_tr_problem2">AWS 저사양 인스턴스에서 컨테이너 빌드 또는 AI 서비스 동시 구동 시 메모리 사용량이 급증하면서 운영 안정성이 떨어지는 문제가 있었습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono">② 해결 — Pull-only 배포</div>
-                          <p class="body-text">로컬 또는 CI 환경에서 이미지를 사전 빌드해 레지스트리에 Push하고, 운영 서버는 Pull-only 전략으로 전환했습니다. <strong>mem_limit</strong> 기반 자원 제한과 AI 컨테이너의 <strong>profile 분리</strong>를 적용했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n-html="p4_tr_label_sol2">② 해결 — Pull-only 배포</div>
+                          <p class="body-text" data-i18n-html="p4_tr_sol2">로컬 또는 CI 환경에서 이미지를 사전 빌드해 레지스트리에 Push하고, 운영 서버는 Pull-only 전략으로 전환했습니다. <strong>mem_limit</strong> 기반 자원 제한과 AI 컨테이너의 <strong>profile 분리</strong>를 적용했습니다.</p>
                         </div>
                       </div>
                       <div>
@@ -1007,15 +1035,15 @@
     <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">512m</span></code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono">💡 알게된 점</div>
-                          <p class="body-text">제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.</p>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <p class="body-text" data-i18n-html="p4_takeaway">제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 class="minor-title mono">사용 기술</h4>
+                  <h4 class="minor-title mono" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list mono"><span class="tag teal"><i class="devicon-react-original"></i> React Native</span><span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span><span class="tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span><span class="tag pink"><i class="devicon-python-plain"></i> Python</span><span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span><span class="tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span><span class="tag slate"><i class="devicon-docker-plain"></i> Docker</span><span class="tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span></div>
                 </div>
               </div>
@@ -1037,16 +1065,16 @@
                 <small class="mono">Systems &amp; AI Full-Stack Engineer</small>
               </div>
             </div>
-            <div class="footer-copy" style="margin-top:.5rem">BUAA 2026.07 졸업 예정</div>
+            <div class="footer-copy" style="margin-top:.5rem" data-i18n="footer.graduation">BUAA 2026.07 졸업 예정</div>
           </div>
           <div></div>
           <nav class="footer-nav">
-            <a href="#edu">학력 / 어학</a><a href="#about">나에 대해</a>
-            <a href="#skills">기술 스택</a><a href="#projects">프로젝트</a>
+            <a href="#edu" data-i18n="nav.edu">학력 / 어학</a><a href="#about" data-i18n="nav.about">나에 대해</a>
+            <a href="#skills" data-i18n="nav.skills">기술 스택</a><a href="#projects" data-i18n="nav.projects">프로젝트</a>
           </nav>
         </div>
         <div class="footer-bottom">
-          <span class="footer-copy mono">© 2026 조현준 포트폴리오</span>
+          <span class="footer-copy mono" data-i18n="footer.copy">© 2026 조현준 포트폴리오</span>
           <div class="footer-actions">
             <a class="icon-link" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨" aria-label="메일 비활성화">✉</a>
             <a class="icon-link" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨" aria-label="GitHub 비활성화"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
@@ -1056,12 +1084,501 @@
       </div>
     </footer>
 
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-btn active" data-lang="ko" type="button">한</button>
+      <button class="lang-btn" data-lang="en" type="button">EN</button>
+      <button class="lang-btn" data-lang="zh" type="button">中</button>
+    </div>
+
     <!-- 🔒 블러 토글 버튼 -->
-    <button class="blur-toggle-bar" id="blur-toggle" type="button">
+    <button class="blur-toggle-bar" id="blur-toggle" type="button" data-i18n="blur.on">
       🔒 개인정보 블러 켜짐 — 클릭하여 해제
     </button>
 
     <script>
+    /* ── i18n 번역 데이터 ── */
+    const TYPED_ROLES = {
+      ko: ["Compiler Engineer","OS Kernel Developer","Full-Stack Engineer","AI Systems Builder"],
+      en: ["Compiler Engineer","OS Kernel Developer","Full-Stack Engineer","AI Systems Builder"],
+      zh: ["编译器工程师","OS内核开发者","全栈工程师","AI系统构建者"]
+    };
+
+    const TRANSLATIONS = {
+      ko: {
+        'pii.banner.title': '🔒 개인정보 보호 모드',
+        'pii.banner.sub': ' — 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다',
+        'nav.edu': '학력 / 어학',
+        'nav.about': '나에 대해',
+        'nav.skills': '기술 스택',
+        'nav.projects': '프로젝트',
+        'hero.status': '졸업 예정',
+        'hero.intro': '<strong>중국 소프트웨어공학 전국 1위, <span class="pii">BUAA(북항대)</span></strong>에서 8년.<br />OS 커널을 밑바닥부터 직접 구현하고, ECG AI 모델 AUC 92.52%를 달성한 시스템·AI 엔지니어입니다.',
+        'hero.cta.projects': '프로젝트 보기',
+        'hero.cta.contact': '연락하기',
+        'hero.cta.pdf': 'PDF로 저장',
+        'hero.stat1': '주요 프로젝트',
+        'hero.stat2': 'TSC 중국어 레벨',
+        'hero.stat3': 'SW 전국 1등급 학교',
+        'hero.stat4': '한·중·영',
+        'section.edu': '학력 & 어학',
+        'edu.education': '학력',
+        'edu.school1.p': '<span class="pii">북경 회문고등학교</span>',
+        'edu.school1.tag': '🏅 150년 전통 북경 동성구 명문 공립고교',
+        'edu.school2.p': '软件学院 (School of Software) · 학사',
+        'edu.school2.small': '2020.09 – 2026.07 (졸업 예정)',
+        'edu.school2.tag': '🏅 소프트웨어공학 전국 1위 (A+)',
+        'edu.lang': '어학',
+        'edu.tsc.title': 'TSC 중국어 회화 <span class="tag green mono">Level 6</span>',
+        'edu.tsc.desc': '원어민 수준 비즈니스 커뮤니케이션',
+        'edu.opic.title': 'OPIc 영어 회화 <span class="tag teal mono">IH · Intermediate High</span>',
+        'edu.opic.desc': '업무 환경에서 유창한 영어 소통',
+        'edu.proficiency': '언어 능숙도',
+        'section.about': '나에 대해',
+        'about.h1': '학습 자세',
+        'about.h2': '협업 방식',
+        'about.h3': '취미 &amp; 라이프스타일',
+        'about.body1': '막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.',
+        'about.body2': '기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.',
+        'about.body3': '<strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.',
+        'about.tag1a': '🧐 가설 검증형',
+        'about.tag1b': '✍️ 문서화 습관',
+        'about.tag2a': '🌐 한·중·영',
+        'about.tag2b': '📄 RFC 문서화',
+        'about.tag2c': '📊 데이터 기반 설득',
+        'about.tag3a': '🧗 클라이밍',
+        'about.tag3b': '🧩 루트파인딩',
+        'section.skills': '기술 스택',
+        'skill.sys': '시스템 / 로우레벨',
+        'skill.be': '백엔드 / 데이터베이스',
+        'skill.fe': '프론트엔드 (웹 / 모바일)',
+        'skill.ai': 'AI &amp; ML',
+        'skill.infra': '인프라 / 협업',
+        'skill.sum.lang': '언어',
+        'skill.sum.fw': '프레임워크',
+        'skill.sum.infra': '인프라 도구',
+        'skill.sum.ai': 'AI 모델 구현',
+        'section.projects': '프로젝트',
+        'proj1.title': 'BUAA OS — MIPS 마이크로커널 운영체제',
+        'proj1.role': '👤 OS Kernel Developer (1인 개발)',
+        'proj1.summary': 'GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현',
+        'proj1.result': '✓ Lab 0–6 전 단계 완주',
+        'proj2.title': 'SysY 언어 컴파일러 프론트엔드 &amp; VM 구현',
+        'proj2.role': '👤 Compiler Engineer (1인 개발)',
+        'proj2.summary': 'Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현',
+        'proj2.result': '✓ a–m 전 에러 범주 처리 달성',
+        'proj3.title': '학술 성과 공유 플랫폼 (Academic Results Sharing Platform)',
+        'proj3.role': '👤 Backend / Full-Stack (팀 프로젝트)',
+        'proj3.summary': '연구자 학술 성과 검색·분석 플랫폼 — ES·Redis·MinIO·Vector 5개 인프라 통합 백엔드 전담',
+        'proj3.result': '✓ API 응답 규약 통일로 프론트 파싱 오류 제거',
+        'proj4.title': 'CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼',
+        'proj4.role': '👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)',
+        'proj4.summary': '모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱',
+        'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS 배포',
+        'p1_intro': 'GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.',
+        'p1_dev_li1': '<strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.',
+        'p1_dev_li2': '<strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.',
+        'p1_dev_li3': '<strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.',
+        'p1_dev_li4': '<strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.',
+        'p1_dev_li5': '<strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.',
+        'p1_dev_li6': '<strong>Pipe IPC 메커니즘 (Lab5):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.',
+        'p1_dev_li7': '<strong>사용자 공간 파일시스템 (Lab6):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.',
+        'p1_tr_head': 'Pipe IPC 구현 중 매핑 순서에 따른 참조 수(pageref) 판정 오류 해결',
+        'p1_tr_problem': '<code>dup()</code> 및 <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션이 발생했습니다.',
+        'p1_tr_alt': '인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 방안을 선택했습니다.',
+        'p1_tr_sol': '<code>pageref(fd) &le; pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. IPC의 안정성을 확보했습니다.',
+        'p1_takeaway': '선점형 스케줄링 환경에서는 \'완성된 결과\'뿐만 아니라 <strong>\'과정 중의 중간 상태\'도 안전해야 함</strong>을 깨달았습니다.',
+        'p2_intro': 'SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.',
+        'p2_dev_li1': '<strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.',
+        'p2_dev_li2': '<strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.',
+        'p2_dev_li3': '<strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.',
+        'p2_dev_li4': '<strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 \'문맥 복귀 신호\'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.',
+        'p2_dev_li5': '<strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.',
+        'p2_dev_li6': '<strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.',
+        'p2_tr_intro': '이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.',
+        'p2_tr_list1': '<strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.',
+        'p2_tr_list2': '<strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.',
+        'p2_tr_list3': '<strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.',
+        'p2_tr_bridge': '아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">\'구문 누락 복구\'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.',
+        'p2_tr_head': 'Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결',
+        'p2_tr_problem': '세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.',
+        'p2_tr_alt': '에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.',
+        'p2_tr_sol': '에러를 \'파싱 중단 사유\'가 아닌 <strong>\'문맥 복귀 신호\'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.',
+        'p2_takeaway': '에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.',
+        'p3_intro': 'Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.',
+        'p3_dev_li1': '<strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.',
+        'p3_dev_li2': '<strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.',
+        'p3_dev_li3': '<strong>공통 API 응답 규약 설계:</strong> <code>ResponseResultHandler</code>를 통한 응답 자동 래핑(code/message/data) 및 <code>BusinessException</code> 상속 체계 기반의 전역 예외 처리 로직 구현.',
+        'p3_dev_li4': '<strong>프론트엔드 연동 및 통합:</strong> Vue 3 + TypeScript + Vite 환경과의 API 통신 구조 설계 및 프론트-백엔드 인터페이스 통합 수행.',
+        'p3_tr_head': '백엔드 실행 환경 파편화 및 API 응답 규약 불일치 해결',
+        'p3_tr_badge': '백엔드 / 협업',
+        'p3_tr_problem': '팀원 간 로컬 환경 설정(.env, AI 모델 경로) 차이로 인한 <strong>인프라 기동 실패</strong>가 발생했습니다. 또한, 개발자별로 상이한 API 응답 구조로 인해 프론트엔드에서 데이터 파싱 오류가 빈번하게 나타났습니다.',
+        'p3_tr_sol': 'README 기반 기동 프로세스를 확립하고, <strong><code>ResponseBodyAdvice</code>를 활용해 모든 응답을 <code>code/message/data</code> 구조로 자동 래핑</strong>하는 아키텍처를 적용했습니다.',
+        'p3_takeaway': '협업 시 발생할 수 있는 휴먼 에러를 줄이기 위해서는 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 기여한다는 점을 체감했습니다.',
+        'p4_intro': '환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.',
+        'p4_dev_li1': '<strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성을 확보했습니다.',
+        'p4_dev_li2': '<strong>심전도(ECG) 진단 모델 구현:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API를 구축하고 실시간 진단 기능을 연동했습니다.',
+        'p4_dev_li3': '<strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.',
+        'p4_perf_li1': '<strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.',
+        'p4_perf_li2': '<strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.',
+        'p4_perf_li3': '<strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.',
+        'p4_perf_li4': '<strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.',
+        'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(comparison_results.csv 기준)</span>',
+        'p4_ecg_li2': '<strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)',
+        'p4_ecg_li3': '<strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용',
+        'p4_tr_head': 'AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제',
+        'p4_tr_label_problem1': '① 상황 — 실시간 추론 지연',
+        'p4_tr_problem1': '초기 구조에서는 추론 지연과 모바일 환경의 자원 부담이 커서, 실시간 모니터링 서비스에 바로 적용하기 어려운 문제가 있었습니다.',
+        'p4_tr_label_sol1': '① 해결',
+        'p4_tr_sol1': '모델 업데이트 유연성과 모바일 메모리 부담 완화를 위해 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모바일은 백엔드 프록시를 통해 결과만 전달받도록 구조를 분리했습니다.',
+        'p4_tr_label_problem2': '② 상황 — 저메모리 EC2 OOM',
+        'p4_tr_problem2': 'AWS 저사양 인스턴스에서 컨테이너 빌드 또는 AI 서비스 동시 구동 시 메모리 사용량이 급증하면서 운영 안정성이 떨어지는 문제가 있었습니다.',
+        'p4_tr_label_sol2': '② 해결 — Pull-only 배포',
+        'p4_tr_sol2': '로컬 또는 CI 환경에서 이미지를 사전 빌드해 레지스트리에 Push하고, 운영 서버는 Pull-only 전략으로 전환했습니다. <strong>mem_limit</strong> 기반 자원 제한과 AI 컨테이너의 <strong>profile 분리</strong>를 적용했습니다.',
+        'p4_takeaway': '제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.',
+        'proj.minor.dev': '주요 개발 내용',
+        'proj.minor.trouble': '트러블슈팅',
+        'proj.minor.tech': '사용 기술',
+        'proj.minor.arch': '시스템 아키텍처',
+        'proj.minor.perf': '시스템 성능 최적화 및 평가 지표',
+        'proj.minor.ecg': 'ECG 분류 모델 성능',
+        'proj.minor.labrange': '주요 개발 내용 (Lab0 – Lab6)',
+        'trouble.situation': '상황',
+        'trouble.alternatives': '대안 탐색',
+        'trouble.solution': '해결',
+        'trouble.takeaway': '💡 알게된 점',
+        'footer.graduation': 'BUAA 2026.07 졸업 예정',
+        'footer.copy': '© 2026 조현준 포트폴리오',
+        'blur.on': '🔒 개인정보 블러 켜짐 — 클릭하여 해제',
+        'blur.off': '🔓 개인정보 블러 꺼짐 — 클릭하여 활성화',
+      },
+      en: {
+        'pii.banner.title': '🔒 Privacy Protection Mode',
+        'pii.banner.sub': ' — Contact info, school name, certificate numbers, and photos are blurred',
+        'nav.edu': 'Education',
+        'nav.about': 'About Me',
+        'nav.skills': 'Tech Stack',
+        'nav.projects': 'Projects',
+        'hero.status': 'Expected Graduation',
+        'hero.intro': '<strong>8 years at <span class="pii">BUAA</span>, China\'s #1 Software Engineering university.</strong><br />Systems & AI engineer who built an OS kernel from scratch and achieved ECG AI model AUC 92.52%.',
+        'hero.cta.projects': 'View Projects',
+        'hero.cta.contact': 'Contact',
+        'hero.cta.pdf': 'Save as PDF',
+        'hero.stat1': 'Key Projects',
+        'hero.stat2': 'TSC Chinese Level',
+        'hero.stat3': 'Top SW Ranked School',
+        'hero.stat4': 'KO · CN · EN',
+        'section.edu': 'Education & Language',
+        'edu.education': 'Education',
+        'edu.school1.p': '<span class="pii">Beijing Huiwen High School</span>',
+        'edu.school1.tag': '🏅 150-year-old prestigious public high school in Beijing Dongcheng',
+        'edu.school2.p': 'School of Software · Bachelor\'s',
+        'edu.school2.small': '2020.09 – 2026.07 (Expected)',
+        'edu.school2.tag': '🏅 Software Engineering #1 in China (A+)',
+        'edu.lang': 'Languages',
+        'edu.tsc.title': 'TSC Chinese Oral Proficiency <span class="tag green mono">Level 6</span>',
+        'edu.tsc.desc': 'Native-level business communication',
+        'edu.opic.title': 'OPIc English Oral Proficiency <span class="tag teal mono">IH · Intermediate High</span>',
+        'edu.opic.desc': 'Fluent English in professional environments',
+        'edu.proficiency': 'Language Proficiency',
+        'section.about': 'About Me',
+        'about.h1': 'Learning Approach',
+        'about.h2': 'Collaboration Style',
+        'about.h3': 'Hobbies &amp; Lifestyle',
+        'about.body1': 'When stuck, I <strong>form a hypothesis and tackle it head-on</strong> rather than giving up. I internalize new tech by reading official docs and implementing from scratch, repeating <strong>verification until resolved</strong> with the same persistence I used debugging a MIPS OS kernel.',
+        'about.body2': 'I <strong>resolve tech-stack conflicts with data</strong>. I gather performance and ecosystem metrics to persuade the team, and document agreements as <strong>RFC specs</strong>. I build environments where the whole team shares the same context across <strong>Korean, Chinese, and English</strong>.',
+        'about.body3': 'I enjoy <strong>rock climbing</strong>.<br />Analyzing optimal routes and persisting through challenges mirrors <strong>engineering problem-solving</strong>. I maintain a <strong>tenacious path-finding mindset</strong> beyond code, in everyday life too.',
+        'about.tag1a': '🧐 Hypothesis-driven',
+        'about.tag1b': '✍️ Documentation habit',
+        'about.tag2a': '🌐 KO · CN · EN',
+        'about.tag2b': '📄 RFC Docs',
+        'about.tag2c': '📊 Data-driven',
+        'about.tag3a': '🧗 Climbing',
+        'about.tag3b': '🧩 Route-finding',
+        'section.skills': 'Tech Stack',
+        'skill.sys': 'Systems / Low-level',
+        'skill.be': 'Backend / Database',
+        'skill.fe': 'Frontend (Web / Mobile)',
+        'skill.ai': 'AI &amp; ML',
+        'skill.infra': 'Infrastructure / DevOps',
+        'skill.sum.lang': 'Languages',
+        'skill.sum.fw': 'Frameworks',
+        'skill.sum.infra': 'Infra tools',
+        'skill.sum.ai': 'AI models built',
+        'section.projects': 'Projects',
+        'proj1.title': 'BUAA OS — MIPS Microkernel OS',
+        'proj1.role': '👤 OS Kernel Developer (Solo)',
+        'proj1.summary': 'Step-by-step implementation of boot, virtual memory, CoW fork, and microkernel FS on GXemul MIPS simulator',
+        'proj1.result': '✓ Completed all Lab 0–6 stages',
+        'proj2.title': 'SysY Compiler Frontend &amp; VM',
+        'proj2.role': '👤 Compiler Engineer (Solo)',
+        'proj2.summary': 'Lexer → Recursive Descent Parser → Symbol Table → P-Code VM, full compiler pipeline in C++',
+        'proj2.result': '✓ All a–m error categories handled',
+        'proj3.title': 'Academic Results Sharing Platform',
+        'proj3.role': '👤 Backend / Full-Stack (Team Project)',
+        'proj3.summary': 'Academic research search & analysis platform — sole backend dev integrating ES·Redis·MinIO·Vector',
+        'proj3.result': '✓ Unified API response spec eliminated frontend parsing errors',
+        'proj4.title': 'CareLink — Elderly Health Monitoring &amp; AI ECG Diagnosis',
+        'proj4.role': '👤 3-Tier System Architect & AI Model Dev (Solo)',
+        'proj4.summary': 'Solo-designed 3-layer system (mobile·backend·AI) — patient-guardian connection + ECG auto-diagnosis',
+        'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS deployed',
+        'p1_intro': 'Following a 7-stage Lab0–Lab6 curriculum in GXemul, I implemented core OS components step by step: kernel boot, memory management, processes, system calls, IPC, and file system. In particular, I deeply practiced OS internals by implementing <strong>TLB Fast Refill, Copy-on-Write based fork(), and a microkernel file system architecture using a user-space FS server over IPC</strong>.',
+        'p1_dev_li1': '<strong>Kernel Boot and Memory Initialization (Lab0–1):</strong> Wrote bootstrap code in the GXemul simulator, configured the physical memory layout, and initialized the kernel entry point.',
+        'p1_dev_li2': '<strong>Virtual Memory System Construction (Lab2):</strong> Designed a two-level page-table virtual address space and directly implemented a <strong>Fast Refill handler for TLB misses</strong> in assembly to minimize TLB management overhead.',
+        'p1_dev_li3': '<strong>Process Scheduling (Lab3):</strong> Designed PCB (Process Control Block), implemented a round-robin scheduler, and wrote register save/restore logic for context switching.',
+        'p1_dev_li4': '<strong>System Calls and Exception Handling (Lab3–4):</strong> Designed a syscall interface and implemented batch register save/restore through Trapframe during user/kernel mode transitions.',
+        'p1_dev_li5': '<strong>Copy-on-Write fork() (Lab4):</strong> Applied a COW mechanism where actual copies occur on write-time exceptions after shared pages, optimizing copy cost with lazy evaluation.',
+        'p1_dev_li6': '<strong>Pipe IPC Mechanism (Lab5):</strong> Implemented pipe IPC with shared pages and designed file descriptor duplication (<code>dup</code>) and reference count (<code>pageref</code>) management logic.',
+        'p1_dev_li7': '<strong>User-space File System (Lab6):</strong> Implemented a microkernel-style file system where the kernel communicates with an <strong>independent FS server process via IPC</strong>. Built block cache, directory traversal, and read/write syscall integration.',
+        'p1_tr_head': 'Fixing pageref decision errors caused by mapping order while implementing Pipe IPC',
+        'p1_tr_problem': 'During <code>dup()</code> and <code>close()</code>, a race condition occurred where <code>pageref</code> was observed inconsistently due to the <strong>mapping/unmapping order</strong> between FD and Pipe pages.',
+        'p1_tr_alt': 'I considered protecting the critical section by disabling interrupts, but excluded it due to performance impact and educational OS design principles. Instead, I chose to <strong>preserve a safe invariant at all times by reordering mapping operations</strong>.',
+        'p1_tr_sol': 'I adjusted the <strong>unmap/map order</strong> so that <code>pageref(fd) &le; pageref(pipe)</code> is never violated at any moment. This improved IPC stability.',
+        'p1_takeaway': 'In a preemptive scheduling environment, I learned that not only the final result but also <strong>intermediate states during execution must remain safe</strong>.',
+        'p2_intro': 'Built the full compiler pipeline for SysY, from <strong>Lexer and Recursive Descent Parser to Symbol Table, P-Code generator, and VM interpreter</strong>.<br>Starting from a single-file prototype, I separated modules into <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, and <code>Interpreter</code>, improving <strong>object-oriented design and maintainability</strong>.',
+        'p2_dev_li1': '<strong>Lexer Implementation:</strong> Optimized keyword classification with <code>unordered_map</code>, and consistently tokenized multi-character operators such as <code>&lt;=</code>, <code>==</code>, <code>&amp;&amp;</code> and string constants including escape sequences via a <code>peek()</code> mechanism.',
+        'p2_dev_li2': '<strong>Recursive Descent Parser Design:</strong> Implemented lookahead for <code>CompUnit</code>, ambiguity resolution inside <code>Stmt</code> between <code>LVal = Exp</code> and <code>[Exp]</code>, and layered expression parsing based on operator precedence.',
+        'p2_dev_li3': '<strong>Scope-based Symbol Table:</strong> Built scope-chain lookup with scope ID + stack-based symbol management, and detected semantic errors at compile time such as shadowing, function signature mismatch, constant reassignment, and use of undeclared identifiers.',
+        'p2_dev_li4': '<strong>Fault-Tolerant Error Recovery System:</strong> Redesigned errors as context-recovery signals instead of parse-termination causes. For missing-token errors, recovery logic records the reference position of the previous semantic unit (<code>mLastNonT</code>) to reduce cascading errors while continuing parsing.',
+        'p2_dev_li5': '<strong>P-Code Generator and Stack VM:</strong> Designed a custom P-Code instruction set for arithmetic/logical operations, branching, loops, function call/return, 1D array indexing, and I/O, then implemented a stack-machine interpreter for execution.',
+        'p2_dev_li6': '<strong>Modularization and Architecture Refactoring:</strong> Split a single large file into independent modules to improve debugging efficiency and maintainability.',
+        'p2_tr_intro': 'This compiler was designed to systematically handle <strong>a–m categories of syntax and semantic errors</strong> defined in the assignment spec. The most challenging part was implementing recovery logic that prevents <strong>cascading misdiagnosis</strong> caused by token-pointer drift when a <strong>missing semicolon (<code>i</code>)</strong> occurs, and returns the parser to a <strong>valid context</strong>.',
+        'p2_tr_list1': '<strong>Syntax Error Recovery:</strong> Even when tokens such as <code>;</code>, <code>)</code>, or <code>]</code> are missing, parsing continues by recovering context and proceeding with subsequent grammar analysis.',
+        'p2_tr_list2': '<strong>Semantic Error Diagnostics:</strong> Performs compile-time diagnostics for duplicate definitions, undeclared identifiers, function arg count/type mismatches, return-contract violations, constant reassignment, mismatch between <code>printf</code> format strings and arguments, and use of <code>break</code>/<code>continue</code> outside loops.',
+        'p2_tr_list3': '<strong>Error Output Policy:</strong> Sorts all errors by line number and outputs only one representative error per line to reduce duplicate reports.',
+        'p2_tr_bridge': 'The troubleshooting below focuses on how I systematically solved the highest-difficulty design issue: <strong style="color:#ef4444;font-weight:900">"missing syntax recovery"</strong>.',
+        'p2_tr_head': 'Building a Fault-Tolerant Parser — Solving cascading parse errors and duplicate misdiagnosis',
+        'p2_tr_problem': 'When semicolons (`;`) or brackets were missing, recovery points became misaligned, causing <strong>cascading false positives into subsequent valid syntax</strong>. There were also duplicate reports of the same error location.',
+        'p2_tr_alt': 'I evaluated both immediate parse termination and panic-mode recovery that skips to sync tokens (`;`, `}`), but both approaches had low location accuracy and repeatedly misdiagnosed subsequent valid syntax.',
+        'p2_tr_sol': 'I redesigned errors as <strong>context-recovery signals</strong> rather than parse-stop causes, and organized recovery logic so missing-token errors record the previous semantic-unit reference location (<code>mLastNonT</code>). As a result, I reduced cascading and duplicate error reports while maintaining continued parsing with a fault-tolerant parser.',
+        'p2_takeaway': 'I realized robust compiler design is not about throwing exceptions, but about <strong>recovering to a normal flow without losing context even on invalid input</strong>.',
+        'p3_intro': 'Built an integrated platform for academic result search, detailed view, analysis, and external metadata linkage by connecting a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, and vector services. I <strong>owned the backend</strong>, including infrastructure integration-layer design, unified API response specification, and frontend-backend interface integration.',
+        'p3_dev_li1': '<strong>Established Design and Documentation System:</strong> Formalized full-lifecycle artifacts including requirements, architecture, data design, and API interfaces around <code>docs/</code> and <code>RFC/</code>.',
+        'p3_dev_li2': '<strong>Implemented Multi-Infra Integration Layer:</strong> Designed and applied backend infrastructure linking PostgreSQL, Elasticsearch, Redis, and MinIO in a Spring Boot 3 (Java 21) environment.',
+        'p3_dev_li3': '<strong>Designed Unified API Response Spec:</strong> Implemented automatic response wrapping (code/message/data) via <code>ResponseResultHandler</code> and global exception handling based on a <code>BusinessException</code> inheritance model.',
+        'p3_dev_li4': '<strong>Frontend Integration:</strong> Designed API communication structure with Vue 3 + TypeScript + Vite and integrated frontend-backend interfaces.',
+        'p3_tr_head': 'Resolving backend runtime fragmentation and API response-spec inconsistency',
+        'p3_tr_badge': 'Backend / Collaboration',
+        'p3_tr_problem': 'Differences in local setup among team members (.env, AI model paths) caused <strong>infrastructure startup failures</strong>. In addition, inconsistent API response shapes across developers frequently caused frontend parsing errors.',
+        'p3_tr_sol': 'I established a README-based startup process and applied an architecture that <strong>automatically wraps all responses into <code>code/message/data</code> using <code>ResponseBodyAdvice</code></strong>.',
+        'p3_takeaway': 'To reduce human error in collaboration, I learned that <strong>system-level enforcement of conventions through architecture</strong> contributes more to team productivity than verbal agreements.',
+        'p4_intro': 'A real-time healthcare platform connecting patients and guardians. I designed and integrated a <strong>3-tier separated architecture</strong> composed of mobile (React Native), backend (Spring Boot), and AI inference (FastAPI).',
+        'p4_dev_li1': '<strong>3-Tier Separated Architecture:</strong> Secured operational stability by physically separating responsibilities between business logic (Spring Boot) and high-load AI computation (FastAPI).',
+        'p4_dev_li2': '<strong>ECG Diagnostic Model Implementation:</strong> Built a CNN-CBAM-GRU-based inference API using the PTB-XL dataset and integrated real-time diagnosis.',
+        'p4_dev_li3': '<strong>Data Sync and Security:</strong> Implemented JWT-based auto-logout flow for 401 expiration and improved client responsiveness with an AsyncStorage-based <strong>Cache-First strategy</strong>.',
+        'p4_perf_li1': '<strong>Throughput (TPS) Evaluation:</strong> Recorded <strong>TPS 56.23~66.41</strong> on key APIs under a 20-concurrent-user load test.',
+        'p4_perf_li2': '<strong>Real-time AI Inference Speed:</strong> For 12-lead ECG data (10 seconds, 500Hz), inference latency measured <strong>avg 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.',
+        'p4_perf_li3': '<strong>Perceived Mobile Loading Improvement:</strong> After Cache-First, first Home render reached <strong>avg 0.29ms</strong>, and network sync completion <strong>avg 604.3ms</strong>.',
+        'p4_perf_li4': '<strong>System Robustness Check:</strong> Boundary Value Analysis showed most abnormal inputs were handled by error responses without server crashes. Validation for NaN/Inf cases is being further strengthened.',
+        'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(from comparison_results.csv)</span>',
+        'p4_ecg_li2': '<strong>Model Parameters:</strong> 0.65M · <strong>Architecture:</strong> CNN-CBAM-GRU (Amplitude Feature Injection, 36 dimensions)',
+        'p4_ecg_li3': '<strong>Loss Function:</strong> Training strategy with AsymmetricLoss and class-imbalance correction (pos_weight)',
+        'p4_tr_head': 'AI inference delay and OOM issues during deployment on low-spec EC2',
+        'p4_tr_label_problem1': '① Situation — real-time inference delay',
+        'p4_tr_problem1': 'In the initial structure, inference latency and mobile resource burden were too high, making immediate application to real-time monitoring difficult.',
+        'p4_tr_label_sol1': '① Solution',
+        'p4_tr_sol1': 'To improve model-update flexibility and reduce mobile memory burden, I adopted a <strong>server-side inference approach</strong> and separated the flow so mobile receives only results through the backend proxy.',
+        'p4_tr_label_problem2': '② Situation — low-memory EC2 OOM',
+        'p4_tr_problem2': 'On low-spec AWS instances, memory usage spiked when building containers or running AI services simultaneously, which reduced operational stability.',
+        'p4_tr_label_sol2': '② Solution — Pull-only deployment',
+        'p4_tr_sol2': 'I prebuilt images locally or in CI and pushed them to a registry, then switched production servers to a pull-only strategy. I also applied resource limits with <strong>mem_limit</strong> and <strong>profile separation</strong> for the AI container.',
+        'p4_takeaway': 'Under constrained infrastructure resources, overall stability benefits more from <strong>jointly designing architecture separation, deployment strategy, and resource limits</strong> than from isolated performance tuning.',
+        'proj.minor.dev': 'Key Development',
+        'proj.minor.trouble': 'Troubleshooting',
+        'proj.minor.tech': 'Tech Used',
+        'proj.minor.arch': 'System Architecture',
+        'proj.minor.perf': 'Performance Optimization & Metrics',
+        'proj.minor.ecg': 'ECG Model Performance',
+        'proj.minor.labrange': 'Key Development (Lab0 – Lab6)',
+        'trouble.situation': 'Situation',
+        'trouble.alternatives': 'Alternatives Explored',
+        'trouble.solution': 'Solution',
+        'trouble.takeaway': '💡 Key Takeaway',
+        'footer.graduation': 'BUAA graduating 2026.07',
+        'footer.copy': '© 2026 Cho Hyunjun Portfolio',
+        'blur.on': '🔒 Privacy Blur ON — Click to disable',
+        'blur.off': '🔓 Privacy Blur OFF — Click to enable',
+      },
+      zh: {
+        'pii.banner.title': '🔒 隐私保护模式',
+        'pii.banner.sub': ' — 联系方式·学校名称·证书编号·照片等均已模糊处理',
+        'nav.edu': '学历 & 语言',
+        'nav.about': '关于我',
+        'nav.skills': '技术栈',
+        'nav.projects': '项目',
+        'hero.status': '预计毕业',
+        'hero.intro': '<strong>就读于<span class="pii">北航（BUAA）</span>8年，中国软件工程专业全国第一。</strong><br />从零实现OS内核，ECG AI模型AUC达92.52%的系统与AI工程师。',
+        'hero.cta.projects': '查看项目',
+        'hero.cta.contact': '联系方式',
+        'hero.cta.pdf': '保存为PDF',
+        'hero.stat1': '核心项目',
+        'hero.stat2': 'TSC 中文等级',
+        'hero.stat3': '全国一流SW学校',
+        'hero.stat4': '韩·中·英',
+        'section.edu': '学历 & 语言',
+        'edu.education': '学历',
+        'edu.school1.p': '<span class="pii">北京汇文中学（高中）</span>',
+        'edu.school1.tag': '🏅 150年历史，北京东城区名校',
+        'edu.school2.p': '软件学院 · 学士',
+        'edu.school2.small': '2020.09 – 2026.07（预计毕业）',
+        'edu.school2.tag': '🏅 软件工程全国第一 (A+)',
+        'edu.lang': '语言',
+        'edu.tsc.title': 'TSC 中文口语 <span class="tag green mono">Level 6</span>',
+        'edu.tsc.desc': '母语级商务沟通能力',
+        'edu.opic.title': 'OPIc 英语口语 <span class="tag teal mono">IH · Intermediate High</span>',
+        'edu.opic.desc': '职场环境流利英语交流',
+        'edu.proficiency': '语言水平',
+        'section.about': '关于我',
+        'about.h1': '学习态度',
+        'about.h2': '协作方式',
+        'about.h3': '爱好 &amp; 生活方式',
+        'about.body1': '遇到困难不放弃，而是<strong>提出假设正面突破</strong>。新技术从官方文档入手亲自实现并<strong>内化</strong>，以调试MIPS OS内核时的执着精神<strong>反复验证直到解决</strong>。',
+        'about.body2': '用<strong>数据调解</strong>技术选型分歧，亲自收集性能和生态数据说服团队，并将共识记录为<strong>RFC文档</strong>。用<strong>韩·中·英三语</strong>让整个团队共享相同背景。',
+        'about.body3': '享受<strong>攀岩</strong>运动。<br />分析最优路线、不断挑战直到完攀的过程与<strong>工程解题</strong>非常相似。在代码之外，日常生活中也保持着<strong>执着寻路的态度</strong>。',
+        'about.tag1a': '🧐 假设验证型',
+        'about.tag1b': '✍️ 文档化习惯',
+        'about.tag2a': '🌐 韩·中·英',
+        'about.tag2b': '📄 RFC文档',
+        'about.tag2c': '📊 数据驱动',
+        'about.tag3a': '🧗 攀岩',
+        'about.tag3b': '🧩 路线分析',
+        'section.skills': '技术栈',
+        'skill.sys': '系统 / 底层开发',
+        'skill.be': '后端 / 数据库',
+        'skill.fe': '前端 (Web / 移动)',
+        'skill.ai': 'AI &amp; ML',
+        'skill.infra': '基础设施 / 协作',
+        'skill.sum.lang': '编程语言',
+        'skill.sum.fw': '框架',
+        'skill.sum.infra': '基础设施工具',
+        'skill.sum.ai': 'AI模型实现',
+        'section.projects': '项目',
+        'proj1.title': 'BUAA OS — MIPS 微内核操作系统',
+        'proj1.role': '👤 OS内核开发者（个人项目）',
+        'proj1.summary': '在GXemul MIPS模拟器上逐步实现启动·虚拟内存·CoW fork·微内核文件系统',
+        'proj1.result': '✓ 完成全部 Lab 0–6 阶段',
+        'proj2.title': 'SysY 语言编译器前端 &amp; VM 实现',
+        'proj2.role': '👤 编译器工程师（个人项目）',
+        'proj2.summary': 'Lexer → 递归下降Parser → 符号表 → P-Code VM，用C++实现完整编译器流水线',
+        'proj2.result': '✓ 实现全部 a–m 类错误处理',
+        'proj3.title': '学术成果共享平台',
+        'proj3.role': '👤 后端/全栈（团队项目）',
+        'proj3.summary': '学术成果检索分析平台 — 独立负责ES·Redis·MinIO·Vector五大基础设施集成后端',
+        'proj3.result': '✓ 统一API响应规范，消除前端解析错误',
+        'proj4.title': 'CareLink — 老年健康监测 &amp; AI心电诊断平台',
+        'proj4.role': '👤 三层架构系统集成与AI模型构建（个人项目）',
+        'proj4.summary': '独立设计移动·后端·AI推理三层架构——患者-监护人连接+ECG自动诊断',
+        'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS部署',
+        'p1_intro': '在 GXemul 环境中，我按 Lab0~Lab6 的 7 阶段课程逐步实现了 OS 核心组件：内核启动、内存管理、进程、系统调用、IPC 与文件系统。尤其通过实现 <strong>TLB Fast Refill、基于 Copy-on-Write 的 fork()、以及通过 IPC 与用户态 FS 服务器通信的微内核文件系统结构</strong>，深入实践了操作系统关键机制。',
+        'p1_dev_li1': '<strong>内核启动与内存初始化（Lab0–1）：</strong> 在 GXemul 模拟器中编写引导代码，设置物理内存布局，并初始化内核入口点。',
+        'p1_dev_li2': '<strong>虚拟内存体系构建（Lab2）：</strong> 设计两级页表虚拟地址空间，并用汇编手写 <strong>TLB Miss 的 Fast Refill 处理器</strong>，降低 TLB 管理开销。',
+        'p1_dev_li3': '<strong>进程调度（Lab3）：</strong> 设计 PCB（Process Control Block），实现轮转调度器，并手写上下文切换时寄存器保存/恢复逻辑。',
+        'p1_dev_li4': '<strong>系统调用与异常处理（Lab3–4）：</strong> 设计系统调用接口，并在用户态/内核态切换时通过 Trapframe 完成寄存器批量保存与恢复。',
+        'p1_dev_li5': '<strong>实现 Copy-on-Write fork()（Lab4）：</strong> 页面共享后在写时异常触发真实拷贝，采用惰性求值（Lazy Evaluation）优化内存复制成本。',
+        'p1_dev_li6': '<strong>Pipe IPC 机制（Lab5）：</strong> 实现基于共享页的管道，并设计文件描述符复制（<code>dup</code>）与引用计数（<code>pageref</code>）管理逻辑。',
+        'p1_dev_li7': '<strong>用户态文件系统（Lab6）：</strong> 采用微内核结构，由内核通过 IPC 与 <strong>独立 FS 服务器进程通信</strong>。实现块缓存、目录遍历，以及文件读写系统调用联动。',
+        'p1_tr_head': '解决 Pipe IPC 实现中因映射顺序导致的 pageref 判定错误',
+        'p1_tr_problem': '在执行 <code>dup()</code> 和 <code>close()</code> 时，FD 与 Pipe 页面的 <strong>映射/解除顺序</strong> 会导致 <code>pageref</code> 在瞬时阶段出现与预期不一致的观测，产生竞争条件。',
+        'p1_tr_alt': '我评估了通过关闭中断保护临界区，但考虑到性能下降和教学 OS 的设计原则将其排除。改为选择 <strong>通过重排映射顺序始终维持安全不变式</strong>。',
+        'p1_tr_sol': '通过调整 <strong>unmap/map 顺序</strong>，确保 <code>pageref(fd) &le; pageref(pipe)</code> 在任意时刻不被破坏，从而提升 IPC 稳定性。',
+        'p1_takeaway': '在抢占式调度环境中，我体会到不仅最终结果要正确，<strong>执行过程中的中间状态也必须安全</strong>。',
+        'p2_intro': '我实现了 SysY 编译器完整流水线，从 <strong>词法分析器（Lexer）、递归下降语法分析器（Parser）、符号表、P-Code 生成器到虚拟机（VM）解释器</strong>。<br>并将初期单文件结构拆分为 <code>Lexer</code>、<code>Parser</code>、<code>SymbolTable</code>、<code>ErrorHandler</code>、<code>Interpreter</code> 模块，提升了 <strong>面向对象设计与可维护性</strong>。',
+        'p2_dev_li1': '<strong>词法分析器（Lexer）实现：</strong> 使用 <code>unordered_map</code> 优化关键字识别，并通过 <code>peek()</code> 机制一致地处理 <code>&lt;=</code>、<code>==</code>、<code>&amp;&amp;</code> 等多字符运算符及含转义序列的字符串常量。',
+        'p2_dev_li2': '<strong>递归下降解析器（Recursive Descent Parser）设计：</strong> 实现 <code>CompUnit</code> 前瞻、<code>Stmt</code> 中 <code>LVal = Exp</code> 与 <code>[Exp]</code> 的歧义判定，以及基于运算符优先级的分层表达式解析。',
+        'p2_dev_li3': '<strong>基于作用域的符号表：</strong> 以作用域 ID + 栈结构管理符号并支持作用域链查找，在编译期检测变量遮蔽、函数签名不一致、常量重赋值、未声明标识符等语义错误。',
+        'p2_dev_li4': '<strong>容错（Fault-Tolerant）错误恢复系统：</strong> 将错误从“终止解析原因”重构为“语境恢复信号”。缺失 token 错误会记录前一语义单元基准位置（<code>mLastNonT</code>），减少连锁报错并持续后续解析。',
+        'p2_dev_li5': '<strong>P-Code 生成器与栈式 VM：</strong> 设计覆盖算术/逻辑、分支、循环、函数调用/返回、一维数组索引与 I/O 的自定义 P-Code 指令集，并实现对应栈机解释器。',
+        'p2_dev_li6': '<strong>模块化与架构重构：</strong> 将大型单文件拆分为独立模块，提升调试效率与可维护性。',
+        'p2_tr_intro': '该编译器按作业规范系统处理 <strong>a~m 类语法与语义错误</strong>。其中最具挑战的是：在 <strong>分号缺失（<code>i</code>）</strong> 时，防止 token 指针偏移引发的 <strong>连锁误判</strong>，并使解析器 <strong>恢复到正常语境</strong>。',
+        'p2_tr_list1': '<strong>语法错误恢复：</strong> 即使 <code>;</code>、<code>)</code>、<code>]</code> 等 token 缺失，也不终止解析，而是恢复语境后继续分析后续语句。',
+        'p2_tr_list2': '<strong>语义错误诊断：</strong> 在编译期诊断重复定义、未声明标识符、函数参数个数/类型不匹配、返回约束违规、常量重赋值、<code>printf</code> 格式串与参数不一致，以及循环外 <code>break</code>/<code>continue</code> 使用等问题。',
+        'p2_tr_list3': '<strong>错误输出策略：</strong> 按行号排序全部错误，并在同一行仅输出一个代表错误，减少重复报告。',
+        'p2_tr_bridge': '下面的故障排查重点展示了我如何系统性解决其中设计难度最高的问题：<strong style="color:#ef4444;font-weight:900">"语法缺失恢复"</strong>。',
+        'p2_tr_head': '构建 Fault-Tolerant 解析器——解决连锁解析报错与重复误判问题',
+        'p2_tr_problem': '当分号（`;`）或括号缺失时，恢复点会偏移，导致 <strong>后续本应正确的语句也被连锁误判</strong>。同时还存在同一错误位置被重复报告的问题。',
+        'p2_tr_alt': '我评估了“发生错误立即中止解析”以及“跳过到同步 token（`;`、`}`）的 panic 模式恢复”，但两者定位精度都不足，仍反复误判后续正确语句。',
+        'p2_tr_sol': '我将错误重定义为 <strong>语境恢复信号</strong> 而非终止原因，并整理恢复逻辑：缺失 token 错误记录前一语义单元基准位置（<code>mLastNonT</code>）。最终在不中断解析的前提下，显著降低连锁误判与重复报错，构建了容错语法分析器。',
+        'p2_takeaway': '我体会到，健壮编译器的关键不在于抛出异常，而在于 <strong>即使输入错误也能不丢失语境并恢复正常流程</strong>。',
+        'p3_intro': '通过联动 Vue 3 SPA、Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 与向量服务，我开发了具备学术成果检索、详情查看、分析与外部元数据联动能力的一体化平台。并 <strong>独立负责后端</strong>：基础设施集成层设计、统一 API 响应规范定义、前后端接口联调。',
+        'p3_dev_li1': '<strong>建立设计与文档体系：</strong> 以 <code>docs/</code> 与 <code>RFC/</code> 为核心，将需求、架构、数据设计、API 接口等开发全流程文档化。',
+        'p3_dev_li2': '<strong>实现多基础设施集成层：</strong> 在 Spring Boot 3（Java 21）环境下完成 PostgreSQL、Elasticsearch、Redis、MinIO 的后端基础设施集成设计与落地。',
+        'p3_dev_li3': '<strong>统一 API 响应规范：</strong> 通过 <code>ResponseResultHandler</code> 实现响应自动包装（code/message/data），并基于 <code>BusinessException</code> 继承体系实现全局异常处理。',
+        'p3_dev_li4': '<strong>前端联动与集成：</strong> 设计与 Vue 3 + TypeScript + Vite 的 API 通信结构，并完成前后端接口统一集成。',
+        'p3_tr_head': '解决后端运行环境碎片化与 API 响应规范不一致问题',
+        'p3_tr_badge': '后端 / 协作',
+        'p3_tr_problem': '团队成员本地环境配置差异（.env、AI 模型路径）导致 <strong>基础设施启动失败</strong>。同时，不同开发者返回的 API 结构不一致，前端频繁出现数据解析错误。',
+        'p3_tr_sol': '我建立了基于 README 的启动流程，并应用了 <strong>通过 <code>ResponseBodyAdvice</code> 将所有响应自动包装为 <code>code/message/data</code> 结构</strong> 的架构方案。',
+        'p3_takeaway': '为了降低协作中的人为错误，比口头约定更有效的是 <strong>通过系统（架构）强制执行规范</strong>，这会直接提升团队生产力。',
+        'p4_intro': '这是一个连接患者与监护人的实时医疗平台。我设计并实现了由移动端（React Native）、后端（Spring Boot）与 AI 推理（FastAPI）组成的 <strong>三层分离架构</strong>。',
+        'p4_dev_li1': '<strong>三层分离架构建设：</strong> 将业务逻辑（Spring Boot）与高负载 AI 计算（FastAPI）在物理层面职责分离，提升运行稳定性。',
+        'p4_dev_li2': '<strong>心电（ECG）诊断模型实现：</strong> 基于 PTB-XL 数据集构建 CNN-CBAM-GRU 推理 API，并接入实时诊断功能。',
+        'p4_dev_li3': '<strong>数据同步与安全：</strong> 实现基于 JWT 的 401 过期自动登出流程，并通过 AsyncStorage 的 <strong>Cache-First 策略</strong>提升客户端响应性。',
+        'p4_perf_li1': '<strong>吞吐量（TPS）评估：</strong> 在 20 人并发压测下，核心 API 记录 <strong>TPS 56.23~66.41</strong>。',
+        'p4_perf_li2': '<strong>实时 AI 推理速度：</strong> 以 12 导联 ECG 数据（10 秒，500Hz）为基准，推理延迟为 <strong>平均 2,382.85ms，P50 2,303.27ms，P95 2,698.16ms</strong>。',
+        'p4_perf_li3': '<strong>移动端体感加载优化：</strong> Cache-First 后 Home 首屏显示 <strong>平均 0.29ms</strong>，网络同步完成 <strong>平均 604.3ms</strong>。',
+        'p4_perf_li4': '<strong>系统鲁棒性检查：</strong> Boundary Value Analysis 显示大多数异常输入可在不宕机情况下返回错误响应；包含 NaN/Inf 的校验仍在持续增强。',
+        'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">（基于 comparison_results.csv）</span>',
+        'p4_ecg_li2': '<strong>模型参数：</strong> 0.65M · <strong>架构：</strong> CNN-CBAM-GRU（Amplitude Feature Injection，36 维）',
+        'p4_ecg_li3': '<strong>损失函数：</strong> 采用 AsymmetricLoss 与类别不均衡校正（pos_weight）的训练策略',
+        'p4_tr_head': '低配 EC2 部署中的 AI 推理延迟与 OOM 问题',
+        'p4_tr_label_problem1': '① 背景 — 实时推理延迟',
+        'p4_tr_problem1': '初始结构下推理延迟和移动端资源负担较大，难以直接用于实时监测服务。',
+        'p4_tr_label_sol1': '① 解决',
+        'p4_tr_sol1': '为提升模型更新灵活性并降低移动端内存负担，我采用了 <strong>服务端推理</strong> 方案，并将结构拆分为移动端通过后端代理仅接收结果。',
+        'p4_tr_label_problem2': '② 背景 — 低内存 EC2 OOM',
+        'p4_tr_problem2': '在低配 AWS 实例中，容器构建或 AI 服务并发运行会导致内存使用激增，影响运行稳定性。',
+        'p4_tr_label_sol2': '② 解决 — Pull-only 部署',
+        'p4_tr_sol2': '在本地或 CI 预构建镜像并推送到仓库，生产服务器切换为 Pull-only 策略。同时应用基于 <strong>mem_limit</strong> 的资源限制与 AI 容器 <strong>profile 分离</strong>。',
+        'p4_takeaway': '在资源受限的基础设施中，与其只做性能调优，更关键的是 <strong>联合设计架构拆分、部署策略与资源限制</strong>，这对系统整体稳定性贡献更直接。',
+        'proj.minor.dev': '主要开发内容',
+        'proj.minor.trouble': '故障排除',
+        'proj.minor.tech': '使用技术',
+        'proj.minor.arch': '系统架构',
+        'proj.minor.perf': '性能优化与评估指标',
+        'proj.minor.ecg': 'ECG分类模型性能',
+        'proj.minor.labrange': '主要开发内容 (Lab0 – Lab6)',
+        'trouble.situation': '问题背景',
+        'trouble.alternatives': '方案探索',
+        'trouble.solution': '解决方案',
+        'trouble.takeaway': '💡 收获',
+        'footer.graduation': 'BUAA 预计2026.07毕业',
+        'footer.copy': '© 2026 赵贤俊 作品集',
+        'blur.on': '🔒 隐私保护已启用 — 点击关闭',
+        'blur.off': '🔓 隐私保护已关闭 — 点击开启',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'ko';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = {ko:'ko',en:'en',zh:'zh-Hans'}[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const t = TRANSLATIONS[lang]?.[el.dataset.i18n];
+        if (t !== undefined) el.textContent = t;
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        const t = TRANSLATIONS[lang]?.[key];
+        if (t !== undefined) el.innerHTML = t;
+      });
+      roles.splice(0, roles.length, ...TYPED_ROLES[lang]);
+      roleIndex = 0; charIndex = 0; deleting = false;
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(b =>
+        b.classList.toggle('active', b.dataset.lang === lang)
+      );
+      // Update blur toggle text
+      const blurBtn = document.getElementById('blur-toggle');
+      if (blurBtn) {
+        blurBtn.dataset.i18n = document.body.classList.contains('pii-off') ? 'blur.off' : 'blur.on';
+        blurBtn.textContent = TRANSLATIONS[lang][blurBtn.dataset.i18n];
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn =>
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang))
+    );
+
     /* ── 1. 타이핑 효과 ── */
     const roles = ["Compiler Engineer","OS Kernel Developer","Full-Stack Engineer","AI Systems Builder"];
     const typedTarget = document.querySelector("[data-typed]");
@@ -1122,11 +1639,13 @@
 
     /* ── 12. PII 블러 토글 ── */
     const blurToggle=document.getElementById('blur-toggle');
-    let blurOn=true;
-    blurToggle.addEventListener('click',()=>{blurOn=!blurOn;document.body.classList.toggle('pii-off',!blurOn);blurToggle.textContent=blurOn?'🔒 개인정보 블러 켜짐 — 클릭하여 해제':'🔓 개인정보 노출 중 — 클릭하여 재활성화';});
+    if(blurToggle){blurToggle.addEventListener('click',()=>{document.body.classList.toggle('pii-off');const key=document.body.classList.contains('pii-off')?'blur.off':'blur.on';blurToggle.textContent=TRANSLATIONS[currentLang][key];blurToggle.dataset.i18n=key;});}
 
     /* ── 13. 스킬 패널 틸트 ── */
     if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){document.querySelectorAll('.skill-panel').forEach(panel=>{panel.addEventListener('mousemove',e=>{const r=panel.getBoundingClientRect();const x=((e.clientX-r.left)/r.width-.5)*6;const y=((e.clientY-r.top)/r.height-.5)*6;panel.style.transform=`perspective(600px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;});panel.addEventListener('mouseleave',()=>{panel.style.transform='';panel.style.transition='transform 0.4s var(--ease)';});panel.addEventListener('mouseenter',()=>{panel.style.transition='transform 0.12s ease';});});}
+
+    /* ── 14. 언어 초기화 ── */
+    applyLang(localStorage.getItem('lang') || 'ko');
     </script>
   </body>
 </html>
