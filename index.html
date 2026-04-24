@@ -9,6 +9,7 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap");
       :root {
         --background: #f4f6fa; --foreground: #111827; --card: #ffffff; --surface-2: #f8faff;
         --primary: #5b58ff; --primary-deep: #3730a3; --accent-lt: #f5f3ff; --accent-dim: #ddd6fe;
@@ -317,14 +318,840 @@
       .lang-btn.active { background: var(--primary); color: #fff; }
       .lang-btn:not(.active):hover { background: var(--accent-lt); color: var(--primary); }
 
+      /* Design refresh: editorial systems dossier */
+      :root {
+        --notice-height: 34px;
+        --nav-height: 74px;
+        --background: #f6f7f4;
+        --foreground: #171914;
+        --card: #fffffb;
+        --surface-2: #eef2ec;
+        --primary: #1d6f73;
+        --primary-deep: #0f4345;
+        --accent-lt: #e3eeeb;
+        --accent-dim: #b7d0cb;
+        --border: #d6ddd2;
+        --text-2: #343a34;
+        --text-3: #687166;
+        --green: #2f805a;
+        --green-lt: #e5f2eb;
+        --teal: #2a688f;
+        --teal-lt: #e6eef3;
+        --pink: #9c4564;
+        --pink-lt: #f2e8ec;
+        --amber: #b75b2c;
+        --amber-lt: #f3e8df;
+        --slate: #596258;
+        --slate-lt: #ecefeb;
+        --code-bg: #171b18;
+        --shadow-sm: 0 1px 0 rgba(23,25,20,.04);
+        --shadow-md: 0 18px 44px rgba(34,43,35,.07);
+        --shadow-lg: 0 28px 80px rgba(34,43,35,.1);
+        --ease: cubic-bezier(.2,.7,.2,1);
+      }
+
+      html { background: var(--background); scroll-padding-top: calc(var(--notice-height) + var(--nav-height) + 20px); }
+      body {
+        min-width: 320px;
+        background:
+          linear-gradient(90deg, rgba(29,111,115,.05) 1px, transparent 1px) 50% 0 / 80px 80px,
+          linear-gradient(180deg, rgba(29,111,115,.04) 1px, transparent 1px) 50% 0 / 80px 80px,
+          radial-gradient(circle at 16% 0, rgba(183,91,44,.08), transparent 32rem),
+          var(--background);
+        color: var(--foreground);
+        font-size: 16px;
+        line-height: 1.72;
+        letter-spacing: 0;
+        text-rendering: optimizeLegibility;
+      }
+      body::selection { background: rgba(29,111,115,.18); }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 3px;
+      }
+      strong { font-weight: 800; }
+      code {
+        border-radius: 5px;
+        border-color: rgba(29,111,115,.16);
+        background: rgba(29,111,115,.08);
+        color: var(--primary-deep);
+        font-size: .92em;
+      }
+      .container { width: min(1160px, calc(100% - 56px)); }
+      .section { padding: 5.75rem 0; }
+      .section + .section { border-top: 1px solid rgba(214,221,210,.68); }
+      .section-heading {
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 2.35rem;
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: clamp(2rem, 3.1vw, 3.55rem);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+      .section-heading::before {
+        width: 2.8rem;
+        height: 1px;
+        border-radius: 0;
+        background: var(--primary);
+        transform: translateY(-.45rem);
+      }
+      .body-text {
+        color: var(--text-2);
+        font-size: clamp(1rem, .96rem + .15vw, 1.08rem);
+        line-height: 1.82;
+      }
+
+      .blur-notice-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--notice-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .25rem;
+        padding: 0 1rem;
+        background: #24352f;
+        color: #f7faf5;
+        font-size: .75rem;
+        letter-spacing: 0;
+        box-shadow: none;
+      }
+      .blur-notice-bar span { margin-left: 0; opacity: .84; }
+      .blur-notice-bar span:first-child { opacity: 1; font-weight: 800; }
+      .blur-toggle-bar,
+      .lang-switcher {
+        right: 1.25rem;
+        border-radius: 8px;
+        box-shadow: 0 12px 36px rgba(23,25,20,.14);
+      }
+      .blur-toggle-bar {
+        bottom: 1.25rem;
+        max-width: calc(100vw - 2.5rem);
+        padding: .72rem .9rem;
+        background: #24352f;
+        font-size: .76rem;
+        letter-spacing: 0;
+      }
+      .blur-toggle-bar:hover { background: var(--primary-deep); }
+      body.pii-off .blur-toggle-bar { background: #8f3327; }
+      .lang-switcher {
+        bottom: 4.9rem;
+        border-color: var(--border);
+        background: rgba(255,255,251,.94);
+      }
+      .lang-btn {
+        padding: .58rem .78rem;
+        letter-spacing: 0;
+      }
+      .lang-btn.active {
+        background: var(--foreground);
+        color: #fff;
+      }
+
+      .site-nav {
+        top: var(--notice-height);
+        height: var(--nav-height);
+        border-bottom: 1px solid rgba(23,25,20,.1);
+        background: rgba(246,247,244,.82);
+        box-shadow: none;
+      }
+      .site-nav.scrolled { box-shadow: 0 12px 40px rgba(35,42,36,.08); }
+      .nav-inner { gap: 1.15rem; }
+      .brand { gap: .8rem; }
+      .brand-mark,
+      .footer-brand-mark {
+        width: 2.15rem;
+        height: 2.15rem;
+        border: 1px solid rgba(23,25,20,.16);
+        border-radius: 7px;
+        background: var(--foreground);
+        box-shadow: none;
+        font-family: "Noto Serif KR", serif;
+      }
+      .brand:hover .brand-mark { transform: translateY(-1px); }
+      .brand-name {
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: 1.08rem;
+        letter-spacing: 0;
+      }
+      .brand-name span,
+      .footer-brand-stack strong span { color: var(--amber) !important; }
+      .nav-links {
+        gap: .15rem;
+        padding: .25rem;
+        border: 1px solid rgba(214,221,210,.9);
+        border-radius: 8px;
+        background: rgba(255,255,251,.58);
+      }
+      .nav-link {
+        border-radius: 6px;
+        padding: .5rem .78rem;
+        color: var(--text-3);
+        font-size: .86rem;
+      }
+      .nav-link::after { display: none; }
+      .nav-link:hover,
+      .nav-link.active {
+        background: var(--foreground);
+        color: #fff;
+      }
+      .button {
+        min-height: 2.5rem;
+        border-radius: 7px;
+        border-width: 1px;
+        border-color: rgba(23,25,20,.14);
+        background: rgba(255,255,251,.72);
+        color: var(--foreground);
+        padding: .58rem .95rem;
+        font-size: .86rem;
+        box-shadow: none;
+      }
+      .button:hover {
+        border-color: var(--primary);
+        background: var(--accent-lt);
+        color: var(--primary-deep);
+        transform: translateY(-1px);
+      }
+      .button.primary,
+      .button.dark {
+        border-color: var(--foreground);
+        background: var(--foreground);
+        color: #fff;
+        box-shadow: none;
+      }
+      .button.primary:hover,
+      .button.dark:hover {
+        border-color: var(--primary-deep);
+        background: var(--primary-deep);
+      }
+      .nav-hamburger {
+        border-radius: 7px;
+        background: rgba(255,255,251,.7);
+      }
+      .nav-drawer {
+        top: calc(var(--notice-height) + var(--nav-height));
+        border-bottom-color: rgba(23,25,20,.1);
+        background: rgba(246,247,244,.96);
+      }
+      .drawer-link { border-radius: 7px; }
+      .drawer-link .dl-icon {
+        border-radius: 6px;
+        background: var(--surface-2);
+        font-size: .8rem;
+      }
+
+      .hero {
+        padding-top: calc(var(--notice-height) + var(--nav-height));
+        background:
+          linear-gradient(180deg, rgba(255,255,251,.82), rgba(246,247,244,.5) 62%, transparent);
+      }
+      .hero-bg { display: none; }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
+        gap: clamp(2.5rem, 6vw, 5.5rem);
+        min-height: auto;
+        padding: clamp(4.5rem, 8vw, 7rem) 0 4.75rem;
+      }
+      .status-pill {
+        margin-bottom: 1.55rem;
+        border-radius: 7px;
+        background: rgba(255,255,251,.72);
+        box-shadow: none;
+        color: var(--text-3);
+        letter-spacing: 0;
+      }
+      .pulse-dot {
+        width: .48rem;
+        height: .48rem;
+        background: var(--primary);
+        animation: none;
+        box-shadow: 0 0 0 3px rgba(29,111,115,.13);
+      }
+      .hero-title {
+        max-width: 8ch;
+        margin-bottom: 1.2rem;
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: clamp(4rem, 8.6vw, 7rem);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+      .hero-title span { color: var(--amber); }
+      .typed-line {
+        width: fit-content;
+        margin-bottom: 1.65rem;
+        padding: .48rem .7rem;
+        border: 1px solid rgba(23,25,20,.12);
+        border-radius: 7px;
+        background: rgba(255,255,251,.72);
+        font-size: .9rem;
+      }
+      .typed-icon { color: var(--amber); }
+      .typed-text { color: var(--primary-deep); }
+      .typed-line .cursor {
+        width: 1px;
+        height: 1rem;
+        background: var(--primary-deep);
+      }
+      .hero-intro {
+        max-width: 40rem;
+        margin-bottom: 2rem;
+        color: var(--text-2);
+        font-size: clamp(1.05rem, 1rem + .3vw, 1.22rem);
+        line-height: 1.88;
+      }
+      .hero-actions {
+        gap: .65rem;
+        margin-bottom: 1.55rem;
+      }
+      .hero-links {
+        gap: .95rem;
+        color: var(--text-3);
+        font-size: .9rem;
+      }
+      .hero-links a {
+        border-bottom: 1px solid rgba(29,111,115,.22);
+      }
+      .hero-links a:hover { color: var(--primary-deep); }
+      .hero-card-wrap { align-self: stretch; }
+      .hero-card {
+        display: grid;
+        grid-template-rows: auto auto auto 1fr;
+        height: 100%;
+        padding: 0;
+        border-color: rgba(23,25,20,.14);
+        border-radius: 8px;
+        background: var(--card);
+        box-shadow: var(--shadow-lg);
+      }
+      .hero-card::before,
+      .hero-card::after { display: none; }
+      .hero-card-mark {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 4.55;
+        margin: 0;
+        border: 0;
+        border-bottom: 1px solid var(--border);
+        border-radius: 8px 8px 0 0;
+        background: var(--surface-2);
+        box-shadow: none;
+      }
+      .hero-card-mark img { object-position: center 34%; }
+      .hero-card-title {
+        margin: 1.25rem 1.25rem .15rem;
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: 1.7rem;
+        letter-spacing: 0;
+      }
+      .hero-card-subtitle {
+        margin: 0 1.25rem 1rem;
+        color: var(--text-3);
+        letter-spacing: 0;
+      }
+      .badge-row { margin: 0 1.25rem 1.2rem; }
+      .hero-mini-grid {
+        margin: 0 1.25rem 1.25rem;
+        gap: .65rem;
+      }
+      .mini-card {
+        border-radius: 7px;
+        background: var(--surface-2);
+      }
+      .mini-card strong {
+        font-family: "Noto Serif KR", serif;
+        font-size: 1.35rem;
+      }
+      .mini-card span { font-size: .78rem; }
+      .scroll-hint { display: none; }
+      .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 0;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--border);
+      }
+      .stat-card {
+        gap: .8rem;
+        padding: 1.05rem;
+        border: 0;
+        border-radius: 0;
+        background: rgba(255,255,251,.78);
+        box-shadow: none;
+      }
+      .stat-card:hover {
+        transform: none;
+        box-shadow: none;
+        background: var(--card);
+      }
+      .stat-icon {
+        width: 2.2rem;
+        height: 2.2rem;
+        border-radius: 7px;
+        font-size: .95rem;
+      }
+      .stat-copy strong {
+        font-family: "Noto Serif KR", serif;
+        font-size: 1.35rem;
+        letter-spacing: 0;
+      }
+      .stat-copy span { font-size: .76rem; }
+
+      .panel-grid-2 { gap: 1rem; }
+      .about-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .skill-grid { gap: 1rem; }
+      .info-card,
+      .about-card,
+      .skill-panel,
+      .skill-summary,
+      .project-card,
+      .cert-card,
+      .troubleshoot,
+      .takeaway,
+      .svg-wrap,
+      .code-box {
+        border-radius: 8px;
+        border-color: rgba(23,25,20,.13);
+        background: rgba(255,255,251,.82);
+        box-shadow: var(--shadow-sm);
+      }
+      .info-card,
+      .about-card,
+      .skill-panel { padding: 1.45rem; }
+      .about-card:hover,
+      .skill-panel:hover {
+        transform: none;
+        box-shadow: var(--shadow-md);
+      }
+      .skill-panel { transform: none !important; }
+      .top-line {
+        height: 1px;
+        background: var(--border) !important;
+      }
+      .card-header { margin-bottom: 1.25rem; }
+      .icon-box,
+      .cert-mark {
+        width: 2.4rem;
+        height: 2.4rem;
+        border: 1px solid rgba(23,25,20,.12);
+        border-radius: 7px;
+        background: var(--surface-2) !important;
+        color: var(--primary-deep) !important;
+        box-shadow: none;
+        font-size: .72rem;
+        font-weight: 900;
+        letter-spacing: .03em;
+      }
+      .card-header h3,
+      .about-card h3 {
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: 1.18rem;
+        letter-spacing: 0;
+      }
+      .timeline::before { background: rgba(23,25,20,.14); }
+      .timeline-point {
+        border-color: var(--primary);
+        color: transparent;
+      }
+      .timeline-point::before {
+        content: "";
+        width: .34rem;
+        height: .34rem;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+      .timeline-item h4 {
+        font-size: 1.16rem;
+        line-height: 1.5;
+      }
+      .timeline-item p,
+      .timeline-item small { font-size: .92rem; }
+      .cert-card {
+        gap: .85rem;
+        background: rgba(238,242,236,.64);
+      }
+      .cert-copy h4 { font-size: .96rem; }
+      .cert-copy p,
+      .cert-copy small { font-size: .82rem; }
+      .cert-dl-btn {
+        border-radius: 6px;
+        background: var(--card);
+      }
+      .bar-track {
+        height: .42rem;
+        border-radius: 999px;
+        background: rgba(23,25,20,.1);
+      }
+      .bar-fill.accent,
+      .bar-fill.green,
+      .bar-fill.teal { background: var(--primary); }
+
+      .tag,
+      .chip,
+      .project-extra,
+      .project-meta span,
+      .tagline-result,
+      .badge-primary {
+        border-radius: 6px;
+        border-color: rgba(23,25,20,.12);
+        box-shadow: none;
+        letter-spacing: 0;
+      }
+      .tag {
+        padding: .32rem .58rem;
+        background: var(--surface-2) !important;
+        color: var(--text-2) !important;
+        font-size: .75rem;
+      }
+      .chip {
+        padding: .58rem .72rem;
+        background: var(--card) !important;
+        color: var(--foreground) !important;
+        font-size: .88rem;
+      }
+      .chip:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: var(--primary);
+      }
+      .chip-particle,
+      .chip.bouncing { display: none !important; animation: none !important; }
+      .skill-label {
+        margin-bottom: .9rem;
+        color: var(--primary-deep);
+        font-size: .74rem;
+        letter-spacing: .08em;
+      }
+      .dot-accent,
+      .dot-green,
+      .dot-teal,
+      .dot-pink,
+      .dot-slate { color: var(--amber); }
+      .skill-summary {
+        justify-content: space-between;
+        padding: 1rem 1.2rem;
+      }
+      .summary-item {
+        min-width: 8rem;
+        gap: .42rem;
+      }
+      .summary-item > span:first-child {
+        display: inline-grid;
+        place-items: center;
+        width: 2.45rem;
+        height: 1.7rem;
+        border: 1px solid rgba(23,25,20,.12);
+        border-radius: 6px;
+        background: var(--surface-2);
+        font-size: .62rem;
+        line-height: 1;
+      }
+      .summary-item strong {
+        font-family: "Noto Serif KR", serif;
+        font-size: 1.24rem;
+      }
+      .summary-item span:last-child { font-size: .84rem; }
+
+      .minor-title {
+        margin-bottom: .85rem;
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: 1.18rem;
+        letter-spacing: 0;
+      }
+      .minor-title::before {
+        width: 1.4rem;
+        height: 1px;
+        border-radius: 0;
+        background: var(--primary);
+      }
+      .arrow-list {
+        gap: .55rem;
+        padding-left: .15rem;
+      }
+      .arrow-list li {
+        padding-left: 1rem;
+        color: var(--text-2);
+        font-size: .98rem;
+        line-height: 1.84;
+      }
+      .arrow-list li::before {
+        content: "";
+        top: .82em;
+        width: .32rem;
+        height: .32rem;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+
+      .project-card {
+        margin-bottom: 1rem;
+        background: rgba(255,255,251,.86);
+        box-shadow: none;
+      }
+      .project-card.is-open {
+        box-shadow: var(--shadow-md);
+      }
+      .project-toggle {
+        gap: 1rem;
+        padding: 1.35rem 1.45rem;
+      }
+      .project-index {
+        min-width: 2.15rem;
+        border-radius: 6px;
+        border-color: rgba(29,111,115,.2);
+        background: rgba(29,111,115,.08);
+        color: var(--primary-deep);
+      }
+      .project-head h3 {
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: clamp(1.16rem, 1rem + .7vw, 1.62rem);
+        line-height: 1.45;
+        letter-spacing: 0;
+      }
+      .project-meta {
+        gap: .45rem;
+        margin-top: .7rem;
+      }
+      .project-meta span {
+        padding: .28rem .55rem;
+        background: transparent;
+        color: var(--text-3);
+        font-size: .78rem;
+      }
+      .project-tagline {
+        margin-top: .55rem;
+        gap: .45rem;
+      }
+      .tagline-summary {
+        color: var(--text-2);
+        font-size: .92rem;
+      }
+      .tagline-result {
+        background: var(--green-lt);
+        color: var(--primary-deep);
+        font-size: .74rem;
+      }
+      .project-chevron {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 7px;
+        background: var(--surface-2);
+      }
+      .project-card.is-open .project-chevron {
+        background: var(--foreground);
+        border-color: var(--foreground);
+      }
+      .project-inner {
+        padding: 0 1.45rem 1.45rem;
+      }
+      .project-card.is-open .project-inner {
+        padding-top: 1.35rem;
+      }
+      .project-inner > * + * { margin-top: 1.8rem; }
+      .troubleshoot {
+        padding: 1.25rem;
+        border-color: rgba(29,111,115,.18);
+        background: rgba(227,238,235,.42);
+      }
+      .troubleshoot::before {
+        width: 1px;
+        background: rgba(29,111,115,.32);
+      }
+      .troubleshoot-head {
+        margin-bottom: 1.1rem;
+        border-bottom-color: rgba(29,111,115,.16);
+      }
+      .troubleshoot-title {
+        font-family: "Noto Serif KR", "Noto Sans KR", serif;
+        font-size: 1.06rem;
+        line-height: 1.64;
+      }
+      .badge-primary {
+        background: var(--foreground);
+        font-size: .7rem;
+      }
+      .troubleshoot-grid {
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+        gap: 1.25rem;
+      }
+      .trouble-label {
+        font-size: .78rem;
+        letter-spacing: .08em;
+      }
+      .trouble-label.problem,
+      .trouble-label.alt,
+      .trouble-label.sol { color: var(--primary-deep); }
+      .code-box {
+        border: 1px solid rgba(23,25,20,.14);
+        background: var(--code-bg);
+        box-shadow: none;
+      }
+      .code-top {
+        border-bottom-color: rgba(255,255,255,.08);
+        color: #a8b0a8;
+      }
+      .code-box pre {
+        font-size: .84rem;
+        line-height: 1.68;
+      }
+      .takeaway {
+        border-color: rgba(183,91,44,.2);
+        background: rgba(243,232,223,.64);
+      }
+      .takeaway-title {
+        color: #88431e;
+        font-size: .78rem;
+        letter-spacing: .08em;
+      }
+      .svg-wrap {
+        background: rgba(238,242,236,.64);
+      }
+      .svg-wrap p {
+        color: var(--text-3);
+        font-size: .68rem;
+        letter-spacing: .06em;
+      }
+
+      .footer {
+        padding: 3.5rem 0;
+        border-top-color: rgba(23,25,20,.12);
+        background: #eef2ec;
+      }
+      .footer::before { display: none; }
+      .footer-top {
+        gap: 2rem;
+        margin-bottom: 1.6rem;
+      }
+      .footer-brand-stack strong {
+        font-family: "Noto Serif KR", serif;
+        font-size: 1.12rem;
+      }
+      .footer-nav a { color: var(--text-2); }
+      .footer-bottom { border-top-color: rgba(23,25,20,.12); }
+      .icon-link {
+        border-radius: 7px;
+        background: rgba(255,255,251,.58);
+      }
+      .icon-link:hover {
+        background: var(--foreground);
+        border-color: var(--foreground);
+        box-shadow: none;
+      }
+
+      .reveal {
+        filter: none;
+        transition: opacity .45s var(--ease), transform .45s var(--ease);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: .001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: .001ms !important;
+        }
+      }
+      @media(max-width:1100px) {
+        .hero-grid { grid-template-columns: 1fr; }
+        .hero-card-wrap { display: block; max-width: 420px; }
+        .hero-card-mark { aspect-ratio: 4 / 3.2; }
+      }
+      @media(max-width:920px) {
+        :root { --nav-height: 66px; }
+        .container { width: min(100% - 32px, 1160px); }
+        .nav-links { display: none; }
+        .nav-hamburger { display: flex; }
+        .nav-drawer { display: flex; }
+        .panel-grid-2,
+        .about-grid,
+        .skill-grid,
+        .troubleshoot-grid,
+        .footer-top { grid-template-columns: 1fr; }
+        .skill-panel.wide,
+        .skill-summary { grid-column: auto; }
+        .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media(max-width:640px) {
+        :root { --notice-height: 40px; }
+        .blur-notice-bar {
+          justify-content: flex-start;
+          text-align: left;
+          font-size: .68rem;
+        }
+        .blur-notice-bar span:last-child {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .container { width: min(100% - 24px, 1160px); }
+        .hero-grid {
+          padding-top: 3.6rem;
+          padding-bottom: 3.2rem;
+        }
+        .hero-title { font-size: clamp(3.2rem, 16vw, 4.65rem); }
+        .hero-intro { font-size: 1rem; }
+        .hero-actions { flex-direction: column; }
+        .hero-actions .button { width: 100%; }
+        .hero-card-wrap { display: none; }
+        .stats-grid { grid-template-columns: 1fr; }
+        .section { padding: 4rem 0; }
+        .section-heading { font-size: clamp(1.85rem, 9vw, 2.5rem); }
+        .project-toggle {
+          padding: 1rem;
+          gap: .75rem;
+        }
+        .project-inner {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        .project-card.is-open .project-inner { padding-top: 1rem; }
+        .project-meta span { font-size: .72rem; }
+        .tagline-result { white-space: normal; }
+        .info-card,
+        .about-card,
+        .skill-panel { padding: 1.15rem; }
+        .skill-summary {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .summary-item {
+          width: auto;
+          min-width: 0;
+        }
+        .lang-switcher {
+          left: .75rem;
+          right: auto;
+          bottom: .75rem;
+        }
+        .blur-toggle-bar {
+          right: .75rem;
+          bottom: .75rem;
+          max-width: 11.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: .7rem;
+        }
+      }
       @media print{.site-nav,.scroll-hint,.scroll-progress,.nav-drawer,.hero-bg,.footer-actions,.cert-dl-btn,.hero-actions .button:nth-child(2),.hero-actions .button:nth-child(3),.project-chevron,.blur-notice-bar,.blur-toggle-bar{display:none!important}body{background:#fff!important;font-size:11.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero{padding-top:0}.section,.footer{padding:1rem 0}.container{width:100%!important;padding:0 1.2rem!important}.hero-grid{grid-template-columns:1fr!important}.hero-card-wrap{display:none!important}.stats-grid{grid-template-columns:repeat(2,1fr)!important;margin-top:0}*,*::before,*::after{animation:none!important;transition:none!important}.hero-copy > *,.hero-card-wrap,.reveal{opacity:1!important;transform:none!important;filter:none!important}.pii,.pii-img{filter:none!important}.project-body{max-height:none!important;opacity:1!important}.project-inner{padding-top:1.2rem!important;border-top:1px solid #e2e8f0!important}.project-toggle{background:transparent!important;padding-bottom:0!important}.troubleshoot-grid{grid-template-columns:1fr!important}.code-box{background:var(--code-bg)!important;border:1px solid #2d3139!important;box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;overflow:visible!important}.code-top{background:var(--code-bg)!important;color:#a0a7b4!important;border-bottom:1px solid #2d3139!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.code-box pre{color:#abb2bf!important;background:transparent!important;white-space:pre-wrap!important;word-break:break-all!important;font-size:7.5pt!important}.code-box code{background:transparent!important;border:none!important}.bar-track{background:#e2e8f0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill.bar-kr{width:100%!important}.bar-fill.bar-cn{width:95%!important}.bar-fill.bar-us{width:72%!important}.info-card,.about-card,.skill-panel,.project-card,.stat-card,.cert-card,.troubleshoot,.timeline-item,.code-box,.takeaway,.arrow-list li,.svg-wrap{break-inside:avoid;page-break-inside:avoid}.section-heading,.minor-title,h2,h3,h4{break-after:avoid;page-break-after:avoid}.panel-grid-2,.about-grid,.skill-grid,.stats-grid{break-inside:auto;page-break-inside:auto}.panel-grid-2 > *,.about-grid > *,.skill-grid > *,.stats-grid > *{break-inside:avoid;page-break-inside:avoid}.svg-wrap svg{max-width:100%;height:auto}.svg-wrap{overflow:hidden!important}.skill-panel:hover{transform:none;box-shadow:none}.about-card:hover{transform:none}.lang-switcher{display:none!important}}
     </style>
   </head>
   <body>
 
-    <!-- 🔒 개인정보 보호 배너 -->
+    <!-- 개인정보 보호 배너 -->
     <div class="blur-notice-bar">
-      <span data-i18n="pii.banner.title">🔒 개인정보 보호 모드</span><span data-i18n="pii.banner.sub"> — 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다</span>
+      <span data-i18n="pii.banner.title">개인정보 보호 모드</span><span data-i18n="pii.banner.sub"> — 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다</span>
     </div>
 
     <nav class="site-nav" id="site-nav">
@@ -340,7 +1167,7 @@
           <a class="nav-link" href="#projects" data-section="projects" data-i18n="nav.projects">프로젝트</a>
         </div>
         <div class="nav-actions">
-          <button class="button print-button js-print" type="button">📄 PDF</button>
+          <button class="button print-button js-print" type="button">PDF</button>
           <a class="button dark" href="#" onclick="return false;" title="개인정보 보호를 위해 비활성화됨">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
@@ -351,13 +1178,13 @@
     </nav>
 
     <div class="nav-drawer" id="nav-drawer">
-      <a class="drawer-link" href="#edu"><span class="dl-icon">🎓</span><span data-i18n="nav.edu">학력 / 어학</span></a>
-      <a class="drawer-link" href="#about"><span class="dl-icon">🙋</span><span data-i18n="nav.about">나에 대해</span></a>
-      <a class="drawer-link" href="#skills"><span class="dl-icon">🛠️</span><span data-i18n="nav.skills">기술 스택</span></a>
-      <a class="drawer-link" href="#projects"><span class="dl-icon">📁</span><span data-i18n="nav.projects">프로젝트</span></a>
+      <a class="drawer-link" href="#edu"><span class="dl-icon">01</span><span data-i18n="nav.edu">학력 / 어학</span></a>
+      <a class="drawer-link" href="#about"><span class="dl-icon">02</span><span data-i18n="nav.about">나에 대해</span></a>
+      <a class="drawer-link" href="#skills"><span class="dl-icon">03</span><span data-i18n="nav.skills">기술 스택</span></a>
+      <a class="drawer-link" href="#projects"><span class="dl-icon">04</span><span data-i18n="nav.projects">프로젝트</span></a>
       <div class="drawer-divider"></div>
       <div class="drawer-actions">
-        <button class="button js-print" type="button" style="flex:1">📄 PDF</button>
+        <button class="button js-print" type="button" style="flex:1">PDF</button>
         <a class="button dark" href="#" onclick="return false;" style="flex:1">GitHub</a>
       </div>
     </div>
@@ -428,28 +1255,28 @@
           <div class="panel-grid-2">
             <article class="info-card reveal">
               <div class="top-line top-accent"></div>
-              <div class="card-header"><span class="icon-box icon-accent">🎓</span><h3 data-i18n="edu.education">학력</h3></div>
+              <div class="card-header"><span class="icon-box icon-accent">ED</span><h3 data-i18n="edu.education">학력</h3></div>
               <div class="timeline">
                 <div class="timeline-item">
                   <span class="timeline-point">●</span>
                   <h4><span class="pii">北京汇文中学</span></h4>
                   <p data-i18n-html="edu.school1.p"><span class="pii">북경 회문고등학교</span></p>
                   <small class="mono">2017.09 – 2020.07</small>
-                  <div style="margin-top:.5rem"><span class="tag accent mono" data-i18n="edu.school1.tag">🏅 150년 전통 북경 동성구 명문 공립고교</span></div>
+                  <div style="margin-top:.5rem"><span class="tag accent mono" data-i18n="edu.school1.tag">150년 전통 북경 동성구 명문 공립고교</span></div>
                 </div>
                 <div class="timeline-item">
                   <span class="timeline-point">●</span>
                   <h4><span class="pii">北京航空航天大学 (BUAA)</span></h4>
                   <p data-i18n="edu.school2.p">软件学院 (School of Software) · 학사</p>
                   <small class="mono" data-i18n="edu.school2.small">2020.09 – 2026.07 (졸업 예정)</small>
-                  <div style="margin-top:.5rem"><span class="tag accent mono" data-i18n="edu.school2.tag">🏅 소프트웨어공학 전국 1위 (A+)</span></div>
+                  <div style="margin-top:.5rem"><span class="tag accent mono" data-i18n="edu.school2.tag">소프트웨어공학 전국 1위 (A+)</span></div>
                 </div>
               </div>
             </article>
 
             <article class="info-card reveal">
               <div class="top-line top-green"></div>
-              <div class="card-header"><span class="icon-box icon-green">🌐</span><h3 data-i18n="edu.lang">어학</h3></div>
+              <div class="card-header"><span class="icon-box icon-green">LG</span><h3 data-i18n="edu.lang">어학</h3></div>
               <div class="cert-list">
                 <div class="cert-card">
                   <span class="cert-mark mono" style="background:var(--green-lt);color:var(--green)">CN</span>
@@ -492,22 +1319,22 @@
           <h2 class="section-heading" data-i18n="section.about">나에 대해</h2>
           <div class="about-grid">
             <article class="about-card reveal">
-              <span class="icon-box icon-accent">📚</span>
+              <span class="icon-box icon-accent">RD</span>
               <h3 data-i18n="about.h1">학습 자세</h3>
               <p class="body-text" data-i18n-html="about.body1">막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.</p>
-              <div class="tag-list mono"><span class="tag accent" data-i18n="about.tag1a">🧐 가설 검증형</span><span class="tag accent" data-i18n="about.tag1b">✍️ 문서화 습관</span></div>
+              <div class="tag-list mono"><span class="tag accent" data-i18n="about.tag1a">가설 검증형</span><span class="tag accent" data-i18n="about.tag1b">문서화 습관</span></div>
             </article>
             <article class="about-card reveal">
-              <span class="icon-box icon-blue">🤝</span>
+              <span class="icon-box icon-blue">TM</span>
               <h3 data-i18n="about.h2">협업 방식</h3>
               <p class="body-text" data-i18n-html="about.body2">기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.</p>
-              <div class="tag-list mono"><span class="tag blue" data-i18n="about.tag2a">🌐 한·중·영</span><span class="tag blue" data-i18n="about.tag2b">📄 RFC 문서화</span><span class="tag slate" data-i18n="about.tag2c">📊 데이터 기반 설득</span></div>
+              <div class="tag-list mono"><span class="tag blue" data-i18n="about.tag2a">한·중·영</span><span class="tag blue" data-i18n="about.tag2b">RFC 문서화</span><span class="tag slate" data-i18n="about.tag2c">데이터 기반 설득</span></div>
             </article>
             <article class="about-card reveal">
-              <span class="icon-box icon-orange">🧗</span>
+              <span class="icon-box icon-orange">CL</span>
               <h3 data-i18n="about.h3">취미 &amp; 라이프스타일</h3>
               <p class="body-text" data-i18n-html="about.body3"><strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.</p>
-              <div class="tag-list mono"><span class="tag orange" data-i18n="about.tag3a">🧗 클라이밍</span><span class="tag orange" data-i18n="about.tag3b">🧩 루트파인딩</span></div>
+              <div class="tag-list mono"><span class="tag orange" data-i18n="about.tag3a">클라이밍</span><span class="tag orange" data-i18n="about.tag3b">루트파인딩</span></div>
             </article>
           </div>
         </div>
@@ -522,7 +1349,7 @@
             <article class="skill-panel reveal"><div class="top-line top-teal"></div><div class="skill-label mono"><span class="dot-teal">●</span> <span data-i18n="skill.fe">프론트엔드 (웹 / 모바일)</span></div><div class="chip-list"><span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span><span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span><span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span></div></article>
             <article class="skill-panel reveal"><div class="top-line top-pink"></div><div class="skill-label mono"><span class="dot-pink">●</span> <span data-i18n="skill.ai">AI &amp; ML</span></div><div class="chip-list"><span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span><span class="chip tag pink">CNN-CBAM-GRU</span><span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span></div></article>
             <article class="skill-panel wide reveal"><div class="top-line top-slate"></div><div class="skill-label mono"><span class="dot-slate">●</span> <span data-i18n="skill.infra">인프라 / 협업</span></div><div class="chip-list"><span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span><span class="chip tag slate">MinIO</span><span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span><span class="chip tag slate">RFC Docs</span><span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span><span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span></div></article>
-            <div class="skill-summary reveal"><div class="summary-item"><span>💻</span><strong>6</strong><span data-i18n="skill.sum.lang">언어</span></div><div class="summary-item"><span>📦</span><strong>4</strong><span data-i18n="skill.sum.fw">프레임워크</span></div><div class="summary-item"><span>🐳</span><strong>6</strong><span data-i18n="skill.sum.infra">인프라 도구</span></div><div class="summary-item"><span>🧠</span><strong>2</strong><span data-i18n="skill.sum.ai">AI 모델 구현</span></div></div>
+            <div class="skill-summary reveal"><div class="summary-item"><span>LANG</span><strong>6</strong><span data-i18n="skill.sum.lang">언어</span></div><div class="summary-item"><span>FW</span><strong>4</strong><span data-i18n="skill.sum.fw">프레임워크</span></div><div class="summary-item"><span>OPS</span><strong>6</strong><span data-i18n="skill.sum.infra">인프라 도구</span></div><div class="summary-item"><span>AI</span><strong>2</strong><span data-i18n="skill.sum.ai">AI 모델 구현</span></div></div>
           </div>
         </div>
       </section>
@@ -538,8 +1365,8 @@
               <div class="project-head">
                 <h3 data-i18n="proj1.title">BUAA OS — MIPS 마이크로커널 운영체제</h3>
                 <div class="project-meta mono">
-                  <span>🗓 2024.03 – 2024.07 · BUAA OS Course</span>
-                  <span data-i18n="proj1.role">👤 OS Kernel Developer (1인 개발)</span>
+                  <span>2024.03 – 2024.07 · BUAA OS Course</span>
+                  <span data-i18n="proj1.role">OS Kernel Developer (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
                   <span class="tagline-summary" data-i18n="proj1.summary">GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현</span>
@@ -598,7 +1425,7 @@
 }</code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
                           <p class="body-text" data-i18n-html="p1_takeaway">선점형 스케줄링 환경에서는 '완성된 결과'뿐만 아니라 <strong>'과정 중의 중간 상태'도 안전해야 함</strong>을 깨달았습니다.</p>
                         </div>
                       </div>
@@ -620,8 +1447,8 @@
               <div class="project-head">
                 <h3 data-i18n="proj2.title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
                 <div class="project-meta mono">
-                  <span>🗓 2024.10 – 2025.01 · BUAA Compiler Course</span>
-                  <span data-i18n="proj2.role">👤 Compiler Engineer (1인 개발)</span>
+                  <span>2024.10 – 2025.01 · BUAA Compiler Course</span>
+                  <span data-i18n="proj2.role">Compiler Engineer (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
                   <span class="tagline-summary" data-i18n="proj2.summary">Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현</span>
@@ -692,7 +1519,7 @@
 }</code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
                           <p class="body-text" data-i18n-html="p2_takeaway">에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.</p>
                         </div>
                       </div>
@@ -714,8 +1541,8 @@
               <div class="project-head">
                 <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
                 <div class="project-meta mono">
-                  <span>🗓 2025.03 – 2025.08 · BUAA SSAD Course</span>
-                  <span data-i18n="proj3.role">👤 Backend / Full-Stack (팀 프로젝트)</span>
+                  <span>2025.03 – 2025.08 · BUAA SSAD Course</span>
+                  <span data-i18n="proj3.role">Backend / Full-Stack (팀 프로젝트)</span>
                 </div>
                 <div class="project-tagline">
                   <span class="tagline-summary" data-i18n="proj3.summary">연구자 학술 성과 검색·분석 플랫폼 — ES·Redis·MinIO·Vector 5개 인프라 통합 백엔드 전담</span>
@@ -859,7 +1686,7 @@
 }</code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
                           <p class="body-text" data-i18n-html="p3_takeaway">협업 시 발생할 수 있는 휴먼 에러를 줄이기 위해서는 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 기여한다는 점을 체감했습니다.</p>
                         </div>
                       </div>
@@ -881,8 +1708,8 @@
               <div class="project-head">
                 <h3 data-i18n="proj4.title">CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼 <span class="project-extra mono">논문</span></h3>
                 <div class="project-meta mono">
-                  <span>🗓 2025.10 – 2026.03</span>
-                  <span data-i18n="proj4.role">👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
+                  <span>2025.10 – 2026.03</span>
+                  <span data-i18n="proj4.role">3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
                   <span class="tagline-summary" data-i18n="proj4.summary">모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱</span>
@@ -1035,7 +1862,7 @@
     <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">512m</span></code></pre>
                         </div>
                         <div class="takeaway">
-                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">💡 알게된 점</div>
+                          <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
                           <p class="body-text" data-i18n-html="p4_takeaway">제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.</p>
                         </div>
                       </div>
@@ -1090,9 +1917,9 @@
       <button class="lang-btn" data-lang="zh" type="button">中</button>
     </div>
 
-    <!-- 🔒 블러 토글 버튼 -->
+    <!-- 블러 토글 버튼 -->
     <button class="blur-toggle-bar" id="blur-toggle" type="button" data-i18n="blur.on">
-      🔒 개인정보 블러 켜짐 — 클릭하여 해제
+      개인정보 블러 켜짐 — 클릭하여 해제
     </button>
 
     <script>
@@ -1105,7 +1932,7 @@
 
     const TRANSLATIONS = {
       ko: {
-        'pii.banner.title': '🔒 개인정보 보호 모드',
+        'pii.banner.title': '개인정보 보호 모드',
         'pii.banner.sub': ' — 연락처·학교명·증명서 번호·사진 등이 블러 처리되었습니다',
         'nav.edu': '학력 / 어학',
         'nav.about': '나에 대해',
@@ -1123,10 +1950,10 @@
         'section.edu': '학력 & 어학',
         'edu.education': '학력',
         'edu.school1.p': '<span class="pii">북경 회문고등학교</span>',
-        'edu.school1.tag': '🏅 150년 전통 북경 동성구 명문 공립고교',
+        'edu.school1.tag': '150년 전통 북경 동성구 명문 공립고교',
         'edu.school2.p': '软件学院 (School of Software) · 학사',
         'edu.school2.small': '2020.09 – 2026.07 (졸업 예정)',
-        'edu.school2.tag': '🏅 소프트웨어공학 전국 1위 (A+)',
+        'edu.school2.tag': '소프트웨어공학 전국 1위 (A+)',
         'edu.lang': '어학',
         'edu.tsc.title': 'TSC 중국어 회화 <span class="tag green mono">Level 6</span>',
         'edu.tsc.desc': '원어민 수준 비즈니스 커뮤니케이션',
@@ -1140,13 +1967,13 @@
         'about.body1': '막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, MIPS OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.',
         'about.body2': '기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능 및 생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영 3개국어</strong>로 팀 전체가 같은 맥락을 공유할 수 있는 환경을 만듭니다.',
         'about.body3': '<strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.',
-        'about.tag1a': '🧐 가설 검증형',
-        'about.tag1b': '✍️ 문서화 습관',
-        'about.tag2a': '🌐 한·중·영',
-        'about.tag2b': '📄 RFC 문서화',
-        'about.tag2c': '📊 데이터 기반 설득',
-        'about.tag3a': '🧗 클라이밍',
-        'about.tag3b': '🧩 루트파인딩',
+        'about.tag1a': '가설 검증형',
+        'about.tag1b': '문서화 습관',
+        'about.tag2a': '한·중·영',
+        'about.tag2b': 'RFC 문서화',
+        'about.tag2c': '데이터 기반 설득',
+        'about.tag3a': '클라이밍',
+        'about.tag3b': '루트파인딩',
         'section.skills': '기술 스택',
         'skill.sys': '시스템 / 로우레벨',
         'skill.be': '백엔드 / 데이터베이스',
@@ -1159,19 +1986,19 @@
         'skill.sum.ai': 'AI 모델 구현',
         'section.projects': '프로젝트',
         'proj1.title': 'BUAA OS — MIPS 마이크로커널 운영체제',
-        'proj1.role': '👤 OS Kernel Developer (1인 개발)',
+        'proj1.role': 'OS Kernel Developer (1인 개발)',
         'proj1.summary': 'GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현',
         'proj1.result': '✓ Lab 0–6 전 단계 완주',
         'proj2.title': 'SysY 언어 컴파일러 프론트엔드 &amp; VM 구현',
-        'proj2.role': '👤 Compiler Engineer (1인 개발)',
+        'proj2.role': 'Compiler Engineer (1인 개발)',
         'proj2.summary': 'Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현',
         'proj2.result': '✓ a–m 전 에러 범주 처리 달성',
         'proj3.title': '학술 성과 공유 플랫폼 (Academic Results Sharing Platform)',
-        'proj3.role': '👤 Backend / Full-Stack (팀 프로젝트)',
+        'proj3.role': 'Backend / Full-Stack (팀 프로젝트)',
         'proj3.summary': '연구자 학술 성과 검색·분석 플랫폼 — ES·Redis·MinIO·Vector 5개 인프라 통합 백엔드 전담',
         'proj3.result': '✓ API 응답 규약 통일로 프론트 파싱 오류 제거',
         'proj4.title': 'CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼',
-        'proj4.role': '👤 3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)',
+        'proj4.role': '3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)',
         'proj4.summary': '모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱',
         'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS 배포',
         'p1_intro': 'GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.',
@@ -1245,14 +2072,14 @@
         'trouble.situation': '상황',
         'trouble.alternatives': '대안 탐색',
         'trouble.solution': '해결',
-        'trouble.takeaway': '💡 알게된 점',
+        'trouble.takeaway': '알게된 점',
         'footer.graduation': 'BUAA 2026.07 졸업 예정',
         'footer.copy': '© 2026 조현준 포트폴리오',
-        'blur.on': '🔒 개인정보 블러 켜짐 — 클릭하여 해제',
-        'blur.off': '🔓 개인정보 블러 꺼짐 — 클릭하여 활성화',
+        'blur.on': '개인정보 블러 켜짐 — 클릭하여 해제',
+        'blur.off': '개인정보 블러 꺼짐 — 클릭하여 활성화',
       },
       en: {
-        'pii.banner.title': '🔒 Privacy Protection Mode',
+        'pii.banner.title': 'Privacy Protection Mode',
         'pii.banner.sub': ' — Contact info, school name, certificate numbers, and photos are blurred',
         'nav.edu': 'Education',
         'nav.about': 'About Me',
@@ -1270,10 +2097,10 @@
         'section.edu': 'Education & Language',
         'edu.education': 'Education',
         'edu.school1.p': '<span class="pii">Beijing Huiwen High School</span>',
-        'edu.school1.tag': '🏅 150-year-old prestigious public high school in Beijing Dongcheng',
+        'edu.school1.tag': '150-year-old prestigious public high school in Beijing Dongcheng',
         'edu.school2.p': 'School of Software · Bachelor\'s',
         'edu.school2.small': '2020.09 – 2026.07 (Expected)',
-        'edu.school2.tag': '🏅 Software Engineering #1 in China (A+)',
+        'edu.school2.tag': 'Software Engineering #1 in China (A+)',
         'edu.lang': 'Languages',
         'edu.tsc.title': 'TSC Chinese Oral Proficiency <span class="tag green mono">Level 6</span>',
         'edu.tsc.desc': 'Native-level business communication',
@@ -1287,13 +2114,13 @@
         'about.body1': 'When stuck, I <strong>form a hypothesis and tackle it head-on</strong> rather than giving up. I internalize new tech by reading official docs and implementing from scratch, repeating <strong>verification until resolved</strong> with the same persistence I used debugging a MIPS OS kernel.',
         'about.body2': 'I <strong>resolve tech-stack conflicts with data</strong>. I gather performance and ecosystem metrics to persuade the team, and document agreements as <strong>RFC specs</strong>. I build environments where the whole team shares the same context across <strong>Korean, Chinese, and English</strong>.',
         'about.body3': 'I enjoy <strong>rock climbing</strong>.<br />Analyzing optimal routes and persisting through challenges mirrors <strong>engineering problem-solving</strong>. I maintain a <strong>tenacious path-finding mindset</strong> beyond code, in everyday life too.',
-        'about.tag1a': '🧐 Hypothesis-driven',
-        'about.tag1b': '✍️ Documentation habit',
-        'about.tag2a': '🌐 KO · CN · EN',
-        'about.tag2b': '📄 RFC Docs',
-        'about.tag2c': '📊 Data-driven',
-        'about.tag3a': '🧗 Climbing',
-        'about.tag3b': '🧩 Route-finding',
+        'about.tag1a': 'Hypothesis-driven',
+        'about.tag1b': 'Documentation habit',
+        'about.tag2a': 'KO · CN · EN',
+        'about.tag2b': 'RFC Docs',
+        'about.tag2c': 'Data-driven',
+        'about.tag3a': 'Climbing',
+        'about.tag3b': 'Route-finding',
         'section.skills': 'Tech Stack',
         'skill.sys': 'Systems / Low-level',
         'skill.be': 'Backend / Database',
@@ -1306,19 +2133,19 @@
         'skill.sum.ai': 'AI models built',
         'section.projects': 'Projects',
         'proj1.title': 'BUAA OS — MIPS Microkernel OS',
-        'proj1.role': '👤 OS Kernel Developer (Solo)',
+        'proj1.role': 'OS Kernel Developer (Solo)',
         'proj1.summary': 'Step-by-step implementation of boot, virtual memory, CoW fork, and microkernel FS on GXemul MIPS simulator',
         'proj1.result': '✓ Completed all Lab 0–6 stages',
         'proj2.title': 'SysY Compiler Frontend &amp; VM',
-        'proj2.role': '👤 Compiler Engineer (Solo)',
+        'proj2.role': 'Compiler Engineer (Solo)',
         'proj2.summary': 'Lexer → Recursive Descent Parser → Symbol Table → P-Code VM, full compiler pipeline in C++',
         'proj2.result': '✓ All a–m error categories handled',
         'proj3.title': 'Academic Results Sharing Platform',
-        'proj3.role': '👤 Backend / Full-Stack (Team Project)',
+        'proj3.role': 'Backend / Full-Stack (Team Project)',
         'proj3.summary': 'Academic research search & analysis platform — sole backend dev integrating ES·Redis·MinIO·Vector',
         'proj3.result': '✓ Unified API response spec eliminated frontend parsing errors',
         'proj4.title': 'CareLink — Elderly Health Monitoring &amp; AI ECG Diagnosis',
-        'proj4.role': '👤 3-Tier System Architect & AI Model Dev (Solo)',
+        'proj4.role': '3-Tier System Architect & AI Model Dev (Solo)',
         'proj4.summary': 'Solo-designed 3-layer system (mobile·backend·AI) — patient-guardian connection + ECG auto-diagnosis',
         'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS deployed',
         'p1_intro': 'Following a 7-stage Lab0–Lab6 curriculum in GXemul, I implemented core OS components step by step: kernel boot, memory management, processes, system calls, IPC, and file system. In particular, I deeply practiced OS internals by implementing <strong>TLB Fast Refill, Copy-on-Write based fork(), and a microkernel file system architecture using a user-space FS server over IPC</strong>.',
@@ -1392,14 +2219,14 @@
         'trouble.situation': 'Situation',
         'trouble.alternatives': 'Alternatives Explored',
         'trouble.solution': 'Solution',
-        'trouble.takeaway': '💡 Key Takeaway',
+        'trouble.takeaway': 'Key Takeaway',
         'footer.graduation': 'BUAA graduating 2026.07',
         'footer.copy': '© 2026 Cho Hyunjun Portfolio',
-        'blur.on': '🔒 Privacy Blur ON — Click to disable',
-        'blur.off': '🔓 Privacy Blur OFF — Click to enable',
+        'blur.on': 'Privacy Blur ON — Click to disable',
+        'blur.off': 'Privacy Blur OFF — Click to enable',
       },
       zh: {
-        'pii.banner.title': '🔒 隐私保护模式',
+        'pii.banner.title': '隐私保护模式',
         'pii.banner.sub': ' — 联系方式·学校名称·证书编号·照片等均已模糊处理',
         'nav.edu': '学历 & 语言',
         'nav.about': '关于我',
@@ -1417,10 +2244,10 @@
         'section.edu': '学历 & 语言',
         'edu.education': '学历',
         'edu.school1.p': '<span class="pii">北京汇文中学（高中）</span>',
-        'edu.school1.tag': '🏅 150年历史，北京东城区名校',
+        'edu.school1.tag': '150年历史，北京东城区名校',
         'edu.school2.p': '软件学院 · 学士',
         'edu.school2.small': '2020.09 – 2026.07（预计毕业）',
-        'edu.school2.tag': '🏅 软件工程全国第一 (A+)',
+        'edu.school2.tag': '软件工程全国第一 (A+)',
         'edu.lang': '语言',
         'edu.tsc.title': 'TSC 中文口语 <span class="tag green mono">Level 6</span>',
         'edu.tsc.desc': '母语级商务沟通能力',
@@ -1434,13 +2261,13 @@
         'about.body1': '遇到困难不放弃，而是<strong>提出假设正面突破</strong>。新技术从官方文档入手亲自实现并<strong>内化</strong>，以调试MIPS OS内核时的执着精神<strong>反复验证直到解决</strong>。',
         'about.body2': '用<strong>数据调解</strong>技术选型分歧，亲自收集性能和生态数据说服团队，并将共识记录为<strong>RFC文档</strong>。用<strong>韩·中·英三语</strong>让整个团队共享相同背景。',
         'about.body3': '享受<strong>攀岩</strong>运动。<br />分析最优路线、不断挑战直到完攀的过程与<strong>工程解题</strong>非常相似。在代码之外，日常生活中也保持着<strong>执着寻路的态度</strong>。',
-        'about.tag1a': '🧐 假设验证型',
-        'about.tag1b': '✍️ 文档化习惯',
-        'about.tag2a': '🌐 韩·中·英',
-        'about.tag2b': '📄 RFC文档',
-        'about.tag2c': '📊 数据驱动',
-        'about.tag3a': '🧗 攀岩',
-        'about.tag3b': '🧩 路线分析',
+        'about.tag1a': '假设验证型',
+        'about.tag1b': '文档化习惯',
+        'about.tag2a': '韩·中·英',
+        'about.tag2b': 'RFC文档',
+        'about.tag2c': '数据驱动',
+        'about.tag3a': '攀岩',
+        'about.tag3b': '路线分析',
         'section.skills': '技术栈',
         'skill.sys': '系统 / 底层开发',
         'skill.be': '后端 / 数据库',
@@ -1453,19 +2280,19 @@
         'skill.sum.ai': 'AI模型实现',
         'section.projects': '项目',
         'proj1.title': 'BUAA OS — MIPS 微内核操作系统',
-        'proj1.role': '👤 OS内核开发者（个人项目）',
+        'proj1.role': 'OS内核开发者（个人项目）',
         'proj1.summary': '在GXemul MIPS模拟器上逐步实现启动·虚拟内存·CoW fork·微内核文件系统',
         'proj1.result': '✓ 完成全部 Lab 0–6 阶段',
         'proj2.title': 'SysY 语言编译器前端 &amp; VM 实现',
-        'proj2.role': '👤 编译器工程师（个人项目）',
+        'proj2.role': '编译器工程师（个人项目）',
         'proj2.summary': 'Lexer → 递归下降Parser → 符号表 → P-Code VM，用C++实现完整编译器流水线',
         'proj2.result': '✓ 实现全部 a–m 类错误处理',
         'proj3.title': '学术成果共享平台',
-        'proj3.role': '👤 后端/全栈（团队项目）',
+        'proj3.role': '后端/全栈（团队项目）',
         'proj3.summary': '学术成果检索分析平台 — 独立负责ES·Redis·MinIO·Vector五大基础设施集成后端',
         'proj3.result': '✓ 统一API响应规范，消除前端解析错误',
         'proj4.title': 'CareLink — 老年健康监测 &amp; AI心电诊断平台',
-        'proj4.role': '👤 三层架构系统集成与AI模型构建（个人项目）',
+        'proj4.role': '三层架构系统集成与AI模型构建（个人项目）',
         'proj4.summary': '独立设计移动·后端·AI推理三层架构——患者-监护人连接+ECG自动诊断',
         'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS部署',
         'p1_intro': '在 GXemul 环境中，我按 Lab0~Lab6 的 7 阶段课程逐步实现了 OS 核心组件：内核启动、内存管理、进程、系统调用、IPC 与文件系统。尤其通过实现 <strong>TLB Fast Refill、基于 Copy-on-Write 的 fork()、以及通过 IPC 与用户态 FS 服务器通信的微内核文件系统结构</strong>，深入实践了操作系统关键机制。',
@@ -1539,11 +2366,11 @@
         'trouble.situation': '问题背景',
         'trouble.alternatives': '方案探索',
         'trouble.solution': '解决方案',
-        'trouble.takeaway': '💡 收获',
+        'trouble.takeaway': '收获',
         'footer.graduation': 'BUAA 预计2026.07毕业',
         'footer.copy': '© 2026 赵贤俊 作品集',
-        'blur.on': '🔒 隐私保护已启用 — 点击关闭',
-        'blur.off': '🔓 隐私保护已关闭 — 点击开启',
+        'blur.on': '隐私保护已启用 — 点击关闭',
+        'blur.off': '隐私保护已关闭 — 点击开启',
       }
     };
 
