@@ -1489,38 +1489,35 @@
                       <div>
                         <div class="trouble-block">
                           <div class="trouble-label problem mono" data-i18n="trouble.situation">상황</div>
-                          <p class="body-text" data-i18n-html="p2_tr_problem">세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_tr_problem"><code>int a int b;</code>처럼 세미콜론이 누락된 케이스를 처리하려고 에러 함수를 추가하면, 기존에 통과하던 정상 파싱까지 깨지는 문제가 반복됐습니다. 원인을 추적해보니 <code>parseErrorI/J/K</code>가 단순 검사 함수가 아니라 <code>AdvanceToNextToken()</code>으로 <strong><code>mCurToken</code>/<code>mCurpos</code>를 직접 변경하는 함수</strong>였고, 호출 순서가 조금만 바뀌어도 후속 구문이 엉뚱한 토큰에서 시작했습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label alt mono" data-i18n="trouble.alternatives">대안 탐색</div>
-                          <p class="body-text" data-i18n-html="p2_tr_alt">에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_tr_alt">즉시 파싱 중단, 동기화 토큰(<code>;</code>, <code>}</code>)까지 건너뛰는 panic-mode 복구, 그리고 새 검사를 기존 에러 함수 앞뒤에 삽입하는 방식을 비교했습니다. 하지만 커서를 소비하는 함수 앞에서 토큰을 한 번 더 이동시키면 <code>;</code>가 이중 소비되거나 다음 선언의 첫 토큰을 건너뛰어 재귀 하향 파서 전체가 연쇄적으로 흔들렸습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label sol mono" data-i18n="trouble.solution">해결</div>
-                          <p class="body-text" data-i18n-html="p2_tr_sol">에러를 '파싱 중단 사유'가 아닌 <strong>'문맥 복귀 신호'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_tr_sol">먼저 에러 함수들을 <strong>토큰 소비형(<code>parseErrorI/J/K</code>), look-ahead형(<code>parseErrorE</code>), 심볼 등록형(<code>parseErrorB</code>)</strong>으로 분류했습니다. 이후 새 복구 로직은 현재 위치를 저장한 뒤 필요한 토큰만 미리 확인하고 원위치로 되돌리도록 정리했으며, 누락 토큰은 직전 의미 단위(<code>mLastNonT</code>) 기준으로 기록했습니다. 덕분에 에러 처리 추가가 다른 파싱 함수의 시작 위치를 망가뜨리는 문제를 줄였습니다.</p>
                         </div>
                       </div>
                       <div>
                         <div class="code-box">
                           <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">Parser.cpp — Error Recovery</span></div>
-                          <pre><code><span style="color:#5c6370;">// 누락 토큰 에러: 파싱 중단 없이 복귀</span>
-<span style="color:#c678dd;">void</span> <span style="color:#61afef;">parseErrorPrintfI</span>() {
-  <span style="color:#e5c07b;">Token</span> cur  = <span style="color:#61afef;">getCurrentToken</span>();
-  <span style="color:#e5c07b;">Token</span> prev = <span style="color:#61afef;">getPreviousToken</span>();
-
-  <span style="color:#c678dd;">if</span> (cur.type == SEMICN) {
-    <span style="color:#61afef;">outputToken</span>(cur);
-    <span style="color:#61afef;">advanceToken</span>();
-  } <span style="color:#c678dd;">else</span> {
-    <span style="color:#5c6370;">// 직전 유효 토큰 라인 기준으로 에러 기록
-    // → 포인터 이중 전진 방지, 연쇄 오진 차단</span>
-    <span style="color:#61afef;">addError</span>(prev.lineNumber, <span style="color:#98c379;">'i'</span>);
+                          <pre><code><span style="color:#5c6370;">// parseErrorI/J/K는 검사 함수가 아니라 토큰 소비 함수</span>
+<span style="color:#c678dd;">bool</span> <span style="color:#61afef;">Parser::parseErrorI</span>() {
+  <span style="color:#c678dd;">if</span> (mCurToken.word != <span style="color:#98c379;">";"</span>) {
+    m_pErrorHandler-&gt;<span style="color:#61afef;">PushErrorList</span>(<span style="color:#98c379;">'i'</span>, mLastNonT);
+    <span style="color:#c678dd;">return true</span>;
   }
+
+  <span style="color:#5c6370;">// 여기서 ';'를 소비하므로 호출 순서가 중요하다</span>
+  <span style="color:#61afef;">AdvanceToNextToken</span>();
+  <span style="color:#c678dd;">return false</span>;
 }</code></pre>
                         </div>
                         <div class="takeaway">
                           <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
-                          <p class="body-text" data-i18n-html="p2_takeaway">에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_takeaway">이 경험을 통해 문제 해결 시 먼저 <strong>재현 가능한 최소 입력을 만들고, 상태를 바꾸는 함수와 읽기만 하는 함수를 구분</strong>해야 한다는 점을 배웠습니다. 에러 처리는 예외 출력보다 파서의 현재 위치와 문맥을 보존하는 설계가 더 중요했습니다.</p>
                         </div>
                       </div>
                     </div>
@@ -1824,46 +1821,45 @@
                   <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title" data-i18n-html="p4_tr_head">AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제</div>
-                      <span class="badge-primary mono">AI / DevOps</span>
+                      <div class="troubleshoot-title" data-i18n-html="p4_tr_head">Ubuntu EC2 로그 추적으로 ECG 분석 API 500 원인 해결</div>
+                      <span class="badge-primary mono">Ubuntu / Docker Logs</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono" data-i18n-html="p4_tr_label_problem1">① 상황 — 실시간 추론 지연</div>
-                          <p class="body-text" data-i18n-html="p4_tr_problem1">초기 구조에서는 추론 지연과 모바일 환경의 자원 부담이 커서, 실시간 모니터링 서비스에 바로 적용하기 어려운 문제가 있었습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n-html="p4_tr_label_problem1">① 증상 — ECG 분석 API 500</div>
+                          <p class="body-text" data-i18n-html="p4_tr_problem1">ECG 분석 요청(<code>POST /api/ecg/analyze</code>)이 간헐적으로 500을 반환했고, 백엔드 로그에는 FastAPI AI 서버로 보내는 <code>/predict_window</code> 요청이 <strong>Connection refused</strong>로 실패한 기록이 남았습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono" data-i18n-html="p4_tr_label_sol1">① 해결</div>
-                          <p class="body-text" data-i18n-html="p4_tr_sol1">모델 업데이트 유연성과 모바일 메모리 부담 완화를 위해 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모바일은 백엔드 프록시를 통해 결과만 전달받도록 구조를 분리했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n-html="p4_tr_label_sol1">② 추적 — 로그 범위 좁히기</div>
+                          <p class="body-text" data-i18n-html="p4_tr_sol1"><code>docker logs carelink-backend</code>로 백엔드의 외부 호출 실패를 확인한 뒤, <code>docker ps -a</code>와 <code>docker logs carelink-ai</code>로 AI 컨테이너가 종료됐는지 추적했습니다. 이어 <code>journalctl -k</code>, <code>dmesg</code>로 Ubuntu 커널 로그에서 OOM 여부를 확인했습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label problem mono" data-i18n-html="p4_tr_label_problem2">② 상황 — 저메모리 EC2 OOM</div>
-                          <p class="body-text" data-i18n-html="p4_tr_problem2">AWS 저사양 인스턴스에서 컨테이너 빌드 또는 AI 서비스 동시 구동 시 메모리 사용량이 급증하면서 운영 안정성이 떨어지는 문제가 있었습니다.</p>
+                          <div class="trouble-label problem mono" data-i18n-html="p4_tr_label_problem2">③ 원인 — AI 컨테이너 종료</div>
+                          <p class="body-text" data-i18n-html="p4_tr_problem2">원인은 AI 컨테이너가 정상 기동하지 못한 것이었습니다. 배포 시 모델 파일 경로가 누락되면 FastAPI lifespan 단계에서 실패했고, 저사양 EC2에서는 이미지 빌드와 AI 모델 로딩이 겹치며 메모리 사용량이 급증해 OOM 가능성도 있었습니다.</p>
                         </div>
                         <div class="trouble-block">
-                          <div class="trouble-label sol mono" data-i18n-html="p4_tr_label_sol2">② 해결 — Pull-only 배포</div>
-                          <p class="body-text" data-i18n-html="p4_tr_sol2">로컬 또는 CI 환경에서 이미지를 사전 빌드해 레지스트리에 Push하고, 운영 서버는 Pull-only 전략으로 전환했습니다. <strong>mem_limit</strong> 기반 자원 제한과 AI 컨테이너의 <strong>profile 분리</strong>를 적용했습니다.</p>
+                          <div class="trouble-label sol mono" data-i18n-html="p4_tr_label_sol2">④ 해결 — 모델 검증과 Pull-only 배포</div>
+                          <p class="body-text" data-i18n-html="p4_tr_sol2">모델 파일 배치 경로를 배포 체크리스트에 추가하고, 운영 EC2에서는 이미지를 직접 빌드하지 않도록 Pull-only 배포로 전환했습니다. 또한 <strong>mem_limit</strong>과 AI 컨테이너 <strong>profile 분리</strong>를 적용해 필요할 때만 추론 서비스를 실행하도록 구성했습니다.</p>
                         </div>
                       </div>
                       <div>
                         <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">docker-compose.ec2-lite.yml</span></div>
-                          <pre><code><span style="color:#e06c75;">services:</span>
-  <span style="color:#98c379;">backend:</span>
-    <span style="color:#d19a66;">image:</span> <span class="pii">ghcr.io/zzooonn</span>/carelink/backend:latest
-    <span style="color:#5c6370;"># build 섹션 제거 (EC2 내 빌드 방지)</span>
-    <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">384m</span>
+                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">Ubuntu EC2 — Log Trace</span></div>
+                          <pre><code><span style="color:#5c6370;"># 1. 백엔드에서 AI 호출 실패 확인</span>
+docker logs carelink-backend --tail=100
+<span style="color:#e06c75;">I/O error</span> on POST http://ai:8000/predict_window
 
-  <span style="color:#98c379;">ai:</span>
-    <span style="color:#d19a66;">image:</span> <span class="pii">ghcr.io/zzooonn</span>/carelink/ai:latest
-    <span style="color:#e06c75;">profiles:</span> <span style="color:#98c379;">["ai"]</span>
-    <span style="color:#5c6370;"># 필요 시에만 분리 실행</span>
-    <span style="color:#d19a66;">mem_limit:</span> <span style="color:#98c379;">512m</span></code></pre>
+<span style="color:#5c6370;"># 2. AI 컨테이너 종료 원인 확인</span>
+docker ps -a | grep carelink-ai
+docker logs carelink-ai --tail=50
+
+<span style="color:#5c6370;"># 3. EC2 메모리 이슈 확인</span>
+sudo journalctl -k | grep -i "out of memory"</code></pre>
                         </div>
                         <div class="takeaway">
                           <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
-                          <p class="body-text" data-i18n-html="p4_takeaway">제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.</p>
+                          <p class="body-text" data-i18n-html="p4_takeaway">이 경험을 통해 문제 해결 우선순위를 <strong>증상 재현 → 애플리케이션 로그 → 컨테이너 상태 → OS 커널 로그</strong> 순서로 좁히는 습관을 만들었습니다. API 500도 코드만 보지 않고 프로세스 생존 여부와 인프라 자원까지 함께 확인해야 했습니다.</p>
                         </div>
                       </div>
                     </div>
@@ -2027,10 +2023,10 @@
         'p2_tr_list3': '<strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.',
         'p2_tr_bridge': '아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">\'구문 누락 복구\'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.',
         'p2_tr_head': 'Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결',
-        'p2_tr_problem': '세미콜론(`;`)이나 괄호가 누락되면 복구 지점이 어긋나 <strong>후속 정상 구문까지 연쇄적으로 오진하는 문제</strong>가 발생했습니다. 동일한 오류 위치를 두 번 보고하는 중복 오진도 있었습니다.',
-        'p2_tr_alt': '에러 발생 시 즉시 파싱을 중단하는 방식과, 동기화 토큰(`;`, `}`)까지 건너뛰는 패닉 모드 복구를 검토했습니다. 하지만 두 방법 모두 에러 위치 정확도가 낮아 후속 정상 구문까지 오진하는 문제가 반복됐습니다.',
-        'p2_tr_sol': '에러를 \'파싱 중단 사유\'가 아닌 <strong>\'문맥 복귀 신호\'로 재설계</strong>하고, 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리했습니다. 그 결과 연쇄 오진과 중복 오류 보고를 줄이면서도 파싱을 중단하지 않고 후속 구문 분석을 지속할 수 있는 결함 허용(Fault-Tolerant) 구문 분석기를 구현했습니다.',
-        'p2_takeaway': '에러 처리는 단순히 예외를 던지는 것이 아니라, <strong>잘못된 입력에서도 문맥을 잃지 않고 정상 흐름으로 복귀하도록 설계</strong>하는 것이 견고한 컴파일러 구현의 핵심임을 체감했습니다.',
+        'p2_tr_problem': '<code>int a int b;</code>처럼 세미콜론이 누락된 케이스를 처리하려고 에러 함수를 추가하면, 기존에 통과하던 정상 파싱까지 깨지는 문제가 반복됐습니다. 원인을 추적해보니 <code>parseErrorI/J/K</code>가 단순 검사 함수가 아니라 <code>AdvanceToNextToken()</code>으로 <strong><code>mCurToken</code>/<code>mCurpos</code>를 직접 변경하는 함수</strong>였고, 호출 순서가 조금만 바뀌어도 후속 구문이 엉뚱한 토큰에서 시작했습니다.',
+        'p2_tr_alt': '즉시 파싱 중단, 동기화 토큰(<code>;</code>, <code>}</code>)까지 건너뛰는 panic-mode 복구, 그리고 새 검사를 기존 에러 함수 앞뒤에 삽입하는 방식을 비교했습니다. 하지만 커서를 소비하는 함수 앞에서 토큰을 한 번 더 이동시키면 <code>;</code>가 이중 소비되거나 다음 선언의 첫 토큰을 건너뛰어 재귀 하향 파서 전체가 연쇄적으로 흔들렸습니다.',
+        'p2_tr_sol': '먼저 에러 함수들을 <strong>토큰 소비형(<code>parseErrorI/J/K</code>), look-ahead형(<code>parseErrorE</code>), 심볼 등록형(<code>parseErrorB</code>)</strong>으로 분류했습니다. 이후 새 복구 로직은 현재 위치를 저장한 뒤 필요한 토큰만 미리 확인하고 원위치로 되돌리도록 정리했으며, 누락 토큰은 직전 의미 단위(<code>mLastNonT</code>) 기준으로 기록했습니다. 덕분에 에러 처리 추가가 다른 파싱 함수의 시작 위치를 망가뜨리는 문제를 줄였습니다.',
+        'p2_takeaway': '이 경험을 통해 문제 해결 시 먼저 <strong>재현 가능한 최소 입력을 만들고, 상태를 바꾸는 함수와 읽기만 하는 함수를 구분</strong>해야 한다는 점을 배웠습니다. 에러 처리는 예외 출력보다 파서의 현재 위치와 문맥을 보존하는 설계가 더 중요했습니다.',
         'p3_intro': 'Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.',
         'p3_dev_li1': '<strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.',
         'p3_dev_li2': '<strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.',
@@ -2052,16 +2048,16 @@
         'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(comparison_results.csv 기준)</span>',
         'p4_ecg_li2': '<strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)',
         'p4_ecg_li3': '<strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용',
-        'p4_tr_head': 'AI 모델 추론 지연 및 저사양 EC2 배포 중 OOM 문제',
-        'p4_tr_label_problem1': '① 상황 — 실시간 추론 지연',
-        'p4_tr_problem1': '초기 구조에서는 추론 지연과 모바일 환경의 자원 부담이 커서, 실시간 모니터링 서비스에 바로 적용하기 어려운 문제가 있었습니다.',
-        'p4_tr_label_sol1': '① 해결',
-        'p4_tr_sol1': '모델 업데이트 유연성과 모바일 메모리 부담 완화를 위해 <strong>서버 사이드 추론 방식</strong>을 채택하고, 모바일은 백엔드 프록시를 통해 결과만 전달받도록 구조를 분리했습니다.',
-        'p4_tr_label_problem2': '② 상황 — 저메모리 EC2 OOM',
-        'p4_tr_problem2': 'AWS 저사양 인스턴스에서 컨테이너 빌드 또는 AI 서비스 동시 구동 시 메모리 사용량이 급증하면서 운영 안정성이 떨어지는 문제가 있었습니다.',
-        'p4_tr_label_sol2': '② 해결 — Pull-only 배포',
-        'p4_tr_sol2': '로컬 또는 CI 환경에서 이미지를 사전 빌드해 레지스트리에 Push하고, 운영 서버는 Pull-only 전략으로 전환했습니다. <strong>mem_limit</strong> 기반 자원 제한과 AI 컨테이너의 <strong>profile 분리</strong>를 적용했습니다.',
-        'p4_takeaway': '제한된 인프라 자원에서는 단순 성능 튜닝보다, <strong>아키텍처 분리·배포 전략·자원 제한을 함께 설계하는 접근</strong>이 전체 시스템 안정성에 더 직접적으로 기여합니다.',
+        'p4_tr_head': 'Ubuntu EC2 로그 추적으로 ECG 분석 API 500 원인 해결',
+        'p4_tr_label_problem1': '① 증상 — ECG 분석 API 500',
+        'p4_tr_problem1': 'ECG 분석 요청(<code>POST /api/ecg/analyze</code>)이 간헐적으로 500을 반환했고, 백엔드 로그에는 FastAPI AI 서버로 보내는 <code>/predict_window</code> 요청이 <strong>Connection refused</strong>로 실패한 기록이 남았습니다.',
+        'p4_tr_label_sol1': '② 추적 — 로그 범위 좁히기',
+        'p4_tr_sol1': '<code>docker logs carelink-backend</code>로 백엔드의 외부 호출 실패를 확인한 뒤, <code>docker ps -a</code>와 <code>docker logs carelink-ai</code>로 AI 컨테이너가 종료됐는지 추적했습니다. 이어 <code>journalctl -k</code>, <code>dmesg</code>로 Ubuntu 커널 로그에서 OOM 여부를 확인했습니다.',
+        'p4_tr_label_problem2': '③ 원인 — AI 컨테이너 종료',
+        'p4_tr_problem2': '원인은 AI 컨테이너가 정상 기동하지 못한 것이었습니다. 배포 시 모델 파일 경로가 누락되면 FastAPI lifespan 단계에서 실패했고, 저사양 EC2에서는 이미지 빌드와 AI 모델 로딩이 겹치며 메모리 사용량이 급증해 OOM 가능성도 있었습니다.',
+        'p4_tr_label_sol2': '④ 해결 — 모델 검증과 Pull-only 배포',
+        'p4_tr_sol2': '모델 파일 배치 경로를 배포 체크리스트에 추가하고, 운영 EC2에서는 이미지를 직접 빌드하지 않도록 Pull-only 배포로 전환했습니다. 또한 <strong>mem_limit</strong>과 AI 컨테이너 <strong>profile 분리</strong>를 적용해 필요할 때만 추론 서비스를 실행하도록 구성했습니다.',
+        'p4_takeaway': '이 경험을 통해 문제 해결 우선순위를 <strong>증상 재현 → 애플리케이션 로그 → 컨테이너 상태 → OS 커널 로그</strong> 순서로 좁히는 습관을 만들었습니다. API 500도 코드만 보지 않고 프로세스 생존 여부와 인프라 자원까지 함께 확인해야 했습니다.',
         'proj.minor.dev': '주요 개발 내용',
         'proj.minor.trouble': '트러블슈팅',
         'proj.minor.tech': '사용 기술',
@@ -2174,10 +2170,10 @@
         'p2_tr_list3': '<strong>Error Output Policy:</strong> Sorts all errors by line number and outputs only one representative error per line to reduce duplicate reports.',
         'p2_tr_bridge': 'The troubleshooting below focuses on how I systematically solved the highest-difficulty design issue: <strong style="color:#ef4444;font-weight:900">"missing syntax recovery"</strong>.',
         'p2_tr_head': 'Building a Fault-Tolerant Parser — Solving cascading parse errors and duplicate misdiagnosis',
-        'p2_tr_problem': 'When semicolons (`;`) or brackets were missing, recovery points became misaligned, causing <strong>cascading false positives into subsequent valid syntax</strong>. There were also duplicate reports of the same error location.',
-        'p2_tr_alt': 'I evaluated both immediate parse termination and panic-mode recovery that skips to sync tokens (`;`, `}`), but both approaches had low location accuracy and repeatedly misdiagnosed subsequent valid syntax.',
-        'p2_tr_sol': 'I redesigned errors as <strong>context-recovery signals</strong> rather than parse-stop causes, and organized recovery logic so missing-token errors record the previous semantic-unit reference location (<code>mLastNonT</code>). As a result, I reduced cascading and duplicate error reports while maintaining continued parsing with a fault-tolerant parser.',
-        'p2_takeaway': 'I realized robust compiler design is not about throwing exceptions, but about <strong>recovering to a normal flow without losing context even on invalid input</strong>.',
+        'p2_tr_problem': 'When I added recovery logic for cases like <code>int a int b;</code>, existing valid parsing cases started breaking. By tracing the parser state, I found that <code>parseErrorI/J/K</code> were not pure validation helpers; they directly changed <strong><code>mCurToken</code>/<code>mCurpos</code></strong> through <code>AdvanceToNextToken()</code>. A small change in call order could make the next grammar rule start from the wrong token.',
+        'p2_tr_alt': 'I compared immediate parse termination, panic-mode recovery that skips to sync tokens such as <code>;</code> and <code>}</code>, and inserting new checks around existing error functions. However, moving the cursor before a cursor-consuming error function could consume <code>;</code> twice or skip the first token of the next declaration, causing cascading failures across the recursive descent parser.',
+        'p2_tr_sol': 'I first classified error functions into <strong>token-consuming functions (<code>parseErrorI/J/K</code>), look-ahead functions (<code>parseErrorE</code>), and symbol-registering functions (<code>parseErrorB</code>)</strong>. New recovery logic saves the current position, looks ahead only as needed, and restores the cursor before returning. Missing-token errors are reported against the previous semantic unit (<code>mLastNonT</code>), reducing cases where error handling corrupts the next parser state.',
+        'p2_takeaway': 'This taught me to start troubleshooting with a <strong>minimal reproducible input and to separate state-mutating functions from read-only checks</strong>. In compiler error handling, preserving parser position and context matters more than simply printing an error.',
         'p3_intro': 'Built an integrated platform for academic result search, detailed view, analysis, and external metadata linkage by connecting a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, and vector services. I <strong>owned the backend</strong>, including infrastructure integration-layer design, unified API response specification, and frontend-backend interface integration.',
         'p3_dev_li1': '<strong>Established Design and Documentation System:</strong> Formalized full-lifecycle artifacts including requirements, architecture, data design, and API interfaces around <code>docs/</code> and <code>RFC/</code>.',
         'p3_dev_li2': '<strong>Implemented Multi-Infra Integration Layer:</strong> Designed and applied backend infrastructure linking PostgreSQL, Elasticsearch, Redis, and MinIO in a Spring Boot 3 (Java 21) environment.',
@@ -2199,16 +2195,16 @@
         'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(from comparison_results.csv)</span>',
         'p4_ecg_li2': '<strong>Model Parameters:</strong> 0.65M · <strong>Architecture:</strong> CNN-CBAM-GRU (Amplitude Feature Injection, 36 dimensions)',
         'p4_ecg_li3': '<strong>Loss Function:</strong> Training strategy with AsymmetricLoss and class-imbalance correction (pos_weight)',
-        'p4_tr_head': 'AI inference delay and OOM issues during deployment on low-spec EC2',
-        'p4_tr_label_problem1': '① Situation — real-time inference delay',
-        'p4_tr_problem1': 'In the initial structure, inference latency and mobile resource burden were too high, making immediate application to real-time monitoring difficult.',
-        'p4_tr_label_sol1': '① Solution',
-        'p4_tr_sol1': 'To improve model-update flexibility and reduce mobile memory burden, I adopted a <strong>server-side inference approach</strong> and separated the flow so mobile receives only results through the backend proxy.',
-        'p4_tr_label_problem2': '② Situation — low-memory EC2 OOM',
-        'p4_tr_problem2': 'On low-spec AWS instances, memory usage spiked when building containers or running AI services simultaneously, which reduced operational stability.',
-        'p4_tr_label_sol2': '② Solution — Pull-only deployment',
-        'p4_tr_sol2': 'I prebuilt images locally or in CI and pushed them to a registry, then switched production servers to a pull-only strategy. I also applied resource limits with <strong>mem_limit</strong> and <strong>profile separation</strong> for the AI container.',
-        'p4_takeaway': 'Under constrained infrastructure resources, overall stability benefits more from <strong>jointly designing architecture separation, deployment strategy, and resource limits</strong> than from isolated performance tuning.',
+        'p4_tr_head': 'Tracing Ubuntu EC2 logs to resolve ECG analysis API 500 errors',
+        'p4_tr_label_problem1': '① Symptom — ECG API 500',
+        'p4_tr_problem1': 'The ECG analysis request (<code>POST /api/ecg/analyze</code>) intermittently returned 500. Backend logs showed that the request to the FastAPI AI server endpoint <code>/predict_window</code> failed with <strong>Connection refused</strong>.',
+        'p4_tr_label_sol1': '② Trace — narrowing log scope',
+        'p4_tr_sol1': 'I first used <code>docker logs carelink-backend</code> to confirm the failed outbound call, then checked <code>docker ps -a</code> and <code>docker logs carelink-ai</code> to see whether the AI container had exited. I also checked Ubuntu kernel logs with <code>journalctl -k</code> and <code>dmesg</code> for possible OOM kills.',
+        'p4_tr_label_problem2': '③ Root Cause — AI container exited',
+        'p4_tr_problem2': 'The root cause was that the AI container was not starting reliably. A missing model file path could fail the FastAPI lifespan startup, and on low-spec EC2 instances, image builds plus AI model loading could spike memory usage and lead to OOM risk.',
+        'p4_tr_label_sol2': '④ Fix — model check and pull-only deploy',
+        'p4_tr_sol2': 'I added the model artifact path to the deployment checklist and switched production EC2 to pull-only deployment so it would not build images on the server. I also applied <strong>mem_limit</strong> and separated the AI service with a Docker <strong>profile</strong> so inference runs only when needed.',
+        'p4_takeaway': 'This shaped my troubleshooting priority: <strong>reproduce the symptom → inspect application logs → verify container state → check OS kernel logs</strong>. For API 500s, I learned to verify process health and infrastructure resources instead of looking only at application code.',
         'proj.minor.dev': 'Key Development',
         'proj.minor.trouble': 'Troubleshooting',
         'proj.minor.tech': 'Tech Used',
@@ -2321,10 +2317,10 @@
         'p2_tr_list3': '<strong>错误输出策略：</strong> 按行号排序全部错误，并在同一行仅输出一个代表错误，减少重复报告。',
         'p2_tr_bridge': '下面的故障排查重点展示了我如何系统性解决其中设计难度最高的问题：<strong style="color:#ef4444;font-weight:900">"语法缺失恢复"</strong>。',
         'p2_tr_head': '构建 Fault-Tolerant 解析器——解决连锁解析报错与重复误判问题',
-        'p2_tr_problem': '当分号（`;`）或括号缺失时，恢复点会偏移，导致 <strong>后续本应正确的语句也被连锁误判</strong>。同时还存在同一错误位置被重复报告的问题。',
-        'p2_tr_alt': '我评估了“发生错误立即中止解析”以及“跳过到同步 token（`;`、`}`）的 panic 模式恢复”，但两者定位精度都不足，仍反复误判后续正确语句。',
-        'p2_tr_sol': '我将错误重定义为 <strong>语境恢复信号</strong> 而非终止原因，并整理恢复逻辑：缺失 token 错误记录前一语义单元基准位置（<code>mLastNonT</code>）。最终在不中断解析的前提下，显著降低连锁误判与重复报错，构建了容错语法分析器。',
-        'p2_takeaway': '我体会到，健壮编译器的关键不在于抛出异常，而在于 <strong>即使输入错误也能不丢失语境并恢复正常流程</strong>。',
+        'p2_tr_problem': '为处理 <code>int a int b;</code> 这类缺失分号的输入而添加错误处理函数时，原本能通过的正常解析用例也开始失败。追踪解析器状态后发现，<code>parseErrorI/J/K</code> 并不是单纯的检查函数，而是会通过 <code>AdvanceToNextToken()</code> 直接修改 <strong><code>mCurToken</code>/<code>mCurpos</code></strong>。调用顺序稍有变化，后续语法规则就会从错误的 token 开始。',
+        'p2_tr_alt': '我比较了立即终止解析、跳过到同步 token（<code>;</code>、<code>}</code>）的 panic-mode 恢复，以及在既有错误函数前后插入新检查三种方式。但如果在会消费游标的错误函数之前再次移动 token，<code>;</code> 可能被重复消费，或下一条声明的首个 token 被跳过，进而让递归下降解析器产生连锁错误。',
+        'p2_tr_sol': '我先将错误函数分为 <strong>消费 token 型（<code>parseErrorI/J/K</code>）、look-ahead 型（<code>parseErrorE</code>）、符号注册型（<code>parseErrorB</code>）</strong>。新的恢复逻辑会先保存当前位置，只预读必要 token，并在返回前恢复游标；缺失 token 错误则按前一语义单元（<code>mLastNonT</code>）记录。这样减少了错误处理破坏后续解析起点的问题。',
+        'p2_takeaway': '这次经历让我学会，排查问题时要先构造 <strong>最小可复现输入，并区分会修改状态的函数和只读检查函数</strong>。在编译器错误处理中，保存解析器位置和上下文比单纯输出错误更重要。',
         'p3_intro': '通过联动 Vue 3 SPA、Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 与向量服务，我开发了具备学术成果检索、详情查看、分析与外部元数据联动能力的一体化平台。并 <strong>独立负责后端</strong>：基础设施集成层设计、统一 API 响应规范定义、前后端接口联调。',
         'p3_dev_li1': '<strong>建立设计与文档体系：</strong> 以 <code>docs/</code> 与 <code>RFC/</code> 为核心，将需求、架构、数据设计、API 接口等开发全流程文档化。',
         'p3_dev_li2': '<strong>实现多基础设施集成层：</strong> 在 Spring Boot 3（Java 21）环境下完成 PostgreSQL、Elasticsearch、Redis、MinIO 的后端基础设施集成设计与落地。',
@@ -2346,16 +2342,16 @@
         'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">（基于 comparison_results.csv）</span>',
         'p4_ecg_li2': '<strong>模型参数：</strong> 0.65M · <strong>架构：</strong> CNN-CBAM-GRU（Amplitude Feature Injection，36 维）',
         'p4_ecg_li3': '<strong>损失函数：</strong> 采用 AsymmetricLoss 与类别不均衡校正（pos_weight）的训练策略',
-        'p4_tr_head': '低配 EC2 部署中的 AI 推理延迟与 OOM 问题',
-        'p4_tr_label_problem1': '① 背景 — 实时推理延迟',
-        'p4_tr_problem1': '初始结构下推理延迟和移动端资源负担较大，难以直接用于实时监测服务。',
-        'p4_tr_label_sol1': '① 解决',
-        'p4_tr_sol1': '为提升模型更新灵活性并降低移动端内存负担，我采用了 <strong>服务端推理</strong> 方案，并将结构拆分为移动端通过后端代理仅接收结果。',
-        'p4_tr_label_problem2': '② 背景 — 低内存 EC2 OOM',
-        'p4_tr_problem2': '在低配 AWS 实例中，容器构建或 AI 服务并发运行会导致内存使用激增，影响运行稳定性。',
-        'p4_tr_label_sol2': '② 解决 — Pull-only 部署',
-        'p4_tr_sol2': '在本地或 CI 预构建镜像并推送到仓库，生产服务器切换为 Pull-only 策略。同时应用基于 <strong>mem_limit</strong> 的资源限制与 AI 容器 <strong>profile 分离</strong>。',
-        'p4_takeaway': '在资源受限的基础设施中，与其只做性能调优，更关键的是 <strong>联合设计架构拆分、部署策略与资源限制</strong>，这对系统整体稳定性贡献更直接。',
+        'p4_tr_head': '通过 Ubuntu EC2 日志追踪解决 ECG 分析 API 500 问题',
+        'p4_tr_label_problem1': '① 现象 — ECG 分析 API 500',
+        'p4_tr_problem1': 'ECG 分析请求（<code>POST /api/ecg/analyze</code>）偶发返回 500。后端日志显示，请求 FastAPI AI 服务的 <code>/predict_window</code> 接口时出现 <strong>Connection refused</strong>。',
+        'p4_tr_label_sol1': '② 追踪 — 缩小日志范围',
+        'p4_tr_sol1': '我先通过 <code>docker logs carelink-backend</code> 确认后端外部调用失败，再用 <code>docker ps -a</code> 和 <code>docker logs carelink-ai</code> 检查 AI 容器是否退出。随后通过 <code>journalctl -k</code>、<code>dmesg</code> 查看 Ubuntu 内核日志，确认是否存在 OOM kill。',
+        'p4_tr_label_problem2': '③ 原因 — AI 容器异常退出',
+        'p4_tr_problem2': '根本原因是 AI 容器没有稳定启动。模型文件路径缺失会在 FastAPI lifespan 阶段失败；在低配 EC2 中，镜像构建与 AI 模型加载同时发生时也可能导致内存飙升并带来 OOM 风险。',
+        'p4_tr_label_sol2': '④ 解决 — 模型校验与 Pull-only 部署',
+        'p4_tr_sol2': '我将模型文件路径加入部署检查清单，并把生产 EC2 改为 Pull-only 部署，避免在服务器上直接构建镜像。同时应用 <strong>mem_limit</strong>，并通过 Docker <strong>profile</strong> 分离 AI 服务，使推理服务只在需要时运行。',
+        'p4_takeaway': '这次经历让我形成了排查优先级：<strong>复现症状 → 查看应用日志 → 确认容器状态 → 检查 OS 内核日志</strong>。面对 API 500，不能只看业务代码，也要同时确认进程是否存活以及基础设施资源是否充足。',
         'proj.minor.dev': '主要开发内容',
         'proj.minor.trouble': '故障排除',
         'proj.minor.tech': '使用技术',
