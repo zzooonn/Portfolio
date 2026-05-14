@@ -1201,7 +1201,7 @@
           <div class="hero-orb green"></div>
           <div class="hero-line one"></div>
           <div class="hero-line two"></div>
-          <div class="hero-dots" aria-hidden="true">
+          <div class="hero-dots">
             <span></span><span></span><span></span><span></span><span></span>
             <span></span><span></span><span></span><span></span><span></span>
             <span></span><span></span><span></span><span></span><span></span>
@@ -2444,7 +2444,7 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
 
     /* ── 7. 햄버거 메뉴 ── */
     const hamburger=document.getElementById('nav-hamburger');const drawer=document.getElementById('nav-drawer');let drawerOpen=false;
-    if(hamburger&&drawer){hamburger.addEventListener('click',()=>{drawerOpen=!drawerOpen;hamburger.classList.toggle('open',drawerOpen);drawer.classList.toggle('open',drawerOpen);hamburger.setAttribute('aria-label',drawerOpen?'메뉴 닫기':'메뉴 열기');hamburger.setAttribute('aria-expanded',String(drawerOpen));});drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawerOpen=false;hamburger.classList.remove('open');drawer.classList.remove('open');});});}
+    if(hamburger&&drawer){hamburger.addEventListener('click',()=>{drawerOpen=!drawerOpen;hamburger.classList.toggle('open',drawerOpen);drawer.classList.toggle('open',drawerOpen);hamburger.setAttribute('aria-label',drawerOpen?'메뉴 닫기':'메뉴 열기');hamburger.setAttribute('aria-expanded',String(drawerOpen));});drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawerOpen=false;hamburger.classList.remove('open');drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');});});}
 
     /* ── 8. 기술 칩 파티클 ── */
     const chipColors={accent:['#7c7afe','#a78bfa','#c4b5fd'],green:['#34d399','#6ee7b7','#10b981'],teal:['#38bdf8','#7dd3fc','#0ea5e9'],pink:['#f472b6','#f9a8d4','#ec4899'],slate:['#94a3b8','#cbd5e1','#64748b']};
