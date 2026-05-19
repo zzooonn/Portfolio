@@ -225,6 +225,7 @@
       .project-head { flex: 1; min-width: 0; }
       .project-head h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: 0; font-size: 1.35rem; font-weight: 900; letter-spacing: -.03em; }
       .project-extra { display: inline-flex; align-items: center; padding: .15rem .45rem; border: 1px solid var(--accent-dim); border-radius: .45rem; background: var(--accent-lt); color: var(--primary); font-size: .7rem; font-weight: 700; }
+      .project-extra.team-collab { border-color: rgba(29,111,115,.22); background: rgba(29,111,115,.08); color: var(--primary-deep); }
       .project-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
       .project-meta span { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .7rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-2); color: var(--text-3); font-size: .9rem; }
       .project-tagline { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; margin-top: .45rem; }
@@ -1539,7 +1540,7 @@
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body">
               <span class="project-index mono">03</span>
               <div class="project-head">
-                <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
+                <h3><span data-i18n="proj3.title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</span><span class="project-extra team-collab mono" data-i18n="proj3.badge">🌐 한중 팀 협업</span></h3>
                 <div class="project-meta mono">
                   <span>2025.03 – 2025.08 · BUAA SSAD Course</span>
                   <span data-i18n="proj3.role">Backend / Full-Stack (팀 프로젝트)</span>
@@ -1993,6 +1994,7 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj2.summary': 'Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현',
         'proj2.result': '✓ a–m 전 에러 범주 처리 달성',
         'proj3.title': '학술 성과 공유 플랫폼 (Academic Results Sharing Platform)',
+        'proj3.badge': '🌐 한중 팀 협업',
         'proj3.role': 'Backend / Full-Stack (팀 프로젝트)',
         'proj3.summary': '연구자 학술 성과 검색·분석 플랫폼 — ES·Redis·MinIO·Vector 5개 인프라 통합 백엔드 전담',
         'proj3.result': '✓ API 응답 규약 통일로 프론트 파싱 오류 제거',
@@ -2140,6 +2142,7 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj2.summary': 'Lexer → Recursive Descent Parser → Symbol Table → P-Code VM, full compiler pipeline in C++',
         'proj2.result': '✓ All a–m error categories handled',
         'proj3.title': 'Academic Results Sharing Platform',
+        'proj3.badge': '🌐 KR-CN Team',
         'proj3.role': 'Backend / Full-Stack (Team Project)',
         'proj3.summary': 'Academic research search & analysis platform — sole backend dev integrating ES·Redis·MinIO·Vector',
         'proj3.result': '✓ Unified API response spec eliminated frontend parsing errors',
@@ -2287,6 +2290,7 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj2.summary': 'Lexer → 递归下降Parser → 符号表 → P-Code VM，用C++实现完整编译器流水线',
         'proj2.result': '✓ 实现全部 a–m 类错误处理',
         'proj3.title': '学术成果共享平台',
+        'proj3.badge': '🌐 中韩团队',
         'proj3.role': '后端/全栈（团队项目）',
         'proj3.summary': '学术成果检索分析平台 — 独立负责ES·Redis·MinIO·Vector五大基础设施集成后端',
         'proj3.result': '✓ 统一API响应规范，消除前端解析错误',
