@@ -1449,65 +1449,65 @@
             <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body">
               <span class="project-index mono">02</span>
               <div class="project-head">
-                <h3 data-i18n="proj2.title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
+                <h3 data-i18n="proj2.title">SysY 컴파일러 단계별 구현과 CMake 모듈화</h3>
                 <div class="project-meta mono">
                   <span>2024.10 – 2025.01 · BUAA Compiler Course</span>
                   <span data-i18n="proj2.role">Compiler Engineer (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary" data-i18n="proj2.summary">Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현</span>
-                  <span class="tagline-result" data-i18n="proj2.result">✓ a–m 전 에러 범주 처리 달성</span>
+                  <span class="tagline-summary" data-i18n="proj2.summary">어휘 분석 → 구문/의미 분석 → P-Code 실행 → CMake 모듈화까지 단계별 확장</span>
+                  <span class="tagline-result" data-i18n="proj2.result">✓ i/j/k 누락 오류 복구와 구조 분리 핵심 정리</span>
                 </div>
               </div>
               <span class="project-chevron" aria-hidden="true">⌄</span>
             </button>
             <div class="project-body" id="project-02-body">
               <div class="project-inner">
-                <p class="body-text" data-i18n-html="p2_intro">SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.</p>
+                <p class="body-text" data-i18n-html="p2_intro">SysY 컴파일러 과제를 <strong>테스트 세트 분석 → 어휘 분석 → 재귀 하향 구문 분석 → 의미 분석 → P-Code 생성 및 인터프리터 실행</strong> 순서로 확장했습니다.<br>최종 제출에서는 단일 파일에 섞여 있던 <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, <code>DataDef</code>를 CMake 기반 모듈 구조로 분리해 <strong>오류 복구, 심볼 관리, 코드 실행의 책임 경계</strong>를 명확히 했습니다.</p>
                 <div>
                   <h4 class="minor-title mono" data-i18n="proj.minor.dev">주요 개발 내용</h4>
                   <ul class="arrow-list">
-                    <li data-i18n-html="p2_dev_li1"><strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.</li>
-                    <li data-i18n-html="p2_dev_li2"><strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.</li>
-                    <li data-i18n-html="p2_dev_li3"><strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.</li>
-                    <li data-i18n-html="p2_dev_li4"><strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 '문맥 복귀 신호'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.</li>
-                    <li data-i18n-html="p2_dev_li5"><strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.</li>
-                    <li data-i18n-html="p2_dev_li6"><strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.</li>
+                    <li data-i18n-html="p2_dev_li1"><strong>단계별 컴파일러 확장:</strong> 1단계 테스트 세트에서 시작해 2단계 Lexer, 3단계 Parser, 4단계 의미 분석, 5단계 P-Code 생성과 Interpreter 실행까지 기능을 누적 구현.</li>
+                    <li data-i18n-html="p2_dev_li2"><strong>어휘 분석기(Lexer) 구현:</strong> 토큰 enum과 <code>unordered_map</code> 기반 키워드/연산자 매핑을 구성하고, <code>peek()</code>로 <code>//</code>, <code>/* */</code> 주석과 <code>&amp;&amp;</code>, <code>||</code> 같은 다중 문자 연산자를 처리하며 단일 <code>&amp;</code>/<code>|</code>는 <code>a</code> 오류로 기록.</li>
+                    <li data-i18n-html="p2_dev_li3"><strong>재귀 하향 파서 설계:</strong> 문법 비단말별 파싱 함수를 구성하고, <code>tokenIndex</code>, 현재/이전 토큰 관리, <code>Stmt</code>의 <code>LVal = Exp</code>와 <code>[Exp]</code> 구분을 위한 전방 탐색을 구현.</li>
+                    <li data-i18n-html="p2_dev_li4"><strong>의미 분석과 심볼 관리:</strong> 스코프 스택, 함수 파라미터 맵, 반환 타입 스택을 도입해 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약, 상수 재대입, 루프 밖 <code>break</code>/<code>continue</code>를 검사.</li>
+                    <li data-i18n-html="p2_dev_li5"><strong>P-Code 생성과 실행:</strong> <code>PCode</code>, <code>PCodeLabel</code>, <code>Value</code> 구조를 추가해 분기, 반복, 함수 호출, 배열 주소 계산, I/O를 위한 P-Code를 생성하고 스택 머신 인터프리터로 실행.</li>
+                    <li data-i18n-html="p2_dev_li6"><strong>최종 CMake 모듈화:</strong> <code>ComplierSysY.cpp</code>를 진입점으로 두고 <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, <code>DataDef</code>를 분리해 디버깅 가능한 구조로 정리.</li>
                   </ul>
                 </div>
                 <div>
                   <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
-                  <p class="body-text" style="margin-bottom:.75rem" data-i18n-html="p2_tr_intro">이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.</p>
+                  <p class="body-text" style="margin-bottom:.75rem" data-i18n-html="p2_tr_intro">가장 큰 난점은 잘못 입력된 토큰이 아니라 <strong>입력에 존재하지 않는 토큰</strong>을 처리하는 <code>i</code>, <code>j</code>, <code>k</code> 오류였습니다. 세미콜론, 오른쪽 소괄호, 오른쪽 대괄호가 누락되면 현재 토큰을 소비할지, 오류 줄 번호를 어디로 잡을지, 이후 문장을 어떻게 복구할지가 모두 파서 상태와 P-Code 생성에 영향을 주었습니다.</p>
                   <ul class="arrow-list" style="margin-bottom:1.25rem">
-                    <li data-i18n-html="p2_tr_list1"><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
-                    <li data-i18n-html="p2_tr_list2"><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
-                    <li data-i18n-html="p2_tr_list3"><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
+                    <li data-i18n-html="p2_tr_list1"><strong><code>i</code> 오류:</strong> 세미콜론 누락은 문장 경계를 무너뜨리므로 <code>parseStmt()</code> 전방 탐색이 다음 줄 토큰까지 밀리지 않도록 현재 위치와 <code>mLastNonT</code> 기준 줄 번호를 추적.</li>
+                    <li data-i18n-html="p2_tr_list2"><strong><code>j</code> 오류:</strong> 함수 호출에서 <code>)</code>가 없으면 인자 개수 오류 <code>d</code>나 타입 오류 <code>e</code>가 연쇄 오진될 수 있어 <code>parseErrorJ()</code>의 반환값으로 후속 의미 검사를 제어.</li>
+                    <li data-i18n-html="p2_tr_list3"><strong><code>k</code> 오류:</strong> 배열의 <code>]</code> 누락은 인덱스 표현식의 끝과 P-Code 주소 계산을 흔들기 때문에 오류 기록과 배열 주소 생성 흐름을 함께 점검.</li>
                   </ul>
-                  <p class="body-text" data-i18n-html="p2_tr_bridge">아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">'구문 누락 복구'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.</p>
+                  <p class="body-text" data-i18n-html="p2_tr_bridge">아래 트러블슈팅은 <strong style="color:#ef4444;font-weight:900">누락 토큰 복구와 CMake 모듈화</strong>가 왜 최종 구조적 선택이 되었는지 다룹니다.</p>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title" data-i18n-html="p2_tr_head">Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
+                      <div class="troubleshoot-title" data-i18n-html="p2_tr_head">누락 토큰 복구와 CMake 모듈화 - 단일 파일 구조 한계 해결</div>
                       <span class="badge-primary mono">Compiler / Parser</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
                           <div class="trouble-label problem mono" data-i18n="trouble.situation">상황</div>
-                          <p class="body-text" data-i18n-html="p2_tr_problem"><code>int a int b;</code>처럼 세미콜론이 누락된 케이스를 처리하려고 에러 함수를 추가하면, 기존에 통과하던 정상 파싱까지 깨지는 문제가 반복됐습니다. 원인을 추적해보니 <code>parseErrorI/J/K</code>가 단순 검사 함수가 아니라 <code>AdvanceToNextToken()</code>으로 <strong><code>mCurToken</code>/<code>mCurpos</code>를 직접 변경하는 함수</strong>였고, 호출 순서가 조금만 바뀌어도 후속 구문이 엉뚱한 토큰에서 시작했습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_tr_problem">5단계에서 P-Code 생성과 인터프리터까지 들어오자 <code>parseStmt()</code>, <code>ParseLVal()</code>, <code>ParseUnaryExp()</code>, <code>parsefor()</code> 안에 문법 분석, 의미 검사, 오류 복구, 코드 생성이 동시에 섞였습니다. 이 상태에서 <code>i/j/k</code> 누락 오류를 고치면 <strong><code>mCurToken</code>, <code>mCurpos</code>, <code>mLastNonT</code>, 라벨 주소</strong>가 함께 흔들려 기존 정상 케이스까지 깨질 수 있었습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label alt mono" data-i18n="trouble.alternatives">대안 탐색</div>
-                          <p class="body-text" data-i18n-html="p2_tr_alt">즉시 파싱 중단, 동기화 토큰(<code>;</code>, <code>}</code>)까지 건너뛰는 panic-mode 복구, 그리고 새 검사를 기존 에러 함수 앞뒤에 삽입하는 방식을 비교했습니다. 하지만 커서를 소비하는 함수 앞에서 토큰을 한 번 더 이동시키면 <code>;</code>가 이중 소비되거나 다음 선언의 첫 토큰을 건너뛰어 재귀 하향 파서 전체가 연쇄적으로 흔들렸습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_tr_alt">즉시 파싱 중단, 동기화 토큰까지 건너뛰는 panic-mode 복구, 단일 파일 안에서 조건문을 추가하는 방식을 검토했습니다. 하지만 누락 오류는 “현재 토큰이 틀린” 문제가 아니라 “현재 토큰 앞에 무언가 빠진” 문제라서, 토큰을 잘못 소비하면 다음 선언이나 for 헤더, 배열 주소 계산까지 연쇄적으로 틀어졌습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label sol mono" data-i18n="trouble.solution">해결</div>
-                          <p class="body-text" data-i18n-html="p2_tr_sol">먼저 에러 함수들을 <strong>토큰 소비형(<code>parseErrorI/J/K</code>), look-ahead형(<code>parseErrorE</code>), 심볼 등록형(<code>parseErrorB</code>)</strong>으로 분류했습니다. 이후 새 복구 로직은 현재 위치를 저장한 뒤 필요한 토큰만 미리 확인하고 원위치로 되돌리도록 정리했으며, 누락 토큰은 직전 의미 단위(<code>mLastNonT</code>) 기준으로 기록했습니다. 덕분에 에러 처리 추가가 다른 파싱 함수의 시작 위치를 망가뜨리는 문제를 줄였습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_tr_sol"><code>parseErrorI/J</code>는 <code>bool</code>을 반환해 후속 의미 검사 여부를 제어하고, 누락 토큰의 줄 번호는 <code>previousToken</code> 대신 <code>mLastNonT</code>를 기준으로 기록했습니다. 최종적으로 <code>ErrorHandler</code>를 분리해 오류 저장/정렬/출력을 담당하게 하고, <code>Parser</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>를 CMake 구조로 나누어 복잡도를 낮췄습니다.</p>
                         </div>
                       </div>
                       <div>
                         <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">Parser.cpp — Error Recovery</span></div>
-                          <pre><code><span style="color:#5c6370;">// parseErrorI/J/K는 검사 함수가 아니라 토큰 소비 함수</span>
+                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">Parser.cpp — i/j/k Recovery</span></div>
+                          <pre><code><span style="color:#5c6370;">// 정상 토큰은 소비하고, 누락이면 mLastNonT 기준으로 기록</span>
 <span style="color:#c678dd;">bool</span> <span style="color:#61afef;">Parser::parseErrorI</span>() {
   <span style="color:#c678dd;">if</span> (mCurToken.word != <span style="color:#98c379;">";"</span>) {
     m_pErrorHandler-&gt;<span style="color:#61afef;">PushErrorList</span>(<span style="color:#98c379;">'i'</span>, mLastNonT);
@@ -1521,7 +1521,7 @@
                         </div>
                         <div class="takeaway">
                           <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
-                          <p class="body-text" data-i18n-html="p2_takeaway">이 경험을 통해 문제 해결 시 먼저 <strong>재현 가능한 최소 입력을 만들고, 상태를 바꾸는 함수와 읽기만 하는 함수를 구분</strong>해야 한다는 점을 배웠습니다. 에러 처리는 예외 출력보다 파서의 현재 위치와 문맥을 보존하는 설계가 더 중요했습니다.</p>
+                          <p class="body-text" data-i18n-html="p2_takeaway">이 경험을 통해 컴파일러 오류 복구는 에러 메시지를 출력하는 문제가 아니라 <strong>파서 위치, 오류 우선순위, 코드 생성 상태를 함께 보존하는 설계 문제</strong>라는 점을 배웠습니다. 기능을 더하는 것만큼 책임을 나누는 구조가 중요했습니다.</p>
                         </div>
                       </div>
                     </div>
@@ -1808,8 +1808,8 @@
                   <h4 class="minor-title mono" data-i18n="proj.minor.perf">시스템 성능 최적화 및 평가 지표</h4>
                   <ul class="arrow-list">
                     <li data-i18n-html="p4_perf_li1"><strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.</li>
-                    <li data-i18n-html="p4_perf_li2"><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.</li>
-                    <li data-i18n-html="p4_perf_li3"><strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.</li>
+                    <li data-i18n-html="p4_perf_li2"><strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,396.58ms, P50 2,336.01ms, P95 2,725.98ms</strong>.</li>
+                    <li data-i18n-html="p4_perf_li3"><strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 603.97ms</strong>.</li>
                     <li data-i18n-html="p4_perf_li4"><strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.</li>
                   </ul>
                 </div>
@@ -1989,10 +1989,10 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj1.role': 'OS Kernel Developer (1인 개발)',
         'proj1.summary': 'GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현',
         'proj1.result': '✓ Lab 0–6 전 단계 완주',
-        'proj2.title': 'SysY 언어 컴파일러 프론트엔드 &amp; VM 구현',
+        'proj2.title': 'SysY 컴파일러 단계별 구현과 CMake 모듈화',
         'proj2.role': 'Compiler Engineer (1인 개발)',
-        'proj2.summary': 'Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현',
-        'proj2.result': '✓ a–m 전 에러 범주 처리 달성',
+        'proj2.summary': '어휘 분석 → 구문/의미 분석 → P-Code 실행 → CMake 모듈화까지 단계별 확장',
+        'proj2.result': '✓ i/j/k 누락 오류 복구와 구조 분리 핵심 정리',
         'proj3.title': '학술 성과 공유 플랫폼 (Academic Results Sharing Platform)',
         'proj3.badge': '🌐 한중 팀 협업',
         'proj3.role': 'Backend / Full-Stack (팀 프로젝트)',
@@ -2015,23 +2015,23 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'p1_tr_alt': '인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 방안을 선택했습니다.',
         'p1_tr_sol': '<code>pageref(fd) &le; pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. IPC의 안정성을 확보했습니다.',
         'p1_takeaway': '선점형 스케줄링 환경에서는 \'완성된 결과\'뿐만 아니라 <strong>\'과정 중의 중간 상태\'도 안전해야 함</strong>을 깨달았습니다.',
-        'p2_intro': 'SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다.<br>초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 아키텍처를 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.',
-        'p2_dev_li1': '<strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.',
-        'p2_dev_li2': '<strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.',
-        'p2_dev_li3': '<strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 기반의 심볼 관리 구조로 스코프 체인 탐색을 지원하며, 변수 섀도잉(Shadowing), 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 사용 등 의미 오류(Semantic Error)를 컴파일 타임에 검출.',
-        'p2_dev_li4': '<strong>결함 허용(Fault-Tolerant) 에러 복구 시스템:</strong> 에러를 파싱 중단 사유가 아닌 \'문맥 복귀 신호\'로 재설계. 누락 토큰 오류는 직전 의미 단위의 기준 위치(<code>mLastNonT</code>)를 기록하도록 복구 로직을 정리해 연쇄 에러 출력을 줄이고 파싱을 중단하지 않고 후속 구문 분석을 지속.',
-        'p2_dev_li5': '<strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.',
-        'p2_dev_li6': '<strong>모듈화 및 아키텍처 리팩토링:</strong> 단일 대형 파일 구조에서 각 컴포넌트를 독립된 모듈로 분리해 디버깅 효율 및 유지보수성 향상.',
-        'p2_tr_intro': '이 컴파일러는 과제 명세에서 정의된 <strong>a~m 범주의 문법 및 의미 오류</strong>를 체계적으로 처리하도록 설계했습니다. 그중 가장 도전적이었던 과제는 <strong>세미콜론 누락(<code>i</code>)</strong> 발생 시 토큰 포인터 어긋남으로 인한 <strong>연쇄 오진을 방지</strong>하고, 파서를 <strong>정상 문맥으로 복귀</strong>시키는 구문 복구 로직의 구현이었습니다.',
-        'p2_tr_list1': '<strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.',
-        'p2_tr_list2': '<strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.',
-        'p2_tr_list3': '<strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.',
-        'p2_tr_bridge': '아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong style="color:#ef4444;font-weight:900">\'구문 누락 복구\'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.',
-        'p2_tr_head': 'Fault-Tolerant 파서 구축 — 연쇄 파싱 에러 및 중복 오진 문제 해결',
-        'p2_tr_problem': '<code>int a int b;</code>처럼 세미콜론이 누락된 케이스를 처리하려고 에러 함수를 추가하면, 기존에 통과하던 정상 파싱까지 깨지는 문제가 반복됐습니다. 원인을 추적해보니 <code>parseErrorI/J/K</code>가 단순 검사 함수가 아니라 <code>AdvanceToNextToken()</code>으로 <strong><code>mCurToken</code>/<code>mCurpos</code>를 직접 변경하는 함수</strong>였고, 호출 순서가 조금만 바뀌어도 후속 구문이 엉뚱한 토큰에서 시작했습니다.',
-        'p2_tr_alt': '즉시 파싱 중단, 동기화 토큰(<code>;</code>, <code>}</code>)까지 건너뛰는 panic-mode 복구, 그리고 새 검사를 기존 에러 함수 앞뒤에 삽입하는 방식을 비교했습니다. 하지만 커서를 소비하는 함수 앞에서 토큰을 한 번 더 이동시키면 <code>;</code>가 이중 소비되거나 다음 선언의 첫 토큰을 건너뛰어 재귀 하향 파서 전체가 연쇄적으로 흔들렸습니다.',
-        'p2_tr_sol': '먼저 에러 함수들을 <strong>토큰 소비형(<code>parseErrorI/J/K</code>), look-ahead형(<code>parseErrorE</code>), 심볼 등록형(<code>parseErrorB</code>)</strong>으로 분류했습니다. 이후 새 복구 로직은 현재 위치를 저장한 뒤 필요한 토큰만 미리 확인하고 원위치로 되돌리도록 정리했으며, 누락 토큰은 직전 의미 단위(<code>mLastNonT</code>) 기준으로 기록했습니다. 덕분에 에러 처리 추가가 다른 파싱 함수의 시작 위치를 망가뜨리는 문제를 줄였습니다.',
-        'p2_takeaway': '이 경험을 통해 문제 해결 시 먼저 <strong>재현 가능한 최소 입력을 만들고, 상태를 바꾸는 함수와 읽기만 하는 함수를 구분</strong>해야 한다는 점을 배웠습니다. 에러 처리는 예외 출력보다 파서의 현재 위치와 문맥을 보존하는 설계가 더 중요했습니다.',
+        'p2_intro': 'SysY 컴파일러 과제를 <strong>테스트 세트 분석 → 어휘 분석 → 재귀 하향 구문 분석 → 의미 분석 → P-Code 생성 및 인터프리터 실행</strong> 순서로 확장했습니다.<br>최종 제출에서는 단일 파일에 섞여 있던 <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, <code>DataDef</code>를 CMake 기반 모듈 구조로 분리해 <strong>오류 복구, 심볼 관리, 코드 실행의 책임 경계</strong>를 명확히 했습니다.',
+        'p2_dev_li1': '<strong>단계별 컴파일러 확장:</strong> 1단계 테스트 세트에서 시작해 2단계 Lexer, 3단계 Parser, 4단계 의미 분석, 5단계 P-Code 생성과 Interpreter 실행까지 기능을 누적 구현.',
+        'p2_dev_li2': '<strong>어휘 분석기(Lexer) 구현:</strong> 토큰 enum과 <code>unordered_map</code> 기반 키워드/연산자 매핑을 구성하고, <code>peek()</code>로 <code>//</code>, <code>/* */</code> 주석과 <code>&amp;&amp;</code>, <code>||</code> 같은 다중 문자 연산자를 처리하며 단일 <code>&amp;</code>/<code>|</code>는 <code>a</code> 오류로 기록.',
+        'p2_dev_li3': '<strong>재귀 하향 파서 설계:</strong> 문법 비단말별 파싱 함수를 구성하고, <code>tokenIndex</code>, 현재/이전 토큰 관리, <code>Stmt</code>의 <code>LVal = Exp</code>와 <code>[Exp]</code> 구분을 위한 전방 탐색을 구현.',
+        'p2_dev_li4': '<strong>의미 분석과 심볼 관리:</strong> 스코프 스택, 함수 파라미터 맵, 반환 타입 스택을 도입해 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약, 상수 재대입, 루프 밖 <code>break</code>/<code>continue</code>를 검사.',
+        'p2_dev_li5': '<strong>P-Code 생성과 실행:</strong> <code>PCode</code>, <code>PCodeLabel</code>, <code>Value</code> 구조를 추가해 분기, 반복, 함수 호출, 배열 주소 계산, I/O를 위한 P-Code를 생성하고 스택 머신 인터프리터로 실행.',
+        'p2_dev_li6': '<strong>최종 CMake 모듈화:</strong> <code>ComplierSysY.cpp</code>를 진입점으로 두고 <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, <code>DataDef</code>를 분리해 디버깅 가능한 구조로 정리.',
+        'p2_tr_intro': '가장 큰 난점은 잘못 입력된 토큰이 아니라 <strong>입력에 존재하지 않는 토큰</strong>을 처리하는 <code>i</code>, <code>j</code>, <code>k</code> 오류였습니다. 세미콜론, 오른쪽 소괄호, 오른쪽 대괄호가 누락되면 현재 토큰을 소비할지, 오류 줄 번호를 어디로 잡을지, 이후 문장을 어떻게 복구할지가 모두 파서 상태와 P-Code 생성에 영향을 주었습니다.',
+        'p2_tr_list1': '<strong><code>i</code> 오류:</strong> 세미콜론 누락은 문장 경계를 무너뜨리므로 <code>parseStmt()</code> 전방 탐색이 다음 줄 토큰까지 밀리지 않도록 현재 위치와 <code>mLastNonT</code> 기준 줄 번호를 추적.',
+        'p2_tr_list2': '<strong><code>j</code> 오류:</strong> 함수 호출에서 <code>)</code>가 없으면 인자 개수 오류 <code>d</code>나 타입 오류 <code>e</code>가 연쇄 오진될 수 있어 <code>parseErrorJ()</code>의 반환값으로 후속 의미 검사를 제어.',
+        'p2_tr_list3': '<strong><code>k</code> 오류:</strong> 배열의 <code>]</code> 누락은 인덱스 표현식의 끝과 P-Code 주소 계산을 흔들기 때문에 오류 기록과 배열 주소 생성 흐름을 함께 점검.',
+        'p2_tr_bridge': '아래 트러블슈팅은 <strong style="color:#ef4444;font-weight:900">누락 토큰 복구와 CMake 모듈화</strong>가 왜 최종 구조적 선택이 되었는지 다룹니다.',
+        'p2_tr_head': '누락 토큰 복구와 CMake 모듈화 - 단일 파일 구조 한계 해결',
+        'p2_tr_problem': '5단계에서 P-Code 생성과 인터프리터까지 들어오자 <code>parseStmt()</code>, <code>ParseLVal()</code>, <code>ParseUnaryExp()</code>, <code>parsefor()</code> 안에 문법 분석, 의미 검사, 오류 복구, 코드 생성이 동시에 섞였습니다. 이 상태에서 <code>i/j/k</code> 누락 오류를 고치면 <strong><code>mCurToken</code>, <code>mCurpos</code>, <code>mLastNonT</code>, 라벨 주소</strong>가 함께 흔들려 기존 정상 케이스까지 깨질 수 있었습니다.',
+        'p2_tr_alt': '즉시 파싱 중단, 동기화 토큰까지 건너뛰는 panic-mode 복구, 단일 파일 안에서 조건문을 추가하는 방식을 검토했습니다. 하지만 누락 오류는 “현재 토큰이 틀린” 문제가 아니라 “현재 토큰 앞에 무언가 빠진” 문제라서, 토큰을 잘못 소비하면 다음 선언이나 for 헤더, 배열 주소 계산까지 연쇄적으로 틀어졌습니다.',
+        'p2_tr_sol': '<code>parseErrorI/J</code>는 <code>bool</code>을 반환해 후속 의미 검사 여부를 제어하고, 누락 토큰의 줄 번호는 <code>previousToken</code> 대신 <code>mLastNonT</code>를 기준으로 기록했습니다. 최종적으로 <code>ErrorHandler</code>를 분리해 오류 저장/정렬/출력을 담당하게 하고, <code>Parser</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>를 CMake 구조로 나누어 복잡도를 낮췄습니다.',
+        'p2_takeaway': '이 경험을 통해 컴파일러 오류 복구는 에러 메시지를 출력하는 문제가 아니라 <strong>파서 위치, 오류 우선순위, 코드 생성 상태를 함께 보존하는 설계 문제</strong>라는 점을 배웠습니다. 기능을 더하는 것만큼 책임을 나누는 구조가 중요했습니다.',
         'p3_intro': 'Vue 3 기반 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서비스를 연동하여 학술 성과 검색·상세 조회·분석·외부 메타데이터 연동 기능을 갖춘 통합 플랫폼을 개발했습니다. <strong>백엔드를 전담</strong>하여 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다.',
         'p3_dev_li1': '<strong>설계 및 문서화 체계 구축:</strong> <code>docs/</code> 및 <code>RFC/</code>를 중심으로 요구사항, 아키텍처, 데이터 설계, API 인터페이스 등 개발 전 과정의 문서를 명문화.',
         'p3_dev_li2': '<strong>다중 인프라 통합 레이어 구현:</strong> Spring Boot 3(Java 21) 환경에서 PostgreSQL, Elasticsearch, Redis, MinIO를 연동한 백엔드 인프라 구조 설계 및 적용.',
@@ -2047,8 +2047,8 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'p4_dev_li2': '<strong>심전도(ECG) 진단 모델 구현:</strong> PTB-XL 데이터셋을 활용한 CNN-CBAM-GRU 기반 추론 API를 구축하고 실시간 진단 기능을 연동했습니다.',
         'p4_dev_li3': '<strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.',
         'p4_perf_li1': '<strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.',
-        'p4_perf_li2': '<strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.',
-        'p4_perf_li3': '<strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 604.3ms</strong>.',
+        'p4_perf_li2': '<strong>실시간 AI 추론 속도:</strong> 12-lead ECG 데이터(10초 분량, 500Hz) 기준 AI 추론 속도는 <strong>평균 2,396.58ms, P50 2,336.01ms, P95 2,725.98ms</strong>.',
+        'p4_perf_li3': '<strong>모바일 체감 로딩 개선:</strong> Cache-First 적용 후 Home 화면 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 <strong>평균 603.97ms</strong>.',
         'p4_perf_li4': '<strong>시스템 견고성 점검:</strong> Boundary Value Analysis 결과, 대부분의 비정상 입력은 서버 다운 없이 에러 응답으로 처리. NaN/Inf 포함 케이스에 대한 validation은 후속 보강 중.',
         'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(comparison_results.csv 기준)</span>',
         'p4_ecg_li2': '<strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)',
@@ -2137,10 +2137,10 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj1.role': 'OS Kernel Developer (Solo)',
         'proj1.summary': 'Step-by-step implementation of boot, virtual memory, CoW fork, and microkernel FS on GXemul MIPS simulator',
         'proj1.result': '✓ Completed all Lab 0–6 stages',
-        'proj2.title': 'SysY Compiler Frontend &amp; VM',
+        'proj2.title': 'SysY Compiler Evolution and CMake Modularization',
         'proj2.role': 'Compiler Engineer (Solo)',
-        'proj2.summary': 'Lexer → Recursive Descent Parser → Symbol Table → P-Code VM, full compiler pipeline in C++',
-        'proj2.result': '✓ All a–m error categories handled',
+        'proj2.summary': 'Stepwise expansion from lexical analysis to syntax/semantic analysis, P-Code execution, and CMake modules',
+        'proj2.result': '✓ Clarified i/j/k missing-token recovery and responsibility separation',
         'proj3.title': 'Academic Results Sharing Platform',
         'proj3.badge': '🌐 KR-CN Team',
         'proj3.role': 'Backend / Full-Stack (Team Project)',
@@ -2163,23 +2163,23 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'p1_tr_alt': 'I considered protecting the critical section by disabling interrupts, but excluded it due to performance impact and educational OS design principles. Instead, I chose to <strong>preserve a safe invariant at all times by reordering mapping operations</strong>.',
         'p1_tr_sol': 'I adjusted the <strong>unmap/map order</strong> so that <code>pageref(fd) &le; pageref(pipe)</code> is never violated at any moment. This improved IPC stability.',
         'p1_takeaway': 'In a preemptive scheduling environment, I learned that not only the final result but also <strong>intermediate states during execution must remain safe</strong>.',
-        'p2_intro': 'Built the full compiler pipeline for SysY, from <strong>Lexer and Recursive Descent Parser to Symbol Table, P-Code generator, and VM interpreter</strong>.<br>Starting from a single-file prototype, I separated modules into <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, and <code>Interpreter</code>, improving <strong>object-oriented design and maintainability</strong>.',
-        'p2_dev_li1': '<strong>Lexer Implementation:</strong> Optimized keyword classification with <code>unordered_map</code>, and consistently tokenized multi-character operators such as <code>&lt;=</code>, <code>==</code>, <code>&amp;&amp;</code> and string constants including escape sequences via a <code>peek()</code> mechanism.',
-        'p2_dev_li2': '<strong>Recursive Descent Parser Design:</strong> Implemented lookahead for <code>CompUnit</code>, ambiguity resolution inside <code>Stmt</code> between <code>LVal = Exp</code> and <code>[Exp]</code>, and layered expression parsing based on operator precedence.',
-        'p2_dev_li3': '<strong>Scope-based Symbol Table:</strong> Built scope-chain lookup with scope ID + stack-based symbol management, and detected semantic errors at compile time such as shadowing, function signature mismatch, constant reassignment, and use of undeclared identifiers.',
-        'p2_dev_li4': '<strong>Fault-Tolerant Error Recovery System:</strong> Redesigned errors as context-recovery signals instead of parse-termination causes. For missing-token errors, recovery logic records the reference position of the previous semantic unit (<code>mLastNonT</code>) to reduce cascading errors while continuing parsing.',
-        'p2_dev_li5': '<strong>P-Code Generator and Stack VM:</strong> Designed a custom P-Code instruction set for arithmetic/logical operations, branching, loops, function call/return, 1D array indexing, and I/O, then implemented a stack-machine interpreter for execution.',
-        'p2_dev_li6': '<strong>Modularization and Architecture Refactoring:</strong> Split a single large file into independent modules to improve debugging efficiency and maintainability.',
-        'p2_tr_intro': 'This compiler was designed to systematically handle <strong>a–m categories of syntax and semantic errors</strong> defined in the assignment spec. The most challenging part was implementing recovery logic that prevents <strong>cascading misdiagnosis</strong> caused by token-pointer drift when a <strong>missing semicolon (<code>i</code>)</strong> occurs, and returns the parser to a <strong>valid context</strong>.',
-        'p2_tr_list1': '<strong>Syntax Error Recovery:</strong> Even when tokens such as <code>;</code>, <code>)</code>, or <code>]</code> are missing, parsing continues by recovering context and proceeding with subsequent grammar analysis.',
-        'p2_tr_list2': '<strong>Semantic Error Diagnostics:</strong> Performs compile-time diagnostics for duplicate definitions, undeclared identifiers, function arg count/type mismatches, return-contract violations, constant reassignment, mismatch between <code>printf</code> format strings and arguments, and use of <code>break</code>/<code>continue</code> outside loops.',
-        'p2_tr_list3': '<strong>Error Output Policy:</strong> Sorts all errors by line number and outputs only one representative error per line to reduce duplicate reports.',
-        'p2_tr_bridge': 'The troubleshooting below focuses on how I systematically solved the highest-difficulty design issue: <strong style="color:#ef4444;font-weight:900">"missing syntax recovery"</strong>.',
-        'p2_tr_head': 'Building a Fault-Tolerant Parser — Solving cascading parse errors and duplicate misdiagnosis',
-        'p2_tr_problem': 'When I added recovery logic for cases like <code>int a int b;</code>, existing valid parsing cases started breaking. By tracing the parser state, I found that <code>parseErrorI/J/K</code> were not pure validation helpers; they directly changed <strong><code>mCurToken</code>/<code>mCurpos</code></strong> through <code>AdvanceToNextToken()</code>. A small change in call order could make the next grammar rule start from the wrong token.',
-        'p2_tr_alt': 'I compared immediate parse termination, panic-mode recovery that skips to sync tokens such as <code>;</code> and <code>}</code>, and inserting new checks around existing error functions. However, moving the cursor before a cursor-consuming error function could consume <code>;</code> twice or skip the first token of the next declaration, causing cascading failures across the recursive descent parser.',
-        'p2_tr_sol': 'I first classified error functions into <strong>token-consuming functions (<code>parseErrorI/J/K</code>), look-ahead functions (<code>parseErrorE</code>), and symbol-registering functions (<code>parseErrorB</code>)</strong>. New recovery logic saves the current position, looks ahead only as needed, and restores the cursor before returning. Missing-token errors are reported against the previous semantic unit (<code>mLastNonT</code>), reducing cases where error handling corrupts the next parser state.',
-        'p2_takeaway': 'This taught me to start troubleshooting with a <strong>minimal reproducible input and to separate state-mutating functions from read-only checks</strong>. In compiler error handling, preserving parser position and context matters more than simply printing an error.',
+        'p2_intro': 'Expanded the SysY compiler assignment step by step: <strong>test-set analysis → lexical analysis → recursive descent parsing → semantic analysis → P-Code generation and interpreter execution</strong>.<br>For the final submission, I split the single-file implementation into CMake-based modules: <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, and <code>DataDef</code>, clarifying the boundaries between <strong>error recovery, symbol management, and code execution</strong>.',
+        'p2_dev_li1': '<strong>Stepwise compiler expansion:</strong> Built from the stage-1 test set into stage-2 Lexer, stage-3 Parser, stage-4 semantic analysis, and stage-5 P-Code generation with Interpreter execution.',
+        'p2_dev_li2': '<strong>Lexer implementation:</strong> Defined token enums and <code>unordered_map</code>-based keyword/operator mappings, used <code>peek()</code> to handle <code>//</code>, <code>/* */</code> comments and multi-character operators such as <code>&amp;&amp;</code> and <code>||</code>, and reported single <code>&amp;</code>/<code>|</code> as <code>a</code> errors.',
+        'p2_dev_li3': '<strong>Recursive descent parser:</strong> Added parsing functions for grammar nonterminals, managed <code>tokenIndex</code> plus current/previous tokens, and implemented lookahead to distinguish <code>LVal = Exp</code> from <code>[Exp]</code> in <code>Stmt</code>.',
+        'p2_dev_li4': '<strong>Semantic analysis and symbols:</strong> Added scope stacks, function-parameter maps, and return-type stacks to check duplicate definitions, undeclared identifiers, argument count/type mismatches, return contracts, constant reassignment, and <code>break</code>/<code>continue</code> outside loops.',
+        'p2_dev_li5': '<strong>P-Code generation and execution:</strong> Added <code>PCode</code>, <code>PCodeLabel</code>, and <code>Value</code> structures to generate P-Code for branching, loops, function calls, array address calculation, and I/O, then executed it with a stack-machine interpreter.',
+        'p2_dev_li6': '<strong>Final CMake modularization:</strong> Used <code>ComplierSysY.cpp</code> as the entry point and separated <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, and <code>DataDef</code> into debuggable modules.',
+        'p2_tr_intro': 'The hardest issue was not a wrong token, but a token that was <strong>missing from the input</strong>: errors <code>i</code>, <code>j</code>, and <code>k</code>. When a semicolon, right parenthesis, or right bracket is missing, the parser must decide whether to consume the current token, which line to report, and how to recover subsequent statements without corrupting parser state or P-Code generation.',
+        'p2_tr_list1': '<strong><code>i</code> error:</strong> A missing semicolon breaks statement boundaries, so <code>parseStmt()</code> lookahead had to track position and report line numbers through <code>mLastNonT</code> without drifting into the next line.',
+        'p2_tr_list2': '<strong><code>j</code> error:</strong> In function calls, a missing <code>)</code> can cascade into false argument-count <code>d</code> or type <code>e</code> errors, so <code>parseErrorJ()</code> returns a value that controls later semantic checks.',
+        'p2_tr_list3': '<strong><code>k</code> error:</strong> A missing array <code>]</code> disrupts the end of the index expression and P-Code address calculation, so error recording and array-address generation had to be checked together.',
+        'p2_tr_bridge': 'The troubleshooting below explains why <strong style="color:#ef4444;font-weight:900">missing-token recovery and CMake modularization</strong> became the final structural choice.',
+        'p2_tr_head': 'Missing-Token Recovery and CMake Modularization - Resolving Single-File Limits',
+        'p2_tr_problem': 'Once stage 5 added P-Code generation and an interpreter, <code>parseStmt()</code>, <code>ParseLVal()</code>, <code>ParseUnaryExp()</code>, and <code>parsefor()</code> mixed grammar parsing, semantic checks, error recovery, and code generation in the same functions. Fixing an <code>i/j/k</code> missing-token case could disturb <strong><code>mCurToken</code>, <code>mCurpos</code>, <code>mLastNonT</code>, and label addresses</strong>, breaking cases that previously parsed correctly.',
+        'p2_tr_alt': 'I evaluated immediate parse termination, panic-mode recovery that skips to synchronization tokens, and adding more conditions inside the single file. But missing-token errors mean “something is absent before the current token,” not “the current token is wrong,” so consuming the wrong token can cascade into the next declaration, a for-header, or array address calculation.',
+        'p2_tr_sol': '<code>parseErrorI/J</code> return <code>bool</code> values to control whether later semantic checks should run, and missing-token line numbers are recorded with <code>mLastNonT</code> instead of <code>previousToken</code>. Finally, <code>ErrorHandler</code> was split out for error storage/sorting/output, while <code>Parser</code>, <code>SymbolTableManager</code>, and <code>Interpreter</code> were separated under CMake to reduce complexity.',
+        'p2_takeaway': 'I learned that compiler error recovery is not merely printing diagnostics. It is a design problem of preserving <strong>parser position, error priority, and code-generation state</strong> together. Separating responsibilities mattered as much as adding features.',
         'p3_intro': 'Built an integrated platform for academic result search, detailed view, analysis, and external metadata linkage by connecting a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, and vector services. I <strong>owned the backend</strong>, including infrastructure integration-layer design, unified API response specification, and frontend-backend interface integration.',
         'p3_dev_li1': '<strong>Established Design and Documentation System:</strong> Formalized full-lifecycle artifacts including requirements, architecture, data design, and API interfaces around <code>docs/</code> and <code>RFC/</code>.',
         'p3_dev_li2': '<strong>Implemented Multi-Infra Integration Layer:</strong> Designed and applied backend infrastructure linking PostgreSQL, Elasticsearch, Redis, and MinIO in a Spring Boot 3 (Java 21) environment.',
@@ -2195,8 +2195,8 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'p4_dev_li2': '<strong>ECG Diagnostic Model Implementation:</strong> Built a CNN-CBAM-GRU-based inference API using the PTB-XL dataset and integrated real-time diagnosis.',
         'p4_dev_li3': '<strong>Data Sync and Security:</strong> Implemented JWT-based auto-logout flow for 401 expiration and improved client responsiveness with an AsyncStorage-based <strong>Cache-First strategy</strong>.',
         'p4_perf_li1': '<strong>Throughput (TPS) Evaluation:</strong> Recorded <strong>TPS 56.23~66.41</strong> on key APIs under a 20-concurrent-user load test.',
-        'p4_perf_li2': '<strong>Real-time AI Inference Speed:</strong> For 12-lead ECG data (10 seconds, 500Hz), inference latency measured <strong>avg 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>.',
-        'p4_perf_li3': '<strong>Perceived Mobile Loading Improvement:</strong> After Cache-First, first Home render reached <strong>avg 0.29ms</strong>, and network sync completion <strong>avg 604.3ms</strong>.',
+        'p4_perf_li2': '<strong>Real-time AI Inference Speed:</strong> For 12-lead ECG data (10 seconds, 500Hz), inference latency measured <strong>avg 2,396.58ms, P50 2,336.01ms, P95 2,725.98ms</strong>.',
+        'p4_perf_li3': '<strong>Perceived Mobile Loading Improvement:</strong> After Cache-First, first Home render reached <strong>avg 0.29ms</strong>, and network sync completion <strong>avg 603.97ms</strong>.',
         'p4_perf_li4': '<strong>System Robustness Check:</strong> Boundary Value Analysis showed most abnormal inputs were handled by error responses without server crashes. Validation for NaN/Inf cases is being further strengthened.',
         'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">(from comparison_results.csv)</span>',
         'p4_ecg_li2': '<strong>Model Parameters:</strong> 0.65M · <strong>Architecture:</strong> CNN-CBAM-GRU (Amplitude Feature Injection, 36 dimensions)',
@@ -2285,10 +2285,10 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj1.role': 'OS内核开发者（个人项目）',
         'proj1.summary': '在GXemul MIPS模拟器上逐步实现启动·虚拟内存·CoW fork·微内核文件系统',
         'proj1.result': '✓ 完成全部 Lab 0–6 阶段',
-        'proj2.title': 'SysY 语言编译器前端 &amp; VM 实现',
+        'proj2.title': 'SysY 编译器阶段实现与 CMake 模块化',
         'proj2.role': '编译器工程师（个人项目）',
-        'proj2.summary': 'Lexer → 递归下降Parser → 符号表 → P-Code VM，用C++实现完整编译器流水线',
-        'proj2.result': '✓ 实现全部 a–m 类错误处理',
+        'proj2.summary': '从词法分析到语法/语义分析、P-Code 执行，再到 CMake 模块化的阶段式扩展',
+        'proj2.result': '✓ 梳理 i/j/k 缺失错误恢复与结构拆分核心',
         'proj3.title': '学术成果共享平台',
         'proj3.badge': '🌐 中韩团队',
         'proj3.role': '后端/全栈（团队项目）',
@@ -2311,23 +2311,23 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'p1_tr_alt': '我评估了通过关闭中断保护临界区，但考虑到性能下降和教学 OS 的设计原则将其排除。改为选择 <strong>通过重排映射顺序始终维持安全不变式</strong>。',
         'p1_tr_sol': '通过调整 <strong>unmap/map 顺序</strong>，确保 <code>pageref(fd) &le; pageref(pipe)</code> 在任意时刻不被破坏，从而提升 IPC 稳定性。',
         'p1_takeaway': '在抢占式调度环境中，我体会到不仅最终结果要正确，<strong>执行过程中的中间状态也必须安全</strong>。',
-        'p2_intro': '我实现了 SysY 编译器完整流水线，从 <strong>词法分析器（Lexer）、递归下降语法分析器（Parser）、符号表、P-Code 生成器到虚拟机（VM）解释器</strong>。<br>并将初期单文件结构拆分为 <code>Lexer</code>、<code>Parser</code>、<code>SymbolTable</code>、<code>ErrorHandler</code>、<code>Interpreter</code> 模块，提升了 <strong>面向对象设计与可维护性</strong>。',
-        'p2_dev_li1': '<strong>词法分析器（Lexer）实现：</strong> 使用 <code>unordered_map</code> 优化关键字识别，并通过 <code>peek()</code> 机制一致地处理 <code>&lt;=</code>、<code>==</code>、<code>&amp;&amp;</code> 等多字符运算符及含转义序列的字符串常量。',
-        'p2_dev_li2': '<strong>递归下降解析器（Recursive Descent Parser）设计：</strong> 实现 <code>CompUnit</code> 前瞻、<code>Stmt</code> 中 <code>LVal = Exp</code> 与 <code>[Exp]</code> 的歧义判定，以及基于运算符优先级的分层表达式解析。',
-        'p2_dev_li3': '<strong>基于作用域的符号表：</strong> 以作用域 ID + 栈结构管理符号并支持作用域链查找，在编译期检测变量遮蔽、函数签名不一致、常量重赋值、未声明标识符等语义错误。',
-        'p2_dev_li4': '<strong>容错（Fault-Tolerant）错误恢复系统：</strong> 将错误从“终止解析原因”重构为“语境恢复信号”。缺失 token 错误会记录前一语义单元基准位置（<code>mLastNonT</code>），减少连锁报错并持续后续解析。',
-        'p2_dev_li5': '<strong>P-Code 生成器与栈式 VM：</strong> 设计覆盖算术/逻辑、分支、循环、函数调用/返回、一维数组索引与 I/O 的自定义 P-Code 指令集，并实现对应栈机解释器。',
-        'p2_dev_li6': '<strong>模块化与架构重构：</strong> 将大型单文件拆分为独立模块，提升调试效率与可维护性。',
-        'p2_tr_intro': '该编译器按作业规范系统处理 <strong>a~m 类语法与语义错误</strong>。其中最具挑战的是：在 <strong>分号缺失（<code>i</code>）</strong> 时，防止 token 指针偏移引发的 <strong>连锁误判</strong>，并使解析器 <strong>恢复到正常语境</strong>。',
-        'p2_tr_list1': '<strong>语法错误恢复：</strong> 即使 <code>;</code>、<code>)</code>、<code>]</code> 等 token 缺失，也不终止解析，而是恢复语境后继续分析后续语句。',
-        'p2_tr_list2': '<strong>语义错误诊断：</strong> 在编译期诊断重复定义、未声明标识符、函数参数个数/类型不匹配、返回约束违规、常量重赋值、<code>printf</code> 格式串与参数不一致，以及循环外 <code>break</code>/<code>continue</code> 使用等问题。',
-        'p2_tr_list3': '<strong>错误输出策略：</strong> 按行号排序全部错误，并在同一行仅输出一个代表错误，减少重复报告。',
-        'p2_tr_bridge': '下面的故障排查重点展示了我如何系统性解决其中设计难度最高的问题：<strong style="color:#ef4444;font-weight:900">"语法缺失恢复"</strong>。',
-        'p2_tr_head': '构建 Fault-Tolerant 解析器——解决连锁解析报错与重复误判问题',
-        'p2_tr_problem': '为处理 <code>int a int b;</code> 这类缺失分号的输入而添加错误处理函数时，原本能通过的正常解析用例也开始失败。追踪解析器状态后发现，<code>parseErrorI/J/K</code> 并不是单纯的检查函数，而是会通过 <code>AdvanceToNextToken()</code> 直接修改 <strong><code>mCurToken</code>/<code>mCurpos</code></strong>。调用顺序稍有变化，后续语法规则就会从错误的 token 开始。',
-        'p2_tr_alt': '我比较了立即终止解析、跳过到同步 token（<code>;</code>、<code>}</code>）的 panic-mode 恢复，以及在既有错误函数前后插入新检查三种方式。但如果在会消费游标的错误函数之前再次移动 token，<code>;</code> 可能被重复消费，或下一条声明的首个 token 被跳过，进而让递归下降解析器产生连锁错误。',
-        'p2_tr_sol': '我先将错误函数分为 <strong>消费 token 型（<code>parseErrorI/J/K</code>）、look-ahead 型（<code>parseErrorE</code>）、符号注册型（<code>parseErrorB</code>）</strong>。新的恢复逻辑会先保存当前位置，只预读必要 token，并在返回前恢复游标；缺失 token 错误则按前一语义单元（<code>mLastNonT</code>）记录。这样减少了错误处理破坏后续解析起点的问题。',
-        'p2_takeaway': '这次经历让我学会，排查问题时要先构造 <strong>最小可复现输入，并区分会修改状态的函数和只读检查函数</strong>。在编译器错误处理中，保存解析器位置和上下文比单纯输出错误更重要。',
+        'p2_intro': '我按阶段扩展了 SysY 编译器作业：<strong>测试集分析 → 词法分析 → 递归下降语法分析 → 语义分析 → P-Code 生成与解释执行</strong>。<br>最终提交时，将原本混在单文件中的 <code>Lexer</code>、<code>Parser</code>、<code>ErrorHandler</code>、<code>SymbolTableManager</code>、<code>Interpreter</code>、<code>DataDef</code> 拆分为基于 CMake 的模块结构，明确了 <strong>错误恢复、符号管理、代码执行</strong> 的责任边界。',
+        'p2_dev_li1': '<strong>阶段式编译器扩展：</strong> 从第 1 阶段测试集出发，逐步实现第 2 阶段 Lexer、第 3 阶段 Parser、第 4 阶段语义分析，以及第 5 阶段 P-Code 生成和 Interpreter 执行。',
+        'p2_dev_li2': '<strong>词法分析器（Lexer）实现：</strong> 定义 token enum 与基于 <code>unordered_map</code> 的关键字/运算符映射，用 <code>peek()</code> 处理 <code>//</code>、<code>/* */</code> 注释和 <code>&amp;&amp;</code>、<code>||</code> 等多字符运算符，并将单个 <code>&amp;</code>/<code>|</code> 记录为 <code>a</code> 错误。',
+        'p2_dev_li3': '<strong>递归下降解析器设计：</strong> 为各语法非终结符编写解析函数，管理 <code>tokenIndex</code>、当前/前一个 token，并通过前瞻区分 <code>Stmt</code> 中的 <code>LVal = Exp</code> 与 <code>[Exp]</code>。',
+        'p2_dev_li4': '<strong>语义分析与符号管理：</strong> 引入作用域栈、函数参数映射、返回类型栈，检查重复定义、未声明标识符、函数参数个数/类型不匹配、返回规则、常量重赋值，以及循环外 <code>break</code>/<code>continue</code>。',
+        'p2_dev_li5': '<strong>P-Code 生成与执行：</strong> 添加 <code>PCode</code>、<code>PCodeLabel</code>、<code>Value</code> 结构，为分支、循环、函数调用、数组地址计算和 I/O 生成 P-Code，并通过栈式解释器执行。',
+        'p2_dev_li6': '<strong>最终 CMake 模块化：</strong> 以 <code>ComplierSysY.cpp</code> 为入口，将 <code>Lexer</code>、<code>Parser</code>、<code>ErrorHandler</code>、<code>SymbolTableManager</code>、<code>Interpreter</code>、<code>DataDef</code> 拆分为可调试模块。',
+        'p2_tr_intro': '最大的难点不是处理错误 token，而是处理 <strong>输入中不存在的 token</strong>，也就是 <code>i</code>、<code>j</code>、<code>k</code> 错误。分号、右小括号、右中括号缺失时，解析器必须判断是否消费当前 token、错误行号应记录在哪里，以及如何恢复后续语句，同时还不能破坏解析器状态和 P-Code 生成。',
+        'p2_tr_list1': '<strong><code>i</code> 错误：</strong> 分号缺失会破坏语句边界，因此 <code>parseStmt()</code> 的前瞻逻辑需要跟踪当前位置，并通过 <code>mLastNonT</code> 记录行号，避免漂移到下一行。',
+        'p2_tr_list2': '<strong><code>j</code> 错误：</strong> 函数调用缺少 <code>)</code> 时，可能连锁误报参数个数 <code>d</code> 或类型 <code>e</code> 错误，因此用 <code>parseErrorJ()</code> 的返回值控制后续语义检查。',
+        'p2_tr_list3': '<strong><code>k</code> 错误：</strong> 数组缺少 <code>]</code> 会影响索引表达式结束位置和 P-Code 地址计算，因此需要同时检查错误记录与数组地址生成流程。',
+        'p2_tr_bridge': '下面的故障排查说明了为什么 <strong style="color:#ef4444;font-weight:900">缺失 token 恢复与 CMake 模块化</strong> 成为最终的结构选择。',
+        'p2_tr_head': '缺失 Token 恢复与 CMake 模块化 - 解决单文件结构限制',
+        'p2_tr_problem': '第 5 阶段加入 P-Code 生成和解释器后，<code>parseStmt()</code>、<code>ParseLVal()</code>、<code>ParseUnaryExp()</code>、<code>parsefor()</code> 等函数中同时混合了语法分析、语义检查、错误恢复和代码生成。此时修复 <code>i/j/k</code> 缺失错误，可能同时影响 <strong><code>mCurToken</code>、<code>mCurpos</code>、<code>mLastNonT</code> 与标签地址</strong>，导致原本正确的用例被破坏。',
+        'p2_tr_alt': '我评估了立即终止解析、跳转到同步 token 的 panic-mode 恢复，以及继续在单文件中增加条件判断。但缺失错误的本质不是“当前 token 错了”，而是“当前 token 前面少了东西”。一旦错误消费 token，下一条声明、for 头部或数组地址计算都可能连锁错位。',
+        'p2_tr_sol': '<code>parseErrorI/J</code> 改为返回 <code>bool</code>，用于控制后续语义检查是否继续执行；缺失 token 的行号也从 <code>previousToken</code> 改为按 <code>mLastNonT</code> 记录。最终将 <code>ErrorHandler</code> 独立出来负责错误保存/排序/输出，并把 <code>Parser</code>、<code>SymbolTableManager</code>、<code>Interpreter</code> 拆到 CMake 结构中，降低复杂度。',
+        'p2_takeaway': '这次经历让我认识到，编译器错误恢复不只是输出诊断信息，而是同时保存 <strong>解析器位置、错误优先级与代码生成状态</strong> 的设计问题。职责拆分和功能增加同样重要。',
         'p3_intro': '通过联动 Vue 3 SPA、Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 与向量服务，我开发了具备学术成果检索、详情查看、分析与外部元数据联动能力的一体化平台。并 <strong>独立负责后端</strong>：基础设施集成层设计、统一 API 响应规范定义、前后端接口联调。',
         'p3_dev_li1': '<strong>建立设计与文档体系：</strong> 以 <code>docs/</code> 与 <code>RFC/</code> 为核心，将需求、架构、数据设计、API 接口等开发全流程文档化。',
         'p3_dev_li2': '<strong>实现多基础设施集成层：</strong> 在 Spring Boot 3（Java 21）环境下完成 PostgreSQL、Elasticsearch、Redis、MinIO 的后端基础设施集成设计与落地。',
@@ -2343,8 +2343,8 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'p4_dev_li2': '<strong>心电（ECG）诊断模型实现：</strong> 基于 PTB-XL 数据集构建 CNN-CBAM-GRU 推理 API，并接入实时诊断功能。',
         'p4_dev_li3': '<strong>数据同步与安全：</strong> 实现基于 JWT 的 401 过期自动登出流程，并通过 AsyncStorage 的 <strong>Cache-First 策略</strong>提升客户端响应性。',
         'p4_perf_li1': '<strong>吞吐量（TPS）评估：</strong> 在 20 人并发压测下，核心 API 记录 <strong>TPS 56.23~66.41</strong>。',
-        'p4_perf_li2': '<strong>实时 AI 推理速度：</strong> 以 12 导联 ECG 数据（10 秒，500Hz）为基准，推理延迟为 <strong>平均 2,382.85ms，P50 2,303.27ms，P95 2,698.16ms</strong>。',
-        'p4_perf_li3': '<strong>移动端体感加载优化：</strong> Cache-First 后 Home 首屏显示 <strong>平均 0.29ms</strong>，网络同步完成 <strong>平均 604.3ms</strong>。',
+        'p4_perf_li2': '<strong>实时 AI 推理速度：</strong> 以 12 导联 ECG 数据（10 秒，500Hz）为基准，推理延迟为 <strong>平均 2,396.58ms，P50 2,336.01ms，P95 2,725.98ms</strong>。',
+        'p4_perf_li3': '<strong>移动端体感加载优化：</strong> Cache-First 后 Home 首屏显示 <strong>平均 0.29ms</strong>，网络同步完成 <strong>平均 603.97ms</strong>。',
         'p4_perf_li4': '<strong>系统鲁棒性检查：</strong> Boundary Value Analysis 显示大多数异常输入可在不宕机情况下返回错误响应；包含 NaN/Inf 的校验仍在持续增强。',
         'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--text-3);font-size:.85em">（基于 comparison_results.csv）</span>',
         'p4_ecg_li2': '<strong>模型参数：</strong> 0.65M · <strong>架构：</strong> CNN-CBAM-GRU（Amplitude Feature Injection，36 维）',

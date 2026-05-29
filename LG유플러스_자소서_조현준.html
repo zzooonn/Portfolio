@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자기소개서 · 이력서 | 조현준 — LG유플러스 GPU 기술 TF</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Pretendard:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink:    #0a0a0a;
+  --text:   #1a1a1a;
+  --muted:  #4a4a4a;
+  --subtle: #6e6e6e;
+  --faint:  #9a9a9a;
+  --line:   #d8d8d8;
+  --rule:   #1a1a1a;
+  --paper:  #ffffff;
+  --screen: #e9e9ea;
+  --soft:   #f4f4f4;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+body {
+  font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--screen);
+  color: var(--text);
+  line-height: 1.55;
+  word-break: keep-all;
+  font-feature-settings: "tnum" 1, "kern" 1;
+  letter-spacing: -0.005em;
+}
+
+button { font: inherit; }
+
+/* ===== Toolbar ===== */
+#toolbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px;
+  background: #0a0a0a;
+  color: #fff;
+  border-bottom: 1px solid #000;
+}
+#toolbar h1 {
+  font-family: "Noto Serif KR", serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+#toolbar .hint {
+  flex: 1;
+  color: #b8b8b8;
+  font-size: 12px;
+  font-weight: 400;
+}
+#toolbar button {
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 2px;
+  padding: 6px 14px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, border-color 0.15s;
+}
+#toolbar button:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.55); }
+#toolbar .print-btn { background: #fff; color: #0a0a0a; border-color: #fff; }
+#toolbar .print-btn:hover { background: #d8d8d8; color: #000; }
+#toolbar .edit-toggle.active { background: #fff; color: #0a0a0a; border-color: #fff; }
+#toolbar .edit-toggle.active:hover { background: #d8d8d8; }
+
+/* ===== Page wrapper ===== */
+#page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 72px 0 56px;
+}
+
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 16mm 18mm;
+  background: var(--paper);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 18px 50px rgba(0,0,0,0.10);
+  position: relative;
+  font-size: 10.5pt;
+  color: var(--text);
+}
+
+/* edit affordance */
+body.edit-mode [contenteditable] {
+  outline: none;
+  border-radius: 1px;
+  cursor: text;
+  transition: background-color 0.16s, box-shadow 0.16s;
+}
+body.edit-mode [contenteditable]:hover {
+  background: rgba(0,0,0,0.035);
+}
+body.edit-mode [contenteditable]:focus {
+  background: rgba(0,0,0,0.06);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.45);
+}
+
+/* ===== Header (page 1) ===== */
+.resume-header {
+  display: grid;
+  grid-template-columns: 1fr 30mm;
+  gap: 18px;
+  align-items: stretch;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--rule);
+}
+.header-text { display: flex; flex-direction: column; justify-content: space-between; }
+
+.eyebrow {
+  color: var(--muted);
+  font-family: "Pretendard", sans-serif;
+  font-size: 8.6pt;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.eyebrow .sep { display: inline-block; margin: 0 6px; color: var(--faint); }
+
+.resume-title {
+  margin-top: 10px;
+  font-family: "Noto Serif KR", serif;
+  color: var(--ink);
+  font-size: 21pt;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+.role {
+  margin-top: 10px;
+  color: var(--text);
+  font-size: 10.5pt;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+.role .divider { display: inline-block; width: 18px; height: 1px; background: var(--ink); vertical-align: middle; margin: 0 8px 3px; }
+
+.header-photo {
+  width: 30mm;
+  height: 40mm;
+  border: 1px solid var(--ink);
+  background: var(--soft);
+  position: relative;
+  overflow: hidden;
+}
+.header-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ===== Contact strip ===== */
+.contact-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 9pt;
+}
+.contact-cell {
+  padding: 0 12px;
+  border-left: 1px solid var(--line);
+}
+.contact-cell:first-child { border-left: 0; padding-left: 0; }
+.contact-cell .ck {
+  display: block;
+  color: var(--subtle);
+  font-size: 7.6pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.contact-cell .cv {
+  color: var(--ink);
+  font-size: 9.4pt;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* ===== Summary ===== */
+.summary {
+  margin: 16px 0 18px;
+  padding: 14px 16px 14px 18px;
+  background: var(--soft);
+  border-left: 3px solid var(--ink);
+}
+.summary .summary-label {
+  display: block;
+  color: var(--ink);
+  font-family: "Noto Serif KR", serif;
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.summary p {
+  color: var(--text);
+  font-size: 10.4pt;
+  font-weight: 400;
+  line-height: 1.78;
+}
+.summary strong {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 0.5px;
+}
+
+/* ===== Page grid ===== */
+.page-grid {
+  display: grid;
+  grid-template-columns: 63mm 1fr;
+  gap: 9mm;
+}
+
+/* ===== Section ===== */
+.section { margin-top: 16px; }
+.section:first-child { margin-top: 0; }
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--ink);
+  font-family: "Noto Serif KR", serif;
+  font-size: 11.5pt;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+.section-title::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: var(--ink);
+  display: inline-block;
+}
+.section-title::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--line);
+}
+
+/* ===== Metrics ===== */
+.metric-list { display: grid; gap: 8px; }
+.metric {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.metric:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.metric-value {
+  color: var(--ink);
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.metric-label {
+  color: var(--muted);
+  font-size: 8.8pt;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* ===== Stack ===== */
+.stack-group { margin-bottom: 11px; }
+.stack-group:last-child { margin-bottom: 0; }
+
+.stack-title {
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 8.2pt;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--ink);
+  display: inline-block;
+}
+.stack-items {
+  color: var(--text);
+  font-size: 9.4pt;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+/* ===== Info rows ===== */
+.info-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 9px;
+  padding: 7px 0;
+  border-bottom: 1px dotted var(--line);
+}
+.info-row:last-child { border-bottom: 0; }
+
+.info-key {
+  color: var(--subtle);
+  font-size: 8.6pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.info-value {
+  color: var(--text);
+  font-size: 9.6pt;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+/* ===== Page kicker (page 2/3) ===== */
+.page-kicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--rule);
+}
+.page-kicker .name {
+  color: var(--ink);
+  font-family: "Noto Serif KR", serif;
+  font-size: 13.5pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.page-kicker .note {
+  color: var(--muted);
+  font-size: 9pt;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Cover letter sections ===== */
+.cl-section {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cl-section:first-child { padding-top: 0; }
+.cl-section:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.cl-kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 8.2pt;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cl-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--ink);
+}
+
+.cl-title {
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-family: "Noto Serif KR", serif;
+  font-size: 11.2pt;
+  font-weight: 700;
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+}
+.cl-body {
+  color: var(--text);
+  font-size: 9.9pt;
+  line-height: 1.78;
+  font-weight: 400;
+}
+.cl-body strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+code {
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 8.6pt;
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--ink);
+  border-radius: 1px;
+  font-weight: 500;
+}
+
+/* ===== Résumé (page 3) ===== */
+.resume-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+
+.exp-item {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+.exp-item:last-child { border-bottom: 0; }
+
+.exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+  gap: 12px;
+}
+.exp-title {
+  color: var(--ink);
+  font-family: "Noto Serif KR", serif;
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: -0.008em;
+}
+.exp-period {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.6pt;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.exp-role {
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 9.1pt;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  padding-left: 10px;
+  border-left: 2px solid var(--ink);
+}
+.exp-list {
+  margin: 0;
+  padding-left: 16px;
+  color: var(--text);
+  font-size: 9.6pt;
+  line-height: 1.72;
+}
+.exp-list li { margin-bottom: 3px; }
+.exp-list li::marker { color: var(--ink); }
+.exp-list strong { color: var(--ink); font-weight: 700; }
+
+/* ===== Print ===== */
+@media print {
+  @page { size: A4; margin: 16mm 18mm; }
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  #toolbar { display: none !important; }
+  #page-wrapper {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+  }
+  .a4-page {
+    width: auto !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always;
+    break-after: page;
+  }
+  .a4-page:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+  .cl-section, .metric, .info-row, .section-title, .cl-title, .exp-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+</style>
+</head>
+<body class="edit-mode">
+
+<div id="toolbar">
+  <h1>자기소개서 · 이력서 — LG U+ GPU 기술 TF</h1>
+  <span class="hint">편집 모드 ON · 텍스트 클릭하여 수정 · A4 출력 레이아웃 유지</span>
+  <button class="edit-toggle active" id="editBtn" onclick="toggleEdit()">편집 ON</button>
+  <button class="print-btn" onclick="window.print()">PDF / 인쇄</button>
+</div>
+
+<main id="page-wrapper">
+
+  <!-- =================== PAGE 1 =================== -->
+  <section class="a4-page">
+
+    <header class="resume-header">
+      <div class="header-text">
+        <div>
+          <div class="eyebrow" contenteditable>
+            자기소개서 <span class="sep">|</span> 2026 Global Summer Internship <span class="sep">|</span> GPU 기술 TF · 1지망 <span class="sep">|</span> LG U+
+          </div>
+          <h1 class="resume-title" contenteditable>성능 병목의 원인을 시스템 코드까지 내려가 추적합니다</h1>
+        </div>
+        <div class="role" contenteditable>조현준<span class="divider"></span>Systems &amp; AI Backend Engineer</div>
+      </div>
+
+      <div class="header-photo" aria-hidden="true">
+        <img src="photo.jpg" alt="">
+      </div>
+    </header>
+
+    <div class="contact-strip">
+      <div class="contact-cell">
+        <span class="ck">성명</span>
+        <span class="cv" contenteditable>조현준</span>
+      </div>
+      <div class="contact-cell">
+        <span class="ck">소속</span>
+        <span class="cv" contenteditable>소프트웨어학과 (학사)</span>
+      </div>
+      <div class="contact-cell">
+        <span class="ck">졸업</span>
+        <span class="cv" contenteditable>2026. 07 (예정)</span>
+      </div>
+      <div class="contact-cell">
+        <span class="ck">연락</span>
+        <span class="cv" contenteditable>kevinjo11@naver.com</span>
+      </div>
+    </div>
+
+    <section class="summary">
+      <span class="summary-label" contenteditable>SUMMARY · 한 줄 요약</span>
+      <p contenteditable>
+        저는 <strong>MIPS 마이크로커널 OS와 SysY 컴파일러를 1인으로 구현</strong>하며 시스템 깊은 곳의 동작 원리를 추적해 왔고,
+        졸업 논문 CareLink에서는 <strong>PyTorch 추론 서버를 Docker로 배포해 P95 2,698ms를 실측·분리 분석</strong>한 경험이 있습니다.
+        GPU 기술 TF가 풀려는 <strong>AI 추론 워크로드의 성능 병목을 끝까지 파고들어 시스템 레벨에서 해결하는 일</strong>은,
+        제가 학부 4년간 가장 오래 훈련해 온 방식과 정확히 같습니다.
+      </p>
+    </section>
+
+    <div class="page-grid">
+
+      <!-- 사이드바 -->
+      <aside>
+        <section class="section">
+          <h2 class="section-title">핵심 지표</h2>
+          <div class="metric-list">
+            <div class="metric">
+              <div class="metric-value" contenteditable>P95<br>2,698ms</div>
+              <div class="metric-label" contenteditable>AI 추론 지연 실측 · 병목 단계 분리 특정</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" contenteditable>Lab 0–6</div>
+              <div class="metric-label" contenteditable>BUAA MIPS OS 전 단계 단독 완주</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" contenteditable>92.52%</div>
+              <div class="metric-label" contenteditable>ECG Macro AUC (0.65M 파라미터)</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" contenteditable>×12</div>
+              <div class="metric-label" contenteditable>Elasticsearch p95 개선 (2,442 → 200ms)</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" contenteditable>9년</div>
+              <div class="metric-label" contenteditable>베이징 체류 · 한·중·영 트라이링궐</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">기술 스택</h2>
+          <div class="stack-group">
+            <div class="stack-title" contenteditable>Systems / Low-level</div>
+            <div class="stack-items" contenteditable>C · C++17 · MIPS Assembly · Linux · Docker · CUDA (학습 중)</div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-title" contenteditable>AI Serving / Profiling</div>
+            <div class="stack-items" contenteditable>Python · PyTorch · FastAPI · ONNX · journalctl · dmesg · docker stats</div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-title" contenteditable>Backend</div>
+            <div class="stack-items" contenteditable>Java 21 · Spring Boot 3 · JPA · Flyway · PostgreSQL · Redis</div>
+          </div>
+          <div class="stack-group">
+            <div class="stack-title" contenteditable>Infra</div>
+            <div class="stack-items" contenteditable>AWS EC2 · Docker Compose · GitHub Actions · Elasticsearch</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">어학 · 병역</h2>
+          <div class="info-row">
+            <div class="info-key" contenteditable>중국어</div>
+            <div class="info-value" contenteditable>TSC Level 6 · 비즈니스 커뮤니케이션</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key" contenteditable>영어</div>
+            <div class="info-value" contenteditable>OPIc IH · 기술 문서 독해</div>
+          </div>
+          <div class="info-row">
+            <div class="info-key" contenteditable>병역</div>
+            <div class="info-value" contenteditable>2023년 만기 전역 (병장)</div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- 본문 -->
+      <section>
+
+        <!-- 섹션 1: 지원동기 -->
+        <div class="cl-section">
+          <div class="cl-kicker" contenteditable>지원동기 · 채용공고 역추론 → 시스템 구조 추정 → 경험 매핑</div>
+          <div class="cl-title" contenteditable>GPU 기술 TF가 풀려는 문제를 채용공고에서 역으로 그렸습니다</div>
+          <p class="cl-body" contenteditable>
+            "AI 추론 워크로드 분석", "GPU 활용 SW 개발", "시스템 성능 분석"이라는 키워드에서 팀의 핵심 과제를 역추론했습니다. 모델·배포·하드웨어 어느 계층에서 병목이 생기는지를 <strong>코드 단위로 특정해 GPU 자원을 효율적으로 쓰는 일</strong>이 본질이라고 판단했습니다. 저는 CareLink에서 PyTorch 추론 서버를 FastAPI로 감싸 t2.micro에 배포한 뒤, 추론 평균 <strong>2,382ms / P95 2,698ms</strong>를 실측해 Spring Boot API 응답(약 320ms)과 <strong>물리적으로 분리</strong>해 병목을 모델 추론 단계로 특정한 경험이 있습니다. 같은 추적 방식을, 단일 추론 지연을 넘어 다수의 GPU 워커가 도는 추론 서빙 환경으로 한 단계 확장하는 자리가 GPU 기술 TF라고 이해했습니다.
+          </p>
+        </div>
+
+        <!-- 섹션 2: 솔직한 자기 인식 -->
+        <div class="cl-section">
+          <div class="cl-kicker" contenteditable>솔직한 자기 인식 · GPU·CUDA 경험은 공백입니다</div>
+          <div class="cl-title" contenteditable>없는 경험을 꾸미는 대신, 지금까지 무엇으로 그 자리를 메워왔는지 말씀드리고 싶습니다</div>
+          <p class="cl-body" contenteditable>
+            저는 아직 GPU 커널을 작성해 본 적도, CUDA로 행렬 연산을 가속해 본 적도 없습니다. 우대사항으로 명시된 영역이고 인턴 기간 중 학습 기회가 주어진다는 공고 내용을 보고 지원하지만, 자소서에서 이 부분을 부풀려 적지는 않겠습니다. 대신 저는 <strong>MIPS 어셈블리로 TLB Miss Fast Refill 핸들러를 직접 작성</strong>하고, <strong>COW fork에서 페이지 권한 비트와 매핑 순서를 한 줄씩 추적</strong>해 본 사람입니다. 메모리·캐시·병렬성·예외 처리라는 GPU 컴퓨팅의 토대를 시스템 SW 레벨에서 다져 왔기 때문에, GPU 아키텍처와 CUDA 프로그래밍 모델은 <strong>새 언어가 아니라 기존 사고의 확장</strong>으로 받아들일 수 있다고 판단합니다. 인턴 기간을 GPU라는 새 컴퓨팅 모델로 시스템 역량을 옮기는 자리로 쓰고 싶습니다.
+          </p>
+        </div>
+
+      </section>
+    </div>
+  </section>
+
+  <!-- =================== PAGE 2 =================== -->
+  <section class="a4-page">
+    <header class="page-kicker">
+      <div class="name" contenteditable>조현준 · 자기소개서 (계속)</div>
+      <div class="note" contenteditable>핵심 역량 + 마지막 선언 · LG U+ GPU 기술 TF</div>
+    </header>
+
+    <section>
+
+      <!-- 섹션 3: CareLink -->
+      <div class="cl-section">
+        <div class="cl-kicker" contenteditable>핵심 역량 01 · CareLink — AI 추론 지연 실측 → 병목 단계 분리 → 경로 재설계</div>
+        <div class="cl-title" contenteditable>"왜 느린가"를 P95 단위로 측정하고 추론 단계로 좁혀, 시스템 경로를 다시 그렸습니다</div>
+        <p class="cl-body" contenteditable>
+          ECG 진단 플랫폼 CareLink에서 사용자 체감 응답이 일관되게 느린 문제가 있었습니다. <strong>"AI 추론이 느리다"는 가설을 검증하기 위해</strong> Spring Boot API 응답과 FastAPI 추론 응답을 동일 부하 시나리오에서 분리 측정했고, 평균 2,382.85ms / P50 2,303ms / <strong>P95 2,698.16ms</strong>라는 수치를 얻었습니다. 일반 API는 평균 약 320ms로 정상이었기 때문에 병목은 <strong>모델 추론 단계 단일 지점</strong>이라고 특정할 수 있었습니다. 이 결과를 근거로 AI 경로와 일반 경로를 물리적으로 분리하고, 일반 API에는 <strong>AsyncStorage Cache-First</strong>를 도입해 Home 첫 표시 평균 0.29ms를 달성했습니다. 운영 중에는 <code>docker logs</code> → <code>docker ps -a</code> → <code>journalctl -k</code> → <code>dmesg</code> 순서로 OOM 가능성까지 좁혀 추론 컨테이너를 <code>profile</code> 분리하고 <code>mem_limit</code>를 명시했습니다. 동시 부하 20명 기준 <strong>TPS 66.41</strong>을 유지했습니다. GPU 추론 환경에서도 같은 사고 방식 — 어느 워커, 어느 커널, 어느 메모리 전송 단계에서 시간이 새는지를 수치로 분리해 좁히는 일 — 이 그대로 작동한다고 봅니다.
+        </p>
+      </div>
+
+      <!-- 섹션 4: SysY/MIPS -->
+      <div class="cl-section">
+        <div class="cl-kicker" contenteditable>핵심 역량 02 · SysY 컴파일러 · MIPS OS — 표면 증상이 아닌 근본 구조까지</div>
+        <div class="cl-title" contenteditable>"수정했더니 통과하던 케이스가 깨졌다" — 그때 비로소 진짜 원인을 만났습니다</div>
+        <p class="cl-body" contenteditable>
+          SysY 컴파일러에서 세미콜론 누락 케이스를 처리하기 위해 에러 함수를 추가했더니, 기존에 정상 통과하던 파싱이 깨지는 회귀가 발생했습니다. <strong>증상은 새 코드에서 났지만, 원인은 따로 있었습니다.</strong> <code>parseErrorI/J/K</code>가 단순 검사 함수가 아니라 내부적으로 <code>mCurToken</code>·<code>mCurpos</code>를 직접 변경하는 함수였고, 호출 순서가 조금만 바뀌어도 다음 선언 첫 토큰이 통째로 스킵되는 구조였습니다. 즉시 중단·panic-mode·삽입 위치 변경 등 표면적 시도는 모두 실패했고, 결국 <strong>에러 함수를 "토큰 소비형 / look-ahead형 / 심볼 등록형" 3종으로 분리</strong>하고 새 복구 로직은 현재 위치 저장 → look-ahead → 원위치 복귀 구조로 다시 짰습니다. MIPS OS Lab 4의 Pipe IPC에서도 같은 패턴이 있었습니다. <code>dup()</code>/<code>close()</code> 직후 일시적으로 <code>pageref(fd) &gt; pageref(pipe)</code>가 관측되는 레이스 컨디션을, <strong>락 추가 대신 unmap·map 순서를 바꿔 불변식이 깨지지 않게</strong> 재설계했습니다. <strong>"선점형 환경에서는 완성된 결과뿐 아니라 중간 상태도 안전해야 한다"</strong> — GPU 워크로드의 비결정적 타이밍과 메모리 일관성 문제에 그대로 통하는 사고입니다.
+        </p>
+      </div>
+
+      <!-- 섹션 5: 왜 LG U+ + 마지막 선언 -->
+      <div class="cl-section">
+        <div class="cl-kicker" contenteditable>왜 LG U+ GPU 기술 TF인가 · 일하는 방식과 마지막 선언</div>
+        <div class="cl-title" contenteditable>새 기술이 들어오는 자리에서, 시스템 레벨로 내려가 책임지겠습니다</div>
+        <p class="cl-body" contenteditable>
+          LG U+는 통신사 인프라 위에 자체 AI 추론 서비스를 올리는 단계에 들어와 있고, GPU 기술 TF는 그 추론 워크로드를 시스템 레벨에서 책임지는 자리라고 이해했습니다. 새 기술이 들어오는 자리에서는 <strong>증상에 대한 임시 수정이 가장 위험하고, 원인 레이어를 끝까지 좁히는 사람이 가장 필요</strong>합니다. 저는 그 일을 학부 내내 해 왔고, 인턴 기간에는 부족한 GPU·CUDA 학습을 빠르게 메우면서 추론 지연·메모리 점유·동시성 이슈를 측정하고 좁히는 작업에 기여하겠습니다. 9년의 베이징 생활과 TSC Level 6은, 중국 발 GPU·AI 인프라 문헌과 오픈소스 이슈를 1차 소스에서 직접 읽고 팀에 옮길 때 부수적인 강점이 될 것입니다. <strong>이 인턴십이 끝날 때 "GPU 추론 서빙의 한 단면은 이 친구에게 맡겨도 된다"는 평가를 받는 것이 목표입니다.</strong>
+        </p>
+      </div>
+
+    </section>
+  </section>
+
+  <!-- =================== PAGE 3 : 이력서 =================== -->
+  <section class="a4-page">
+    <header class="page-kicker">
+      <div class="name" contenteditable>조현준 · 이력서 (Résumé)</div>
+      <div class="note" contenteditable>북경항공항천대학교 소프트웨어학과 · 2026.07 졸업 예정 · kevinjo11@naver.com</div>
+    </header>
+
+    <!-- 학력 -->
+    <section class="section">
+      <h2 class="section-title">학력 (Education)</h2>
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title" contenteditable>北京航空航天大学(BUAA) 软件学院 · 소프트웨어공학 학사</div>
+          <div class="exp-period" contenteditable>2020.09 – 2026.07 (예정)</div>
+        </div>
+        <div class="exp-role" contenteditable>중국 교육부 평가 컴퓨터과학(CS) 전국 3위권 · 소프트웨어공학 학과평가 A+ (전국 1위) · 北京汇文中学 (2017–2020, 150년 전통 北京 동성구 명문 공립고교)</div>
+        <ul class="exp-list">
+          <li contenteditable>주요 이수 과목: <strong>운영체제 (MIPS Lab 0–6)</strong>, <strong>컴파일러 원리 (SysY 단독 구현)</strong>, 컴퓨터 구조, 자료구조·알고리즘, 데이터베이스, 컴퓨터 네트워크</li>
+          <li contenteditable>중국 체류 약 9년 (고교 2017~2020 + BUAA 2020~2026) — 한·중 기술 문서 동시 독해 및 협업 가능</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 핵심 역량 -->
+    <section class="section">
+      <h2 class="section-title">핵심 역량 (Summary)</h2>
+      <ul class="exp-list" style="padding-left: 18px;">
+        <li contenteditable><strong>성능 측정·프로파일링</strong> — AI 추론 지연 P50/P95 단위 실측, 병목 단계 분리 특정 (CareLink P95 2,698ms · ES p95 12배 개선)</li>
+        <li contenteditable><strong>시스템 프로그래밍</strong> — MIPS 마이크로커널 OS 단독 구현 (TLB Fast Refill 어셈블리, COW fork, Pipe IPC race fix), SysY 컴파일러 풀 파이프라인 (C++17)</li>
+        <li contenteditable><strong>AI 모델 배포·서빙</strong> — PyTorch 모델 FastAPI 래핑 → Docker Compose → AWS EC2 단독 운영, OOM 추적 및 컨테이너 자원 격리</li>
+        <li contenteditable><strong>언어</strong> — C, C++17, Python, Java 21, JavaScript/TypeScript · <strong>외국어</strong> — 한국어 원어민 / 중국어 TSC L6 / 영어 OPIc IH</li>
+      </ul>
+    </section>
+
+    <!-- 프로젝트 -->
+    <section class="section">
+      <h2 class="section-title">주요 프로젝트 (Projects)</h2>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title" contenteditable>CareLink — 노인 헬스케어 + ECG AI 진단 플랫폼 (졸업 논문 · 1인 단독)</div>
+          <div class="exp-period" contenteditable>2025.10 – 2026.03</div>
+        </div>
+        <div class="exp-role" contenteditable>Full-Stack · Spring Boot 3 (Java 21) + FastAPI (Python) + PostgreSQL + React Native + AWS EC2</div>
+        <ul class="exp-list">
+          <li contenteditable><strong>추론 지연 실측·분리 분석:</strong> AI 경로와 일반 API 경로를 동일 부하에서 분리 측정 → 평균 <strong>2,382ms / P95 2,698ms</strong>로 병목을 모델 추론 단계 단일 지점으로 특정</li>
+          <li contenteditable><strong>모델 사양:</strong> CNN-CBAM-GRU + 36차원 Amplitude Feature Injection, 0.65M 파라미터, PTB-XL 21,837 records (12-lead, 500Hz, 5 슈퍼클래스) → <strong>Macro AUC 92.52% / Macro F1 74.52%</strong></li>
+          <li contenteditable><strong>장애 추적 4단:</strong> <code>docker logs</code> → <code>docker ps -a</code> → <code>journalctl -k</code> → <code>dmesg</code> 순서로 OOM 가능성 좁힘 → AI 컨테이너 <code>profile</code> 분리 + <code>mem_limit</code> 명시 + Pull-only 배포 전환</li>
+          <li contenteditable><strong>오류 경계 재설계:</strong> FastAPI가 내부 오류를 HTTP 200 본문에 담아 반환 → 백엔드에서 <code>502/504</code>로 분리 매핑, 앱 레이어에서 유형별 복구 UI 분기</li>
+          <li contenteditable><strong>부하 성능:</strong> 20명 동시 접속 <strong>TPS 66.41</strong> 유지, Cache-First Home 첫 표시 평균 0.29ms</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title" contenteditable>SysY 언어 컴파일러 — Lexer / Parser / Symbol Table / P-Code VM (BUAA · 1인 단독)</div>
+          <div class="exp-period" contenteditable>2024.10 – 2025.01</div>
+        </div>
+        <div class="exp-role" contenteditable>Compiler Engineer · C++17 · CMake</div>
+        <ul class="exp-list">
+          <li contenteditable><strong>풀 파이프라인 단독 구현:</strong> Lexer (peek 기반 다중 문자 연산자) → 재귀 하향 Parser → 스코프 기반 Symbol Table → P-Code 생성기 + 스택 머신 VM</li>
+          <li contenteditable><strong>Fault-Tolerant 파서:</strong> 에러 함수를 <strong>토큰 소비형 / look-ahead형 / 심볼 등록형 3종으로 분리</strong> → 회귀 없이 a~m <strong>13개 오류 범주</strong> 모두 처리</li>
+          <li contenteditable><strong>핵심 인사이트:</strong> "상태를 바꾸는 함수와 읽기만 하는 함수를 구분해야 한다" — 표면 증상이 아닌 호출 순서·상태 변경이 진짜 원인</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title" contenteditable>BUAA MIPS 마이크로커널 OS — Lab 0–6 전 단계 완주 (BUAA · 1인 단독)</div>
+          <div class="exp-period" contenteditable>2024.03 – 2024.07</div>
+        </div>
+        <div class="exp-role" contenteditable>OS Kernel Developer · C · MIPS Assembly · GXemul Simulator</div>
+        <ul class="exp-list">
+          <li contenteditable><strong>저수준 직접 구현:</strong> 2단계 페이지 테이블, <strong>TLB Miss Fast Refill 핸들러를 어셈블리로 직접 작성</strong>, PCB 기반 라운드 로빈 스케줄러, Trapframe 컨텍스트 스위칭</li>
+          <li contenteditable><strong>Copy-on-Write fork:</strong> 페이지 공유 후 쓰기 예외 시 실제 복사 (Lazy Evaluation), 권한 비트 정의 일원화로 회귀 방지</li>
+          <li contenteditable><strong>Pipe IPC race fix:</strong> 락 추가가 아니라 <strong>unmap·map 순서 재배치로 <code>pageref(fd) ≤ pageref(pipe)</code> 불변식 보장</strong> — 선점형 환경의 중간 상태 안전성 확보</li>
+          <li contenteditable><strong>마이크로커널 FS:</strong> 사용자 공간 FS 서버 + IPC 통신, 블록 캐시·디렉토리 탐색·시스템콜 연동</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-title" contenteditable>학술 성과 공유 플랫폼 — 다중 인프라 통합 백엔드 (BUAA SSAD · 한·중 팀, 백엔드 전담)</div>
+          <div class="exp-period" contenteditable>2025.03 – 2025.08</div>
+        </div>
+        <div class="exp-role" contenteditable>Backend Lead · Spring Boot 3 + Java 21 · PostgreSQL · Elasticsearch · Redis · MinIO · Vector Service</div>
+        <ul class="exp-list">
+          <li contenteditable><strong>ES p95 12배 개선:</strong> <code>_explain</code>·<code>profile</code>로 매핑 분석 → <code>text</code> 오매핑 발견 → 새 인덱스 + <code>_reindex</code> + <strong>index alias 무중단 교체</strong> (2,442ms → 약 200ms)</li>
+          <li contenteditable><strong>응답 규약 강제:</strong> <code>ResponseBodyAdvice</code>로 전 응답을 <code>code/message/data</code> 구조로 자동 래핑 → 프론트 파싱 오류 0</li>
+          <li contenteditable><strong>기술 스택 갈등 데이터 중재:</strong> Vue.js vs React, 화웨이 vs AWS 갈등을 4축(성능·비용·접근성·숙련도) 비교 보고서로 정리 → Vue 3 + 화웨이 클라우드 채택, 기한 내 완성</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 어학·자격 -->
+    <section class="section">
+      <h2 class="section-title">어학 · 자격 · 기타</h2>
+      <ul class="exp-list" style="padding-left: 18px;">
+        <li contenteditable><strong>중국어 TSC Level 6</strong> (2025.10.25 · ID 100318) — 원어민 수준 비즈니스 커뮤니케이션</li>
+        <li contenteditable><strong>영어 OPIc IH (Intermediate High)</strong> (2025.12.22 · ID 2C5955731527) — 기술 문서 독해·작성</li>
+        <li contenteditable><strong>병역</strong> — 2023년 만기 전역 (병장)</li>
+        <li contenteditable><strong>알고리즘 학습</strong> — SWEA / BOJ C++ 풀이 지속 (AI 직무 코딩테스트 대비)</li>
+        <li contenteditable><strong>취미</strong> — 실내 클라이밍 (2023 전역 후 입문, 주 1회 이상) · 포트폴리오 <code>zoons-portfolio.vercel.app</code></li>
+      </ul>
+    </section>
+
+  </section>
+
+</main>
+
+<script>
+let editMode = true;
+document.body.classList.add("edit-mode");
+
+function toggleEdit() {
+  editMode = !editMode;
+  const btn = document.getElementById("editBtn");
+  const hint = document.querySelector("#toolbar .hint");
+
+  if (editMode) {
+    document.body.classList.add("edit-mode");
+    btn.textContent = "편집 ON";
+    btn.classList.add("active");
+    hint.textContent = "편집 모드 ON · 텍스트 클릭하여 수정 · A4 출력 레이아웃 유지";
+    document.querySelectorAll('[contenteditable="false"]').forEach(el => el.setAttribute("contenteditable", "true"));
+  } else {
+    document.body.classList.remove("edit-mode");
+    btn.textContent = "편집 OFF";
+    btn.classList.remove("active");
+    hint.textContent = "편집 모드 OFF · 제출 전 미리보기 상태";
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => el.setAttribute("contenteditable", "false"));
+  }
+}
+
+document.addEventListener("paste", function(e) {
+  if (document.body.classList.contains("edit-mode") && e.target.closest("[contenteditable]")) {
+    e.preventDefault();
+    const text = (e.originalEvent || e).clipboardData.getData("text/plain");
+    document.execCommand("insertText", false, text);
+  }
+});
+
+const singleLineSelectors = [
+  ".eyebrow", ".resume-title", ".role",
+  ".contact-cell .cv", ".section-title",
+  ".stack-title", ".metric-value", ".metric-label",
+  ".info-key", ".cl-kicker", ".cl-title",
+  ".exp-title", ".exp-period", ".exp-role",
+  ".summary-label", ".page-kicker .name", ".page-kicker .note"
+].join(", ");
+
+document.querySelectorAll(singleLineSelectors).forEach(el => {
+  el.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      el.blur();
+    }
+  });
+});
+</script>
+</body>
+</html>
