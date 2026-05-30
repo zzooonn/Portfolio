@@ -1367,13 +1367,13 @@
             <button class="project-toggle" type="button" aria-expanded="true" aria-controls="project-01-body">
               <span class="project-index mono">01</span>
               <div class="project-head">
-                <h3 data-i18n="proj1.title">BUAA OS — MIPS 마이크로커널 운영체제</h3>
+                <h3 data-i18n="proj1.title">BUAA OS — MIPS 기반 교육용 운영체제(MOS)</h3>
                 <div class="project-meta mono">
                   <span>2024.03 – 2024.07 · BUAA OS Course</span>
                   <span data-i18n="proj1.role">OS Kernel Developer (1인 개발)</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary" data-i18n="proj1.summary">GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현</span>
+                  <span class="tagline-summary" data-i18n="proj1.summary">GXemul/MIPS R3000에서 커널 부팅, 메모리·프로세스 관리, syscall/IPC, COW fork, 사용자 공간 FS 서버와 shell까지 구현</span>
                   <span class="tagline-result" data-i18n="proj1.result">✓ Lab 0–6 전 단계 완주</span>
                 </div>
               </div>
@@ -1381,56 +1381,59 @@
             </button>
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
-                <p class="body-text" data-i18n-html="p1_intro">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
+                <p class="body-text" data-i18n-html="p1_intro">BUAA-OS-2019 Lab0~Lab6 커리큘럼을 따라 MIPS R3000을 에뮬레이션하는 GXemul 위에서 작은 교육용 OS(MOS)를 단계적으로 구현했습니다. 커널은 <strong>물리 페이지 관리, 2단계 페이지 테이블, 소프트웨어 TLB refill, Env 기반 프로세스 관리, 예외·인터럽트 처리, 시스템 콜과 IPC</strong>를 담당하고, 파일 시스템은 커널 내부가 아니라 <strong>사용자 공간의 fs_serv 프로세스</strong>로 분리했습니다. 마지막 단계에서는 spawn, shell, redirection, pipeline, 공유 페이지 기반 pipe까지 연결해 실제로 사용할 수 있는 OS 인터페이스를 완성했습니다.</p>
                 <div>
                   <h4 class="minor-title mono" data-i18n="proj.minor.labrange">주요 개발 내용 (Lab0 – Lab6)</h4>
                   <ul class="arrow-list">
-                    <li data-i18n-html="p1_dev_li1"><strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.</li>
-                    <li data-i18n-html="p1_dev_li2"><strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.</li>
-                    <li data-i18n-html="p1_dev_li3"><strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
-                    <li data-i18n-html="p1_dev_li4"><strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.</li>
-                    <li data-i18n-html="p1_dev_li5"><strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.</li>
-                    <li data-i18n-html="p1_dev_li6"><strong>Pipe IPC 메커니즘 (Lab4):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.</li>
-                    <li data-i18n-html="p1_dev_li7"><strong>사용자 공간 파일시스템 (Lab5):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.</li>
+                    <li data-i18n-html="p1_dev_li1"><strong>개발 환경과 커널 부트스트랩 (Lab0–1):</strong> Linux/Makefile/GXemul 환경을 구성하고, <code>start.S</code>에서 커널 스택을 설정한 뒤 <code>mips_init()</code>으로 진입하는 흐름, 링커 스크립트 기반 커널 배치, ELF 로딩, <code>printk</code> 출력 경로를 구현.</li>
+                    <li data-i18n-html="p1_dev_li2"><strong>물리·가상 메모리 관리 (Lab2):</strong> GXemul 장치 레지스터에서 물리 메모리 크기를 탐지하고, <code>struct Page</code> 배열과 free list로 페이지를 관리. 2단계 페이지 테이블, <code>pgdir_walk</code>, <code>page_insert/remove</code>, <strong>MIPS 소프트웨어 TLB refill 핸들러</strong>를 구현.</li>
+                    <li data-i18n-html="p1_dev_li3"><strong>프로세스·예외·스케줄링 (Lab3):</strong> PCB 역할의 <code>struct Env</code>, 주소 공간 생성, ELF 유저 프로그램 적재, Trapframe 기반 레지스터 보존, 타이머 인터럽트와 라운드 로빈 스케줄러를 구현해 유저 모드 실행을 연결.</li>
+                    <li data-i18n-html="p1_dev_li4"><strong>시스템 콜과 IPC (Lab4):</strong> MIPS <code>syscall</code> 명령으로 커널에 진입하고 <code>syscall_table</code>로 분배하는 경로를 구현. <code>EPC += 4</code> 복귀 처리, 메모리 관련 syscall, 수신자 대기 기반 IPC 송수신을 구성.</li>
+                    <li data-i18n-html="p1_dev_li5"><strong>Copy-on-Write fork()와 유저 page fault 처리 (Lab4):</strong> <code>sys_exofork</code>로 자식 Env를 만들고 쓰기 가능 페이지를 부모·자식 모두 <code>PTE_COW</code>로 공유. 쓰기 시 <strong>TLB Mod 예외</strong>가 발생하면 유저 pgfault handler가 새 페이지를 할당·복사·재매핑하도록 구현.</li>
+                    <li data-i18n-html="p1_dev_li6"><strong>사용자 공간 파일 시스템 서버 (Lab5):</strong> 파일 시스템을 커널 내부가 아닌 <code>fs_serv</code> 사용자 프로세스로 분리. IPC 기반 <code>open/read/write/close</code> 요청 처리, block cache, bitmap, direct/indirect block, 파일 디스크립터와 장치 추상화를 구현.</li>
+                    <li data-i18n-html="p1_dev_li7"><strong>Shell, spawn, pipe, redirection (Lab6):</strong> <code>user_icode</code>와 <code>init.b</code>에서 shell을 시작하고, <code>spawn()</code>으로 ELF 프로그램을 새 Env에 적재. 공유 페이지 기반 pipe, <code>dup</code>, 표준 입출력 리다이렉션, pipeline 실행 흐름을 구현.</li>
                   </ul>
                 </div>
                 <div>
                   <h4 class="minor-title mono" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
-                      <div class="troubleshoot-title" data-i18n-html="p1_tr_head">Pipe IPC 구현 중 매핑 순서에 따른 참조 수(pageref) 판정 오류 해결</div>
+                      <div class="troubleshoot-title" data-i18n-html="p1_tr_head">Pipe EOF 감지 중 pageref 경쟁 조건 해결</div>
                       <span class="badge-primary mono">Kernel / IPC</span>
                     </div>
                     <div class="troubleshoot-grid">
                       <div>
                         <div class="trouble-block">
                           <div class="trouble-label problem mono" data-i18n="trouble.situation">상황</div>
-                          <p class="body-text" data-i18n-html="p1_tr_problem"><code>dup()</code> 및 <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션이 발생했습니다.</p>
+                          <p class="body-text" data-i18n-html="p1_tr_problem">Pipe의 읽는 쪽은 쓰는 쪽이 모두 닫혔는지, 쓰는 쪽은 읽는 쪽이 모두 닫혔는지를 <code>pageref(fd)</code>와 <code>pageref(pipe)</code> 관계로 판단했습니다. 하지만 닫힘 여부를 검사하는 도중 스케줄링이 발생하면 참조 수가 일시적으로 바뀌어 EOF를 잘못 판단할 수 있었습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label alt mono" data-i18n="trouble.alternatives">대안 탐색</div>
-                          <p class="body-text" data-i18n-html="p1_tr_alt">인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 방안을 선택했습니다.</p>
+                          <p class="body-text" data-i18n-html="p1_tr_alt">커널에 pipe 상태를 직접 보관하거나 인터럽트를 막아 검사 구간을 보호하는 방식을 검토했지만, MOS의 pipe는 사용자 공간 공유 페이지 위에서 동작해야 했습니다. 그래서 커널 구조를 키우기보다 <strong><code>env_runs</code>로 검사 중 스케줄러 전환 여부를 감지</strong>하는 접근을 선택했습니다.</p>
                         </div>
                         <div class="trouble-block">
                           <div class="trouble-label sol mono" data-i18n="trouble.solution">해결</div>
-                          <p class="body-text" data-i18n-html="p1_tr_sol"><code>pageref(fd) &le; pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. IPC의 안정성을 확보했습니다.</p>
+                          <p class="body-text" data-i18n-html="p1_tr_sol">닫힘 판단 전후의 <code>env_runs</code> 값을 비교해 중간에 다시 스케줄된 흔적이 있으면 <code>pageref</code> 검사를 반복했습니다. 이 방식으로 pipe read/write가 EOF를 잘못 판단하는 경쟁 조건을 줄였습니다.</p>
                         </div>
                       </div>
                       <div>
                         <div class="code-box">
-                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">pipe.c — Atomic-like Mapping Sequence</span></div>
-                          <pre><code><span style="color:#5c6370;">// 해제 순서 조정으로 불변식 유지</span>
-<span style="color:#c678dd;">void</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">int</span> fdnum) {
-  <span style="color:#5c6370;">// [Fix] FD를 먼저 해제하여
-  // pageref(fd) &gt; pageref(pipe)
-  //   찰나의 순간을 방지</span>
-  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd_to_va(fdnum));
-  <span style="color:#61afef;">syscall_mem_unmap</span>(0, pipe_to_va(fdnum));
+                          <div class="code-top mono"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="filename">pipe.c — env_runs-based pageref recheck</span></div>
+                          <pre><code><span style="color:#5c6370;">// Recheck if scheduling changed pageref while testing EOF.</span>
+<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">_pipeisclosed</span>(<span style="color:#c678dd;">struct</span> Fd *fd, <span style="color:#c678dd;">struct</span> Pipe *p) {
+  <span style="color:#c678dd;">int</span> runs, closed;
+
+  <span style="color:#c678dd;">do</span> {
+    runs = env-&gt;env_runs;
+    closed = (<span style="color:#61afef;">pageref</span>(fd) == <span style="color:#61afef;">pageref</span>(p));
+  } <span style="color:#c678dd;">while</span> (runs != env-&gt;env_runs);
+
+  <span style="color:#c678dd;">return</span> closed;
 }</code></pre>
                         </div>
                         <div class="takeaway">
                           <div class="takeaway-title mono" data-i18n="trouble.takeaway">알게된 점</div>
-                          <p class="body-text" data-i18n-html="p1_takeaway">선점형 스케줄링 환경에서는 '완성된 결과'뿐만 아니라 <strong>'과정 중의 중간 상태'도 안전해야 함</strong>을 깨달았습니다.</p>
+                          <p class="body-text" data-i18n-html="p1_takeaway">선점형 스케줄링 환경에서는 같은 코드 줄의 검사도 중간에 끊길 수 있으므로, <strong>관측한 상태가 같은 실행 구간에서 얻어진 값인지 검증해야 한다는 점</strong>을 배웠습니다.</p>
                         </div>
                       </div>
                     </div>
@@ -1438,7 +1441,7 @@
                 </div>
                 <div>
                   <h4 class="minor-title mono" data-i18n="proj.minor.tech">사용 기술</h4>
-                  <div class="tag-list mono"><span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
+                  <div class="tag-list mono"><span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">User-space FS Server</span><span class="tag accent">IPC / Pipe</span><span class="tag accent">Virtual Memory</span><span class="tag accent">Shell / Spawn</span></div>
                 </div>
               </div>
             </div>
@@ -1985,9 +1988,9 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'skill.sum.infra': '인프라 도구',
         'skill.sum.ai': 'AI 모델 구현',
         'section.projects': '프로젝트',
-        'proj1.title': 'BUAA OS — MIPS 마이크로커널 운영체제',
+        'proj1.title': 'BUAA OS — MIPS 기반 교육용 운영체제(MOS)',
         'proj1.role': 'OS Kernel Developer (1인 개발)',
-        'proj1.summary': 'GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현',
+        'proj1.summary': 'GXemul/MIPS R3000에서 커널 부팅, 메모리·프로세스 관리, syscall/IPC, COW fork, 사용자 공간 FS 서버와 shell까지 구현',
         'proj1.result': '✓ Lab 0–6 전 단계 완주',
         'proj2.title': 'SysY 컴파일러 단계별 구현과 CMake 모듈화',
         'proj2.role': 'Compiler Engineer (1인 개발)',
@@ -2002,19 +2005,19 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj4.role': '3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)',
         'proj4.summary': '모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱',
         'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS 배포',
-        'p1_intro': 'GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 사용자 공간 FS 서버와 IPC를 통한 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.',
-        'p1_dev_li1': '<strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 시뮬레이터 환경에서 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.',
-        'p1_dev_li2': '<strong>가상 메모리 체계 구축 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss 시 Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.',
-        'p1_dev_li3': '<strong>프로세스 스케줄링 (Lab3):</strong> PCB(Process Control Block) 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.',
-        'p1_dev_li4': '<strong>시스템콜 및 예외 처리 (Lab3–4):</strong> 시스템콜 인터페이스 설계, 사용자 모드·커널 모드 전환 시 Trapframe을 통한 레지스터 일괄 저장 및 복원 구현.',
-        'p1_dev_li5': '<strong>Copy-on-Write fork() 구현 (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘을 적용, 메모리 복사 비용을 지연 평가(Lazy Evaluation) 방식으로 최적화.',
-        'p1_dev_li6': '<strong>Pipe IPC 메커니즘 (Lab4):</strong> 공유 페이지 기반 파이프 구현, 파일 디스크립터 복제(<code>dup</code>) 및 참조 카운트(<code>pageref</code>) 관리 로직 설계.',
-        'p1_dev_li7': '<strong>사용자 공간 파일시스템 (Lab5):</strong> 커널 내부가 아닌 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조로 파일시스템 구현. 블록 캐시, 디렉토리 탐색, 파일 읽기·쓰기 시스템콜 연동까지 구성.',
-        'p1_tr_head': 'Pipe IPC 구현 중 매핑 순서에 따른 참조 수(pageref) 판정 오류 해결',
-        'p1_tr_problem': '<code>dup()</code> 및 <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션이 발생했습니다.',
-        'p1_tr_alt': '인터럽트 비활성화를 통한 임계 구간 보호를 검토했으나, 시스템 성능 저하와 교육용 OS의 설계 원칙을 고려해 제외했습니다. 대신 <strong>매핑 순서 재배치(Reordering)를 통해 항상 안전한 상태 불변식을 유지</strong>하는 방안을 선택했습니다.',
-        'p1_tr_sol': '<code>pageref(fd) &le; pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap·map 순서를 조정</strong>했습니다. IPC의 안정성을 확보했습니다.',
-        'p1_takeaway': '선점형 스케줄링 환경에서는 \'완성된 결과\'뿐만 아니라 <strong>\'과정 중의 중간 상태\'도 안전해야 함</strong>을 깨달았습니다.',
+        'p1_intro': 'BUAA-OS-2019 Lab0~Lab6 커리큘럼을 따라 MIPS R3000을 에뮬레이션하는 GXemul 위에서 작은 교육용 OS(MOS)를 단계적으로 구현했습니다. 커널은 <strong>물리 페이지 관리, 2단계 페이지 테이블, 소프트웨어 TLB refill, Env 기반 프로세스 관리, 예외·인터럽트 처리, 시스템 콜과 IPC</strong>를 담당하고, 파일 시스템은 커널 내부가 아니라 <strong>사용자 공간의 fs_serv 프로세스</strong>로 분리했습니다. 마지막 단계에서는 spawn, shell, redirection, pipeline, 공유 페이지 기반 pipe까지 연결해 실제로 사용할 수 있는 OS 인터페이스를 완성했습니다.',
+        'p1_dev_li1': '<strong>개발 환경과 커널 부트스트랩 (Lab0–1):</strong> Linux/Makefile/GXemul 환경을 구성하고, <code>start.S</code>에서 커널 스택을 설정한 뒤 <code>mips_init()</code>으로 진입하는 흐름, 링커 스크립트 기반 커널 배치, ELF 로딩, <code>printk</code> 출력 경로를 구현.',
+        'p1_dev_li2': '<strong>물리·가상 메모리 관리 (Lab2):</strong> GXemul 장치 레지스터에서 물리 메모리 크기를 탐지하고, <code>struct Page</code> 배열과 free list로 페이지를 관리. 2단계 페이지 테이블, <code>pgdir_walk</code>, <code>page_insert/remove</code>, <strong>MIPS 소프트웨어 TLB refill 핸들러</strong>를 구현.',
+        'p1_dev_li3': '<strong>프로세스·예외·스케줄링 (Lab3):</strong> PCB 역할의 <code>struct Env</code>, 주소 공간 생성, ELF 유저 프로그램 적재, Trapframe 기반 레지스터 보존, 타이머 인터럽트와 라운드 로빈 스케줄러를 구현해 유저 모드 실행을 연결.',
+        'p1_dev_li4': '<strong>시스템 콜과 IPC (Lab4):</strong> MIPS <code>syscall</code> 명령으로 커널에 진입하고 <code>syscall_table</code>로 분배하는 경로를 구현. <code>EPC += 4</code> 복귀 처리, 메모리 관련 syscall, 수신자 대기 기반 IPC 송수신을 구성.',
+        'p1_dev_li5': '<strong>Copy-on-Write fork()와 유저 page fault 처리 (Lab4):</strong> <code>sys_exofork</code>로 자식 Env를 만들고 쓰기 가능 페이지를 부모·자식 모두 <code>PTE_COW</code>로 공유. 쓰기 시 <strong>TLB Mod 예외</strong>가 발생하면 유저 pgfault handler가 새 페이지를 할당·복사·재매핑하도록 구현.',
+        'p1_dev_li6': '<strong>사용자 공간 파일 시스템 서버 (Lab5):</strong> 파일 시스템을 커널 내부가 아닌 <code>fs_serv</code> 사용자 프로세스로 분리. IPC 기반 <code>open/read/write/close</code> 요청 처리, block cache, bitmap, direct/indirect block, 파일 디스크립터와 장치 추상화를 구현.',
+        'p1_dev_li7': '<strong>Shell, spawn, pipe, redirection (Lab6):</strong> <code>user_icode</code>와 <code>init.b</code>에서 shell을 시작하고, <code>spawn()</code>으로 ELF 프로그램을 새 Env에 적재. 공유 페이지 기반 pipe, <code>dup</code>, 표준 입출력 리다이렉션, pipeline 실행 흐름을 구현.',
+        'p1_tr_head': 'Pipe EOF 감지 중 pageref 경쟁 조건 해결',
+        'p1_tr_problem': 'Pipe의 읽는 쪽은 쓰는 쪽이 모두 닫혔는지, 쓰는 쪽은 읽는 쪽이 모두 닫혔는지를 <code>pageref(fd)</code>와 <code>pageref(pipe)</code> 관계로 판단했습니다. 하지만 닫힘 여부를 검사하는 도중 스케줄링이 발생하면 참조 수가 일시적으로 바뀌어 EOF를 잘못 판단할 수 있었습니다.',
+        'p1_tr_alt': '커널에 pipe 상태를 직접 보관하거나 인터럽트를 막아 검사 구간을 보호하는 방식을 검토했지만, MOS의 pipe는 사용자 공간 공유 페이지 위에서 동작해야 했습니다. 그래서 커널 구조를 키우기보다 <strong><code>env_runs</code>로 검사 중 스케줄러 전환 여부를 감지</strong>하는 접근을 선택했습니다.',
+        'p1_tr_sol': '닫힘 판단 전후의 <code>env_runs</code> 값을 비교해 중간에 다시 스케줄된 흔적이 있으면 <code>pageref</code> 검사를 반복했습니다. 이 방식으로 pipe read/write가 EOF를 잘못 판단하는 경쟁 조건을 줄였습니다.',
+        'p1_takeaway': '선점형 스케줄링 환경에서는 같은 코드 줄의 검사도 중간에 끊길 수 있으므로, <strong>관측한 상태가 같은 실행 구간에서 얻어진 값인지 검증해야 한다는 점</strong>을 배웠습니다.',
         'p2_intro': 'SysY 컴파일러 과제를 <strong>테스트 세트 분석 → 어휘 분석 → 재귀 하향 구문 분석 → 의미 분석 → P-Code 생성 및 인터프리터 실행</strong> 순서로 확장했습니다.<br>최종 제출에서는 단일 파일에 섞여 있던 <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, <code>DataDef</code>를 CMake 기반 모듈 구조로 분리해 <strong>오류 복구, 심볼 관리, 코드 실행의 책임 경계</strong>를 명확히 했습니다.',
         'p2_dev_li1': '<strong>단계별 컴파일러 확장:</strong> 1단계 테스트 세트에서 시작해 2단계 Lexer, 3단계 Parser, 4단계 의미 분석, 5단계 P-Code 생성과 Interpreter 실행까지 기능을 누적 구현.',
         'p2_dev_li2': '<strong>어휘 분석기(Lexer) 구현:</strong> 토큰 enum과 <code>unordered_map</code> 기반 키워드/연산자 매핑을 구성하고, <code>peek()</code>로 <code>//</code>, <code>/* */</code> 주석과 <code>&amp;&amp;</code>, <code>||</code> 같은 다중 문자 연산자를 처리하며 단일 <code>&amp;</code>/<code>|</code>는 <code>a</code> 오류로 기록.',
@@ -2133,9 +2136,9 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'skill.sum.infra': 'Infra tools',
         'skill.sum.ai': 'AI models built',
         'section.projects': 'Projects',
-        'proj1.title': 'BUAA OS — MIPS Microkernel OS',
+        'proj1.title': 'BUAA OS — MIPS Educational OS (MOS)',
         'proj1.role': 'OS Kernel Developer (Solo)',
-        'proj1.summary': 'Step-by-step implementation of boot, virtual memory, CoW fork, and microkernel FS on GXemul MIPS simulator',
+        'proj1.summary': 'Implemented kernel boot, memory and process management, syscall/IPC, COW fork, user-space FS server, and shell on GXemul/MIPS R3000',
         'proj1.result': '✓ Completed all Lab 0–6 stages',
         'proj2.title': 'SysY Compiler Evolution and CMake Modularization',
         'proj2.role': 'Compiler Engineer (Solo)',
@@ -2150,19 +2153,19 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj4.role': '3-Tier System Architect & AI Model Dev (Solo)',
         'proj4.summary': 'Solo-designed 3-layer system (mobile·backend·AI) — patient-guardian connection + ECG auto-diagnosis',
         'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS deployed',
-        'p1_intro': 'Following a 7-stage Lab0–Lab6 curriculum in GXemul, I implemented core OS components step by step: kernel boot, memory management, processes, system calls, IPC, and file system. In particular, I deeply practiced OS internals by implementing <strong>TLB Fast Refill, Copy-on-Write based fork(), and a microkernel file system architecture using a user-space FS server over IPC</strong>.',
-        'p1_dev_li1': '<strong>Kernel Boot and Memory Initialization (Lab0–1):</strong> Wrote bootstrap code in the GXemul simulator, configured the physical memory layout, and initialized the kernel entry point.',
-        'p1_dev_li2': '<strong>Virtual Memory System Construction (Lab2):</strong> Designed a two-level page-table virtual address space and directly implemented a <strong>Fast Refill handler for TLB misses</strong> in assembly to minimize TLB management overhead.',
-        'p1_dev_li3': '<strong>Process Scheduling (Lab3):</strong> Designed PCB (Process Control Block), implemented a round-robin scheduler, and wrote register save/restore logic for context switching.',
-        'p1_dev_li4': '<strong>System Calls and Exception Handling (Lab3–4):</strong> Designed a syscall interface and implemented batch register save/restore through Trapframe during user/kernel mode transitions.',
-        'p1_dev_li5': '<strong>Copy-on-Write fork() (Lab4):</strong> Applied a COW mechanism where actual copies occur on write-time exceptions after shared pages, optimizing copy cost with lazy evaluation.',
-        'p1_dev_li6': '<strong>Pipe IPC Mechanism (Lab4):</strong> Implemented pipe IPC with shared pages and designed file descriptor duplication (<code>dup</code>) and reference count (<code>pageref</code>) management logic.',
-        'p1_dev_li7': '<strong>User-space File System (Lab5):</strong> Implemented a microkernel-style file system where the kernel communicates with an <strong>independent FS server process via IPC</strong>. Built block cache, directory traversal, and read/write syscall integration.',
-        'p1_tr_head': 'Fixing pageref decision errors caused by mapping order while implementing Pipe IPC',
-        'p1_tr_problem': 'During <code>dup()</code> and <code>close()</code>, a race condition occurred where <code>pageref</code> was observed inconsistently due to the <strong>mapping/unmapping order</strong> between FD and Pipe pages.',
-        'p1_tr_alt': 'I considered protecting the critical section by disabling interrupts, but excluded it due to performance impact and educational OS design principles. Instead, I chose to <strong>preserve a safe invariant at all times by reordering mapping operations</strong>.',
-        'p1_tr_sol': 'I adjusted the <strong>unmap/map order</strong> so that <code>pageref(fd) &le; pageref(pipe)</code> is never violated at any moment. This improved IPC stability.',
-        'p1_takeaway': 'In a preemptive scheduling environment, I learned that not only the final result but also <strong>intermediate states during execution must remain safe</strong>.',
+        'p1_intro': 'Following the BUAA-OS-2019 Lab0-Lab6 curriculum, I implemented a small educational OS (MOS) on GXemul, which emulates MIPS R3000. The kernel handles <strong>physical page management, two-level page tables, software TLB refill, Env-based process management, exception and interrupt handling, system calls, and IPC</strong>. The file system is not inside the kernel; it runs as the <strong>user-space fs_serv process</strong>. In the final stage, I connected spawn, shell, redirection, pipelines, and shared-page pipes into a usable OS interface.',
+        'p1_dev_li1': '<strong>Development Environment and Kernel Bootstrap (Lab0-1):</strong> Set up Linux, Makefile, and GXemul workflows. Implemented the path from <code>start.S</code> stack setup to <code>mips_init()</code>, linker-script based kernel layout, ELF loading, and the <code>printk</code> console output path.',
+        'p1_dev_li2': '<strong>Physical and Virtual Memory Management (Lab2):</strong> Detected physical memory size through GXemul device registers, managed pages with a <code>struct Page</code> array and free list, and implemented two-level page tables, <code>pgdir_walk</code>, <code>page_insert/remove</code>, and the <strong>MIPS software TLB refill handler</strong>.',
+        'p1_dev_li3': '<strong>Processes, Exceptions, and Scheduling (Lab3):</strong> Built <code>struct Env</code> as the PCB-like process abstraction, created address spaces, loaded ELF user programs, preserved registers with Trapframe, and connected timer interrupts to a round-robin scheduler for user-mode execution.',
+        'p1_dev_li4': '<strong>System Calls and IPC (Lab4):</strong> Implemented the path where the MIPS <code>syscall</code> instruction enters the kernel and dispatches through <code>syscall_table</code>. Added <code>EPC += 4</code> return handling, memory-related syscalls, and receiver-waits-first IPC send/receive.',
+        'p1_dev_li5': '<strong>Copy-on-Write fork() and User Page Fault Handling (Lab4):</strong> Created a child Env with <code>sys_exofork</code> and shared writable pages as <code>PTE_COW</code> in both parent and child. On write, a <strong>TLB Mod exception</strong> invokes the user pgfault handler to allocate, copy, and remap a writable page.',
+        'p1_dev_li6': '<strong>User-space File System Server (Lab5):</strong> Moved file-system logic out of the kernel into the <code>fs_serv</code> user process. Implemented IPC-based <code>open/read/write/close</code> requests, block cache, bitmap management, direct and indirect blocks, file descriptors, and device abstraction.',
+        'p1_dev_li7': '<strong>Shell, spawn, pipe, and redirection (Lab6):</strong> Bootstrapped the shell from <code>user_icode</code> and <code>init.b</code>, then used <code>spawn()</code> to load ELF programs into new Envs. Implemented shared-page pipes, <code>dup</code>, standard I/O redirection, and pipeline execution.',
+        'p1_tr_head': 'Fixing the pageref race condition in pipe EOF detection',
+        'p1_tr_problem': 'Pipe readers decide whether all writers are closed, and pipe writers decide whether all readers are closed, by comparing <code>pageref(fd)</code> and <code>pageref(pipe)</code>. If scheduling occurs while that check is running, the reference counts can change temporarily and EOF can be detected incorrectly.',
+        'p1_tr_alt': 'I considered storing pipe state in the kernel or disabling interrupts around the check, but MOS pipes are designed to run on user-space shared pages. I chose to keep the kernel small and <strong>use <code>env_runs</code> to detect whether scheduling occurred during the check</strong>.',
+        'p1_tr_sol': 'I compared <code>env_runs</code> before and after the closed-state check. If the process was scheduled again in between, the code repeated the <code>pageref</code> check. This reduced false EOF decisions in pipe read/write.',
+        'p1_takeaway': 'In a preemptive scheduler, even a small state check can be interrupted. I learned to verify that <strong>the observed values came from the same execution window</strong> before trusting them.',
         'p2_intro': 'Expanded the SysY compiler assignment step by step: <strong>test-set analysis → lexical analysis → recursive descent parsing → semantic analysis → P-Code generation and interpreter execution</strong>.<br>For the final submission, I split the single-file implementation into CMake-based modules: <code>Lexer</code>, <code>Parser</code>, <code>ErrorHandler</code>, <code>SymbolTableManager</code>, <code>Interpreter</code>, and <code>DataDef</code>, clarifying the boundaries between <strong>error recovery, symbol management, and code execution</strong>.',
         'p2_dev_li1': '<strong>Stepwise compiler expansion:</strong> Built from the stage-1 test set into stage-2 Lexer, stage-3 Parser, stage-4 semantic analysis, and stage-5 P-Code generation with Interpreter execution.',
         'p2_dev_li2': '<strong>Lexer implementation:</strong> Defined token enums and <code>unordered_map</code>-based keyword/operator mappings, used <code>peek()</code> to handle <code>//</code>, <code>/* */</code> comments and multi-character operators such as <code>&amp;&amp;</code> and <code>||</code>, and reported single <code>&amp;</code>/<code>|</code> as <code>a</code> errors.',
@@ -2281,9 +2284,9 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'skill.sum.infra': '基础设施工具',
         'skill.sum.ai': 'AI模型实现',
         'section.projects': '项目',
-        'proj1.title': 'BUAA OS — MIPS 微内核操作系统',
+        'proj1.title': 'BUAA OS — 基于 MIPS 的教学操作系统（MOS）',
         'proj1.role': 'OS内核开发者（个人项目）',
-        'proj1.summary': '在GXemul MIPS模拟器上逐步实现启动·虚拟内存·CoW fork·微内核文件系统',
+        'proj1.summary': '在 GXemul/MIPS R3000 上实现内核启动、内存与进程管理、syscall/IPC、COW fork、用户态 FS 服务器与 shell',
         'proj1.result': '✓ 完成全部 Lab 0–6 阶段',
         'proj2.title': 'SysY 编译器阶段实现与 CMake 模块化',
         'proj2.role': '编译器工程师（个人项目）',
@@ -2298,19 +2301,19 @@ sudo journalctl -k | grep -i "out of memory"</code></pre>
         'proj4.role': '三层架构系统集成与AI模型构建（个人项目）',
         'proj4.summary': '独立设计移动·后端·AI推理三层架构——患者-监护人连接+ECG自动诊断',
         'proj4.result': '✓ ECG AUC 92.52% · TPS 66 · AWS部署',
-        'p1_intro': '在 GXemul 环境中，我按 Lab0~Lab6 的 7 阶段课程逐步实现了 OS 核心组件：内核启动、内存管理、进程、系统调用、IPC 与文件系统。尤其通过实现 <strong>TLB Fast Refill、基于 Copy-on-Write 的 fork()、以及通过 IPC 与用户态 FS 服务器通信的微内核文件系统结构</strong>，深入实践了操作系统关键机制。',
-        'p1_dev_li1': '<strong>内核启动与内存初始化（Lab0–1）：</strong> 在 GXemul 模拟器中编写引导代码，设置物理内存布局，并初始化内核入口点。',
-        'p1_dev_li2': '<strong>虚拟内存体系构建（Lab2）：</strong> 设计两级页表虚拟地址空间，并用汇编手写 <strong>TLB Miss 的 Fast Refill 处理器</strong>，降低 TLB 管理开销。',
-        'p1_dev_li3': '<strong>进程调度（Lab3）：</strong> 设计 PCB（Process Control Block），实现轮转调度器，并手写上下文切换时寄存器保存/恢复逻辑。',
-        'p1_dev_li4': '<strong>系统调用与异常处理（Lab3–4）：</strong> 设计系统调用接口，并在用户态/内核态切换时通过 Trapframe 完成寄存器批量保存与恢复。',
-        'p1_dev_li5': '<strong>实现 Copy-on-Write fork()（Lab4）：</strong> 页面共享后在写时异常触发真实拷贝，采用惰性求值（Lazy Evaluation）优化内存复制成本。',
-        'p1_dev_li6': '<strong>Pipe IPC 机制（Lab4）：</strong> 实现基于共享页的管道，并设计文件描述符复制（<code>dup</code>）与引用计数（<code>pageref</code>）管理逻辑。',
-        'p1_dev_li7': '<strong>用户态文件系统（Lab5）：</strong> 采用微内核结构，由内核通过 IPC 与 <strong>独立 FS 服务器进程通信</strong>。实现块缓存、目录遍历，以及文件读写系统调用联动。',
-        'p1_tr_head': '解决 Pipe IPC 实现中因映射顺序导致的 pageref 判定错误',
-        'p1_tr_problem': '在执行 <code>dup()</code> 和 <code>close()</code> 时，FD 与 Pipe 页面的 <strong>映射/解除顺序</strong> 会导致 <code>pageref</code> 在瞬时阶段出现与预期不一致的观测，产生竞争条件。',
-        'p1_tr_alt': '我评估了通过关闭中断保护临界区，但考虑到性能下降和教学 OS 的设计原则将其排除。改为选择 <strong>通过重排映射顺序始终维持安全不变式</strong>。',
-        'p1_tr_sol': '通过调整 <strong>unmap/map 顺序</strong>，确保 <code>pageref(fd) &le; pageref(pipe)</code> 在任意时刻不被破坏，从而提升 IPC 稳定性。',
-        'p1_takeaway': '在抢占式调度环境中，我体会到不仅最终结果要正确，<strong>执行过程中的中间状态也必须安全</strong>。',
+        'p1_intro': '我按照 BUAA-OS-2019 Lab0-Lab6 课程，在模拟 MIPS R3000 的 GXemul 上逐步实现了一个小型教学操作系统（MOS）。内核负责 <strong>物理页管理、两级页表、软件 TLB refill、基于 Env 的进程管理、异常与中断处理、系统调用和 IPC</strong>；文件系统不放在内核中，而是拆成 <strong>用户态 fs_serv 进程</strong>。最后阶段继续接入 spawn、shell、重定向、管道线以及基于共享页的 pipe，形成可以实际交互的 OS 接口。',
+        'p1_dev_li1': '<strong>开发环境与内核引导（Lab0-1）：</strong> 搭建 Linux、Makefile、GXemul 开发流程；实现从 <code>start.S</code> 设置内核栈到进入 <code>mips_init()</code> 的路径，完成基于链接脚本的内核布局、ELF 加载和 <code>printk</code> 控制台输出。',
+        'p1_dev_li2': '<strong>物理与虚拟内存管理（Lab2）：</strong> 通过 GXemul 设备寄存器探测物理内存大小，用 <code>struct Page</code> 数组和 free list 管理物理页；实现两级页表、<code>pgdir_walk</code>、<code>page_insert/remove</code> 以及 <strong>MIPS 软件 TLB refill 处理器</strong>。',
+        'p1_dev_li3': '<strong>进程、异常与调度（Lab3）：</strong> 以 <code>struct Env</code> 作为类似 PCB 的进程抽象，创建地址空间、加载 ELF 用户程序、用 Trapframe 保存寄存器状态，并将定时器中断接入轮转调度器，实现用户态执行。',
+        'p1_dev_li4': '<strong>系统调用与 IPC（Lab4）：</strong> 实现 MIPS <code>syscall</code> 指令进入内核并通过 <code>syscall_table</code> 分发的路径；补齐 <code>EPC += 4</code> 返回处理、内存相关 syscall，以及接收方先等待的 IPC 收发机制。',
+        'p1_dev_li5': '<strong>Copy-on-Write fork() 与用户态 page fault 处理（Lab4）：</strong> 通过 <code>sys_exofork</code> 创建子 Env，将可写页面在父子进程中都标记为 <code>PTE_COW</code> 并共享；写入时触发 <strong>TLB Mod 异常</strong>，由用户态 pgfault handler 分配新页、复制内容并重新映射为可写页。',
+        'p1_dev_li6': '<strong>用户态文件系统服务器（Lab5）：</strong> 将文件系统逻辑从内核中分离到 <code>fs_serv</code> 用户进程；实现基于 IPC 的 <code>open/read/write/close</code> 请求处理、block cache、bitmap、direct/indirect block、文件描述符和设备抽象。',
+        'p1_dev_li7': '<strong>Shell、spawn、pipe 与重定向（Lab6）：</strong> 从 <code>user_icode</code> 和 <code>init.b</code> 启动 shell，并用 <code>spawn()</code> 将 ELF 程序加载到新的 Env；实现共享页 pipe、<code>dup</code>、标准输入输出重定向和 pipeline 执行流程。',
+        'p1_tr_head': '解决 pipe EOF 判断中的 pageref 竞争条件',
+        'p1_tr_problem': 'pipe 的读端需要判断所有写端是否关闭，写端也要判断所有读端是否关闭，判断依据是 <code>pageref(fd)</code> 与 <code>pageref(pipe)</code> 的关系。但如果检查过程中发生调度，引用计数可能短暂变化，导致 EOF 被误判。',
+        'p1_tr_alt': '我考虑过把 pipe 状态直接保存在内核中，或通过关闭中断保护检查区间；但 MOS 的 pipe 设计应运行在用户态共享页上。于是我选择保持内核较小，并 <strong>通过 <code>env_runs</code> 检测检查期间是否发生过调度</strong>。',
+        'p1_tr_sol': '在关闭状态判断前后比较 <code>env_runs</code>。如果中间发生了重新调度，就重复执行 <code>pageref</code> 检查，从而减少 pipe read/write 中错误 EOF 判断。',
+        'p1_takeaway': '在抢占式调度中，即使很小的状态检查也可能被打断。因此我学到：必须先确认 <strong>观测到的值来自同一个执行窗口</strong>，再相信这个判断。',
         'p2_intro': '我按阶段扩展了 SysY 编译器作业：<strong>测试集分析 → 词法分析 → 递归下降语法分析 → 语义分析 → P-Code 生成与解释执行</strong>。<br>最终提交时，将原本混在单文件中的 <code>Lexer</code>、<code>Parser</code>、<code>ErrorHandler</code>、<code>SymbolTableManager</code>、<code>Interpreter</code>、<code>DataDef</code> 拆分为基于 CMake 的模块结构，明确了 <strong>错误恢复、符号管理、代码执行</strong> 的责任边界。',
         'p2_dev_li1': '<strong>阶段式编译器扩展：</strong> 从第 1 阶段测试集出发，逐步实现第 2 阶段 Lexer、第 3 阶段 Parser、第 4 阶段语义分析，以及第 5 阶段 P-Code 生成和 Interpreter 执行。',
         'p2_dev_li2': '<strong>词法分析器（Lexer）实现：</strong> 定义 token enum 与基于 <code>unordered_map</code> 的关键字/运算符映射，用 <code>peek()</code> 处理 <code>//</code>、<code>/* */</code> 注释和 <code>&amp;&amp;</code>、<code>||</code> 等多字符运算符，并将单个 <code>&amp;</code>/<code>|</code> 记录为 <code>a</code> 错误。',
