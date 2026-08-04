@@ -1138,3 +1138,381 @@ ECG 추론 요청만 FastAPI AI 서버로 프록시해 CNN-CBAM-GRU 모델 결�
 ```
 
 이 구조는 일반 헬스케어 기능과 AI 추론 기능을 분리한다. 백엔드는 인증, 권한, 데이터 무결성, 알림, 보호자 관계를 담당하고, AI 서버는 ECG 신호 전처리와 모델 추론에 집중한다. 모바일 앱은 Cache-First 전략과 Expo Router 기반 화면 구조를 통해 빠른 체감 응답성과 명확한 기능 분리를 제공한다.
+
+---
+
+## 17. 실제 코드 대조 감사 및 누락 보강
+
+### 17.1 최종 판정
+
+2026-06-06 기준으로 실제 저장소를 프론트엔드, 백엔드, AI 서버 서브 에이전트와 함께 나누어 대조했다. 결론은 다음과 같다.
+
+| 항목 | 판정 |
+|---|---|
+| 전체 3계층 구조 | 일치한다. React Native/Expo 앱, Spring Boot 백엔드, PostgreSQL, FastAPI AI 서버 분리는 실제 코드와 맞다. |
+| 주요 버전 | 대부분 일치한다. Expo `54.0.33`, React Native `0.81.5`, React `19.1.0`, Spring Boot `3.5.7`, Java `21`, FastAPI `0.115.5`, PyTorch `2.5.1`이 실제 파일과 맞다. |
+| 프론트 라우팅 | 큰 화면 목록은 맞지만 루트 Welcome, 중첩 Stack layout, profile alias가 빠져 있었다. |
+| 백엔드 API 표 | 컨트롤러 엔드포인트 표는 대체로 일치한다. 다만 권한 조건, CORS 메서드, 프록시 실패 처리, 복약 입력 제약은 문서보다 실제 코드가 더 구체적이다. |
+| DB/마이그레이션 | Entity 기준 테이블 설명은 대체로 맞지만, 현재 Flyway만으로 빈 DB 초기 스키마를 만들 수 없다는 중요한 제약이 빠져 있었다. |
+| AI 서버/모델 | 운영 추론 모델 설명은 `server.py`와 대체로 일치한다. 다만 샘플 fallback, 모델 파일 부재, 연구용 동명 모델과의 차이가 빠져 있었다. |
+| 배포 구조 | GHCR 이미지 기반 EC2 Compose 배포는 맞다. 단 `docker compose up --build`가 현재 `image:` 기반 Compose에서 로컬 이미지를 새로 빌드하지 않는다는 차이를 적어야 한다. |
+
+따라서 이 문서는 **전체 아키텍처 설명으로는 거의 맞지만, 실제 파일 구조와 운영 로직까지 완벽히 동일한 1:1 문서라고 보기는 어렵다.** 아래 항목들이 실제 코드 기준 보강 사항이다.
+
+### 17.2 실제 루트 구조 보강
+
+기존 루트 구조 표에는 핵심 개발 디렉토리가 잘 정리되어 있지만, 실제 저장소에는 다음 항목도 존재한다.
+
+| 경로 | 실제 역할 |
+|---|---|
+| `.github/workflows/deploy.yml` | main push 시 backend/AI 이미지를 GHCR에 빌드하고 EC2에 배포한다. |
+| `.dvc/`, `.dvcignore` | 데이터/모델 산출물 추적을 위한 DVC 흔적이다. 현재 문서 본문에는 언급이 없다. |
+| `.expo/`, `frontend/.expo/` | Expo 실행 중 생성되는 로컬 상태 디렉토리다. 커밋 대상으로 보기 어렵다. |
+| `.gradle/` | Gradle 캐시/로컬 상태 디렉토리다. |
+| `.idea/`, `.vs/`, `.claude/` | IDE/도구 로컬 설정 디렉토리다. |
+| `thesis_charts/` | 논문용 차트 PNG 산출물이다. `fig1_model_comparison.png`, `fig5_api_latency.png` 등이 있다. |
+| `docs/superpowers/specs/` | ECG AI generative visualization 설계 문서가 있다. |
+| `DEPLOYMENT_DOCKER_K8S.md` | Docker/Kubernetes 배포 설명 문서다. |
+| `Docker+AWS.md` | AWS/EC2/Docker 운영 참고 문서다. |
+| `AGENTS.md`, `CLAUDE.md` | 에이전트/도구용 프로젝트 안내 문서다. |
+| `carelink-key.pem` | EC2 SSH 키 파일이다. 절대 커밋하면 안 된다. |
+| `ngrok.exe` | 로컬 터널링 실행 파일이다. |
+
+정확한 문서화를 위해 루트 구조는 “핵심 소스 구조”와 “로컬/운영 보조 파일”을 분리해 읽어야 한다.
+
+### 17.3 프론트엔드 실제 구조 보강
+
+#### 실제 라우팅
+
+```text
+frontend/carelink-app/app/
+├─ _layout.tsx                       # FontSizeProvider -> AuthProvider -> Stack -> Toast
+├─ index.tsx                         # 루트 WelcomeScreen
+└─ (tabs)/
+   ├─ _layout.tsx                    # Home/profile/setting 탭, index/auth 숨김
+   ├─ index.tsx                      # 탭 내부 WelcomeScreen
+   ├─ profile.tsx                    # auth/Profile.tsx re-export alias
+   ├─ Home/
+   │  ├─ _layout.tsx                 # Home 내부 Stack, initialRouteName=HomePage
+   │  ├─ HomePage.tsx
+   │  ├─ Vitals.tsx
+   │  ├─ Insights.tsx
+   │  ├─ ECGSimulatorScreen.tsx
+   │  ├─ Medication.tsx
+   │  ├─ Caregivers.tsx
+   │  ├─ Notification.tsx
+   │  ├─ News.tsx
+   │  └─ Emergency.tsx
+   ├─ auth/
+   │  ├─ _layout.tsx                 # 인증 화면 내부 Stack
+   │  ├─ login.tsx
+   │  ├─ signup.tsx
+   │  ├─ find-id.tsx
+   │  ├─ forgot-password.tsx
+   │  ├─ reset-password.tsx
+   │  ├─ data-agreement.tsx
+   │  └─ Profile.tsx
+   └─ setting/
+      ├─ _layout.tsx
+      ├─ SettingsScreen.tsx
+      └─ BrainTraining.tsx
+```
+
+`(tabs)/_layout.tsx`는 `AsyncStorage`의 `userId`, `token`을 확인한다. `auth`와 `index` 화면은 인증 검사를 건너뛰고, 나머지 탭/스택 화면에서 세션이 없으면 루트로 redirect한다.
+
+#### 프론트 API 호출 구분
+
+| 구분 | 실제 구현 |
+|---|---|
+| 보호 API | `utils/api.ts`의 `authFetch()`가 `EXPO_PUBLIC_API_BASE_URL + path`로 호출하고 `Authorization: Bearer <token>`을 붙인다. |
+| token refresh | 401이면 `/api/auth/refresh`를 호출해 새 token을 저장하고 원 요청을 한 번 재시도한다. |
+| refresh 실패 | `token`, `refreshToken`, `userId`만 삭제하고 루트로 이동한다. |
+| 명시적 로그아웃 | `AuthContext.signOut()`은 `userId`, `token`, `refreshToken`, `userName`, `profileImageId`, `caregivers:list`까지 삭제한다. |
+| 공개 인증 API | 로그인, 회원가입, 아이디 찾기, 비밀번호 확인/재설정은 각 화면에서 native `fetch()`를 직접 사용한다. |
+| AI API | 프론트는 AI 서버를 직접 호출하지 않는다. `ECGSimulatorScreen.tsx`의 `aiFetch()`도 `/api/ecg/...` 백엔드 프록시를 `authFetch()`로 호출한다. |
+| 미사용 환경 변수 | `EXPO_PUBLIC_AI_API_BASE_URL`은 문서에 있지만 현재 프론트 코드에서는 실질적으로 사용되지 않는다. |
+
+#### 앱 설정
+
+`app.json`의 실제 설정 중 문서에 추가로 남겨야 할 값은 다음과 같다.
+
+| 설정 | 값 |
+|---|---|
+| `scheme` | `carelinkapp` |
+| `web.output` | `static` |
+| `ios.infoPlist.NSAppTransportSecurity.NSAllowsArbitraryLoads` | `true` |
+| `android.edgeToEdgeEnabled` | `true` |
+| `android.predictiveBackGestureEnabled` | `false` |
+| `experiments.typedRoutes` | `true` |
+| `experiments.reactCompiler` | `true` |
+
+`tsconfig.json`은 `strict: true`, path alias `@/*`, `.expo/types/**/*.ts`, `expo-env.d.ts` include를 사용한다.
+
+#### 화면별 실제 로직
+
+| 화면 | 실제 로직 보강 |
+|---|---|
+| `HomePage.tsx` | `userName`, `profileImageId`, `caregivers:list`를 먼저 표시한다. 다만 `caregivers:list`는 홈에서 서버 동기화하지 않고 로컬 avatar 요약만 보여준다. 보호자 서버 동기화는 `Caregivers.tsx`가 담당한다. |
+| `Vitals.tsx` | 혈압/혈당을 클라이언트에서 1차 판정하고 `POST /api/vitals`로 저장한다. |
+| `Insights.tsx` | `range=7d`, `30d`, `365d` 선택에 따라 `/api/vitals/insights`를 조회한다. |
+| `ECGSimulatorScreen.tsx` | `SIM_CLEAN`, `SIM_NOISY`, `SERVER_SAMPLE`을 지원한다. 실행 중 2초마다 `/api/ecg/predict_window`를 호출하고, 서버 샘플 모드에서는 6초마다 새 샘플을 자동 로드한다. 서버 응답의 `probs`와 `thresholds`를 기준으로 클라이언트에서 active labels, risk, top1을 다시 계산해 화면에 표시한다. |
+| `Medication.tsx` | 서버 복약 CRUD와 `expo-notifications` 로컬 알림 예약/취소를 함께 수행한다. 알림은 매일 반복 트리거를 사용한다. |
+| `News.tsx` | `POST /api/news/refresh` 후 `GET /api/news?userId=...&limit=5`를 호출하고, 검색/새로고침/외부 링크 열기를 처리한다. |
+| `BrainTraining.tsx` | 카드 매칭 게임을 제공하고 점수는 `100 - moves`로 계산한다. `GET/POST /api/brain-training/{userId}`와 최근 점수 SVG trend chart가 있다. |
+| `Emergency.tsx` | `caregivers:list` 캐시와 `/api/users/{userId}`의 `bloodType`, `allergies`, `medicalConditions`를 결합하고 `tel:119` 및 보호자 전화 연결을 제공한다. |
+| 공통 UI | `WelcomeScreen`, `Toast`, `ScaledText`, `AppHeader`, `constants/design.ts`, `constants/theme.ts`가 실제 UI 일관성에 중요하다. |
+
+일부 TypeScript 파일의 한국어 주석은 현재 터미널/파일 인코딩 기준에서 깨져 보이는 부분이 있다. 로직 자체와 별개로 유지보수성을 위해 주석 정리가 필요하다.
+
+### 17.4 백엔드 실제 구조 보강
+
+#### 설정 및 루트 클래스
+
+| 항목 | 실제 상태 |
+|---|---|
+| Gradle 프로젝트명 | `settings.gradle` 기준 `demo` |
+| Spring application name | `application.properties` 기준 `demo` |
+| Java/Spring | Java toolchain `21`, Spring Boot `3.5.7` |
+| 주요 의존성 | Web, Security, Validation, Data JPA, Flyway, PostgreSQL, Actuator, jjwt `0.12.5`, Lombok |
+| 운영 JPA 설정 | `ddl-auto=none`, `open-in-view=false` |
+| Actuator | `/actuator/health`만 노출 |
+| 루트 보조 클래스 | `SecurityConfig.java`, `GlobalExceptionHandler.java`, `RequestLoggingFilter.java`, `DemoApplication.java` |
+| 스케줄링 | `DemoApplication`에 `@EnableScheduling` 적용 |
+
+문서에서 “CareLink 백엔드”로 설명하지만, 실제 Gradle/Spring 식별자는 아직 `demo`로 남아 있다.
+
+#### 보안/JWT 실제 흐름
+
+```text
+POST /api/auth/login
+  │
+  ├─ AuthController
+  │  ├─ LoginAttemptService.checkBlocked("login:{userId}")
+  │  ├─ AuthService.login()
+  │  ├─ 성공: recordSuccess()
+  │  └─ 실패: recordFailure()
+  │
+  ├─ AuthService
+  │  ├─ userId 조회
+  │  ├─ BCrypt password 검증
+  │  ├─ access token 생성: subject=userId, role claim 포함
+  │  └─ refresh token 생성: subject=userId, type=refresh claim 포함
+  │
+  └─ LoginResponse { success, message, token, userId, refreshToken }
+```
+
+| 보안 요소 | 실제 구현 |
+|---|---|
+| 로그인 실패 제한 | `LoginAttemptService`가 15분 윈도우 내 5회 실패 시 429를 반환한다. 로그인과 비밀번호 찾기 신원 확인에 적용된다. |
+| Access token | `role` claim을 포함한다. |
+| Refresh token | `type=refresh` claim으로 구분한다. |
+| JWT 필터 | refresh token은 인증 토큰으로 거부한다. 인증 성공 시 `ROLE_USER`와 실제 역할 권한을 함께 등록한다. |
+| Password reset token | DB가 아니라 `PasswordResetTokenService`의 인메모리 `ConcurrentHashMap`에 저장된다. 기본 TTL은 `PASSWORD_RESET_TOKEN_EXPIRATION_MS`다. |
+| 접근 제어 | `AccessControlService`가 본인, 연결 보호자, 보호자 역할 여부를 검사한다. |
+| CORS 주의 | `SecurityConfig`의 allowed methods는 현재 `GET`, `POST`, `PUT`, `DELETE`, `OPTIONS`다. 컨트롤러에는 `PATCH /api/notification/{userId}/{alertId}/read`가 있으므로 브라우저/Expo web preflight에서 PATCH가 막힐 수 있다. |
+
+#### DB/Flyway 실제 위험 지점
+
+현재 마이그레이션은 다음 두 개뿐이다.
+
+```text
+V1__add_contact_phone_to_guardian_link.sql
+V2__add_missing_user_columns.sql
+```
+
+두 파일은 모두 기존 테이블에 컬럼을 추가하는 `ALTER TABLE` 성격이다. `ddl-auto=none`이므로 빈 PostgreSQL에 배포할 경우 현재 Flyway 파일만으로 `users`, `user_health_records` 같은 초기 테이블을 만들 수 없다. 운영 DB가 이미 존재한다는 전제가 있거나, 별도의 `V0`/`V3` 초기 스키마 생성 마이그레이션이 필요하다.
+
+실제 Entity 기준 관계 보강:
+
+```text
+users
+  ├─ 1:1 user_health_info
+  ├─ 1:N user_health_records
+  ├─ 1:N user_disease
+  ├─ 1:N user_medications
+  │    └─ 1:N user_medication_schedules
+  ├─ 1:N BrainTrainingGame
+  ├─ 1:N disease_trend
+  ├─ patient 1:N user_guardian_links N:1 guardian
+  ├─ patient 1:N user_health_alert
+  └─ receiver 1:N user_health_alert
+
+disease_trend
+  └─ 1:N user_health_alert (optional FK)
+
+user_health_records
+  └─ 1:N user_health_alert (optional FK)
+```
+
+`UserHealthAlert`에는 `disease_trend_id`, `health_record_id` FK 필드가 있으나 현재 `NotificationService`의 생성 로직은 patient, receiver, title, message, alertType만 채운다. 따라서 알림 row의 source FK는 null일 수 있다.
+
+#### 주요 도메인 로직 보강
+
+| 도메인 | 실제 구현 |
+|---|---|
+| 건강 기록 | `UserHealthService.saveHealthRecord()`가 혈압, 혈당, 심박수, ECG risk score, ECG abnormal을 저장한다. 혈압/혈당/ECG 이상은 `anomalyType`에 누적되며, 복수 이상값이면 알림도 종류별로 각각 발송한다. |
+| 건강 요약 | 모든 기록 기준 혈압 평균과 혈당 평균을 다시 계산해 `user_health_info`에 반올림 저장한다. 최근 혈압은 `lastBpSys`, `lastBpDia`로 갱신한다. |
+| 알림 | `NotificationService.sendEmergencyAlert()`가 환자 본인과 연결 보호자 모두에게 `user_health_alert` row를 저장한다. 실제 push 발송은 현재 로그 처리 수준이다. |
+| 보호자 연결 | `GuardianController`는 연결/해제 시 `ensureSelf(patientId)`를 호출한다. 즉 보호자가 임의로 환자를 연결하는 구조가 아니라 환자 본인 토큰으로만 생성/해제할 수 있다. |
+| 보호자 조회 | 보호자는 `ensureGuardianSelf(guardianId)`를 통과해야 `my-patients`를 조회할 수 있고, 환자는 본인 기준 `my-guardians`를 조회한다. |
+| 복약 | `MedicationController`가 서비스 계층 없이 직접 처리한다. 입력은 `name`, `dosage`, `freq` 중심이며 `freq=HH:mm`을 단일 `timeOfDay`로 파싱하고 `daysOfWeek=EVERYDAY`, `timezone=Asia/Seoul`로 저장한다. Entity의 `memo`, `startDate`, `endDate`는 현재 API 로직에서 적극적으로 쓰이지 않는다. |
+| 뉴스 자동 수집 | `NewsAutoCollectorScheduler`가 매일 09:00 실행되며 사용자 질병 코드 기반으로 NewsAPI를 조회해 `disease_trend`의 `NEWS` 행을 저장한다. |
+| 질병 트렌드 알림 | `DiseaseTrendAlertScheduler`가 매일 09:00 실행되며 `riskLevel=HIGH` 트렌드를 대상으로 환자/보호자 알림을 생성한다. |
+| 빈 서비스 | `PatientHealthService.java`는 파일은 존재하지만 현재 핵심 로직이 비어 있다. |
+
+#### ECG 프록시 보강
+
+Spring 백엔드는 ECG 요청을 저장/해석하는 서버가 아니라 AI 서버 raw JSON 프록시다.
+
+```text
+POST /api/ecg/predict_window
+  │
+  ├─ EcgController
+  │  └─ x 누락만 400으로 검사
+  │
+  └─ EcgAnalysisService
+     ├─ AI_ECG_SERVER_URL에서 trailing slash 제거
+     ├─ /predict_window가 붙어 있으면 base URL로 정규화
+     ├─ X-API-Key가 있으면 헤더 추가
+     ├─ connect timeout 5s
+     ├─ read timeout 30s
+     └─ 실패 시 예외 대신 {"error": "..."} JSON 문자열 반환
+```
+
+`application.properties`의 기본 AI URL은 `https://zoon1-carelink-ai.hf.space/predict_window`처럼 path를 포함하지만, `EcgAnalysisService`가 이를 base URL로 정규화한다. ECG 추론 결과는 자동으로 `user_health_records`에 저장되지 않는다. 저장은 별도로 `POST /api/vitals`에 `ecgRiskScore`, `ecgAbnormal`, `ecgAnomalyType`이 들어올 때 수행된다.
+
+### 17.5 AI 서버와 모델 실제 구조 보강
+
+#### 서버 기동 조건
+
+`ai/src/server.py`는 FastAPI lifespan에서 `MODEL_PATH`의 `best_model_multilabel.pth`를 반드시 로드한다. 현재 워크스페이스에는 `ai/models/best_model_multilabel.pth`가 보이지 않는다. 이 파일이 없거나 state dict가 serving 모델 구조와 맞지 않으면 서버는 기동 단계에서 실패한다. 따라서 `/health`는 서버가 정상 기동한 뒤에만 `{"ok": true, "model_loaded": true}` 형태로 의미 있게 확인할 수 있다.
+
+#### `/sample_window` 실제 동작
+
+```text
+GET /sample_window?label={LABEL}
+  │
+  ├─ label이 없으면 NORM/STTC/MI/CD/HYP 중 랜덤 선택
+  ├─ SAMPLE_DIR/{LABEL}.npy 존재 시 파일에서 로드
+  │  ├─ 지원 shape: (N, 12, L), (N, L, 12), 단일 2D 배열
+  │  ├─ to_12xL()
+  │  └─ ensure_len_12xL(5000)
+  │
+  └─ 파일이 없으면 make_demo_window_12xL()로 synthetic demo 생성
+```
+
+현재 저장소에는 `ai/samples/` 디렉토리와 `{LABEL}.npy` 샘플 파일이 보이지 않는다. 따라서 기본 동작은 `from: "generated_demo"` fallback이다.
+
+응답에는 문서에 있던 `x`, `fs`, `label` 외에도 `id`, `from`, `ts`가 포함된다.
+
+#### `/predict_window` 실제 입력과 검증
+
+| 항목 | 실제 동작 |
+|---|---|
+| 요청 DTO | `x`, `fs`, `amp`를 받을 수 있다. |
+| 실효 입력 | 현재 추론에서 클라이언트가 보낸 `amp`는 사용하지 않는다. 서버가 bandpass 후 `compute_amp_feats()`로 항상 재계산한다. |
+| shape | `(12, L)` 또는 `(L, 12)`만 허용한다. |
+| sampling rate | `fs`가 없으면 500Hz로 보고, 500Hz가 아니면 `scipy.resample_poly()`로 리샘플링한다. |
+| 길이 | 5000 초과는 뒤쪽 5000 샘플 사용, 5000 미만은 앞쪽 0 padding이다. |
+| 필터 | Butterworth 2차 0.5~45Hz bandpass + `filtfilt`다. |
+| 정규화 | lead별 z-score 정규화다. |
+| 검증 실패 상태 | 내부 검증은 422 `HTTPException`을 만들지만, 현재 broad `except Exception`이 이를 500 `Server Error`로 감쌀 수 있다. |
+
+#### 운영 serving 모델과 연구용 모델 분리
+
+`server.py`/`train_local.py`의 `CNN_CBAM_GRU`가 운영 serving 구조다.
+
+```text
+Serving CNN_CBAM_GRU
+  ConvBlock(12 -> 32)
+  ConvBlock(32 -> 32)
+  BiGRU(input=32, hidden=64, layers=2, bidirectional=True)
+  mean pooling
+  concat amp 36
+  Linear(164 -> 128)
+  ReLU
+  Dropout(0.5)
+  Linear(128 -> 5)
+```
+
+반면 `run_comparison.py`에도 같은 이름의 `CNN_CBAM_GRU`가 있지만, 이는 비교 실험용 확장 구조다. 비교 실험용 모델은 ConvBlock이 더 많고, `32 -> 64 -> 128`, residual skip, GRU hidden 128 등 serving 모델과 다르다. Grad-CAM 산출물도 이 실험용 모델 정의와 `best_cnn_cbam_gru.pth`/`best_resnet1d.pth` 계열을 기준으로 생성된다.
+
+따라서 운영 가중치 `best_model_multilabel.pth`는 반드시 `server.py`/`train_local.py`의 serving 구조와 동일한 모델에서 생성되어야 한다. `test_api_with_real_ptbxl.py`의 구형 모델이나 비교 실험 모델 가중치를 그대로 쓰면 shape mismatch가 날 수 있다.
+
+#### AI 파일과 의존성 보강
+
+| 파일/경로 | 실제 역할 |
+|---|---|
+| `ai/src/make_demo_samples.py` | demo 샘플 생성 보조 스크립트다. 기존 주요 파일 표에 빠져 있었다. |
+| `ai/src/test_api_with_real_ptbxl.py` | 실제 PTB-XL 기반 API 테스트/구형 모델 실험 코드다. serving 모델과 구조 차이에 주의해야 한다. |
+| `ai/src/statistical_tests.py` | 실험 결과 통계 검정 스크립트다. |
+| `ai/src/README.md` | AI 소스 설명 문서다. |
+| `ai/data/processed/X_val.npy`, `y_val.npy` | 현재 존재하는 processed validation 산출물이다. |
+| `ai/figures/gradcam/*.png` | Grad-CAM 이미지 산출물이다. |
+| `ai/models/error_analysis/*.txt` | 모델별 error analysis 텍스트 산출물이다. |
+
+`ai/requirements.txt`는 FastAPI 추론 컨테이너용 최소 의존성이다. PTB-XL 로딩, 학습, 비교 실험, Grad-CAM까지 재현하려면 별도 research 의존성이 필요하다.
+
+| 용도 | 추가 필요 가능성이 큰 패키지 |
+|---|---|
+| PTB-XL 로딩 | `pandas`, `wfdb` |
+| 전처리/평가 | `pandas`, `scikit-learn` |
+| Grad-CAM/차트 | `matplotlib` |
+| 비교/ablation | `scikit-learn`, 실험 산출물 저장용 CSV 의존성 |
+
+### 17.6 배포/Compose 실제 차이
+
+`docker-compose.yml`의 backend와 ai는 `build:`가 아니라 GHCR `image:`를 사용한다.
+
+```text
+backend image: ghcr.io/zzooonn/carelink/carelink-backend:latest
+ai image:      ghcr.io/zzooonn/carelink/carelink-ai:latest
+```
+
+따라서 현재 루트에서 `docker compose up --build`를 실행해도 `backend/healthcare-server/Dockerfile`과 `ai/Dockerfile`을 로컬에서 새로 빌드하는 구조가 아니다. 실제 이미지 빌드는 GitHub Actions의 `docker/build-push-action`이 수행하고 GHCR에 push한다.
+
+`docker-compose.ec2-lite.yml`은 경량 실행용이다. 이 파일의 `ai` 서비스는 `profiles: ["ai"]`로 선택 실행되며, 현재 `AI_API_KEY`, `ALLOWED_ORIGINS`, `THRESHOLDS`를 명시적으로 전달하지 않는다. 또한 lite compose의 backend도 `AI_ECG_SERVER_URL`, `AI_ECG_API_KEY`를 직접 지정하지 않으므로 `application.properties` 기본값인 Hugging Face Space URL을 사용할 수 있다. EC2 lite에서 로컬 AI 컨테이너까지 붙이려면 이 환경 변수를 별도로 맞춰야 한다.
+
+### 17.7 성능 지표 출처 분리
+
+성능 수치는 파일별 측정 시나리오가 다르므로 한 표로 섞어 읽으면 안 된다.
+
+| 파일 | 성격 | 대표 값 |
+|---|---|---|
+| `carelink_measured_metrics.json` | 실제 사용자 흐름 기반 측정 | `user_profile` avg `300.50ms`, p95 `320.91ms`; `vitals_insights_7d` avg `298.50ms`, p95 `317.42ms`; `notifications` avg `299.94ms`, p95 `317.92ms`; AI direct avg `2396.58ms`, p95 `2725.98ms`; Home cache first avg `0.29ms` |
+| `benchmark_results.json` | concurrency별 부하 테스트와 경계 테스트 | `health_check`는 concurrency 1/5/10/20에서 avg 약 `298~302ms`, p95 약 `316~320ms`; 별도 ECG n=30 측정은 avg `2382.85ms`, p95 `2698.16ms` |
+
+문서의 12장은 주로 `carelink_measured_metrics.json` 기준으로 작성되어 있다. 논문이나 발표 자료에서는 어떤 파일의 어떤 측정 시나리오인지 함께 표기해야 한다.
+
+### 17.8 현재 문서 기준 누락/불일치 요약
+
+| 영역 | 빠졌거나 보정한 내용 |
+|---|---|
+| Frontend | 루트 `app/index.tsx`, 중첩 Stack layout, `profile.tsx` alias, 공개 인증 API와 보호 API 구분, Home caregiver cache 한계, 화면별 상세 흐름, app/tsconfig 세부 설정 |
+| Backend | `demo` 식별자, 루트 보조 클래스, 로그인 rate limit, access control, reset token 인메모리 저장, CORS PATCH 주의, Flyway 초기 스키마 부재, ECG raw proxy와 저장 분리, 보호자 연결 권한, 복약 `freq=HH:mm` 제약 |
+| Database | `users -> disease_trend` 관계, `UserHealthAlert`의 optional source FK와 현재 미사용 상태 |
+| AI | 모델 파일 부재 시 기동 실패, `ai/samples` 부재와 generated demo fallback, `amp` 입력 미사용, 검증 에러 500 wrapping 가능성, serving 모델과 연구용 모델 분리, 연구 의존성 부족 |
+| Deploy | Compose는 GHCR image 기반이며 `--build`로 로컬 Dockerfile을 빌드하지 않음, EC2 lite의 AI/env 차이 |
+| Metrics | 측정 파일별 시나리오와 수치 출처 분리 필요 |
+
+### 17.9 보강 후 한 문장 결론
+
+```text
+현재 CareLink 구조 문서는 핵심 아키텍처와 주요 모듈을 잘 설명하지만,
+실제 저장소와 완전히 동일한 운영 명세로 쓰려면
+프론트 중첩 라우팅, 백엔드 권한/마이그레이션 제약,
+AI serving 모델과 연구 모델의 분리,
+Compose 이미지 기반 배포 차이를 함께 봐야 한다.
+```
+
+---
+
+## 합격 자소서 말투로 정리
+
+**복잡한 시스템을 책임 단위로 분리해, 문제의 원인을 구조에서 찾는 엔지니어로 성장했습니다**
+
+저는 CareLink 헬스케어 플랫폼을 개발하며, 하나의 서버에 모든 기능을 욱여넣기보다 책임을 명확히 나누는 설계가 운영 안정성을 좌우한다는 점을 배웠습니다. 초기에는 모바일 앱이 ECG 추론 서버를 직접 호출했는데, 인증과 데이터 검증이 분산되면서 장애 지점을 특정하기 어려운 문제를 확인했습니다. 이를 단순한 호출 실패로 보지 않고, 요청 경로를 기준으로 책임을 다시 분리했습니다. 인증과 데이터 무결성은 Spring Boot 백엔드가, 신호 전처리와 모델 추론은 FastAPI 서버가 맡도록 구조를 나누고, 앱은 백엔드의 `/api/ecg` 프록시만 바라보게 정리했습니다. 그 결과 장애가 발생해도 어느 계층의 문제인지 즉시 좁힐 수 있는 구조를 갖출 수 있었습니다.
+
+성능 개선 과정에서도 같은 접근을 이어갔습니다. 홈 화면의 첫 표시가 네트워크 응답을 기다리느라 느려지는 문제를 확인했고, 이를 단순한 속도 이슈로 보지 않고 데이터 흐름을 캐시와 동기화로 분리했습니다. AsyncStorage에 저장된 사용자 정보를 먼저 그려 체감 응답을 확보하고, 서버 동기화는 뒤에서 수행하도록 바꾸어 첫 표시 시간을 캐시 읽기 수준까지 줄일 수 있었습니다. 이 과정에서 ECG 추론 지연의 주요 원인이 BiGRU 연산과 필터링에 있다는 점도 로그와 측정값을 근거로 분리해 파악했습니다.
+
+이렇게 문제를 표면 현상이 아니라 구조와 데이터 흐름에서 분리해 원인을 규명한 경험은, 대규모 서비스의 안정성과 성능을 함께 책임지는 직무에 필요한 역량으로 이어진다고 생각합니다. 이러한 경험을 활용하여 시스템의 병목을 데이터 기준으로 진단하고 가용성을 높이는 일에 기여하고 싶습니다.
