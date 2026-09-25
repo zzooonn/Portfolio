@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>조현준 포트폴리오 — PDF</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
+
+    /* ── 완전히 동일한 CSS 변수 (index.html) ── */
+    :root {
+      --background: #f2f2f2; --foreground: #111111; --card: #ffffff; --surface-2: #f6f6f6;
+      --primary: #111111; --primary-deep: #000000; --accent-lt: #f5f5f5; --accent-dim: #d5d5d5;
+      --border: #d8d8d8; --text-2: #252525; --text-3: #666666;
+      --green: #111111; --green-lt: #f5f5f5;
+      --teal: #111111; --teal-lt: #f5f5f5;
+      --pink: #111111; --pink-lt: #f5f5f5;
+      --amber: #111111; --amber-lt: #f5f5f5;
+      --slate: #666666; --slate-lt: #f6f6f6;
+      --code-bg: #202020;
+    }
+
+    /* ── @page: A4 ── */
+    @page { size: A4 portrait; margin: 14mm 12mm; }
+
+    /* ── Reset ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 10pt; }
+    body {
+      font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #eeeeee;
+      color: var(--foreground);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+    a { color: inherit; text-decoration: none; }
+    strong { color: var(--foreground); font-weight: 700; }
+    code {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: .85em; font-weight: 600;
+      padding: .08rem .32rem; border-radius: .3rem;
+      background: var(--accent-lt); color: var(--primary);
+      border: 1px solid var(--accent-dim);
+    }
+    .mono { font-family: "IBM Plex Mono", monospace; }
+
+    /* ── PII ── */
+    .pii { filter: none; user-select: auto; border-radius: 0; display: inline; }
+    .pii-img { filter: none !important; border-radius: .65rem; }
+
+    /* ────────────────────────────────────
+       PRINT BAR (screen only)
+    ──────────────────────────────────── */
+    .print-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .55rem 1.5rem;
+      background: var(--foreground); color: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    .pb-left { font-size: .72rem; font-family: "IBM Plex Mono", monospace; opacity: .75; }
+    .pb-right { display: flex; gap: .55rem; align-items: center; }
+    .pb-btn {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .4rem .9rem; border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,.25);
+      background: transparent; color: #fff;
+      font-size: .75rem; font-weight: 700;
+      font-family: "IBM Plex Mono", monospace;
+      cursor: pointer; transition: all .2s;
+    }
+    .pb-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.5); }
+    .pb-btn.primary { background: var(--primary); border-color: var(--primary); }
+    .pb-btn.primary:hover { background: #222222; }
+    .pb-page-info { font-size: .68rem; font-family: "IBM Plex Mono", monospace; opacity: .6; }
+
+    /* ────────────────────────────────────
+       SHEETS CONTAINER
+    ──────────────────────────────────── */
+    .sheets { padding: 4rem 1rem 2rem; }
+
+    /* ── A4 Sheet ── */
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 14mm 12mm;
+      background: #fff;
+      box-shadow: 0 0 40px rgba(0,0,0,.14);
+      margin: 0 auto 2rem;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 프로젝트 시트: 정확히 A4 한 페이지 */
+    .proj-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      height: 297mm;
+      max-height: 297mm;
+      padding: 14mm 12mm;
+      background: #fff;
+      box-shadow: 0 0 40px rgba(0,0,0,.14);
+      margin: 0 auto 2rem;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ────────────────────────────────────
+       PAGE 1: INTRO
+    ──────────────────────────────────── */
+
+    /* ── Profile Header ── */
+    .profile-wrap {
+      display: flex; gap: 1.35rem; align-items: flex-start;
+      padding: 1rem 1.2rem 1rem;
+      background: #ffffff;
+      border: 1px solid var(--accent-dim);
+      border-radius: .9rem;
+      position: relative; overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .profile-wrap::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--primary);
+    }
+    .profile-photo {
+      flex: 0 0 auto; width: 5.5rem; height: 5.5rem;
+      border-radius: .75rem; object-fit: cover; object-position: center;
+      border: 2px solid var(--accent-dim);
+    }
+    .profile-info { flex: 1; }
+    .profile-name { font-size: 2.2rem; font-weight: 900; letter-spacing: -.045em; line-height: .95; margin-bottom: .3rem; }
+    .profile-name span { color: var(--primary); }
+    .profile-title-line { font-size: .78rem; color: var(--text-3); font-family: "IBM Plex Mono", monospace; margin-bottom: .5rem; }
+    .profile-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .5rem; }
+    .profile-intro { font-size: .82rem; color: var(--text-2); line-height: 1.6; }
+    .profile-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; margin-top: .6rem; }
+    .pstat { padding: .4rem .5rem; border: 1px solid var(--border); border-radius: .55rem; background: var(--card); text-align: center; }
+    .pstat strong { display: block; font-size: 1.1rem; letter-spacing: -.025em; }
+    .pstat span { display: block; font-size: .58rem; color: var(--text-3); margin-top: .05rem; }
+
+    /* ── Section Heading ── */
+    .sec-h {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: 1.1rem; font-weight: 900; letter-spacing: -.03em;
+      margin: .75rem 0 .6rem;
+    }
+    .sec-h::before {
+      content: ''; width: .22rem; height: 1.1rem; border-radius: 999px; flex-shrink: 0;
+      background: linear-gradient(180deg, var(--primary), var(--accent-dim));
+    }
+
+    /* ── 2-col / 3-col grid ── */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .65rem; }
+
+    /* ── Card base ── */
+    .c {
+      border: 1px solid var(--border); border-radius: .75rem;
+      background: var(--card); padding: .85rem 1rem;
+    }
+    .c-header { display: flex; align-items: center; gap: .55rem; margin-bottom: .85rem; }
+    .c-header h3 { font-size: .9rem; font-weight: 900; }
+    .ibox {
+      display: inline-grid; place-items: center;
+      width: 2.1rem; height: 2.1rem;
+      border-radius: .6rem; font-size: .82rem; font-weight: 800;
+    }
+    .ia { background: var(--accent-lt); color: var(--foreground); }
+    .ig { background: var(--green-lt); color: var(--green); }
+    .ib { background: var(--accent-lt); color: var(--foreground); }
+    .io { background: var(--accent-lt); color: var(--foreground); }
+
+    /* ── Top color bar ── */
+    .tl { height: 2.5px; border-radius: .5rem .5rem 0 0; margin: -.85rem -1rem .85rem; }
+    .tl-a { background: linear-gradient(90deg, var(--primary), var(--accent-dim)); }
+    .tl-g { background: var(--primary); }
+    .tl-t { background: var(--primary); }
+    .tl-p { background: var(--primary); }
+    .tl-s { background: var(--primary); }
+
+    /* ── Tags ── */
+    .tag {
+      display: inline-flex; align-items: center; gap: .28rem;
+      padding: .25rem .55rem;
+      border: 1px solid var(--accent-dim); border-radius: 999px;
+      font-size: .67rem; font-weight: 700;
+    }
+    .tag.accent { background: var(--accent-lt); color: var(--primary-deep); }
+    .tag.green,
+    .tag.teal,
+    .tag.orange,
+    .tag.blue,
+    .tag.pink,
+    .tag.slate  { background: var(--card); color: var(--text-2); border-color: var(--border); }
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+    /* ── Chip ── */
+    .chip {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .42rem .68rem; border: 1px solid var(--border);
+      border-radius: 999px; font-size: .75rem; font-weight: 700;
+    }
+    .chip i { font-size: .88rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .38rem; }
+
+    /* ── Timeline ── */
+    .tl-wrap { position: relative; padding-left: 1.1rem; }
+    .tl-wrap::before { content: ''; position: absolute; top: .3rem; bottom: .3rem; left: .28rem; width: 1.5px; background: var(--border); }
+    .tl-item { position: relative; }
+    .tl-item + .tl-item { margin-top: 1.1rem; }
+    .tl-dot { position: absolute; top: .2rem; left: -1.1rem; display: inline-grid; place-items: center; width: .9rem; height: .9rem; border: 2px solid var(--primary); border-radius: 999px; background: var(--card); font-size: .35rem; color: var(--primary); }
+    .tl-item h4 { font-size: .9rem; font-weight: 700; margin-bottom: .25rem; }
+    .tl-item p { font-size: .8rem; color: var(--text-2); font-weight: 500; margin-bottom: .15rem; }
+    .tl-item small { font-size: .72rem; color: var(--text-3); display: block; }
+
+    /* ── Cert cards ── */
+    .cert {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .6rem .75rem;
+      border: 1px solid var(--border); border-radius: .6rem; background: var(--surface-2);
+    }
+    .cert + .cert { margin-top: .45rem; }
+    .cert-mk { flex: 0 0 auto; display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: .5rem; font-size: .65rem; font-weight: 800; }
+    .cert-cp h4 { font-size: .78rem; margin: 0 0 .08rem; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; }
+    .cert-cp p, .cert-cp small { display: block; margin: 0; font-size: .68rem; color: var(--text-3); }
+
+    /* ── Language bars ── */
+    .bar-wrap { display: grid; gap: .42rem; margin-top: .55rem; }
+    .bar-row { display: flex; align-items: center; gap: .45rem; }
+    .bar-lbl, .bar-val { width: 1.8rem; font-size: .62rem; font-weight: 700; color: var(--text-3); font-family: "IBM Plex Mono", monospace; }
+    .bar-val { text-align: right; }
+    .bar-track { flex: 1; height: .3rem; border-radius: 999px; background: var(--border); overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; }
+    .bf-a, .bf-g, .bf-t { background: var(--primary); }
+
+    /* ── About card ── */
+    .about-c {
+      display: flex; flex-direction: column; gap: .55rem;
+      padding: .8rem .9rem;
+      border: 1px solid var(--border); border-radius: .75rem; background: var(--card);
+    }
+    .about-c h3 { font-size: .85rem; font-weight: 900; }
+    .body-t { font-size: .79rem; color: var(--text-2); line-height: 1.65; }
+
+    /* ── Skills ── */
+    .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+    .sk-wide { grid-column: span 2; }
+    .sk-panel { padding: .7rem .85rem; border: 1px solid var(--border); border-radius: .7rem; background: var(--card); }
+    .sk-lbl { display: flex; align-items: center; gap: .35rem; margin-bottom: .55rem; font-size: .62rem; font-weight: 700; color: var(--text-3); letter-spacing: .1em; text-transform: uppercase; }
+    .sk-sum { grid-column: span 2; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: .5rem; padding: .6rem .85rem; border: 1px solid var(--border); border-radius: .7rem; background: var(--card); }
+    .sk-si { display: flex; align-items: center; gap: .35rem; }
+    .sk-si strong { font-size: .9rem; }
+    .sk-si span:last-child { font-size: .72rem; color: var(--text-3); }
+    .dot-a { color: var(--primary); } .dot-g { color: var(--green); } .dot-t { color: var(--teal); } .dot-p { color: var(--pink); } .dot-s { color: var(--slate); }
+
+    /* ── Intro page footer ── */
+    .intro-footer { margin-top: auto; padding-top: .6rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: .65rem; color: var(--text-3); font-family: "IBM Plex Mono", monospace; }
+
+    /* ────────────────────────────────────
+       PROJECT PAGES
+    ──────────────────────────────────── */
+
+    /* ── Project sheet header ── */
+    .ph {
+      position: relative; overflow: hidden;
+      padding: .95rem 1.1rem;
+      background: #ffffff;
+      border: 1px solid var(--accent-dim);
+      border-radius: .75rem .75rem 0 0;
+      flex-shrink: 0;
+    }
+    .ph::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--primary); }
+    .ph-top { display: flex; gap: .85rem; align-items: flex-start; }
+    .ph-num {
+      flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+      width: 2.6rem; height: 2.6rem;
+      background: var(--primary); color: #fff;
+      border-radius: .6rem; font-size: 1rem; font-weight: 900;
+      font-family: "IBM Plex Mono", monospace;
+      box-shadow: 0 8px 20px rgba(91,88,255,.25);
+    }
+    .ph-info { flex: 1; }
+    .ph-title { font-size: 1.15rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .3rem; display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+    .ph-extra { display: inline-flex; align-items: center; padding: .1rem .4rem; border: 1px solid var(--accent-dim); border-radius: .35rem; background: var(--accent-lt); color: var(--primary); font-size: .62rem; font-weight: 700; }
+    .ph-meta { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .4rem; }
+    .ph-meta span { display: inline-flex; align-items: center; gap: .28rem; padding: .2rem .5rem; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,.8); color: var(--text-3); font-size: .68rem; font-family: "IBM Plex Mono", monospace; }
+    .ph-tagline { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+    .ph-summary { font-size: .77rem; color: var(--text-3); }
+    .ph-result { display: inline-flex; align-items: center; gap: .25rem; font-size: .68rem; font-family: "IBM Plex Mono", monospace; background: var(--card); color: var(--text-2); border: 1px solid var(--border); padding: .12rem .5rem; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+
+    /* ── Project body (fills remaining space) ── */
+    .pb-wrap {
+      flex: 1; min-height: 0;
+      display: grid; grid-template-columns: 58% 42%;
+      border: 1px solid var(--border);
+      border-top: none; border-bottom: none;
+      overflow: hidden;
+    }
+    .pb-left {
+      padding: .9rem 1rem;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: .65rem;
+      overflow: hidden;
+    }
+    .pb-right {
+      padding: .85rem .9rem;
+      background: var(--surface-2);
+      display: flex; flex-direction: column; gap: .55rem;
+      overflow: hidden;
+    }
+
+    /* ── Project footer (tech tags) ── */
+    .pf-bar {
+      padding: .55rem 1.1rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 .75rem .75rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Minor title ── */
+    .mt {
+      display: flex; align-items: center; gap: .42rem;
+      font-size: .75rem; font-weight: 900;
+      margin-bottom: .4rem;
+    }
+    .mt::before { content: ''; width: 2.5px; height: .8rem; border-radius: 999px; background: linear-gradient(180deg, var(--primary), var(--accent-dim)); flex-shrink: 0; }
+
+    /* ── Arrow list ── */
+    .al { list-style: none; display: grid; gap: .35rem; }
+    .al li { position: relative; padding-left: .95rem; font-size: .77rem; color: var(--text-2); line-height: 1.6; }
+    .al li::before { content: '→'; position: absolute; left: 0; color: var(--primary); font-weight: 900; }
+
+    /* ── Troubleshoot ── */
+    .ts {
+      position: relative; overflow: hidden;
+      border: 1px solid var(--border); border-radius: .65rem;
+      background: #ffffff;
+      padding: .75rem .85rem; flex: 1; display: flex; flex-direction: column; gap: .45rem;
+    }
+    .ts::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, var(--primary), var(--accent-dim)); }
+    .ts-head { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .45rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+    .ts-title { flex: 1; font-size: .78rem; font-weight: 900; line-height: 1.55; }
+    .badge-p { display: inline-flex; align-items: center; padding: .18rem .55rem; border-radius: 999px; background: var(--primary); color: #fff; font-size: .62rem; font-weight: 700; white-space: nowrap; }
+    .tbl { margin-bottom: .18rem; font-size: .62rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .tbl.prob, .tbl.sol, .tbl.alt { color: var(--foreground); }
+    .ts-body { font-size: .75rem; color: var(--text-2); line-height: 1.6; }
+    .ts-block + .ts-block { margin-top: .35rem; }
+
+    /* ── Code box ── */
+    .cb { overflow: hidden; border-radius: .55rem; background: var(--code-bg); flex-shrink: 0; }
+    .cb-top { display: flex; align-items: center; gap: .28rem; padding: .42rem .65rem; border-bottom: 1px solid #2d3139; color: #7f848e; font-size: .6rem; font-family: "IBM Plex Mono", monospace; }
+    .cb-dot { width: .5rem; height: .5rem; border-radius: 999px; flex-shrink: 0; }
+    .cb-dot.r, .cb-dot.y, .cb-dot.g { background: #858585; }
+    .cb-fn { margin-left: .28rem; }
+    .cb pre { margin: 0; padding: .6rem .7rem; color: #abb2bf; font-family: "IBM Plex Mono", monospace; font-size: .65rem; line-height: 1.5; white-space: pre-wrap; word-break: break-all; }
+    .cb code { background: transparent; border: 0; padding: 0; color: inherit; font-size: inherit; }
+
+    /* ── Takeaway ── */
+    .ta { padding: .55rem .7rem; border: 1px solid var(--border); border-radius: .55rem; background: #ffffff; flex-shrink: 0; }
+    .ta-t { display: flex; align-items: center; gap: .3rem; margin-bottom: .2rem; color: var(--foreground); font-size: .6rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .ta-body { font-size: .72rem; color: var(--text-2); line-height: 1.6; }
+
+    /* ────────────────────────────────────
+       PRINT OVERRIDES
+    ──────────────────────────────────── */
+    /* ══════════════════════════════════
+       40-50대용 흑백 이력서: 큰 글씨 + 낮은 장식 밀도
+    ══════════════════════════════════ */
+
+    /* 글자 크기 증가 (10pt → 11pt 기준) */
+    html { font-size: 11.7pt; }
+
+    .profile-photo       { width: 7rem; height: 7rem; }
+    .profile-name        { font-size: 2.35rem; }
+    .profile-title-line  { font-size: .9rem; }
+    .profile-intro       { font-size: .94rem; }
+    .pstat strong        { font-size: 1.25rem; }
+    .pstat span          { font-size: .72rem; }
+
+    .sec-h               { font-size: 1.24rem; }
+    .c-header h3         { font-size: 1.02rem; }
+    .tl-item h4          { font-size: 1rem; }
+    .tl-item p           { font-size: .9rem; }
+    .tl-item small       { font-size: .82rem; }
+    .cert-cp h4          { font-size: .9rem; }
+    .cert-cp p,
+    .cert-cp small       { font-size: .82rem; }
+    .bar-lbl, .bar-val   { font-size: .76rem; }
+    .about-c h3          { font-size: 1rem; }
+    .body-t              { font-size: .9rem; }
+    .tag                 { font-size: .78rem; padding: .3rem .62rem; }
+    .chip                { font-size: .86rem; padding: .48rem .76rem; }
+    .sk-lbl              { font-size: .74rem; }
+    .sk-si strong        { font-size: 1.05rem; }
+    .sk-si span:last-child { font-size: .82rem; }
+    .ph-title            { font-size: 1.27rem; }
+    .ph-meta span        { font-size: .76rem; }
+    .ph-summary          { font-size: .86rem; }
+    .ph-result           { font-size: .76rem; }
+    .mt                  { font-size: .86rem; }
+    .al li               { font-size: .86rem; }
+    .ts-title            { font-size: .88rem; }
+    .tbl                 { font-size: .72rem; }
+    .ts-body             { font-size: .83rem; }
+    .badge-p             { font-size: .7rem; }
+    .cb pre              { font-size: .74rem; }
+    .ta-t                { font-size: .7rem; }
+    .ta-body             { font-size: .82rem; }
+
+    /* Monochrome executive resume theme */
+    :root {
+      --background:   #f2f2f2 !important;
+      --foreground:   #111111 !important;
+      --card:         #ffffff !important;
+      --surface-2:    #f6f6f6 !important;
+      --primary:      #111111 !important;
+      --primary-deep: #000000 !important;
+      --accent-lt:    #f5f5f5 !important;
+      --accent-dim:   #d5d5d5 !important;
+      --border:       #d8d8d8 !important;
+      --text-2:       #252525 !important;
+      --text-3:       #666666 !important;
+      --green:        #111111 !important;
+      --green-lt:     #f5f5f5 !important;
+      --teal:         #111111 !important;
+      --teal-lt:      #f5f5f5 !important;
+      --pink:         #111111 !important;
+      --pink-lt:      #f5f5f5 !important;
+      --amber:        #111111 !important;
+      --amber-lt:     #f5f5f5 !important;
+      --slate:        #666666 !important;
+      --slate-lt:     #f6f6f6 !important;
+      --code-bg:      #202020 !important;
+    }
+
+    body { background: #eeeeee; color: var(--foreground); }
+    code { background: #f5f5f5; color: #111111; border-color: #d8d8d8; }
+    .sheet,
+    .proj-sheet {
+      background: #ffffff !important;
+      box-shadow: 0 0 28px rgba(0,0,0,.12);
+    }
+
+    .profile-wrap,
+    .ph,
+    .ts,
+    .ta {
+      background: #ffffff !important;
+      border-color: var(--border) !important;
+    }
+    .profile-wrap::before,
+    .ph::before,
+    .tl-a, .tl-g, .tl-t, .tl-p, .tl-s,
+    .sec-h::before,
+    .mt::before,
+    .ts::before {
+      background: #111111 !important;
+    }
+    .profile-name span,
+    .dot-a, .dot-g, .dot-t, .dot-p, .dot-s,
+    .tbl.prob, .tbl.sol, .tbl.alt,
+    .ta-t {
+      color: #111111 !important;
+    }
+
+    .c,
+    .about-c,
+    .sk-panel,
+    .sk-sum,
+    .pstat,
+    .cert,
+    .tag,
+    .tag.accent,
+    .tag.green,
+    .tag.teal,
+    .tag.orange,
+    .tag.blue,
+    .tag.pink,
+    .tag.slate,
+    .chip,
+    .ph-meta span,
+    .ph-extra,
+    .ph-result {
+      background: #ffffff !important;
+      color: #252525 !important;
+      border-color: var(--border) !important;
+    }
+
+    .ibox,
+    .ia, .ig, .ib, .io,
+    .cert-mk {
+      background: #f5f5f5 !important;
+      color: #111111 !important;
+      border: 1px solid var(--border);
+    }
+
+    .tag i,
+    .chip i {
+      color: #111111 !important;
+    }
+
+    .bar-track { background: #e5e5e5 !important; }
+    .bf-a, .bf-g, .bf-t { background: #111111 !important; }
+    .tl-dot { border-color: #111111 !important; color: #111111 !important; }
+    .ph-num,
+    .badge-p {
+      background: #111111 !important;
+      color: #ffffff !important;
+      box-shadow: none !important;
+    }
+    .pb-wrap > .pb-right,
+    .pf-bar {
+      background: #f7f7f7 !important;
+      border-color: var(--border) !important;
+    }
+    .ts-head { border-bottom-color: var(--border) !important; }
+
+    .cb { background: #202020 !important; }
+    .cb-top {
+      background: #2a2a2a !important;
+      border-bottom-color: #3a3a3a !important;
+      color: #c8c8c8 !important;
+    }
+    .cb-dot.r,
+    .cb-dot.y,
+    .cb-dot.g {
+      background: #858585 !important;
+    }
+    .cb pre,
+    .cb span[style*="color"] {
+      color: #d8d8d8 !important;
+    }
+
+    .print-bar { background: #111111 !important; color: #ffffff; }
+    .print-bar .pb-right { background: transparent !important; }
+    .pb-btn.primary {
+      background: #ffffff !important;
+      border-color: #ffffff !important;
+      color: #111111 !important;
+    }
+    .pb-btn.primary:hover { background: #e8e8e8 !important; }
+
+    .pii,
+    .pii-img {
+      filter: none !important;
+      user-select: auto !important;
+    }
+    .pii { display: inline !important; border-radius: 0 !important; }
+
+    .profile-sheet .profile-wrap {
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 1.55rem 1.65rem;
+      margin-bottom: 1.45rem;
+    }
+    .profile-sheet .profile-photo {
+      width: 9.2rem;
+      height: 9.2rem;
+      border-radius: .85rem;
+    }
+    .profile-sheet .profile-name {
+      font-size: 2.9rem;
+      margin-bottom: .45rem;
+    }
+    .profile-sheet .profile-title-line {
+      font-size: .98rem;
+      margin-bottom: .7rem;
+    }
+    .profile-sheet .profile-tags {
+      gap: .45rem;
+      margin-bottom: .75rem;
+    }
+    .profile-sheet .profile-intro {
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .profile-sheet .profile-stats {
+      gap: .55rem;
+      margin-top: .85rem;
+    }
+    .profile-sheet .pstat {
+      padding: .65rem .55rem;
+    }
+    .profile-sheet .pstat strong {
+      font-size: 1.35rem;
+    }
+    .profile-sheet .c {
+      padding: 1.05rem 1.15rem;
+    }
+    .profile-sheet .g2 {
+      gap: 1rem;
+    }
+    .about-sheet {
+      page-break-before: always;
+      break-before: page;
+    }
+    .about-sheet .about-c,
+    .about-sheet .sk-panel {
+      padding: 1rem 1.05rem;
+    }
+    .about-sheet .skill-grid,
+    .about-sheet .g3 {
+      gap: .8rem;
+    }
+    .about-sheet .intro-footer {
+      margin-top: 1rem;
+    }
+
+    @media print {
+      body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .print-bar { display: none !important; }
+      .sheets { padding: 0 !important; }
+
+      /* Intro sheet: auto height, fills naturally */
+      .sheet {
+        width: 100% !important; padding: 0 !important;
+        box-shadow: none !important; margin: 0 !important;
+        border-radius: 0 !important; min-height: 0 !important;
+      }
+
+      .about-sheet {
+        page-break-before: always !important;
+        break-before: page !important;
+      }
+
+      /* Project sheets: exactly one A4 page */
+      .proj-sheet {
+        page-break-before: always !important;
+        break-before: page !important;
+        height: 269mm !important;
+        min-height: 269mm !important;
+        max-height: 269mm !important;
+        width: 100% !important; padding: 0 !important;
+        box-shadow: none !important; margin: 0 !important;
+        border-radius: 0 !important;
+        overflow: hidden !important;
+      }
+
+      /* Force color printing */
+      .ph, .ph::before, .ph-num, .ph-result,
+      .pb-right, .ts, .ts::before, .badge-p,
+      .cb, .cb-top, .ta, .ta-t,
+      .bar-fill, .bar-track, .tl, .tl-a, .tl-g, .tl-t, .tl-p, .tl-s,
+      .profile-wrap, .profile-wrap::before,
+      .tag, .chip, .pstat, .pf-bar {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* PII: show in PDF */
+      .pii, .pii-img { filter: none !important; }
+
+      /* Animation reset */
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── PRINT BAR (screen only) ─── -->
+  <div class="print-bar">
+    <span class="pb-left">PDF 저장 방법 : Ctrl+P → 대상: PDF로 저장 → 여백: 없음 → 배경 그래픽: 켜기</span>
+    <div class="pb-right">
+      <span class="pb-page-info">6 pages (profile + about/skills + 4 projects)</span>
+      <button class="pb-btn primary" type="button" onclick="window.print()">🖨️ PDF 저장</button>
+    </div>
+  </div>
+
+  <div class="sheets">
+
+    <!-- ════════════════════════════════════
+         PAGE 1: PROFILE (내 정보 + 학력 + 어학)
+    ════════════════════════════════════ -->
+    <div class="sheet profile-sheet">
+
+      <!-- ── Profile ── -->
+      <div class="profile-wrap">
+        <img src="../assets/images/photo.jpg" alt="조현준 프로필" class="profile-photo pii-img" />
+        <div class="profile-info">
+          <h1 class="profile-name">조현준<span>.</span></h1>
+          <p class="profile-title-line mono">Systems &amp; AI Full-Stack Engineer &nbsp;|&nbsp; <span class="pii">BUAA</span> · SW Engineering · 2026.07 졸업 예정</p>
+          <div class="profile-tags">
+            <span class="tag accent mono">BUAA Software Engineering</span>
+            <span class="tag green mono">TSC 중국어 Lv.6</span>
+            <span class="tag teal mono">OPIc ENG IH</span>
+            <span class="tag slate">한·중·영 커뮤니케이션</span>
+          </div>
+          <p class="profile-intro"><strong>중국 소프트웨어공학 전국 1위 <span class="pii">BUAA(북항대)</span></strong>에서 8년. OS 커널을 밑바닥부터 직접 구현하고, ECG AI 모델 AUC 92.52%를 달성한 시스템·AI 엔지니어입니다. 저수준 시스템부터 풀스택 서비스까지 End-to-End로 설계하고 구현합니다.</p>
+          <div class="profile-stats">
+            <div class="pstat"><strong>2026.07</strong><span>졸업 예정</span></div>
+            <div class="pstat"><strong>TSC 6</strong><span>중국어 레벨</span></div>
+            <div class="pstat"><strong>OPIc IH</strong><span>영어 회화</span></div>
+            <div class="pstat"><strong>한·중·영</strong><span>업무 소통</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 학력 & 어학 ── -->
+      <h2 class="sec-h">학력 &amp; 어학</h2>
+      <div class="g2">
+        <article class="c">
+          <div class="tl tl-a"></div>
+          <div class="c-header"><span class="ibox ia">ED</span><h3>학력</h3></div>
+          <div class="tl-wrap">
+            <div class="tl-item">
+              <span class="tl-dot">●</span>
+              <h4><span class="pii">北京汇文中学</span></h4>
+              <p><span class="pii">북경 회문고등학교</span></p>
+              <small class="mono">2017.09 – 2020.07 &nbsp;|&nbsp; 150년 전통 북경 동성구 명문 공립고교</small>
+            </div>
+            <div class="tl-item">
+              <span class="tl-dot">●</span>
+              <h4><span class="pii">北京航空航天大学 (BUAA)</span></h4>
+              <p>软件学院 (School of Software) · 학사</p>
+              <small class="mono">2020.09 – 2026.07 (졸업 예정) &nbsp;|&nbsp; 소프트웨어공학 전국 1위 (A+)</small>
+            </div>
+          </div>
+        </article>
+
+        <article class="c">
+          <div class="tl tl-g"></div>
+          <div class="c-header"><span class="ibox ig">LG</span><h3>어학 &amp; 언어 능숙도</h3></div>
+          <div class="cert">
+            <span class="cert-mk mono" style="background:var(--green-lt);color:var(--green)">CN</span>
+            <div class="cert-cp">
+              <h4>TSC 중국어 회화 <span class="tag green mono">Level 6</span></h4>
+              <p class="mono">원어민 수준 비즈니스 커뮤니케이션 &nbsp;|&nbsp; ID: <span class="pii">100318</span> · 2025.10.25</p>
+            </div>
+          </div>
+          <div class="cert" style="margin-top:.4rem">
+            <span class="cert-mk mono" style="background:var(--teal-lt);color:var(--teal)">US</span>
+            <div class="cert-cp">
+              <h4>OPIc 영어 <span class="tag teal mono">IH · Intermediate High</span></h4>
+              <p class="mono">업무 환경 유창한 영어 소통 &nbsp;|&nbsp; ID: <span class="pii">2C5955731527</span> · 2025.12.22</p>
+            </div>
+          </div>
+          <div class="bar-wrap">
+            <div class="bar-row"><span class="bar-lbl">KR</span><div class="bar-track"><div class="bar-fill bf-a" style="width:100%"></div></div><span class="bar-val">100%</span></div>
+            <div class="bar-row"><span class="bar-lbl">CN</span><div class="bar-track"><div class="bar-fill bf-g" style="width:93%"></div></div><span class="bar-val">93%</span></div>
+            <div class="bar-row"><span class="bar-lbl">ENG</span><div class="bar-track"><div class="bar-fill bf-t" style="width:85%"></div></div><span class="bar-val">85%</span></div>
+          </div>
+        </article>
+      </div>
+
+    </div><!-- /.sheet (profile) -->
+
+
+    <!-- ════════════════════════════════════
+         PAGE 2: ABOUT & TECH STACK
+    ════════════════════════════════════ -->
+    <div class="sheet about-sheet">
+
+      <!-- ── 나에 대해 ── -->
+      <h2 class="sec-h">나에 대해</h2>
+      <div class="g3">
+        <article class="about-c">
+          <span class="ibox ia">RD</span>
+          <h3>학습 자세</h3>
+          <p class="body-t">막히면 포기 대신 <strong>가설을 세워 정면 돌파</strong>합니다. 새로운 기술은 공식 문서부터 직접 읽고 구현하며 <strong>내재화</strong>하고, OS 커널을 바닥부터 디버깅했던 집요함으로 <strong>해결될 때까지 검증</strong>을 반복합니다.</p>
+          <div class="tags mono"><span class="tag accent">가설 검증형</span><span class="tag accent">문서화 습관</span></div>
+        </article>
+        <article class="about-c">
+          <span class="ibox ib">TM</span>
+          <h3>협업 방식</h3>
+          <p class="body-t">기술 스택 충돌을 <strong>데이터로 중재</strong>합니다. 성능·생태계 데이터를 직접 수집해 팀을 설득하며, 합의 내용은 <strong>RFC 문서로 기록</strong>합니다. <strong>한·중·영</strong>으로 팀 전체가 같은 맥락을 공유합니다.</p>
+          <div class="tags mono"><span class="tag blue">한·중·영</span><span class="tag blue">RFC 문서화</span><span class="tag slate">데이터 기반</span></div>
+        </article>
+        <article class="about-c">
+          <span class="ibox io">CL</span>
+          <h3>취미 &amp; 라이프스타일</h3>
+          <p class="body-t"><strong>암벽 클라이밍</strong>을 즐깁니다. 최적의 루트를 분석하고 완등에 도전하는 과정은 <strong>엔지니어링 문제 해결</strong>과 닮아있습니다. 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.</p>
+          <div class="tags mono"><span class="tag orange">클라이밍</span><span class="tag orange">루트파인딩</span></div>
+        </article>
+      </div>
+
+      <!-- ── 기술 스택 ── -->
+      <h2 class="sec-h">기술 스택</h2>
+      <div class="skill-grid">
+        <article class="sk-panel sk-wide">
+          <div class="tl tl-a"></div>
+          <div class="sk-lbl mono"><span class="dot-a">●</span>&nbsp; 시스템 / 로우레벨</div>
+          <div class="chips">
+            <span class="chip tag accent"><i class="devicon-cplusplus-plain"></i> C / C++</span>
+            <span class="chip tag accent"><i class="devicon-java-plain"></i> Java</span>
+            <span class="chip tag accent">MIPS Assembly</span>
+            <span class="chip tag accent">OS Kernel</span>
+            <span class="chip tag accent">Compiler</span>
+          </div>
+        </article>
+        <article class="sk-panel">
+          <div class="tl tl-g"></div>
+          <div class="sk-lbl mono"><span class="dot-g">●</span>&nbsp; 백엔드 / 데이터베이스</div>
+          <div class="chips">
+            <span class="chip tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
+            <span class="chip tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+            <span class="chip tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
+            <span class="chip tag green"><i class="devicon-redis-plain"></i> Redis</span>
+          </div>
+        </article>
+        <article class="sk-panel">
+          <div class="tl tl-t"></div>
+          <div class="sk-lbl mono"><span class="dot-t">●</span>&nbsp; 프론트엔드 (웹 / 모바일)</div>
+          <div class="chips">
+            <span class="chip tag teal"><i class="devicon-react-original"></i> React Native</span>
+            <span class="chip tag teal"><i class="devicon-vuejs-plain"></i> Vue 3</span>
+            <span class="chip tag teal"><i class="devicon-typescript-plain"></i> TypeScript</span>
+          </div>
+        </article>
+        <article class="sk-panel">
+          <div class="tl tl-p"></div>
+          <div class="sk-lbl mono"><span class="dot-p">●</span>&nbsp; AI &amp; ML</div>
+          <div class="chips">
+            <span class="chip tag pink"><i class="devicon-python-plain"></i> Python</span>
+            <span class="chip tag pink">CNN-CBAM-GRU</span>
+            <span class="chip tag pink"><i class="devicon-fastapi-plain"></i> FastAPI</span>
+          </div>
+        </article>
+        <article class="sk-panel sk-wide">
+          <div class="tl tl-s"></div>
+          <div class="sk-lbl mono"><span class="dot-s">●</span>&nbsp; 인프라 / 협업</div>
+          <div class="chips">
+            <span class="chip tag slate"><i class="devicon-docker-plain"></i> Docker</span>
+            <span class="chip tag slate">MinIO</span>
+            <span class="chip tag slate"><i class="devicon-git-plain"></i> Git</span>
+            <span class="chip tag slate">RFC Docs</span>
+            <span class="chip tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
+            <span class="chip tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
+          </div>
+        </article>
+        <div class="sk-sum">
+          <div class="sk-si"><span>LANG</span><strong>6</strong><span>언어</span></div>
+          <div class="sk-si"><span>FW</span><strong>4</strong><span>프레임워크</span></div>
+          <div class="sk-si"><span>OPS</span><strong>6</strong><span>인프라 도구</span></div>
+          <div class="sk-si"><span>AI</span><strong>2</strong><span>AI 모델 구현</span></div>
+        </div>
+      </div>
+
+      <div class="intro-footer">
+        <span class="mono"><strong>조현준</strong> · Systems &amp; AI Full-Stack Engineer</span>
+        <span class="mono">© 2026 조현준 포트폴리오 · <span class="pii">BUAA</span> SW Engineering</span>
+      </div>
+
+    </div><!-- /.sheet (about + skills) -->
+
+
+    <!-- ════════════════════════════════════
+         PAGE 3: PROJECT 01 — MIPS OS Kernel
+    ════════════════════════════════════ -->
+    <div class="proj-sheet">
+
+      <div class="ph">
+        <div class="ph-top">
+          <div class="ph-num">01</div>
+          <div class="ph-info">
+            <h2 class="ph-title">BUAA OS — MIPS 마이크로커널 운영체제</h2>
+            <div class="ph-meta mono">
+              <span>2024.03 – 2024.07</span>
+              <span>BUAA OS Course</span>
+              <span>OS Kernel Developer · 1인 개발</span>
+            </div>
+            <div class="ph-tagline">
+              <span class="ph-summary">GXemul MIPS 시뮬레이터 위에서 커널 부팅 · 가상메모리 · CoW fork · 마이크로커널 FS를 7단계로 직접 구현</span>
+              <span class="ph-result">✓ Lab 0–6 전 단계 완주</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-wrap">
+        <div class="pb-left">
+          <p class="body-t">GXemul 환경에서 Lab0~Lab6의 7단계 커리큘럼을 따라 커널 부팅·메모리 관리·프로세스·시스템콜·IPC·파일시스템까지 OS의 핵심 구성요소를 단계적으로 직접 구현했습니다. 특히 <strong>TLB Fast Refill, Copy-on-Write 기반 fork(), 마이크로커널 파일시스템 구조</strong>를 구현하며 운영체제 핵심 메커니즘을 깊이 실습했습니다.</p>
+          <div>
+            <div class="mt mono">주요 개발 내용 (Lab 0 – Lab 6)</div>
+            <ul class="al">
+              <li><strong>커널 부팅 및 메모리 초기화 (Lab0–1):</strong> GXemul 부트스트랩 코드 작성, 물리 메모리 레이아웃 설정 및 커널 엔트리 포인트 초기화.</li>
+              <li><strong>가상 메모리 (Lab2):</strong> 2단계 페이지 테이블 기반 가상 주소 공간 설계, <strong>TLB Miss Fast Refill 핸들러</strong>를 어셈블리로 직접 작성해 TLB 관리 오버헤드 최소화.</li>
+              <li><strong>프로세스 스케줄링 (Lab3):</strong> PCB 설계, 라운드 로빈 스케줄러 구현, 컨텍스트 스위칭 시 레지스터 상태 저장·복원 로직 직접 작성.</li>
+              <li><strong>Copy-on-Write fork() (Lab4):</strong> 페이지 공유 후 쓰기 시 예외 기반 실제 복사가 일어나는 COW 메커니즘 적용, 지연 평가(Lazy Evaluation)로 메모리 복사 비용 최적화.</li>
+              <li><strong>Pipe IPC + 마이크로커널 FS (Lab5–6):</strong> 공유 페이지 기반 파이프 구현 및 <strong>독립된 FS 서버 프로세스와 IPC로 통신</strong>하는 마이크로커널 구조 구현.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-right">
+          <div class="ts">
+            <div class="ts-head">
+              <div class="ts-title">Pipe IPC — pageref 판정 레이스 컨디션 해결</div>
+              <span class="badge-p mono">Kernel / IPC</span>
+            </div>
+            <div class="ts-block">
+              <div class="tbl prob mono">상황</div>
+              <p class="ts-body"><code>dup()</code> · <code>close()</code> 실행 시, FD와 Pipe 페이지의 <strong>매핑·해제 순서</strong>에 따라 <code>pageref</code> 값이 일시적으로 의도와 다르게 관측되는 레이스 컨디션 발생.</p>
+            </div>
+            <div class="ts-block">
+              <div class="tbl alt mono">대안 탐색</div>
+              <p class="ts-body">인터럽트 비활성화로 임계 구간 보호 검토 → 성능 저하·설계 원칙 위배로 제외. <strong>매핑 순서 재배치(Reordering)로 불변식 유지</strong> 방안 선택.</p>
+            </div>
+            <div class="ts-block">
+              <div class="tbl sol mono">해결</div>
+              <p class="ts-body"><code>pageref(fd) ≤ pageref(pipe)</code> 조건이 어떤 순간에도 깨지지 않도록 <strong>unmap · map 순서를 조정</strong>했습니다.</p>
+            </div>
+          </div>
+          <div class="cb">
+            <div class="cb-top mono"><span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span><span class="cb-fn">pipe.c — Atomic-like Mapping</span></div>
+            <pre><code><span style="color:#5c6370;">// [Fix] FD를 먼저 해제하여
+// pageref(fd) > pageref(pipe) 찰나의 순간 방지</span>
+<span style="color:#c678dd;">void</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#c678dd;">int</span> fdnum) {
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd_to_va(fdnum));
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, pipe_to_va(fdnum));
+}</code></pre>
+          </div>
+          <div class="ta">
+            <div class="ta-t mono">알게된 점</div>
+            <p class="ta-body">선점형 스케줄링에서는 '완성된 결과'뿐만 아니라 <strong>'과정 중의 중간 상태'도 안전해야 함</strong>을 깨달았습니다. 불변식 보장을 코드 레벨에서 강제하는 습관을 만들었습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pf-bar">
+        <div class="tags mono">
+          <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C</span>
+          <span class="tag accent">MIPS Assembly</span>
+          <span class="tag slate">GXemul Simulator</span>
+          <span class="tag accent">Microkernel Architecture</span>
+          <span class="tag accent">IPC (Pipe)</span>
+          <span class="tag accent">Virtual Memory · TLB</span>
+          <span class="tag accent">CoW fork()</span>
+          <span class="tag accent">File System Server</span>
+        </div>
+      </div>
+
+    </div><!-- /.proj-sheet 01 -->
+
+
+    <!-- ════════════════════════════════════
+         PAGE 4: PROJECT 02 — Compiler
+    ════════════════════════════════════ -->
+    <div class="proj-sheet">
+
+      <div class="ph">
+        <div class="ph-top">
+          <div class="ph-num">02</div>
+          <div class="ph-info">
+            <h2 class="ph-title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h2>
+            <div class="ph-meta mono">
+              <span>2024.10 – 2025.01</span>
+              <span>BUAA Compiler Course</span>
+              <span>Compiler Engineer · 1인 개발</span>
+            </div>
+            <div class="ph-tagline">
+              <span class="ph-summary">Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현</span>
+              <span class="ph-result">✓ a–m 전 에러 범주 처리 달성</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-wrap">
+        <div class="pb-left">
+          <p class="body-t">SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 가상 머신(VM) 인터프리터</strong>까지 컴파일러 전체 파이프라인을 구현했습니다. 초기 단일 파일 구조에서 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTable</code>, <code>ErrorHandler</code>, <code>Interpreter</code> 모듈로 분리하며 <strong>객체지향적 설계와 유지보수성</strong>을 개선했습니다.</p>
+          <div>
+            <div class="mt mono">주요 개발 내용</div>
+            <ul class="al">
+              <li><strong>어휘 분석기(Lexer):</strong> <code>unordered_map</code>으로 키워드 판별 최적화, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스를 일관되게 토큰화.</li>
+              <li><strong>재귀 하향 파서(Parser):</strong> <code>CompUnit</code> 선행 탐색, <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱 구현.</li>
+              <li><strong>스코프 기반 심볼 테이블:</strong> 스코프 ID + 스택 구조로 변수 섀도잉, 함수 시그니처 불일치, 상수 재대입, 미선언 식별자 등 <strong>의미 오류를 컴파일 타임에 검출</strong>.</li>
+              <li><strong>Fault-Tolerant 에러 복구:</strong> 에러를 파싱 중단 사유가 아닌 '문맥 복귀 신호'로 재설계. <code>mLastNonT</code> 기준 복구로 연쇄 오류 출력 방지, 파싱 지속.</li>
+              <li><strong>P-Code VM:</strong> 산술·논리·분기·반복·함수 호출/반환·배열 인덱싱·I/O에 대한 자체 P-Code 명령어 셋 설계 및 스택 머신 인터프리터 구현.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-right">
+          <div class="ts">
+            <div class="ts-head">
+              <div class="ts-title">Fault-Tolerant 파서 — 연쇄 파싱 에러 및 중복 오진 문제 해결</div>
+              <span class="badge-p mono">Compiler / Parser</span>
+            </div>
+            <div class="ts-block">
+              <div class="tbl prob mono">상황</div>
+              <p class="ts-body"><code>int a int b;</code>처럼 세미콜론 누락 케이스를 처리하려고 에러 함수를 추가하면, 기존에 통과하던 정상 파싱까지 깨지는 문제 반복. <code>parseErrorI/J/K</code>가 <code>mCurToken</code>을 직접 소비하는 함수여서, 호출 순서가 조금만 바뀌어도 후속 구문이 엉뚱한 토큰에서 시작했습니다.</p>
+            </div>
+            <div class="ts-block">
+              <div class="tbl sol mono">해결</div>
+              <p class="ts-body">에러 함수를 <strong>토큰 소비형 / look-ahead형 / 심볼 등록형</strong>으로 분류. 복구 로직은 현재 위치 저장 → 토큰 미리 확인 → 원위치 복귀로 정리. 누락 토큰은 직전 의미 단위(<code>mLastNonT</code>) 기준 기록.</p>
+            </div>
+          </div>
+          <div class="cb">
+            <div class="cb-top mono"><span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span><span class="cb-fn">Parser.cpp — Error Recovery</span></div>
+            <pre><code><span style="color:#5c6370;">// parseErrorI/J/K 는 토큰 소비 함수</span>
+<span style="color:#c678dd;">bool</span> <span style="color:#61afef;">Parser::parseErrorI</span>() {
+  <span style="color:#c678dd;">if</span> (mCurToken.word != <span style="color:#98c379;">";"</span>) {
+    m_pErrorHandler-><span style="color:#61afef;">PushErrorList</span>(
+      <span style="color:#98c379;">'i'</span>, mLastNonT);  <span style="color:#5c6370;">// 마지막 위치 기준</span>
+    <span style="color:#c678dd;">return true</span>;
+  }
+  <span style="color:#61afef;">AdvanceToNextToken</span>();   <span style="color:#5c6370;">// ← 소비</span>
+  <span style="color:#c678dd;">return false</span>;
+}</code></pre>
+          </div>
+          <div class="ta">
+            <div class="ta-t mono">알게된 점</div>
+            <p class="ta-body">문제 해결 시 <strong>재현 가능한 최소 입력을 만들고, 상태를 바꾸는 함수와 읽기만 하는 함수를 구분</strong>해야 한다는 점을 배웠습니다. 에러 처리는 예외 출력보다 파서의 현재 위치·문맥 보존 설계가 더 중요했습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pf-bar">
+        <div class="tags mono">
+          <span class="tag accent"><i class="devicon-cplusplus-plain"></i> C++17</span>
+          <span class="tag accent"><i class="devicon-cmake-plain"></i> CMake</span>
+          <span class="tag accent">Lexer / Tokenizer</span>
+          <span class="tag accent">Recursive Descent Parser</span>
+          <span class="tag accent">Symbol Table · Scope Chain</span>
+          <span class="tag accent">P-Code VM · Stack Machine</span>
+          <span class="tag accent">Fault-Tolerant Error Recovery</span>
+        </div>
+      </div>
+
+    </div><!-- /.proj-sheet 02 -->
+
+
+    <!-- ════════════════════════════════════
+         PAGE 5: PROJECT 03 — Academic Platform
+    ════════════════════════════════════ -->
+    <div class="proj-sheet">
+
+      <div class="ph">
+        <div class="ph-top">
+          <div class="ph-num">03</div>
+          <div class="ph-info">
+            <h2 class="ph-title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h2>
+            <div class="ph-meta mono">
+              <span>2025.03 – 2025.08</span>
+              <span>BUAA SSAD Course</span>
+              <span>Backend / Full-Stack · 팀 프로젝트</span>
+            </div>
+            <div class="ph-tagline">
+              <span class="ph-summary">연구자 학술 성과 검색·분석 플랫폼 — ES · Redis · MinIO · Vector 5개 인프라 통합, 백엔드 전담</span>
+              <span class="ph-result">✓ API 응답 규약 통일로 프론트 파싱 오류 제거</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-wrap">
+        <div class="pb-left">
+          <p class="body-t">Vue 3 SPA + Spring Boot + PostgreSQL + Elasticsearch + Redis + MinIO + Vector Service를 연동하는 학술 성과 검색·분석 플랫폼입니다. <strong>백엔드 전담</strong>으로 인프라 통합 레이어 설계, 공통 API 응답 규약 정의, 프론트엔드-백엔드 인터페이스 연동을 담당했습니다. <code>docs/</code> 및 <code>RFC/</code>를 기반으로 전 과정의 문서를 명문화했습니다.</p>
+          <div>
+            <div class="mt mono">주요 개발 내용</div>
+            <ul class="al">
+              <li><strong>다중 인프라 통합 레이어:</strong> Spring Boot 3 (Java 21) 환경에서 PostgreSQL 18 · Elasticsearch · Redis · MinIO · Vector Service 5개 인프라를 하나의 백엔드로 통합 설계 및 구현.</li>
+              <li><strong>공통 API 응답 규약:</strong> <code>ResponseBodyAdvice</code>를 통한 응답 자동 래핑 (<code>code/message/data</code>) 및 <code>BusinessException</code> 상속 체계 기반의 전역 예외 처리 로직 구현 → 프론트 파싱 오류 제거.</li>
+              <li><strong>Controller 이중 레이어 구조:</strong> 계층 A(account · general · search · output) + 계층 B(scholar · analyze · announcement · storage · update)로 관심사 분리.</li>
+              <li><strong>스케줄러 / Background Tasks:</strong> metrics update · hot point sync · summary refresh를 비동기 스케줄러로 구현, 서비스 응답성 유지.</li>
+              <li><strong>RFC 문서화 체계:</strong> 팀 합의 내용을 RFC 문서로 기록, 한·중·영 3개국어 주석으로 팀 전체 컨텍스트 동기화.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-right">
+          <div class="ts">
+            <div class="ts-head">
+              <div class="ts-title">백엔드 실행 환경 파편화 및 API 응답 규약 불일치 해결</div>
+              <span class="badge-p mono">백엔드 / 협업</span>
+            </div>
+            <div class="ts-block">
+              <div class="tbl prob mono">상황</div>
+              <p class="ts-body">팀원 간 로컬 환경 설정 (.env · AI 모델 경로) 차이로 인한 <strong>인프라 기동 실패</strong> 발생. 개발자별로 상이한 API 응답 구조로 프론트엔드에서 데이터 파싱 오류가 빈번하게 나타났습니다.</p>
+            </div>
+            <div class="ts-block">
+              <div class="tbl sol mono">해결</div>
+              <p class="ts-body">README 기반 기동 프로세스를 확립하고, <strong><code>ResponseBodyAdvice</code>로 모든 응답을 <code>code/message/data</code> 구조로 자동 래핑</strong>하는 아키텍처 적용. 구두 약속 → 시스템 강제.</p>
+            </div>
+          </div>
+          <div class="cb">
+            <div class="cb-top mono"><span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span><span class="cb-fn">ResponseResultHandler.java</span></div>
+            <pre><code><span style="color:#c678dd;">@RestControllerAdvice</span>
+<span style="color:#c678dd;">public class</span> <span style="color:#e5c07b;">ResponseResultHandler</span>
+    <span style="color:#c678dd;">implements</span> <span style="color:#e5c07b;">ResponseBodyAdvice</span>&lt;Object&gt; {
+
+  <span style="color:#c678dd;">@Override</span>
+  <span style="color:#c678dd;">public</span> Object <span style="color:#61afef;">beforeBodyWrite</span>(Object body,...) {
+    <span style="color:#c678dd;">if</span> (body <span style="color:#c678dd;">instanceof</span> ResultWrapper)
+      <span style="color:#c678dd;">return</span> body;
+    <span style="color:#c678dd;">return</span> <span style="color:#61afef;">ResultWrapper.success</span>(body);
+  }
+}</code></pre>
+          </div>
+          <div class="ta">
+            <div class="ta-t mono">알게된 점</div>
+            <p class="ta-body">협업 시 휴먼 에러를 줄이려면 구두 약속보다 <strong>시스템(아키텍처)적으로 규약을 강제하는 설계</strong>가 팀 생산성에 더 크게 기여함을 체감했습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pf-bar">
+        <div class="tags mono">
+          <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
+          <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL 18</span>
+          <span class="tag green"><i class="devicon-elasticsearch-plain"></i> Elasticsearch</span>
+          <span class="tag green"><i class="devicon-redis-plain"></i> Redis</span>
+          <span class="tag slate">MinIO · Vector Service</span>
+          <span class="tag teal"><i class="devicon-vuejs-plain"></i> Vue 3 · TypeScript</span>
+          <span class="tag slate"><i class="devicon-docker-plain"></i> Docker Compose</span>
+          <span class="tag slate">OpenAlex / ORCID API</span>
+        </div>
+      </div>
+
+    </div><!-- /.proj-sheet 03 -->
+
+
+    <!-- ════════════════════════════════════
+         PAGE 6: PROJECT 04 — CareLink
+    ════════════════════════════════════ -->
+    <div class="proj-sheet">
+
+      <div class="ph">
+        <div class="ph-top">
+          <div class="ph-num">04</div>
+          <div class="ph-info">
+            <h2 class="ph-title">CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼 <span class="ph-extra mono">논문</span></h2>
+            <div class="ph-meta mono">
+              <span>2025.10 – 2026.03</span>
+              <span>3-Tier 시스템 통합 및 AI 모델 구축 · 1인 개발</span>
+            </div>
+            <div class="ph-tagline">
+              <span class="ph-summary">모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI) 3-Tier를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단</span>
+              <span class="ph-result">✓ ECG AUC 92.52% · TPS 66 · AWS 배포</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pb-wrap">
+        <div class="pb-left">
+          <p class="body-t">환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. <strong>3-Tier 분리 구조</strong>(비즈니스 로직 + AI 고부하 연산 분리)를 단독 설계하고 구현했습니다. PTB-XL 기반 ECG 분류 모델(<strong>CNN-CBAM-GRU</strong>) AUC 92.52% 달성, FastAPI 추론 서버와 통합해 실시간 진단 기능을 구현했습니다.</p>
+          <div>
+            <div class="mt mono">주요 개발 내용 &amp; 성능 지표</div>
+            <ul class="al">
+              <li><strong>3-Tier 아키텍처:</strong> React Native / Spring Boot 3 / FastAPI + PyTorch. 비즈니스 로직과 AI 고부하 연산을 컨테이너 레벨에서 분리해 운영 안정성 확보. AWS EC2 + Docker Compose 배포.</li>
+              <li><strong>ECG 진단 모델 (CNN-CBAM-GRU):</strong> PTB-XL 21,837 records · 12-lead · 500Hz. 5개 슈퍼클래스 멀티라벨 분류. <strong>Macro AUC 92.52%</strong> · Macro F1 74.52% · 0.65M 파라미터. 비대칭 손실 + pos_weight 클래스 불균형 보정.</li>
+              <li><strong>TPS 성능:</strong> 20명 동시 접속 부하 테스트에서 <strong>TPS 56.23~66.41</strong>. 추론 속도 평균 2,382ms · P95 2,698ms.</li>
+              <li><strong>Cache-First 전략:</strong> AsyncStorage 기반 적용 후 Home 첫 표시 <strong>평균 0.29ms</strong>, 네트워크 동기화 완료 평균 604ms.</li>
+              <li><strong>JWT 인증 + 보호자 연결:</strong> 401 만료 자동 로그아웃 흐름 구현, 보호자-환자 실시간 연결 API 설계.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-right">
+          <div class="ts">
+            <div class="ts-head">
+              <div class="ts-title">Ubuntu EC2 로그 추적으로 ECG 분석 API 500 원인 해결</div>
+              <span class="badge-p mono">Ubuntu / Docker Logs</span>
+            </div>
+            <div class="ts-block">
+              <div class="tbl prob mono">① 증상</div>
+              <p class="ts-body"><code>POST /api/ecg/analyze</code>가 간헐적으로 500 반환. 백엔드 로그에 <code>/predict_window</code> 요청이 <strong>Connection refused</strong>로 실패 기록.</p>
+            </div>
+            <div class="ts-block">
+              <div class="tbl sol mono">② 추적 · 원인</div>
+              <p class="ts-body"><code>docker logs carelink-ai</code>로 AI 컨테이너 종료 확인 → 모델 파일 경로 누락으로 FastAPI lifespan 실패. 저사양 EC2에서 이미지 빌드 + AI 로딩 겹치며 OOM 가능성 확인.</p>
+            </div>
+            <div class="ts-block">
+              <div class="tbl sol mono">③ 해결</div>
+              <p class="ts-body">모델 파일 경로를 배포 체크리스트에 추가. 운영 EC2는 <strong>Pull-only 배포</strong>로 전환. <code>mem_limit</code> + AI 컨테이너 <strong>profile 분리</strong>로 필요할 때만 추론 서비스 실행.</p>
+            </div>
+          </div>
+          <div class="cb">
+            <div class="cb-top mono"><span class="cb-dot r"></span><span class="cb-dot y"></span><span class="cb-dot g"></span><span class="cb-fn">Ubuntu EC2 — Log Trace</span></div>
+            <pre><code><span style="color:#5c6370;"># 1. 백엔드→AI 호출 실패 확인</span>
+docker logs carelink-backend --tail=100
+<span style="color:#e06c75;">I/O error</span> on POST http://ai:8000/predict_window
+
+<span style="color:#5c6370;"># 2. AI 컨테이너 종료 원인</span>
+docker ps -a | grep carelink-ai
+docker logs carelink-ai --tail=50
+
+<span style="color:#5c6370;"># 3. OOM 여부 커널 로그 확인</span>
+sudo journalctl -k | grep "out of memory"</code></pre>
+          </div>
+          <div class="ta">
+            <div class="ta-t mono">알게된 점</div>
+            <p class="ta-body">문제 해결 우선순위: <strong>증상 재현 → 앱 로그 → 컨테이너 상태 → OS 커널 로그</strong> 순서로 좁히는 습관을 만들었습니다. API 500도 코드만 보지 않고 인프라 자원까지 확인해야 했습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pf-bar">
+        <div class="tags mono">
+          <span class="tag teal"><i class="devicon-react-original"></i> React Native · Expo</span>
+          <span class="tag green"><i class="devicon-spring-original"></i> Spring Boot 3</span>
+          <span class="tag pink"><i class="devicon-fastapi-plain"></i> FastAPI · PyTorch</span>
+          <span class="tag pink"><i class="devicon-python-plain"></i> CNN-CBAM-GRU</span>
+          <span class="tag green"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+          <span class="tag slate"><i class="devicon-amazonwebservices-original"></i> AWS EC2</span>
+          <span class="tag slate"><i class="devicon-docker-plain"></i> Docker</span>
+          <span class="tag slate"><i class="devicon-githubactions-plain"></i> GitHub Actions</span>
+        </div>
+      </div>
+
+    </div><!-- /.proj-sheet 04 -->
+
+  </div><!-- /.sheets -->
+
+</body>
+</html>
