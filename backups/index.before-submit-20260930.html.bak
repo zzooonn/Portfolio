@@ -1,0 +1,1700 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>조현준 | Software Engineer · Backend · AI · Embedded</title>
+    <meta name="description" content="조현준 포트폴리오 — OS 커널·컴파일러, Spring Boot 백엔드, ECG AI 추론 서버, STM32·RTOS 임베디드." />
+
+    <!-- ── Canonical ── -->
+    <link rel="canonical" href="https://zoonc.github.io/portfolio/" />
+
+    <!-- ── Open Graph / SNS 공유 미리보기 ── -->
+    <meta property="og:type"        content="profile" />
+    <meta property="og:title"       content="조현준 | Software Engineer · Backend · AI · Embedded" />
+    <meta property="og:description" content="조현준 포트폴리오 — OS 커널·컴파일러, Spring Boot 백엔드, ECG AI 추론 서버, STM32·RTOS 임베디드." />
+    <meta property="og:locale"      content="ko_KR" />
+    <meta property="profile:first_name" content="현준" />
+    <meta property="profile:last_name"  content="조" />
+
+    <!-- ── Twitter Card ── -->
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:title"       content="조현준 | Software Engineer · Backend · AI · Embedded" />
+    <meta name="twitter:description" content="조현준 포트폴리오 — OS 커널·컴파일러, Spring Boot 백엔드, ECG AI 추론 서버, STM32·RTOS 임베디드." />
+
+    <!-- ── Schema.org JSON-LD 구조화 데이터 ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "조현준",
+      "url": "https://zoonc.github.io/portfolio/",
+      "jobTitle": "Software Engineer · Backend · AI · Embedded",
+      "description": "OS 커널, 컴파일러, ECG AI 모델(AUC 92.52%)을 직접 구현한 시스템·AI 엔지니어.",
+      "knowsAbout": [
+        "OS Kernel Development", "Compiler Design", "MIPS Assembly",
+        "C / C++", "Java", "Spring Boot", "React Native", "Vue 3",
+        "TypeScript", "Python", "CNN-CBAM-GRU", "FastAPI",
+        "Docker", "AWS EC2", "PostgreSQL", "Elasticsearch", "Redis",
+        "STM32", "RTOS", "CAN", "Embedded Linux"
+      ],
+      "knowsLanguage": [
+        { "@type": "Language", "name": "Korean",  "alternateName": "ko" },
+        { "@type": "Language", "name": "Chinese", "alternateName": "zh" },
+        { "@type": "Language", "name": "English", "alternateName": "en" }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;600&display=swap" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f7f7f5;
+        --text: #1d1f23;
+        --muted: #4a5059;
+        --faint: #6b717a;
+        --line: #e4e4e0;
+        --accent: #1f4f8a;
+        --code-bg: #16181d;
+        --sans: "Pretendard Variable", Pretendard, "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --mono: "JetBrains Mono", "Pretendard Variable", Pretendard, monospace;
+        --nav-h: 56px;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 17px;
+        line-height: 1.8;
+        letter-spacing: -0.003em;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
+      }
+      html[lang="zh-Hans"] body { font-family: "Noto Sans SC", var(--sans); }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; }
+      strong { font-weight: 600; }
+      h1, h2, h3, h4 { margin: 0; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+      p { margin: 0; }
+      .mono { font-family: var(--mono); }
+      code {
+        font-family: var(--mono);
+        font-size: .88em;
+        padding: .1em .35em;
+        border-radius: 4px;
+        background: #f0f0ec;
+        color: var(--text);
+      }
+      .container { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+      /* 개인정보 블러 */
+      .pii { filter: blur(6px); user-select: none; -webkit-user-select: none; display: inline-block; transition: filter .2s; }
+      .pii-img { filter: blur(18px); transition: filter .2s; }
+      body.pii-off .pii, body.pii-off .pii-img { filter: none; user-select: auto; -webkit-user-select: auto; }
+
+      /* 상단 유틸리티 바 (블러 안내 · 언어 · 블러 토글) */
+      .blur-notice-bar { background: var(--bg-soft); border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+      .blur-notice-bar .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 36px; flex-wrap: wrap; }
+      .utility { display: flex; align-items: center; gap: 16px; }
+
+      /* 개인정보 보호 스위치 */
+      .privacy-switch { display: inline-flex; align-items: center; gap: 8px; border: 0; background: none; padding: 4px 0; font: inherit; font-size: 14px; color: var(--text); cursor: pointer; }
+      .switch-track { position: relative; width: 34px; height: 20px; border-radius: 999px; background: #cfd2d6; transition: background .2s; flex: none; }
+      .switch-thumb { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s; }
+      .privacy-switch[aria-checked="true"] .switch-track { background: #1f4f8a; }
+      .privacy-switch[aria-checked="true"] .switch-thumb { transform: translateX(14px); }
+      .privacy-switch:focus-visible { outline: 2px solid #1f4f8a; outline-offset: 3px; border-radius: 4px; }
+      .switch-label { font-weight: 600; }
+      .switch-state { color: var(--muted); font-size: 13px; min-width: 2.5em; text-align: left; }
+      .notice-left { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+      .notice-sub { color: var(--muted); }
+      body.pii-off .notice-sub { display: none; }
+
+      /* 언어 세그먼트 토글 */
+      .lang-switcher { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--line); border-radius: 999px; background: #fff; }
+      .lang-btn { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; padding: 4px 12px; font: inherit; font-size: 14px; color: var(--muted); cursor: pointer; border-radius: 999px; transition: background .15s, color .15s; }
+      .lang-btn:hover { color: var(--text); background: #f1f1ee; }
+      .lang-btn.active { color: #fff; background: #1d1f23; font-weight: 600; }
+      .lang-btn:focus-visible { outline: 2px solid #1f4f8a; outline-offset: 2px; }
+      .flag { width: 21px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.12); flex: none; display: block; }
+      @media (max-width: 560px) {
+        .blur-notice-bar .container { padding-top: 6px; padding-bottom: 6px; }
+        .notice-sub { display: none; }
+        .lang-btn { padding: 4px 9px; }
+      }
+
+      /* 내비게이션 */
+      .site-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+      .nav-inner { display: flex; align-items: center; height: var(--nav-h); gap: 32px; }
+      .brand { font-weight: 700; font-size: 17px; text-decoration: none; }
+      .nav-links { display: flex; gap: 24px; margin-right: auto; }
+      .nav-link { font-size: 15px; color: var(--muted); text-decoration: none; }
+      .nav-link:hover, .nav-link.active { color: var(--text); }
+      .nav-actions { display: flex; align-items: center; gap: 8px; }
+      .button {
+        display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        height: 38px; padding: 0 16px; border: 1px solid var(--line); border-radius: 6px;
+        background: var(--bg); color: var(--text); font: inherit; font-size: 15px; font-weight: 500;
+        text-decoration: none; cursor: pointer; white-space: nowrap;
+      }
+      .button:hover { border-color: #c9c9c3; }
+      .button.primary { background: var(--text); border-color: var(--text); color: #fff; }
+      .button.primary:hover { background: #000; }
+      .button[aria-disabled="true"] { color: var(--faint); background: var(--bg-soft); cursor: not-allowed; }
+      .nav-hamburger { display: none; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; }
+      .nav-hamburger span { display: block; width: 14px; height: 1.5px; background: var(--text); }
+      .nav-drawer { display: none; }
+
+      /* 히어로 */
+      .hero { padding: 72px 0 64px; }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 176px; gap: 56px; align-items: start; }
+      .hero-title { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
+      .hero-intro { max-width: 34em; font-size: 19.5px; line-height: 1.8; color: #3d424a; }
+      .hero-intro strong { color: var(--text); }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+      .hero-card-mark { width: 176px; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 6px; background: var(--bg-soft); }
+      .hero-card-mark img { width: 100%; height: 100%; object-fit: cover; }
+      .hero-card-subtitle { margin-top: 12px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+      .badge-row { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+      .badge-row .tag { font-size: 14px; }
+
+      /* 섹션: 왼쪽 제목 / 오른쪽 본문 */
+      .section { border-top: 1px solid var(--line); padding: 56px 0; }
+      .section > .container { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 40px; }
+      .section-heading { font-size: 21px; font-weight: 700; }
+      .section-body { min-width: 0; }
+
+      /* 태그: 가운뎃점으로 구분된 평문 */
+      .tag-list, .chip-list, .badge-row { list-style: none; }
+      .tag-list, .chip-list { display: flex; flex-wrap: wrap; row-gap: 2px; }
+      .tag { font-size: 15px; color: var(--muted); }
+      .tag-list .tag:not(:last-child)::after, .chip-list .tag:not(:last-child)::after { content: "·"; margin: 0 8px; color: var(--faint); }
+      .chip { font-size: 16.5px; color: var(--text); }
+
+      /* 학력 & 어학 */
+      .panel-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+      .card-header h3 { font-size: 14px; font-weight: 600; color: var(--faint); margin-bottom: 14px; }
+      .timeline-item + .timeline-item { margin-top: 20px; }
+      .timeline-point { display: none; }
+      .timeline-item h4 { font-size: 17.5px; font-weight: 600; }
+      .timeline-item p { font-size: 16px; color: var(--muted); }
+      .timeline-item small, .cert-copy small { display: block; font-size: 15px; color: var(--faint); font-variant-numeric: tabular-nums; }
+      .timeline-item .tag { display: inline-block; margin-top: 4px; }
+      .cert-list { display: flex; flex-direction: column; gap: 20px; }
+      .cert-card { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+      .cert-copy h4 { font-size: 17.5px; font-weight: 600; }
+      .cert-copy h4 .tag { margin-left: 6px; font-weight: 400; }
+      .cert-copy p { font-size: 16px; color: var(--muted); }
+      .cert-dl-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; color: var(--faint); cursor: not-allowed; white-space: nowrap; }
+
+      /* 나에 대해 */
+      .about-grid { display: flex; flex-direction: column; gap: 28px; max-width: 720px; }
+      .about-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+      .about-card .tag-list { margin-top: 8px; }
+
+      /* 기술 스택 */
+      .skill-grid { display: flex; flex-direction: column; }
+      .skill-panel { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .skill-panel:first-child { padding-top: 0; }
+      .skill-label { font-size: 15.5px; color: var(--muted); padding-top: 1px; }
+      .hint-lead { margin-bottom: 28px; max-width: 720px; }
+      .hint-note { margin-top: 20px; font-size: 14.5px; color: var(--faint); }
+
+      /* 프로젝트 */
+      .project-card { border-bottom: 1px solid var(--line); }
+      .project-card:first-of-type { border-top: 1px solid var(--line); }
+      .project-toggle {
+        display: grid; grid-template-columns: 32px minmax(0, 1fr) 20px; gap: 12px; align-items: start;
+        width: 100%; padding: 24px 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer;
+      }
+      .project-index { font-size: 15px; color: var(--faint); padding-top: 3px; }
+      .project-head h3 { font-size: 21px; font-weight: 700; }
+      .project-toggle:hover h3 { color: var(--accent); }
+      .project-meta { margin-top: 4px; font-size: 15px; color: var(--muted); }
+      .project-meta span + span::before { content: "·"; margin: 0 8px; color: var(--faint); }
+      .project-tagline { margin-top: 8px; display: flex; flex-direction: column; gap: 2px; }
+      .tagline-summary { font-size: 16.5px; color: #3d424a; }
+      .tagline-result { font-size: 15px; color: var(--accent); font-weight: 500; }
+      .project-chevron { color: var(--faint); padding-top: 4px; transition: transform .2s; }
+      .project-card.is-open .project-chevron { transform: rotate(180deg); }
+      .project-body { display: none; }
+      .project-card.is-open .project-body { display: block; }
+      .project-inner { padding: 0 0 40px 44px; max-width: 820px; display: flex; flex-direction: column; gap: 28px; }
+      .body-text { font-size: 17px; }
+      .minor-title { font-size: 17.5px; font-weight: 700; margin-bottom: 10px; }
+      .arrow-list { margin: 0; padding-left: 18px; }
+      .arrow-list li { margin: 8px 0; }
+      .arrow-list li::marker { color: var(--faint); }
+
+      /* 트러블슈팅 */
+      .troubleshoot { padding-left: 16px; border-left: 2px solid var(--line); }
+      .troubleshoot-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 12px; }
+      .troubleshoot-title { font-size: 18px; font-weight: 600; }
+      .badge-primary { font-size: 14px; color: var(--faint); }
+      .troubleshoot-grid { display: flex; flex-direction: column; gap: 16px; }
+      .troubleshoot-grid > div { display: flex; flex-direction: column; gap: 12px; }
+      .trouble-label { font-size: 15px; font-weight: 600; color: var(--muted); margin-bottom: 2px; }
+      .troubleshoot .body-text { font-size: 16.5px; }
+      .code-box { border-radius: 6px; background: var(--code-bg); overflow: hidden; }
+      .code-top { padding: 8px 14px; border-bottom: 1px solid #2a2d34; font-size: 13px; color: #a9afb7; }
+      .code-top .dot { display: none; }
+      .code-box pre { margin: 0; padding: 14px 16px; overflow-x: auto; color: #d6d9de; font-family: var(--mono); font-size: 14px; line-height: 1.7; }
+      .code-box pre code { padding: 0; background: none; color: inherit; font-size: inherit; border-radius: 0; }
+      .takeaway { padding: 2px 0 2px 14px; border-left: 2px solid var(--accent); }
+      .takeaway-title { font-size: 15px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+      .takeaway .body-text { font-size: 16.5px; }
+
+      /* 아키텍처 다이어그램 */
+      .svg-wrap { border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .svg-wrap p { padding: 10px 14px 0; font-size: 14px; color: var(--faint); }
+      .svg-wrap svg { display: block; min-width: 560px; }
+
+      /* 푸터 */
+      .footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 15px; color: var(--muted); }
+      .footer-top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+      .footer-top > div:empty { display: none; }
+      .footer-brand-stack strong { display: block; color: var(--text); font-size: 16px; }
+      .footer-brand-stack small { font-size: 14px; }
+      .footer-nav { display: flex; gap: 20px; }
+      .footer-nav a { text-decoration: none; }
+      .footer-nav a:hover { color: var(--text); }
+      .footer-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+      .footer-actions { display: flex; gap: 12px; }
+      .icon-link { color: var(--faint); text-decoration: none; cursor: not-allowed; }
+      a.icon-link { cursor: pointer; color: var(--muted); }
+
+      @media (max-width: 860px) {
+        .nav-links { display: none; }
+        .nav-actions .print-button, .nav-actions .button.dark { display: none; }
+        .nav-hamburger { display: flex; }
+        .nav-actions { margin-left: auto; }
+        .nav-drawer.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; padding: 8px 24px 16px; background: var(--bg); border-bottom: 1px solid var(--line); }
+        .drawer-link { padding: 10px 0; text-decoration: none; border-bottom: 1px solid var(--line); }
+        .drawer-actions { display: flex; gap: 8px; margin-top: 12px; }
+        .section > .container { grid-template-columns: 1fr; gap: 20px; }
+        .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+        .hero-card { display: grid; grid-template-columns: 72px minmax(0, 1fr); column-gap: 16px; align-items: center; }
+        .hero-card-mark { width: 72px; grid-row: span 2; }
+        .hero-card-subtitle { margin-top: 0; }
+        .badge-row { flex-direction: row; flex-wrap: wrap; gap: 0; margin-top: 2px; }
+        .badge-row .tag:not(:last-child)::after { content: "·"; margin: 0 6px; color: var(--faint); }
+        .panel-grid-2 { grid-template-columns: 1fr; gap: 32px; }
+        .skill-panel { grid-template-columns: 1fr; gap: 2px; }
+        .project-inner { padding-left: 0; }
+      }
+      @media (max-width: 560px) {
+        .container { padding: 0 16px; }
+        .hero { padding: 40px 0 48px; }
+        .hero-title { font-size: 34px; }
+        .hero-intro { font-size: 17.5px; }
+        body { font-size: 16.5px; }
+        .project-head h3 { font-size: 19px; }
+        .hero-actions .button { flex: 1 1 auto; }
+        .notice-text [data-i18n="pii.banner.sub"] { display: none; }
+        .project-toggle { grid-template-columns: minmax(0, 1fr) 20px; }
+        .project-index { display: none; }
+      }
+
+      @page { size: A4; margin: 14mm; }
+      @media print {
+        .blur-notice-bar, .site-nav, .hero-actions, .project-chevron, .footer, .svg-wrap { display: none !important; }
+        body { font-size: 10pt; }
+        .pii, .pii-img { filter: none !important; }
+        .hero { padding: 0 0 6mm; }
+        .section { padding: 6mm 0; break-inside: auto; }
+        .project-body { display: block !important; }
+        .project-toggle { padding: 4mm 0 2mm; }
+        .project-inner { padding-bottom: 6mm; }
+        .code-box, .troubleshoot, .takeaway { break-inside: avoid; }
+        .code-box { background: #f5f5f2 !important; }
+        .code-box pre, .code-box pre span { color: #1d1f23 !important; }
+      }
+    </style>
+  </head>
+  <body class="pii-off">
+
+    <!-- 개인정보 보호 배너 -->
+    <div class="blur-notice-bar">
+      <div class="container">
+        <div class="notice-left">
+          <button class="privacy-switch" id="blur-toggle" type="button" role="switch" aria-checked="false">
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+            <span class="switch-label" data-i18n="pii.banner.title">개인정보 보호</span>
+            <span class="switch-state" id="blur-state">꺼짐</span>
+          </button>
+          <span class="notice-sub" data-i18n="pii.banner.sub"> — 학력·학교명·졸업연도·나이·연락처·사진을 가렸습니다</span>
+        </div>
+        <div class="utility">
+          <div class="lang-switcher" id="lang-switcher" role="group" aria-label="Language">
+            <button class="lang-btn active" data-lang="ko" type="button" aria-pressed="true"><svg class="flag" viewBox="-36 -24 72 48" aria-hidden="true"><rect x="-36" y="-24" width="72" height="48" fill="#fff"/><g transform="rotate(33.69)"><path d="M-12 0a12 12 0 0 1 24 0z" fill="#cd2e3a"/><path d="M-12 0a12 12 0 0 0 24 0z" fill="#0047a0"/><circle cx="-6" r="6" fill="#0047a0"/><circle cx="6" r="6" fill="#cd2e3a"/></g><g fill="#000"><g transform="translate(-24.5 -16.3) rotate(-56.31)"><rect x="-6" y="-4" width="12" height="2"/><rect x="-6" y="-1" width="12" height="2"/><rect x="-6" y="2" width="12" height="2"/></g><g transform="translate(24.5 16.3) rotate(-56.31)"><rect x="-6" y="-4" width="12" height="2"/><rect x="-6" y="-1" width="12" height="2"/><rect x="-6" y="2" width="12" height="2"/></g><g transform="translate(24.5 -16.3) rotate(56.31)"><rect x="-6" y="-4" width="12" height="2"/><rect x="-6" y="-1" width="12" height="2"/><rect x="-6" y="2" width="12" height="2"/></g><g transform="translate(-24.5 16.3) rotate(56.31)"><rect x="-6" y="-4" width="12" height="2"/><rect x="-6" y="-1" width="12" height="2"/><rect x="-6" y="2" width="12" height="2"/></g></g></svg><span>한국어</span></button>
+            <button class="lang-btn" data-lang="en" type="button" aria-pressed="false"><svg class="flag" viewBox="0 0 38 13" preserveAspectRatio="none" aria-hidden="true"><rect width="38" height="13" fill="#fff"/><rect y="0" width="38" height="1" fill="#b22234"/><rect y="2" width="38" height="1" fill="#b22234"/><rect y="4" width="38" height="1" fill="#b22234"/><rect y="6" width="38" height="1" fill="#b22234"/><rect y="8" width="38" height="1" fill="#b22234"/><rect y="10" width="38" height="1" fill="#b22234"/><rect y="12" width="38" height="1" fill="#b22234"/><rect width="15.2" height="7" fill="#3c3b6e"/><circle cx="1.6" cy="1.1" r=".35" fill="#fff"/><circle cx="3.8" cy="1.1" r=".35" fill="#fff"/><circle cx="6.0" cy="1.1" r=".35" fill="#fff"/><circle cx="8.2" cy="1.1" r=".35" fill="#fff"/><circle cx="10.4" cy="1.1" r=".35" fill="#fff"/><circle cx="12.6" cy="1.1" r=".35" fill="#fff"/><circle cx="1.6" cy="2.7" r=".35" fill="#fff"/><circle cx="3.8" cy="2.7" r=".35" fill="#fff"/><circle cx="6.0" cy="2.7" r=".35" fill="#fff"/><circle cx="8.2" cy="2.7" r=".35" fill="#fff"/><circle cx="10.4" cy="2.7" r=".35" fill="#fff"/><circle cx="12.6" cy="2.7" r=".35" fill="#fff"/><circle cx="1.6" cy="4.3" r=".35" fill="#fff"/><circle cx="3.8" cy="4.3" r=".35" fill="#fff"/><circle cx="6.0" cy="4.3" r=".35" fill="#fff"/><circle cx="8.2" cy="4.3" r=".35" fill="#fff"/><circle cx="10.4" cy="4.3" r=".35" fill="#fff"/><circle cx="12.6" cy="4.3" r=".35" fill="#fff"/></svg><span>English</span></button>
+            <button class="lang-btn" data-lang="zh" type="button" aria-pressed="false"><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#ee1c25"/><g fill="#ffff00"><polygon points="5.00,2.00 5.67,4.07 7.85,4.07 6.09,5.35 6.76,7.43 5.00,6.15 3.24,7.43 3.91,5.35 2.15,4.07 4.33,4.07"/><polygon points="10.39,1.08 10.33,1.80 11.00,2.09 10.29,2.25 10.22,2.97 9.85,2.35 9.14,2.52 9.62,1.97 9.25,1.34 9.91,1.63"/><polygon points="12.72,3.31 12.38,3.95 12.88,4.47 12.17,4.34 11.83,4.98 11.73,4.27 11.01,4.14 11.66,3.82 11.56,3.10 12.07,3.62"/><polygon points="12.94,6.66 12.37,7.11 12.62,7.79 12.01,7.38 11.44,7.83 11.64,7.13 11.04,6.72 11.76,6.70 11.97,6.00 12.21,6.68"/><polygon points="10.36,8.07 10.32,8.79 11.00,9.05 10.30,9.24 10.26,9.97 9.86,9.36 9.16,9.54 9.62,8.98 9.22,8.37 9.90,8.63"/></g></svg><span>中文</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="site-nav" id="site-nav">
+      <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="맨 위로 이동">
+          <span class="brand-name" data-i18n="name">조현준</span>
+        </a>
+        <div class="nav-links" id="nav-links">
+          <a class="nav-link" href="#edu" data-section="edu" data-i18n="nav.edu">학력 / 어학</a>
+          <a class="nav-link" href="#about" data-section="about" data-i18n="nav.about">나에 대해</a>
+          <a class="nav-link" href="#skills" data-section="skills" data-i18n="nav.skills">기술 스택</a>
+          <a class="nav-link" href="#projects" data-section="projects" data-i18n="nav.projects">프로젝트</a>
+          <a class="nav-link" href="#hint" data-section="hint" data-i18n="nav.hint">임베디드</a>
+        </div>
+        <div class="nav-actions">
+          <a class="button dark"
+                href="https://github.com/zzooonn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+      <div class="nav-drawer" id="nav-drawer">
+        <a class="drawer-link" href="#edu"><span data-i18n="nav.edu">학력 / 어학</span></a>
+        <a class="drawer-link" href="#about"><span data-i18n="nav.about">나에 대해</span></a>
+        <a class="drawer-link" href="#skills"><span data-i18n="nav.skills">기술 스택</span></a>
+        <a class="drawer-link" href="#projects"><span data-i18n="nav.projects">프로젝트</span></a>
+        <a class="drawer-link" href="#hint"><span data-i18n="nav.hint">임베디드</span></a>
+        <div class="drawer-divider"></div>
+        <div class="drawer-actions">
+          <a class="button dark" href="https://github.com/zzooonn"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub" style="flex:1">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1 class="hero-title" data-i18n="name">조현준</h1>
+              <p class="hero-intro" data-i18n-html="hero.intro">
+                OS 커널부터 ECG AI 추론 서버까지 여러 층을 만들며, <strong>"비정상일 때 시스템은 어떻게 행동해야 하는가"</strong>를 파고들어 왔습니다.
+              </p>
+              <div class="hero-actions">
+                <a class="button primary" href="#projects" data-i18n="hero.cta.projects">프로젝트 보기</a>
+                <a class="button" href="mailto:kevinjo11@naver.com"
+                      data-i18n="hero.cta.contact">연락하기</a>
+              </div>
+            </div>
+            <div class="hero-card-wrap">
+              <article class="hero-card">
+                <div class="hero-card-mark">
+                  <img src="assets/images/photo.jpg" alt="조현준" data-i18n-alt="name" class="pii-img" width="160" height="160" loading="lazy" decoding="async" />
+                </div>
+                <p class="hero-card-subtitle">Software Engineer · Backend · AI · Embedded</p>
+                <div class="badge-row">
+                  <span class="tag green">TSC Lv.6(CN)</span>
+                  <span class="tag teal">OPIc IH(ENG)</span>
+                  <span class="tag accent"><span class="pii">BUAA · SW Engineering</span></span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="edu" class="section">
+        <div class="container">
+          <h2 class="section-heading" data-i18n="section.edu">학력 &amp; 어학</h2>
+          <div class="section-body">
+          <div class="panel-grid-2">
+            <article class="info-card">
+              
+              <div class="card-header"><h3 data-i18n="edu.education">학력 · 교육</h3></div>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <span class="timeline-point">●</span>
+                  <h4><span class="pii">北京汇文中学</span></h4>
+                  <p data-i18n-html="edu.school1.p"><span class="pii">북경 회문고등학교</span></p>
+                  <small><span class="pii">2017.09 – 2020.07</span></small>
+                  <div><span class="tag accent pii" data-i18n="edu.school1.tag">150년 전통 북경 동성구 명문 공립고교</span></div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-point">●</span>
+                  <h4><span class="pii">北京航空航天大学 (BUAA)</span></h4>
+                  <p class="pii" data-i18n="edu.school2.p">软件学院 (School of Software) · 학사</p>
+                  <small class="pii" data-i18n="edu.school2.small">2020.09 – 2026.07 (졸업)</small>
+                  <div><span class="tag accent pii" data-i18n="edu.school2.tag">소프트웨어공학 전국 1위 (A+)</span></div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-point">●</span>
+                  <h4 data-i18n="edu.hint.title">현대자동차그룹 K-뉴딜 아카데미 HINT</h4>
+                  <p data-i18n="edu.hint.p">임베디드 SW 과정 · 교육생</p>
+                  <small data-i18n="edu.hint.small">2026.07.27 – 2026.10.22 (수강 중)</small>
+                  <div><span class="tag accent" data-i18n="edu.hint.tag">STM32 · RTOS · CAN · 임베디드 Linux · 차량 사이버보안</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card">
+              
+              <div class="card-header"><h3 data-i18n="edu.lang">어학</h3></div>
+              <div class="cert-list">
+                <div class="cert-card">
+                  <div class="cert-copy">
+                    <h4 data-i18n-html="edu.tsc.title">TSC 중국어 회화 <span class="tag green">Level 6</span></h4>
+                    <p data-i18n="edu.tsc.desc">원어민 수준 비즈니스 커뮤니케이션</p>
+                    <small>ID: <span class="pii">100318</span> · 2025.10.25</small>
+                  </div>
+                  <span class="cert-dl-btn" title="개인정보 보호를 위해 비활성화됨">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    PDF
+                  </span>
+                </div>
+                <div class="cert-card">
+                  <div class="cert-copy">
+                    <h4 data-i18n-html="edu.opic.title">OPIc 영어 회화 <span class="tag teal">IH · Intermediate High</span></h4>
+                    <p data-i18n="edu.opic.desc">업무 환경에서 유창한 영어 소통</p>
+                    <small>ID: <span class="pii">2C5955731527</span> · 2025.12.22</small>
+                  </div>
+                  <span class="cert-dl-btn" title="개인정보 보호를 위해 비활성화됨">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    PDF
+                  </span>
+                </div>
+              </div>
+            </article>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section-heading" data-i18n="section.about">나에 대해</h2>
+          <div class="section-body">
+          <div class="about-grid">
+            <article class="about-card">
+              <h3 data-i18n="about.h1">안다고 생각할 때 다시 확인하기</h3>
+              <p class="body-text" data-i18n-html="about.body1"><span class="pii">열일곱 살에</span> 혼자 중국으로 가서 언어를 배울 때, 친구가 한 <strong>不感冒</strong>를 "감기에 안 걸렸다"로 알아들었습니다. 感冒가 감기라는 걸 알았기 때문에, 문맥이 어색했는데도 되묻지 않았습니다. 실제 뜻은 "관심이 없다"였습니다. 그 뒤로는 뜻과 함께 <strong>무엇을 왜 오해했는지</strong>를 적었고, 지금도 예상과 다른 결과를 만나면 제가 당연하게 여긴 가정부터 확인합니다.</p>
+              <div class="tag-list"><span class="tag accent" data-i18n="about.tag1a">가정 점검</span><span class="tag accent" data-i18n="about.tag1b">오해 기록</span></div>
+            </article>
+            <article class="about-card">
+              <h3 data-i18n="about.h2">협업 방식</h3>
+              <p class="body-text" data-i18n-html="about.body2">팀원마다 익숙한 방식이 다를 때, 각자의 선호와 실제로 쓸 수 있는 조건을 나눠 정리합니다. 학술 플랫폼에서는 AWS 접근 제약 때문에 클라우드를 화웨이로 바꾸고, 백엔드는 모두가 경험 있는 Spring Boot로 유지하는 합의를 <strong>RFC 문서로 남겨</strong> 이후 작업의 기준으로 삼았습니다. 한국어·중국어·영어로 외국인 팀원과 중국인 팀원 사이의 논의를 이었습니다.</p>
+              <div class="tag-list"><span class="tag blue" data-i18n="about.tag2a">한·중·영</span><span class="tag blue" data-i18n="about.tag2b">RFC 문서화</span><span class="tag slate" data-i18n="about.tag2c">개발 환경 조율</span></div>
+            </article>
+            <article class="about-card">
+              <h3 data-i18n="about.h3">취미 &amp; 라이프스타일</h3>
+              <p class="body-text" data-i18n-html="about.body3"><strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.</p>
+              <div class="tag-list"><span class="tag orange" data-i18n="about.tag3a">클라이밍</span><span class="tag orange" data-i18n="about.tag3b">루트파인딩</span></div>
+            </article>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="container">
+          <h2 class="section-heading" data-i18n="section.skills">기술 스택</h2>
+          <div class="section-body">
+          <div class="skill-grid">
+            <article class="skill-panel wide"><div class="skill-label"><span data-i18n="skill.sys">시스템 / 로우레벨</span></div><div class="chip-list"><span class="chip tag accent">C / C++</span><span class="chip tag accent">Java</span><span class="chip tag accent">MIPS Assembly</span><span class="chip tag accent">OS Kernel</span><span class="chip tag accent">Compiler</span></div></article>
+            <article class="skill-panel"><div class="skill-label"><span data-i18n="skill.be">백엔드 / 데이터베이스</span></div><div class="chip-list"><span class="chip tag green">Spring Boot 3</span><span class="chip tag green">PostgreSQL</span><span class="chip tag green">Elasticsearch</span><span class="chip tag green">Redis</span></div></article>
+            <article class="skill-panel"><div class="skill-label"><span data-i18n="skill.fe">프론트엔드 (웹 / 모바일)</span></div><div class="chip-list"><span class="chip tag teal">React Native</span><span class="chip tag teal">Vue 3</span><span class="chip tag teal">TypeScript</span></div></article>
+            <article class="skill-panel"><div class="skill-label"><span data-i18n="skill.ai">AI &amp; ML</span></div><div class="chip-list"><span class="chip tag pink">Python</span><span class="chip tag pink">CNN-CBAM-GRU</span><span class="chip tag pink">FastAPI</span></div></article>
+            <article class="skill-panel wide"><div class="skill-label"><span data-i18n="skill.infra">인프라 / 협업</span></div><div class="chip-list"><span class="chip tag slate">Docker</span><span class="chip tag slate">MinIO</span><span class="chip tag slate">Git</span><span class="chip tag slate">RFC Docs</span><span class="chip tag slate">GitHub Actions</span><span class="chip tag slate">AWS EC2</span></div></article>
+            <article class="skill-panel wide"><div class="skill-label"><span data-i18n="skill.emb">임베디드 / 차량 (교육 과정)</span></div><div class="chip-list"><span class="chip tag slate">STM32 (Cortex-M0+)</span><span class="chip tag slate">RTOS</span><span class="chip tag slate">CAN</span><span class="chip tag slate">DDS</span><span class="chip tag slate">MQTT</span><span class="chip tag slate">Embedded Linux</span></div></article>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-heading" data-i18n="section.projects">프로젝트</h2>
+          <div class="section-body">
+
+          <!-- PROJECT 01 -->
+          <article class="project-card is-open">
+            <button class="project-toggle" type="button" aria-expanded="true" aria-controls="project-01-body">
+              <span class="project-index mono">01</span>
+              <div class="project-head">
+                <h3 data-i18n-html="proj1.title"><span class="pii">BUAA</span> OS — MIPS 마이크로커널 운영체제</h3>
+                <div class="project-meta">
+                  <span>2024.03 – 2024.07 · <span class="pii">BUAA</span> OS Course</span>
+                  <span data-i18n="proj1.role">OS Kernel Developer (1인 개발)</span>
+                </div>
+                <div class="project-tagline">
+                  <span class="tagline-summary" data-i18n="proj1.summary">GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현</span>
+                  <span class="tagline-result" data-i18n="proj1.result">✓ Lab 0–6 전 단계 완주</span>
+                </div>
+              </div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span>
+            </button>
+            <div class="project-body" id="project-01-body">
+              <div class="project-inner">
+                <p class="body-text" data-i18n-html="p1_intro">GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 Lab0~Lab6 과정에 따라 구현했습니다. 커널은 페이지 할당·페이지 테이블·예외·시스템콜 같은 작은 기본 기능만 제공하고, <strong>fork·IPC·파일 시스템·셸은 사용자 공간 라이브러리와 서버가 조립</strong>하는 구조입니다. 뒤 Lab으로 갈수록 앞에서 만든 코드의 전제가 깨지는 일이 생겨, 마지막 Lab 기준으로 이전 Lab의 버그를 다시 확인하며 완성했습니다.</p>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.labrange">주요 개발 내용 (Lab0 – Lab6)</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p1_dev_li1"><strong>개발 환경과 커널 부팅 (Lab0–1):</strong> Makefile·셸 스크립트로 빌드 환경을 익히고, <code>start.S</code>에서 CP0 초기화와 커널 스택을 설정한 뒤 C 코드로 진입. ELF 헤더 파싱과 커널용 <code>printf</code> 구현.</li>
+                    <li data-i18n-html="p1_dev_li2"><strong>메모리 관리 (Lab2):</strong> <code>struct Page</code>와 free list로 물리 페이지를 관리하고 2단계 페이지 테이블 구현. MIPS는 TLB miss를 하드웨어가 아닌 소프트웨어가 처리하므로, 예외 핸들러에서 페이지 테이블을 조회해 TLB를 채우는 흐름을 구현.</li>
+                    <li data-i18n-html="p1_dev_li3"><strong>프로세스와 스케줄링 (Lab3):</strong> <code>Env</code>(PCB) 할당, ELF 사용자 프로그램 적재, 타이머 인터럽트 기반 스케줄러 구현. 예외가 발생하면 Trapframe에 레지스터를 저장하고 복원해 사용자 모드로 돌아감.</li>
+                    <li data-i18n-html="p1_dev_li4"><strong>시스템콜 (Lab4):</strong> <code>syscall</code> 명령 → 예외 → 시스템콜 테이블 분기 → <code>v0</code> 반환 흐름 구현. 복귀할 때 <code>EPC += 4</code>로 같은 명령이 반복 실행되지 않게 처리.</li>
+                    <li data-i18n-html="p1_dev_li5"><strong>Copy-on-Write fork (Lab4):</strong> 쓰기 가능한 페이지를 부모·자식 모두 <code>PTE_COW</code>로 공유하고, 쓰기가 일어나면 TLB Mod 예외에서 사용자 핸들러가 새 페이지를 복사. 핸들러가 COW 스택에 써서 같은 예외를 다시 일으키지 않도록 <strong>별도 예외 스택(UXSTACK)</strong>에서 실행.</li>
+                    <li data-i18n-html="p1_dev_li6"><strong>사용자 공간 파일 시스템 (Lab5):</strong> 커널 밖의 <strong>FS 서버 프로세스가 IPC로 요청을 처리</strong>하는 구조. 블록 캐시, 비트맵 기반 블록 할당, direct/indirect 블록, 경로 탐색 구현.</li>
+                    <li data-i18n-html="p1_dev_li7"><strong>셸과 파이프 (Lab6):</strong> <code>spawn</code>으로 실행 파일을 새 프로세스에 적재하고, 셸에서 리다이렉션(<code>&lt;</code>, <code>&gt;</code>)과 파이프라인(<code>|</code>) 구현. 파이프는 커널 버퍼가 아닌 <strong>사용자 공간 공유 페이지</strong>로 동작.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
+                  <div class="troubleshoot">
+                    <div class="troubleshoot-head">
+                      <div class="troubleshoot-title" data-i18n-html="p1_tr_head">Pipe 거짓 EOF — <code>dup</code>/<code>close</code> 중간 상태를 닫힘으로 오판하는 문제</div>
+                      <span class="badge-primary">Kernel / IPC</span>
+                    </div>
+                    <div class="troubleshoot-grid">
+                      <div>
+                        <div class="trouble-block">
+                          <div class="trouble-label problem" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p1_tr_problem">파이프가 닫혔는지는 커널에 묻지 않고 <code>pageref(fd)</code>와 <code>pageref(pipe)</code>를 비교해 판단합니다. 반대편이 살아 있으면 <code>fd &lt; pipe</code>이고, 모두 닫히면 두 값이 같아져 EOF가 됩니다. 그런데 <code>dup</code>/<code>close</code>는 두 페이지를 각각 map·unmap하는 두 단계라서, <code>testpiperace</code>에서 그 사이에 타이머 인터럽트가 끼면 writer가 살아 있는데도 <strong>두 값이 순간적으로 같아져 reader가 EOF를 반환</strong>했습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label alt" data-i18n="trouble.alternatives">대안 탐색</div>
+                          <p class="body-text" data-i18n-html="p1_tr_alt">처음에는 mutex로 중간 상태를 가리는 방법을 떠올렸습니다. 하지만 이 파이프는 사용자 공간 공유 페이지에서 동작해 공용 락이나 원자 연산이 제공되지 않았고, 락을 새로 만들면 <strong>락의 소유권과, 락을 잡은 프로세스가 죽었을 때의 복구</strong>라는 새 문제가 생겼습니다. 막아야 할 것은 모든 접근이 아니라 "writer가 살아 있는데 두 값이 같아 보이는 순간" 하나였습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label sol" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p1_tr_sol">중간 상태를 숨기는 대신 <strong>중간 상태가 틀린 의미를 갖지 않도록 순서를 바꿨습니다.</strong> <code>dup</code>은 pipe 페이지를 먼저 map하고, <code>close</code>는 fd 페이지를 먼저 unmap합니다. 그러면 어느 순간에 끊겨도 <code>pageref(fd) &lt; pageref(pipe)</code>가 유지됩니다. 판정하는 쪽은 두 값을 읽는 사이에 스케줄 전환이 있었는지 <code>env_runs</code>로 확인하고, 있었다면 다시 읽습니다.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="code-box">
+                          <div class="code-top mono"><span class="filename">user/pipe.c — close 순서 · 닫힘 판정</span></div>
+                          <pre><code><span style="color:#7f848e;">/* ① close: fd를 먼저 내려 어느 순간에도 fd_ref &lt; pipe_ref */</span>
+<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#e5c07b;">struct Fd</span> *fd) {
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd);              <span style="color:#7f848e;">/* fd 먼저 */</span>
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, <span style="color:#61afef;">fd2data</span>(fd));   <span style="color:#7f848e;">/* pipe 나중 */</span>
+  <span style="color:#c678dd;">return</span> 0;
+}
+
+<span style="color:#7f848e;">/* ② 판정: 두 값을 같은 실행 구간에서 읽었는지 확인 */</span>
+<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">_pipe_is_closed</span>(<span style="color:#e5c07b;">struct Fd</span> *fd, <span style="color:#e5c07b;">struct Pipe</span> *p) {
+  <span style="color:#c678dd;">int</span> fd_ref, pipe_ref, runs;
+  <span style="color:#c678dd;">do</span> {
+    runs     = env-&gt;env_runs;
+    fd_ref   = <span style="color:#61afef;">pageref</span>(fd);
+    pipe_ref = <span style="color:#61afef;">pageref</span>(p);
+  } <span style="color:#c678dd;">while</span> (runs != env-&gt;env_runs);  <span style="color:#7f848e;">/* 도중에 스케줄되면 다시 읽기 */</span>
+  <span style="color:#c678dd;">return</span> fd_ref == pipe_ref;
+}</code></pre>
+                        </div>
+                        <div class="takeaway">
+                          <div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div>
+                          <p class="body-text" data-i18n-html="p1_takeaway">다른 프로세스가 내 코드의 중간 상태를 볼 수 있다면 그 중간 상태도 설계 대상이었습니다. 이후 동시성 문제를 만나면 먼저 <strong>"다른 실행을 막아야 하는가, 아니면 중간 상태가 보여도 약속이 깨지지 않게 만들 수 있는가"</strong>를 묻게 됐습니다.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
+                  <div class="tag-list"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 02 -->
+          <article class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body">
+              <span class="project-index mono">02</span>
+              <div class="project-head">
+                <h3 data-i18n="proj2.title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
+                <div class="project-meta">
+                  <span>2024.10 – 2025.01 · <span class="pii">BUAA</span> Compiler Course</span>
+                  <span data-i18n="proj2.role">Compiler Engineer (1인 개발)</span>
+                </div>
+                <div class="project-tagline">
+                  <span class="tagline-summary" data-i18n="proj2.summary">Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현</span>
+                  <span class="tagline-result" data-i18n="proj2.result">✓ 오류 처리(a–m) · P-Code 생성 · VM 실행까지 구현</span>
+                </div>
+              </div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span>
+            </button>
+            <div class="project-body" id="project-02-body">
+              <div class="project-inner">
+                <p class="body-text" data-i18n-html="p2_intro">SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 스택 머신 인터프리터</strong>까지 구현했습니다. 이 컴파일러는 기계어 대신 자체 P-Code를 만들고, 그 P-Code를 스택 머신으로 바로 실행합니다.<br>단일 파일로 커진 5단계 코드를 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTableManager</code>, <code>ErrorHandler</code>, <code>Interpreter</code>로 나누고 CMake로 묶었습니다.</p>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.dev">주요 개발 내용</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p2_dev_li1"><strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.</li>
+                    <li data-i18n-html="p2_dev_li2"><strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.</li>
+                    <li data-i18n-html="p2_dev_li3"><strong>스코프 기반 심볼 테이블:</strong> 심볼마다 <code>kind</code>(변수·함수·매개변수·배열)와 <code>scope</code> 번호를 붙여 같은 이름을 구분하고, 가장 안쪽 스코프부터 바깥으로 탐색해 섀도잉을 처리. 함수 이름을 몸통보다 먼저 등록해 재귀 호출이 미정의 오류가 되지 않게 함.</li>
+                    <li data-i18n-html="p2_dev_li4"><strong>누락 토큰 오류 복구:</strong> <code>;</code>·<code>)</code>·<code>]</code> 누락(i/j/k)은 "틀린 토큰"이 아니라 "없는 토큰"이므로, 눈앞의 정상 토큰을 소비하지 않고 오류만 기록한 뒤 분석을 계속. 오류 줄 번호 기준을 오류마다 따로 두지 않고 <code>mLastNonT</code> 하나로 통일.</li>
+                    <li data-i18n-html="p2_dev_li5"><strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.</li>
+                    <li data-i18n-html="p2_dev_li6"><strong>모듈 분리와 CMake:</strong> 하나의 대형 파일에 섞여 있던 Lexer·Parser·ErrorHandler·SymbolTableManager·Interpreter를 파일 단위로 나누고 CMake로 빌드. 문제가 생겼을 때 어디부터 봐야 하는지 알 수 있게 됨.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
+                  <p class="body-text" style="margin-bottom:.75rem" data-i18n-html="p2_tr_intro">이 컴파일러는 과제 명세의 <strong>a~m 오류 범주</strong>를 처리해야 했습니다. 가장 오래 붙잡은 것은 <strong><code>;</code>·<code>)</code>·<code>]</code> 누락(i/j/k)</strong>이었습니다. 입력에 없는 토큰을 기준으로 판단해야 해서, 토큰을 하나 잘못 소비하면 뒤의 정상 코드까지 오류처럼 보였기 때문입니다.</p>
+                  <ul class="arrow-list" style="margin-bottom:1.25rem">
+                    <li data-i18n-html="p2_tr_list1"><strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.</li>
+                    <li data-i18n-html="p2_tr_list2"><strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.</li>
+                    <li data-i18n-html="p2_tr_list3"><strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.</li>
+                  </ul>
+                  <p class="body-text" data-i18n-html="p2_tr_bridge">아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong>'구문 누락 복구'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.</p>
+                  <div class="troubleshoot">
+                    <div class="troubleshoot-head">
+                      <div class="troubleshoot-title" data-i18n-html="p2_tr_head"><code>)</code> 하나 빠졌는데 오류가 여럿 — 오류를 기록에서 상태로 바꿔 파생 오류 제거</div>
+                      <span class="badge-primary">Compiler / Parser</span>
+                    </div>
+                    <div class="troubleshoot-grid">
+                      <div>
+                        <div class="trouble-block">
+                          <div class="trouble-label problem" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p2_tr_problem"><code>foo(a, b;</code>처럼 <code>)</code>가 빠지면 핵심 오류는 <code>j</code> 하나입니다. 그런데 <code>parseErrorJ()</code>가 오류를 기록만 하고 끝나서, 호출자는 이를 모른 채 정상 호출처럼 <strong>인자 개수 검사(<code>d</code>)까지 수행해 파생 오류</strong>를 만들었습니다. 대입문을 판별하려고 앞 토큰을 읽고 <code>index</code>만큼 되돌아오는 코드도 한 번 어긋나면 <code>b = 20;</code>이 <code>= 20;</code>부터 읽혔습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label alt" data-i18n="trouble.alternatives">대안 탐색</div>
+                          <p class="body-text" data-i18n-html="p2_tr_alt">처음에는 오류 함수 안에서 줄 번호 기준(이전 토큰/현재 토큰)만 바꿔 가며 테스트를 맞췄습니다. 테스트 하나를 통과시키면 다른 입력이 깨졌습니다. 문제는 오류 함수가 아니라 <strong>오류를 발견한 함수와 이후 처리를 맡은 함수가 오류 상태를 공유하지 않는 것</strong>이었습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label sol" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p2_tr_sol"><code>parseErrorJ()</code>의 반환형을 <code>void</code>에서 <code>bool</code>로 바꿔 누락 여부를 호출자에게 알리고, 호출부는 <code>)</code>가 있을 때만 인자 개수를 검사하도록 했습니다. 누락이면 현재 토큰을 소비하지 않아 다음 문장이 정상 위치에서 시작합니다. 이후에는 <strong>각 파싱 함수가 자기 문법 범위까지만 토큰을 소비한다</strong>는 규칙을 기준으로 코드를 정리했습니다.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="code-box">
+                          <div class="code-top mono"><span class="filename">Parser.cpp — parseErrorJ: void → bool</span></div>
+                          <pre><code><span style="color:#7f848e;">// Before: 기록만 하고 끝나 호출자는 ')' 누락을 모름</span>
+<span style="color:#c678dd;">void</span> <span style="color:#61afef;">parseErrorPrintfJ</span>();
+
+<span style="color:#7f848e;">// After: 누락 여부를 반환하고, 누락이면 토큰을 소비하지 않음</span>
+<span style="color:#c678dd;">bool</span> <span style="color:#61afef;">Parser::parseErrorJ</span>() {
+  <span style="color:#c678dd;">if</span> (mCurToken.word != <span style="color:#98c379;">")"</span>) {
+    m_pErrorHandler-&gt;<span style="color:#61afef;">PushErrorList</span>(<span style="color:#98c379;">&#39;j&#39;</span>, mLastNonT);
+    <span style="color:#c678dd;">return true</span>;
+  }
+  <span style="color:#61afef;">AdvanceToNextToken</span>();
+  <span style="color:#c678dd;">return false</span>;
+}
+
+<span style="color:#7f848e;">// 호출부: ')'가 있을 때만 인자 개수(d) 검사</span>
+<span style="color:#c678dd;">if</span> (!<span style="color:#61afef;">parseErrorJ</span>()) {
+  <span style="color:#c678dd;">if</span> (mFuncparse.back().expectedcnt != mFuncparse.back().paramcnt)
+    <span style="color:#61afef;">parseErrorD</span>(mLastFuncLine);
+}</code></pre>
+                        </div>
+                        <div class="takeaway">
+                          <div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div>
+                          <p class="body-text" data-i18n-html="p2_takeaway">오류는 사용자에게 보여줄 기록에서 끝나지 않고, <strong>이후 어떤 검사를 믿을 수 있는지 결정하는 상태</strong>여야 했습니다. 괄호 하나가 빠졌는데 오류가 열 개 나온다면, 아홉 개는 컴파일러가 스스로 만든 오류일 수 있습니다.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
+                  <div class="tag-list"><span class="tag accent">C++17</span><span class="tag accent">CMake</span><span class="tag accent">Lexer / Parser</span><span class="tag accent">P-Code VM</span><span class="tag accent">Symbol Table</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03 -->
+          <article class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body">
+              <span class="project-index mono">03</span>
+              <div class="project-head">
+                <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼 (Academic Results Sharing Platform)</h3>
+                <div class="project-meta">
+                  <span>2025.11 – 2026.02 · <span class="pii">BUAA</span> SSAD Course</span>
+                  <span data-i18n="proj3.role">Backend (팀 프로젝트 · 학자 관계망·검색·공고 서비스)</span>
+                </div>
+                <div class="project-tagline">
+                  <span class="tagline-summary" data-i18n="proj3.summary">연구자 학술 성과 검색·분석 플랫폼 — Spring Boot 백엔드에서 학자 관계망·검색·공고 서비스와 단위 테스트 담당 (팀 프로젝트)</span>
+                  <span class="tagline-result" data-i18n="proj3.result">✓ 학자 관계망 첫 조회 시 생성·저장 · 비로그인 요청 오류 수정 · JUnit/Mockito 테스트</span>
+                </div>
+              </div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span>
+            </button>
+            <div class="project-body" id="project-03-body">
+              <div class="project-inner">
+                <p class="body-text" data-i18n-html="p3_intro">Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서버를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 아래 아키텍처는 팀 전체 구조이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다.</p>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.arch">시스템 아키텍처</h4>
+                  <div class="svg-wrap">
+                    <p>System Architecture — Vue 3 · Spring Boot 3 · Maven · PostgreSQL 18 · Elasticsearch · Redis · MinIO · Vector Service · OpenAlex / ORCID / LLM</p>
+                    <svg width="100%" viewBox="0 0 720 1020" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+                      <defs><marker id="arrowAP2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs>
+                      <rect x="8" y="260" width="704" height="710" rx="16" fill="none" stroke="#1f4f8a" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
+                      <rect x="18" y="248" width="168" height="22" rx="5" fill="#f7f7f5"></rect>
+                      <text x="102" y="263" text-anchor="middle" font-size="12" fill="#1f4f8a" font-weight="700">Docker Compose 환경</text>
+                      <text x="360" y="18" text-anchor="middle" font-size="12" fill="#888" font-weight="600" letter-spacing="0.5">프론트엔드 클라이언트</text>
+                      <rect x="100" y="26" width="520" height="76" rx="11" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1"></rect>
+                      <text x="360" y="54" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#1d1f23">Vue 3 / TypeScript / Vite (SPA)</text>
+                      <text x="360" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5b616b">views · components · Pinia stores · router · api · types · utils</text>
+                      <line x1="280" y1="102" x2="225" y2="300" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none" opacity="0.6"></line>
+                      <line x1="205" y1="300" x2="260" y2="102" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP2)" fill="none" opacity="0.6"></line>
+                      <rect x="96" y="185" width="164" height="38" rx="5" fill="#fff" opacity="0.96"></rect>
+                      <text x="178" y="200" text-anchor="middle" font-size="12" fill="#1d1f23" font-weight="700">REST API / HTTP</text>
+                      <text x="178" y="215" text-anchor="middle" font-size="11" fill="#1d1f23">JWT Bearer · JSON</text>
+                      <rect x="18" y="300" width="428" height="265" rx="14" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="232" y="296" text-anchor="middle" font-size="11" fill="#888" font-weight="600">백엔드 컨테이너 · port 8080</text>
+                      <rect x="30" y="312" width="404" height="66" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.8"></rect>
+                      <text x="232" y="339" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#1d1f23">Spring Boot 3 + Java 21</text>
+                      <text x="232" y="361" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">Spring Security · JWT Filter · JPA/Hibernate · Flyway · Maven</text>
+                      <rect x="30" y="390" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="127" y="412" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Controller 계층 A</text>
+                      <text x="127" y="430" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5b616b">account · general · search · output</text>
+                      <rect x="239" y="390" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="336" y="412" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Controller 계층 B</text>
+                      <text x="336" y="430" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#5b616b">scholar · analyze · announcement · storage · update</text>
+                      <rect x="30" y="456" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="127" y="478" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Service 계층</text>
+                      <text x="127" y="496" text-anchor="middle" dominant-baseline="central" font-size="9.8" fill="#5b616b">search · output · scholar · analyze · vector</text>
+                      <rect x="239" y="456" width="195" height="52" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="336" y="478" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Scheduler / Tasks</text>
+                      <text x="336" y="496" text-anchor="middle" dominant-baseline="central" font-size="9.8" fill="#1d1f23">metrics update · hot point sync · summary refresh</text>
+                      <rect x="460" y="300" width="252" height="190" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="586" y="296" text-anchor="middle" font-size="11" fill="#888" font-weight="600">주 데이터 저장소</text>
+                      <rect x="472" y="312" width="228" height="66" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.8"></rect>
+                      <text x="586" y="339" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#1d1f23">PostgreSQL 18</text>
+                      <text x="586" y="361" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">주 트랜잭션 데이터 관리</text>
+                      <rect x="472" y="390" width="228" height="40" rx="9" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="586" y="410" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="#1d1f23">JPA Repository · entities</text>
+                      <line x1="435" y1="410" x2="465" y2="410" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <line x1="465" y1="425" x2="435" y2="425" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <text x="450" y="405" text-anchor="middle" font-size="10" fill="#5b616b" font-weight="700">JPA</text>
+                      <rect x="18" y="600" width="218" height="120" rx="13" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1" opacity="0.6"></rect>
+                      <text x="127" y="595" text-anchor="middle" font-size="11" fill="#666">검색 엔진</text>
+                      <text x="127" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#1d1f23">Elasticsearch</text>
+                      <text x="127" y="645" text-anchor="middle" font-size="11" fill="#1d1f23">문서 색인 · 검색 필터</text>
+                      <rect x="30" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="127" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">keyword · criteria search</text>
+                      <rect x="252" y="600" width="218" height="120" rx="13" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1" opacity="0.6"></rect>
+                      <text x="361" y="595" text-anchor="middle" font-size="11" fill="#666">캐시 / 카운터</text>
+                      <text x="361" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#1d1f23">Redis</text>
+                      <text x="361" y="645" text-anchor="middle" font-size="11" fill="#1d1f23">방문 수 · 조회 수 · 데이터 캐싱</text>
+                      <rect x="264" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="361" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">heartbeat / view count</text>
+                      <rect x="486" y="600" width="218" height="120" rx="13" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1" opacity="0.6"></rect>
+                      <text x="595" y="595" text-anchor="middle" font-size="11" fill="#666">오브젝트 스토리지</text>
+                      <text x="595" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#1d1f23">MinIO</text>
+                      <text x="595" y="645" text-anchor="middle" font-size="11" fill="#1d1f23">S3 호환 파일 저장소</text>
+                      <rect x="498" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="595" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">avatars · uploaded assets</text>
+                      <line x1="127" y1="565" x2="127" y2="592" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <line x1="361" y1="565" x2="361" y2="592" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <line x1="595" y1="565" x2="595" y2="592" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <rect x="18" y="760" width="684" height="135" rx="13" fill="#f1f3f5" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="360" y="755" text-anchor="middle" font-size="11" fill="#666" font-weight="600">AI / 외부 연동 레이어</text>
+                      <rect x="30" y="775" width="200" height="55" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="130" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">Vector Service</text>
+                      <text x="130" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">DJL / Python vector-server</text>
+                      <rect x="242" y="775" width="200" height="55" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="342" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">LLM / Translation</text>
+                      <text x="342" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">query parse · language utility</text>
+                      <rect x="454" y="775" width="238" height="55" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="573" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">OpenAlex / ORCID API</text>
+                      <text x="573" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">External Academic Metadata</text>
+                      <rect x="30" y="850" width="662" height="30" rx="7" fill="#f1f3f5" stroke="#adb5bd" stroke-width="0.5"></rect>
+                      <text x="361" y="865" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#666" font-weight="600">Backend orchestrates storage, search, cache, and external AI/data services</text>
+                      <rect x="18" y="930" width="684" height="36" rx="8" fill="#f1f3f5"></rect>
+                      <text x="36" y="952" font-size="11" fill="#1d1f23" font-weight="700">─── 요청</text>
+                      <text x="100" y="952" font-size="11" fill="#1d1f23">- - - 응답</text>
+                      <text x="170" y="952" font-size="11" fill="#666">│ │ Docker 컨테이너</text>
+                      <text x="340" y="952" font-size="11" fill="#1f4f8a">│ │ Docker Compose 경계</text>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.dev">주요 개발 내용</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p3_dev_li1"><strong>학자 관계망 생성·저장:</strong> 논문·특허 등 성과 기록에서 학자 사이의 공동 연구 횟수와 기간을 모으고, 제품 문서에 정해진 가중치로 관계 점수를 계산해 <code>collaboration_edge</code> 테이블에 저장. 조회할 때는 점수 상위 10명의 공동 연구자로 네트워크를 구성.</li>
+                    <li data-i18n-html="p3_dev_li2"><strong>첫 조회 시 생성:</strong> 저장된 관계가 없으면 조회 시점에 만들어 저장하고, 이후에는 저장된 결과만 읽도록 구현. 두 번째 조회부터는 원본 통계를 다시 읽거나 저장하지 않는다는 점을 Mockito <code>never()</code> 검증으로 확인.</li>
+                    <li data-i18n-html="p3_dev_li3"><strong>검색·공고 서비스:</strong> 검색 서비스와 성과 인용 형식(특허 인용 형식 포함), 공고 서비스를 구현하고 단위 테스트 작성. 로그인하지 않은 사용자의 검색 기록은 저장하지 않는다는 규칙도 테스트로 검증.</li>
+                    <li data-i18n-html="p3_dev_li4"><strong>API 문서 기준 정렬:</strong> 성과 상세 DTO와 공고 DTO의 필드명(<code>publishDateTime</code> / <code>publishDatetime</code>)을 팀 API 문서(RFC4)에 맞춰 고치고 Postman으로 응답 확인.</li>
+                    <li data-i18n-html="p3_dev_li5"><strong>남은 한계:</strong> 새 성과가 들어와도 저장된 관계망은 자동으로 다시 만들어지지 않음. 다시 만들지 않는 조건은 테스트했지만 언제 다시 만들어야 하는지는 정하지 않았고, 원본이 바뀔 때의 갱신 시점을 정하는 일이 과제로 남음.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
+                  <div class="troubleshoot">
+                    <div class="troubleshoot-head">
+                      <div class="troubleshoot-title" data-i18n-html="p3_tr_head">통과한 테스트, 깨진 입구 — 비로그인 검색 기록 조회 오류</div>
+                      <span class="badge-primary" data-i18n-html="p3_tr_badge">백엔드 / 테스트</span>
+                    </div>
+                    <div class="troubleshoot-grid">
+                      <div>
+                        <div class="trouble-block">
+                          <div class="trouble-label problem" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p3_tr_problem">검색 서비스에는 "로그인하지 않은 사용자의 검색 기록은 저장하지 않는다"는 규칙이 있었고, 서비스 단위 테스트도 통과했습니다. 그런데 로그인하지 않은 상태에서 검색 기록을 조회하면 요청이 <code>NullPointerException</code>으로 실패했습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label alt" data-i18n="trouble.cause">원인</div>
+                          <p class="body-text" data-i18n-html="p3_tr_cause">요청을 가장 먼저 받는 컨트롤러가 서비스를 호출하기 전에 <code>principal.uuid()</code>로 로그인 정보부터 꺼내고 있었습니다. 규칙은 서비스 안에서 지켜지고 있었지만, 비로그인 요청은 그 규칙에 닿기도 전에 입구에서 멈췄습니다. 테스트는 서비스만 검증하고 있었습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label sol" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p3_tr_sol">로그인 정보가 없으면 검색 기록 조회는 빈 페이지를 바로 돌려주고, 검색어 분석은 사용자 식별값 없이 서비스로 넘기도록 고쳤습니다. 그리고 <strong>컨트롤러 단위 테스트를 새로 만들어 로그인한 경우와 하지 않은 경우를 모두 확인</strong>했습니다. 비로그인일 때 서비스의 기록 조회가 한 번도 호출되지 않는다는 점까지 검증했습니다.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="code-box">
+                          <div class="code-top mono"><span class="filename">OutputSearchController.java (요약)</span></div>
+                          <pre><code><span style="color:#c678dd;">@GetMapping</span>(<span style="color:#98c379;">"/history"</span>)
+<span style="color:#c678dd;">public</span> <span style="color:#e5c07b;">Page</span>&lt;<span style="color:#e5c07b;">SearchRecordDTO</span>&gt; <span style="color:#61afef;">getHistory</span>(
+    <span style="color:#c678dd;">@AuthenticationPrincipal</span> <span style="color:#e5c07b;">UserPrincipal</span> principal, <span style="color:#e5c07b;">Pageable</span> pageable) {
+  <span style="color:#7f848e;">// 비로그인: 서비스에 닿기 전에 빈 결과</span>
+  <span style="color:#c678dd;">if</span> (principal == <span style="color:#d19a66;">null</span>) <span style="color:#c678dd;">return</span> <span style="color:#e5c07b;">Page</span>.<span style="color:#61afef;">empty</span>();
+  <span style="color:#c678dd;">return</span> searchService.<span style="color:#61afef;">getSearchHistory</span>(principal.<span style="color:#61afef;">uuid</span>(), pageable);
+}
+
+<span style="color:#7f848e;">// OutputSearchControllerTest: 비로그인이면 서비스 호출 없음</span>
+<span style="color:#61afef;">verify</span>(searchService, <span style="color:#61afef;">never</span>()).<span style="color:#61afef;">getSearchHistory</span>(<span style="color:#61afef;">any</span>(), <span style="color:#61afef;">any</span>());</code></pre>
+                        </div>
+                        <div class="takeaway">
+                          <div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div>
+                          <p class="body-text" data-i18n-html="p3_takeaway">테스트가 통과한 위치와 규칙이 실제로 적용되는 위치는 다를 수 있었습니다. 이후에는 규칙을 검증할 때 서비스 안뿐 아니라, 요청이 처음 들어오는 입구에서도 같은 조건이 지켜지는지 함께 확인합니다.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
+                  <div class="tag-list"><span class="tag green">Spring Boot 3</span><span class="tag green">JPA</span><span class="tag green">PostgreSQL</span><span class="tag green">JUnit 5</span><span class="tag green">Mockito</span><span class="tag slate">Postman</span><span class="tag slate">Maven</span><span class="tag slate">Docker Compose</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 04 -->
+          <article class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body">
+              <span class="project-index mono">04</span>
+              <div class="project-head">
+                <h3 data-i18n="proj4.title">CareLink — 노인 건강 모니터링 &amp; AI ECG 진단 플랫폼</h3>
+                <div class="project-meta">
+                  <span>2025.10 – 2026.03</span>
+                  <span data-i18n="proj4.role">3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)</span>
+                </div>
+                <div class="project-tagline">
+                  <span class="tagline-summary" data-i18n="proj4.summary">모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱</span>
+                  <span class="tagline-result" data-i18n="proj4.result">✓ 0.65M 파라미터 ECG 모델 · Macro AUC 0.925 · EC2 배포</span>
+                </div>
+              </div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span>
+            </button>
+            <div class="project-body" id="project-04-body">
+              <div class="project-inner">
+                <p class="body-text" data-i18n-html="p4_intro">환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.</p>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.arch">시스템 아키텍처</h4>
+                  <div class="svg-wrap">
+                    <p>System Architecture — React Native · Spring Boot · FastAPI · PostgreSQL · AWS EC2 + Docker</p>
+                    <svg width="100%" viewBox="0 0 680 800" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+                      <defs><marker id="arrowCL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs>
+                      <rect x="8" y="260" width="664" height="480" rx="14" fill="none" stroke="#1f4f8a" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
+                      <rect x="18" y="248" width="150" height="22" rx="5" fill="#f7f7f5"></rect>
+                      <text x="93" y="262" text-anchor="middle" font-size="11" fill="#1f4f8a" font-weight="700">AWS EC2 + Docker</text>
+                      <text x="340" y="20" text-anchor="middle" font-size="11" fill="#666">모바일 클라이언트</text>
+                      <rect x="130" y="30" width="420" height="70" rx="11" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="340" y="55" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">React Native / Expo</text>
+                      <text x="340" y="75" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">AsyncStorage · JWT · expo-notifications · Expo Router</text>
+                      <line x1="280" y1="100" x2="204" y2="290" stroke="#9aa0a8" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"></line>
+                      <line x1="184" y1="290" x2="260" y2="100" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"></line>
+                      <rect x="110" y="175" width="150" height="34" rx="5" fill="#fff" opacity="0.96"></rect>
+                      <text x="185" y="188" text-anchor="middle" font-size="11" fill="#1d1f23" font-weight="700">REST API / HTTPS</text>
+                      <text x="185" y="202" text-anchor="middle" font-size="11" fill="#1d1f23">JWT Bearer token</text>
+                      <rect x="24" y="290" width="360" height="220" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="204" y="286" text-anchor="middle" font-size="11" fill="#666">백엔드 컨테이너 · port 8080</text>
+                      <rect x="36" y="305" width="336" height="60" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="204" y="325" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Spring Boot 3 + Java 21</text>
+                      <text x="204" y="345" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">Spring Security · JWT · JPA/Hibernate · Flyway · Gradle</text>
+                      <rect x="36" y="375" width="160" height="50" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="116" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">REST API 레이어</text>
+                      <text x="116" y="410" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#5b616b">/auth · /vitals · /guardian · /api/ecg</text>
+                      <rect x="208" y="375" width="164" height="50" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="290" y="394" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">비즈니스 로직</text>
+                      <text x="290" y="410" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#5b616b">보호자 연결 · 알림 · ECG 프록시</text>
+                      <rect x="36" y="435" width="336" height="34" rx="6" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="204" y="452" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1d1f23">AI 통신 프록시 (RestTemplate)</text>
+                      <rect x="400" y="290" width="260" height="220" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="530" y="286" text-anchor="middle" font-size="11" fill="#666">DB 컨테이너 · port 5432</text>
+                      <rect x="412" y="305" width="236" height="60" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="530" y="325" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">PostgreSQL 16</text>
+                      <text x="530" y="345" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">postgres:16-alpine</text>
+                      <rect x="412" y="375" width="236" height="40" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="530" y="395" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">핵심 테이블</text>
+                      <rect x="412" y="425" width="236" height="30" rx="6" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="530" y="440" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1d1f23">users · vitals · guardian_link · medications</text>
+                      <line x1="384" y1="395" x2="400" y2="395" stroke="#9aa0a8" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"></line>
+                      <line x1="400" y1="410" x2="384" y2="410" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"></line>
+                      <text x="392" y="388" text-anchor="middle" font-size="10" fill="#5b616b" font-weight="700">JPA</text>
+                      <line x1="190" y1="470" x2="190" y2="540" stroke="#9aa0a8" stroke-width="1.3" marker-end="url(#arrowCL)" fill="none"></line>
+                      <line x1="210" y1="540" x2="210" y2="470" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowCL)" fill="none"></line>
+                      <rect x="220" y="490" width="180" height="30" rx="5" fill="#fff" opacity="0.96"></rect>
+                      <text x="310" y="504" text-anchor="middle" font-size="11" fill="#1d1f23" font-weight="700">Internal API Call</text>
+                      <text x="310" y="516" text-anchor="middle" font-size="10.5" fill="#1d1f23">/api/ecg ↔ /predict_window</text>
+                      <rect x="24" y="550" width="636" height="160" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="342" y="546" text-anchor="middle" font-size="11" fill="#666">AI 추론 컨테이너 · internal port 8000</text>
+                      <rect x="36" y="565" width="270" height="60" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="171" y="585" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">FastAPI + PyTorch</text>
+                      <text x="171" y="605" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1d1f23">Python 3.11 · Uvicorn · NumPy · SciPy</text>
+                      <rect x="36" y="635" width="130" height="50" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="101" y="652" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">ECG 모델</text>
+                      <text x="101" y="670" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#1d1f23">CNN-CBAM-GRU</text>
+                      <rect x="176" y="635" width="130" height="50" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="241" y="652" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">Inference API</text>
+                      <text x="241" y="670" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#1d1f23">POST /predict_window</text>
+                      <rect x="320" y="565" width="328" height="120" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="484" y="585" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">PTB-XL 데이터셋 기반 학습</text>
+                      <text x="484" y="610" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#1d1f23">21,837 records · 12-lead · 500Hz</text>
+                      <text x="484" y="630" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#1d1f23">5개 슈퍼클래스 멀티라벨 분류</text>
+                      <text x="484" y="650" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#1d1f23">NORM · STTC · MI · CD · HYP</text>
+                      <text x="484" y="670" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#1d1f23">모델 파일: best_model_multilabel.pth</text>
+                      <rect x="18" y="725" width="646" height="34" rx="7" fill="#f1f3f5" opacity="0.8"></rect>
+                      <text x="38" y="742" font-size="11" fill="#1d1f23" font-weight="700">─── 요청</text>
+                      <text x="110" y="742" font-size="11" fill="#1d1f23">- - - 응답</text>
+                      <text x="180" y="742" font-size="11" fill="#666">│ │ Docker 컨테이너</text>
+                      <text x="330" y="742" font-size="11" fill="#1f4f8a">│ │ AWS EC2 경계</text>
+                      <text x="460" y="742" font-size="11" fill="#1d1f23">모바일 → 백엔드 → AI 프록시 구조</text>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.dev">주요 개발 내용</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p4_dev_li1"><strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성을 확보했습니다.</li>
+                    <li data-i18n-html="p4_dev_li2"><strong>심전도(ECG) 진단 모델:</strong> PTB-XL(12-lead, 500Hz)의 5개 슈퍼클래스 멀티라벨 분류. 정규화 과정에서 사라지는 진폭 정보를 잃지 않도록 리드별 peak-to-peak·표준편차·RMS(36차원)를 따로 계산해 모델에 결합.</li>
+                    <li data-i18n-html="p4_dev_li3"><strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.</li>
+                    <li data-i18n-html="p4_dev_li4"><strong>입력 검증:</strong> 초기에는 <code>NaN</code>을 0으로 바꿔 추론했지만, 존재하지 않는 파형에도 확률이 나오는 문제가 있었습니다. 빈 배열·리드 수 불일치·숫자가 아닌 값·<code>NaN</code>/<code>Inf</code>·잘못된 샘플링 주파수는 보정하지 않고 요청을 거부하도록 변경. 클라이언트가 보낸 진폭 특징값(<code>amp</code>)은 쓰지 않고, 서버가 필터링 후 매번 다시 계산.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.perf">시스템 성능 최적화 및 평가 지표</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p4_perf_li1"><strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.</li>
+                    <li data-i18n-html="p4_perf_li2"><strong>AI 추론 지연:</strong> 12-lead ECG(10초, 500Hz) 기준 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>. CPU 환경에서 BiGRU 연산과 대역 필터링이 지연의 주원인.</li>
+                    <li data-i18n-html="p4_perf_li3"><strong>홈 화면 Cache-First:</strong> 첫 표시를 네트워크 응답(평균 604ms)이 아니라 로컬 캐시 읽기(평균 0.29ms)로 처리하고, 서버 동기화는 뒤에서 수행.</li>
+                    <li data-i18n-html="p4_perf_li4"><strong>경계값 테스트:</strong> 비정상 입력은 서버 다운 없이 오류 응답으로 처리. 다만 검증 실패(422)가 넓은 예외 처리에 감싸여 500으로 나갈 수 있는 경로가 남아 있어 수정이 필요.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.ecg">ECG 분류 모델 성능</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p4_ecg_li1"><strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--faint);font-size:.85em">(comparison_results.csv 기준)</span></li>
+                    <li data-i18n-html="p4_ecg_li2"><strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)</li>
+                    <li data-i18n-html="p4_ecg_li3"><strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용</li>
+                    <li data-i18n-html="p4_ecg_li4"><strong>비교 실험:</strong> 비교 모델 ResNet1D보다 훨씬 작은 0.65M 파라미터로 전체 성능은 비슷하게 유지하고 HYP 범주에서는 더 나은 결과. 가중 샘플링을 빼면 Macro F1·AUC는 올랐지만 HYP 성능이 떨어져, 평균 지표 대신 범주별 오류를 기준으로 설정을 선택.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
+                  <div class="troubleshoot">
+                    <div class="troubleshoot-head">
+                      <div class="troubleshoot-title" data-i18n-html="p4_tr_head">Ubuntu EC2 로그 추적으로 ECG 분석 API 500 원인 해결</div>
+                      <span class="badge-primary">Ubuntu / Docker Logs</span>
+                    </div>
+                    <div class="troubleshoot-grid">
+                      <div>
+                        <div class="trouble-block">
+                          <div class="trouble-label problem" data-i18n-html="p4_tr_label_problem1">① 증상 — ECG 분석 API 500</div>
+                          <p class="body-text" data-i18n-html="p4_tr_problem1">ECG 분석 요청(<code>POST /api/ecg/predict_window</code>)이 간헐적으로 500을 반환했고, 백엔드 로그에는 Spring이 FastAPI 서버로 보내는 <code>/predict_window</code> 호출이 <strong>Connection refused</strong>로 실패한 기록이 남았습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label sol" data-i18n-html="p4_tr_label_sol1">② 추적 — 로그 범위 좁히기</div>
+                          <p class="body-text" data-i18n-html="p4_tr_sol1"><code>docker logs carelink-backend</code>로 백엔드의 외부 호출 실패를 확인한 뒤, <code>docker ps -a</code>와 <code>docker logs carelink-ai</code>로 AI 컨테이너가 종료됐는지 추적했습니다. 이어 <code>journalctl -k</code>, <code>dmesg</code>로 Ubuntu 커널 로그에서 OOM 여부를 확인했습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label problem" data-i18n-html="p4_tr_label_problem2">③ 원인 — AI 컨테이너 종료</div>
+                          <p class="body-text" data-i18n-html="p4_tr_problem2">AI 컨테이너가 떠 있지 않은 것이 원인이었습니다. FastAPI는 기동 단계(lifespan)에서 모델 가중치를 반드시 로드하는데, 운영 서버에 모델 파일이 배치되지 않으면 기동 자체가 실패했습니다. 또 저메모리 EC2 한 대에서 PostgreSQL·JVM·PyTorch 로딩에 이미지 빌드까지 겹치면서 메모리가 먼저 바닥날 수 있는 구조였습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label sol" data-i18n-html="p4_tr_label_sol2">④ 해결 — 모델 검증과 Pull-only 배포</div>
+                          <p class="body-text" data-i18n-html="p4_tr_sol2">모델 파일 배치를 배포 체크리스트에 넣고, 이미지 빌드는 GitHub Actions에서 해 GHCR에 올린 뒤 <strong>EC2는 이미지를 받아 실행만</strong> 하도록 나눴습니다. 경량 Compose에는 컨테이너별 메모리 제한(PostgreSQL 256MB·백엔드 384MB·AI 512MB)과 swap을 두고, AI 컨테이너는 <strong><code>profiles: ["ai"]</code>로 필요할 때만</strong> 올리도록 했습니다.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="code-box">
+                          <div class="code-top mono"><span class="filename">Ubuntu EC2 — 로그 추적과 조치</span></div>
+                          <pre><code><span style="color:#7f848e;"># 1. 백엔드에서 AI 호출 실패 확인</span>
+docker logs carelink-backend --tail=100
+<span style="color:#e06c75;">I/O error on POST request for "http://ai:8000/predict_window": Connection refused</span>
+
+<span style="color:#7f848e;"># 2. AI 컨테이너가 떠 있는지, 왜 종료됐는지 확인</span>
+docker ps -a | grep carelink-ai
+docker logs carelink-ai --tail=50
+
+<span style="color:#7f848e;"># 3. EC2 커널 로그에서 메모리 부족 확인</span>
+sudo journalctl -k | grep -i "out of memory"
+
+<span style="color:#7f848e;"># 4. 조치 후: EC2는 빌드하지 않고 이미지만 받아 실행</span>
+docker compose -f docker-compose.ec2-lite.yml pull
+docker compose -f docker-compose.ec2-lite.yml --profile ai up -d</code></pre>
+                        </div>
+                        <div class="takeaway">
+                          <div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div>
+                          <p class="body-text" data-i18n-html="p4_takeaway">문제를 <strong>증상 재현 → 애플리케이션 로그 → 컨테이너 상태 → OS 커널 로그</strong> 순서로 좁히는 습관이 생겼습니다. 메모리 제한은 OOM을 없애는 장치가 아니라, 한 컨테이너의 폭주가 다른 서비스로 번지지 않게 하는 경계였습니다.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
+                  <div class="tag-list"><span class="tag teal">React Native</span><span class="tag green">Spring Boot 3</span><span class="tag pink">FastAPI</span><span class="tag pink">Python</span><span class="tag green">PostgreSQL</span><span class="tag slate">AWS EC2</span><span class="tag slate">Docker</span><span class="tag slate">GitHub Actions</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="hint" class="section">
+        <div class="container">
+          <h2 class="section-heading" data-i18n="section.hint">현재 · 임베디드</h2>
+          <div class="section-body">
+          <p class="body-text hint-lead" data-i18n="hint.intro">현대자동차그룹 K-뉴딜 아카데미 HINT 임베디드 SW 과정(2026.07 – 2026.10)을 듣고 있습니다. OS 과제에서 시뮬레이터로만 다뤘던 인터럽트와 동기화를 실제 하드웨어에서 확인하고 싶어 선택했습니다.</p>
+          <div class="about-grid">
+            <article class="about-card">
+              <h3 data-i18n="hint.a.h">인터럽트를 하드웨어에서 다시 보기</h3>
+              <p class="body-text" data-i18n="hint.a.t">STM32(Cortex-M0+)에서 버튼을 누르는 동안 LED가 200ms 간격으로 토글되도록 코드를 고치며 Polling과 Interrupt를 비교했습니다. OS에서는 예외 벡터와 핸들러만 봤다면, 여기서는 버튼 → EXTI → NVIC → ISR 경로를 레퍼런스 매뉴얼로 따라가고, 디바운싱처럼 시뮬레이터에는 없던 물리 입력의 문제를 다뤘습니다.</p>
+            </article>
+            <article class="about-card">
+              <h3 data-i18n="hint.b.h">락이 없던 환경과 있는 환경</h3>
+              <p class="body-text" data-i18n="hint.b.t">OS의 파이프에는 쓸 수 있는 락이 없어서 연산 순서를 바꿔 중간 상태를 안전하게 만들었습니다. STM32 RTOS 실습에서는 Task를 나누고 Mutex·Semaphore로 공유 자원 보호와 Task 간 동기화를 구현했습니다. 두 환경을 비교하며, 락이 있으면 중간 상태를 가릴 수 있지만 대신 어느 Task가 언제 락을 잡고 놓는지를 설계해야 한다는 점을 확인했습니다.</p>
+            </article>
+          </div>
+          <p class="hint-note" data-i18n="hint.next">과정 후반에는 CAN 통신, 차량 사이버보안(TARA), 임베디드 Linux를 다룹니다.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <div class="footer-brand">
+                            <div class="footer-brand-stack">
+                <strong data-i18n="name">조현준</strong>
+                <small>Software Engineer · Backend · AI · Embedded</small>
+              </div>
+            </div>
+            <div class="footer-copy pii" data-i18n="footer.graduation">BUAA 2026.07 졸업</div>
+          </div>
+          <div></div>
+          <nav class="footer-nav">
+            <a href="#edu" data-i18n="nav.edu">학력 / 어학</a><a href="#about" data-i18n="nav.about">나에 대해</a>
+            <a href="#skills" data-i18n="nav.skills">기술 스택</a><a href="#projects" data-i18n="nav.projects">프로젝트</a><a href="#hint" data-i18n="nav.hint">임베디드</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy" data-i18n="footer.copy">© 2026 조현준 포트폴리오</span>
+          <div class="footer-actions">
+            <a class="icon-link" href="mailto:kevinjo11@naver.com"
+                  aria-label="이메일">✉</a>
+            <a class="icon-link" href="https://github.com/zzooonn"
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a class="icon-link js-top" href="#top" aria-label="맨 위로 이동">↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <script>
+    /* ── i18n 번역 데이터 ── */
+
+    const TRANSLATIONS = {
+      ko: {
+        'name': '조현준',
+        'pii.banner.title': '개인정보 보호',
+        'pii.banner.sub': ' — 학력·학교명·졸업연도·나이·연락처·사진을 가렸습니다',
+        'nav.edu': '학력 / 어학',
+        'nav.about': '나에 대해',
+        'nav.skills': '기술 스택',
+        'nav.hint': '임베디드',
+        'nav.projects': '프로젝트',
+        'hero.intro': 'OS 커널부터 ECG AI 추론 서버까지 여러 층을 만들며, <strong>"비정상일 때 시스템은 어떻게 행동해야 하는가"</strong>를 파고들어 왔습니다.',
+        'hero.cta.projects': '프로젝트 보기',
+        'hero.cta.contact': '연락하기',
+        'hero.stat1': '주요 프로젝트',
+        'hero.stat2': 'TSC 중국어 레벨',
+        'hero.stat3': 'SW 전국 1등급 학교',
+        'hero.stat4': '한·중·영',
+        'section.edu': '학력 & 어학',
+        'edu.education': '학력 · 교육',
+        'edu.school1.p': '<span class="pii">북경 회문고등학교</span>',
+        'edu.school1.tag': '150년 전통 북경 동성구 명문 공립고교',
+        'edu.school2.p': '软件学院 (School of Software) · 학사',
+        'edu.school2.small': '2020.09 – 2026.07 (졸업)',
+        'edu.school2.tag': '소프트웨어공학 전국 1위 (A+)',
+        'edu.hint.title': '현대자동차그룹 K-뉴딜 아카데미 HINT',
+        'edu.hint.p': '임베디드 SW 과정 · 교육생',
+        'edu.hint.small': '2026.07.27 – 2026.10.22 (수강 중)',
+        'edu.hint.tag': 'STM32 · RTOS · CAN · 임베디드 Linux · 차량 사이버보안',
+        'edu.lang': '어학',
+        'edu.tsc.title': 'TSC 중국어 회화 <span class="tag green">Level 6</span>',
+        'edu.tsc.desc': '원어민 수준 비즈니스 커뮤니케이션',
+        'edu.opic.title': 'OPIc 영어 회화 <span class="tag teal">IH · Intermediate High</span>',
+        'edu.opic.desc': '업무 환경에서 유창한 영어 소통',
+        'edu.proficiency': '언어 능숙도',
+        'section.about': '나에 대해',
+        'about.h1': '안다고 생각할 때 다시 확인하기',
+        'about.h2': '협업 방식',
+        'about.h3': '취미 & 라이프스타일',
+        'about.body1': '<span class="pii">열일곱 살에</span> 혼자 중국으로 가서 언어를 배울 때, 친구가 한 <strong>不感冒</strong>를 "감기에 안 걸렸다"로 알아들었습니다. 感冒가 감기라는 걸 알았기 때문에, 문맥이 어색했는데도 되묻지 않았습니다. 실제 뜻은 "관심이 없다"였습니다. 그 뒤로는 뜻과 함께 <strong>무엇을 왜 오해했는지</strong>를 적었고, 지금도 예상과 다른 결과를 만나면 제가 당연하게 여긴 가정부터 확인합니다.',
+        'about.body2': '팀원마다 익숙한 방식이 다를 때, 각자의 선호와 실제로 쓸 수 있는 조건을 나눠 정리합니다. 학술 플랫폼에서는 AWS 접근 제약 때문에 클라우드를 화웨이로 바꾸고, 백엔드는 모두가 경험 있는 Spring Boot로 유지하는 합의를 <strong>RFC 문서로 남겨</strong> 이후 작업의 기준으로 삼았습니다. 한국어·중국어·영어로 외국인 팀원과 중국인 팀원 사이의 논의를 이었습니다.',
+        'about.body3': '<strong>암벽 클라이밍</strong>을 즐깁니다.<br />최적의 루트를 분석하고 완등을 위해 끊임없이 도전하는 과정은 <strong>엔지니어링의 문제 해결</strong>과 닮아있습니다. 코드를 넘어 일상에서도 <strong>집요하게 길을 찾는 태도</strong>를 유지합니다.',
+        'about.tag1a': '가정 점검',
+        'about.tag1b': '오해 기록',
+        'about.tag2a': '한·중·영',
+        'about.tag2b': 'RFC 문서화',
+        'about.tag2c': '개발 환경 조율',
+        'about.tag3a': '클라이밍',
+        'about.tag3b': '루트파인딩',
+        'section.skills': '기술 스택',
+        'section.hint': '현재 · 임베디드',
+        'hint.intro': '현대자동차그룹 K-뉴딜 아카데미 HINT 임베디드 SW 과정(2026.07 – 2026.10)을 듣고 있습니다. OS 과제에서 시뮬레이터로만 다뤘던 인터럽트와 동기화를 실제 하드웨어에서 확인하고 싶어 선택했습니다.',
+        'hint.a.h': '인터럽트를 하드웨어에서 다시 보기',
+        'hint.a.t': 'STM32(Cortex-M0+)에서 버튼을 누르는 동안 LED가 200ms 간격으로 토글되도록 코드를 고치며 Polling과 Interrupt를 비교했습니다. OS에서는 예외 벡터와 핸들러만 봤다면, 여기서는 버튼 → EXTI → NVIC → ISR 경로를 레퍼런스 매뉴얼로 따라가고, 디바운싱처럼 시뮬레이터에는 없던 물리 입력의 문제를 다뤘습니다.',
+        'hint.b.h': '락이 없던 환경과 있는 환경',
+        'hint.b.t': 'OS의 파이프에는 쓸 수 있는 락이 없어서 연산 순서를 바꿔 중간 상태를 안전하게 만들었습니다. STM32 RTOS 실습에서는 Task를 나누고 Mutex·Semaphore로 공유 자원 보호와 Task 간 동기화를 구현했습니다. 두 환경을 비교하며, 락이 있으면 중간 상태를 가릴 수 있지만 대신 어느 Task가 언제 락을 잡고 놓는지를 설계해야 한다는 점을 확인했습니다.',
+        'hint.next': '과정 후반에는 CAN 통신, 차량 사이버보안(TARA), 임베디드 Linux를 다룹니다.',
+        'skill.sys': '시스템 / 로우레벨',
+        'skill.be': '백엔드 / 데이터베이스',
+        'skill.fe': '프론트엔드 (웹 / 모바일)',
+        'skill.ai': 'AI & ML',
+        'skill.infra': '인프라 / 협업',
+        'skill.emb': '임베디드 / 차량 (교육 과정)',
+        'skill.sum.lang': '언어',
+        'skill.sum.fw': '프레임워크',
+        'skill.sum.infra': '인프라 도구',
+        'skill.sum.ai': 'AI 모델 구현',
+        'section.projects': '프로젝트',
+        'proj1.title': '<span class="pii">BUAA</span> OS — MIPS 마이크로커널 운영체제',
+        'proj1.role': 'OS Kernel Developer (1인 개발)',
+        'proj1.summary': 'GXemul MIPS 시뮬레이터 위에서 부팅·가상메모리·CoW fork·마이크로커널 FS를 단계별로 직접 구현',
+        'proj1.result': '✓ Lab 0–6 전 단계 완주',
+        'proj2.title': 'SysY 언어 컴파일러 프론트엔드 & VM 구현',
+        'proj2.role': 'Compiler Engineer (1인 개발)',
+        'proj2.summary': 'Lexer → 재귀 하향 Parser → Symbol Table → P-Code VM, 컴파일러 전체 파이프라인을 C++ 으로 구현',
+        'proj2.result': '✓ 오류 처리(a–m) · P-Code 생성 · VM 실행까지 구현',
+        'proj3.title': '학술 성과 공유 플랫폼 (Academic Results Sharing Platform)',
+        'proj3.role': 'Backend (팀 프로젝트 · 학자 관계망·검색·공고 서비스)',
+        'proj3.summary': '연구자 학술 성과 검색·분석 플랫폼 — Spring Boot 백엔드에서 학자 관계망·검색·공고 서비스와 단위 테스트 담당 (팀 프로젝트)',
+        'proj3.result': '✓ 학자 관계망 첫 조회 시 생성·저장 · 비로그인 요청 오류 수정 · JUnit/Mockito 테스트',
+        'proj4.title': 'CareLink — 노인 건강 모니터링 & AI ECG 진단 플랫폼',
+        'proj4.role': '3-Tier 시스템 통합 및 AI 모델 구축 (1인 개발)',
+        'proj4.summary': '모바일·백엔드·AI 추론 3개 레이어를 단독 설계 — 환자-보호자 연결 + ECG 자동 진단 앱',
+        'proj4.result': '✓ 0.65M 파라미터 ECG 모델 · Macro AUC 0.925 · EC2 배포',
+        'p1_intro': 'GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 Lab0~Lab6 과정에 따라 구현했습니다. 커널은 페이지 할당·페이지 테이블·예외·시스템콜 같은 작은 기본 기능만 제공하고, <strong>fork·IPC·파일 시스템·셸은 사용자 공간 라이브러리와 서버가 조립</strong>하는 구조입니다. 뒤 Lab으로 갈수록 앞에서 만든 코드의 전제가 깨지는 일이 생겨, 마지막 Lab 기준으로 이전 Lab의 버그를 다시 확인하며 완성했습니다.',
+        'p1_dev_li1': '<strong>개발 환경과 커널 부팅 (Lab0–1):</strong> Makefile·셸 스크립트로 빌드 환경을 익히고, <code>start.S</code>에서 CP0 초기화와 커널 스택을 설정한 뒤 C 코드로 진입. ELF 헤더 파싱과 커널용 <code>printf</code> 구현.',
+        'p1_dev_li2': '<strong>메모리 관리 (Lab2):</strong> <code>struct Page</code>와 free list로 물리 페이지를 관리하고 2단계 페이지 테이블 구현. MIPS는 TLB miss를 하드웨어가 아닌 소프트웨어가 처리하므로, 예외 핸들러에서 페이지 테이블을 조회해 TLB를 채우는 흐름을 구현.',
+        'p1_dev_li3': '<strong>프로세스와 스케줄링 (Lab3):</strong> <code>Env</code>(PCB) 할당, ELF 사용자 프로그램 적재, 타이머 인터럽트 기반 스케줄러 구현. 예외가 발생하면 Trapframe에 레지스터를 저장하고 복원해 사용자 모드로 돌아감.',
+        'p1_dev_li4': '<strong>시스템콜 (Lab4):</strong> <code>syscall</code> 명령 → 예외 → 시스템콜 테이블 분기 → <code>v0</code> 반환 흐름 구현. 복귀할 때 <code>EPC += 4</code>로 같은 명령이 반복 실행되지 않게 처리.',
+        'p1_dev_li5': '<strong>Copy-on-Write fork (Lab4):</strong> 쓰기 가능한 페이지를 부모·자식 모두 <code>PTE_COW</code>로 공유하고, 쓰기가 일어나면 TLB Mod 예외에서 사용자 핸들러가 새 페이지를 복사. 핸들러가 COW 스택에 써서 같은 예외를 다시 일으키지 않도록 <strong>별도 예외 스택(UXSTACK)</strong>에서 실행.',
+        'p1_dev_li6': '<strong>사용자 공간 파일 시스템 (Lab5):</strong> 커널 밖의 <strong>FS 서버 프로세스가 IPC로 요청을 처리</strong>하는 구조. 블록 캐시, 비트맵 기반 블록 할당, direct/indirect 블록, 경로 탐색 구현.',
+        'p1_dev_li7': '<strong>셸과 파이프 (Lab6):</strong> <code>spawn</code>으로 실행 파일을 새 프로세스에 적재하고, 셸에서 리다이렉션(<code>&lt;</code>, <code>&gt;</code>)과 파이프라인(<code>|</code>) 구현. 파이프는 커널 버퍼가 아닌 <strong>사용자 공간 공유 페이지</strong>로 동작.',
+        'p1_tr_head': 'Pipe 거짓 EOF — <code>dup</code>/<code>close</code> 중간 상태를 닫힘으로 오판하는 문제',
+        'p1_tr_problem': '파이프가 닫혔는지는 커널에 묻지 않고 <code>pageref(fd)</code>와 <code>pageref(pipe)</code>를 비교해 판단합니다. 반대편이 살아 있으면 <code>fd &lt; pipe</code>이고, 모두 닫히면 두 값이 같아져 EOF가 됩니다. 그런데 <code>dup</code>/<code>close</code>는 두 페이지를 각각 map·unmap하는 두 단계라서, <code>testpiperace</code>에서 그 사이에 타이머 인터럽트가 끼면 writer가 살아 있는데도 <strong>두 값이 순간적으로 같아져 reader가 EOF를 반환</strong>했습니다.',
+        'p1_tr_alt': '처음에는 mutex로 중간 상태를 가리는 방법을 떠올렸습니다. 하지만 이 파이프는 사용자 공간 공유 페이지에서 동작해 공용 락이나 원자 연산이 제공되지 않았고, 락을 새로 만들면 <strong>락의 소유권과, 락을 잡은 프로세스가 죽었을 때의 복구</strong>라는 새 문제가 생겼습니다. 막아야 할 것은 모든 접근이 아니라 "writer가 살아 있는데 두 값이 같아 보이는 순간" 하나였습니다.',
+        'p1_tr_sol': '중간 상태를 숨기는 대신 <strong>중간 상태가 틀린 의미를 갖지 않도록 순서를 바꿨습니다.</strong> <code>dup</code>은 pipe 페이지를 먼저 map하고, <code>close</code>는 fd 페이지를 먼저 unmap합니다. 그러면 어느 순간에 끊겨도 <code>pageref(fd) &lt; pageref(pipe)</code>가 유지됩니다. 판정하는 쪽은 두 값을 읽는 사이에 스케줄 전환이 있었는지 <code>env_runs</code>로 확인하고, 있었다면 다시 읽습니다.',
+        'p1_takeaway': '다른 프로세스가 내 코드의 중간 상태를 볼 수 있다면 그 중간 상태도 설계 대상이었습니다. 이후 동시성 문제를 만나면 먼저 <strong>"다른 실행을 막아야 하는가, 아니면 중간 상태가 보여도 약속이 깨지지 않게 만들 수 있는가"</strong>를 묻게 됐습니다.',
+        'p2_intro': 'SysY 언어의 <strong>어휘 분석기(Lexer)부터 재귀 하향 파서(Parser), 심볼 테이블, P-Code 생성기, 스택 머신 인터프리터</strong>까지 구현했습니다. 이 컴파일러는 기계어 대신 자체 P-Code를 만들고, 그 P-Code를 스택 머신으로 바로 실행합니다.<br>단일 파일로 커진 5단계 코드를 <code>Lexer</code>, <code>Parser</code>, <code>SymbolTableManager</code>, <code>ErrorHandler</code>, <code>Interpreter</code>로 나누고 CMake로 묶었습니다.',
+        'p2_dev_li1': '<strong>어휘 분석기(Lexer) 구현:</strong> <code>unordered_map</code>으로 키워드 판별을 최적화하고, <code>peek()</code> 메커니즘으로 <code>&lt;=</code>·<code>==</code>·<code>&amp;&amp;</code> 등 다중 문자 연산자와 이스케이프 시퀀스 포함 문자열 상수를 일관되게 토큰화.',
+        'p2_dev_li2': '<strong>재귀 하향 파서(Recursive Descent Parser) 설계:</strong> <code>CompUnit</code> 선행 탐색, <code>Stmt</code> 내 <code>LVal = Exp</code> vs <code>[Exp]</code> 모호성 판별, 연산자 우선순위 기반 계층적 식(Expression) 파싱을 구현.',
+        'p2_dev_li3': '<strong>스코프 기반 심볼 테이블:</strong> 심볼마다 <code>kind</code>(변수·함수·매개변수·배열)와 <code>scope</code> 번호를 붙여 같은 이름을 구분하고, 가장 안쪽 스코프부터 바깥으로 탐색해 섀도잉을 처리. 함수 이름을 몸통보다 먼저 등록해 재귀 호출이 미정의 오류가 되지 않게 함.',
+        'p2_dev_li4': '<strong>누락 토큰 오류 복구:</strong> <code>;</code>·<code>)</code>·<code>]</code> 누락(i/j/k)은 "틀린 토큰"이 아니라 "없는 토큰"이므로, 눈앞의 정상 토큰을 소비하지 않고 오류만 기록한 뒤 분석을 계속. 오류 줄 번호 기준을 오류마다 따로 두지 않고 <code>mLastNonT</code> 하나로 통일.',
+        'p2_dev_li5': '<strong>P-Code 생성기 및 스택 머신 VM:</strong> 산술·논리 연산, 분기, 반복, 함수 호출/반환, 1차원 배열 인덱싱, I/O에 대한 자체 P-Code 명령어 셋을 설계하고, 이를 실행하는 스택 머신 인터프리터 구현.',
+        'p2_dev_li6': '<strong>모듈 분리와 CMake:</strong> 하나의 대형 파일에 섞여 있던 Lexer·Parser·ErrorHandler·SymbolTableManager·Interpreter를 파일 단위로 나누고 CMake로 빌드. 문제가 생겼을 때 어디부터 봐야 하는지 알 수 있게 됨.',
+        'p2_tr_intro': '이 컴파일러는 과제 명세의 <strong>a~m 오류 범주</strong>를 처리해야 했습니다. 가장 오래 붙잡은 것은 <strong><code>;</code>·<code>)</code>·<code>]</code> 누락(i/j/k)</strong>이었습니다. 입력에 없는 토큰을 기준으로 판단해야 해서, 토큰을 하나 잘못 소비하면 뒤의 정상 코드까지 오류처럼 보였기 때문입니다.',
+        'p2_tr_list1': '<strong>구문 오류 복구:</strong> <code>;</code>, <code>)</code>, <code>]</code> 등의 토큰이 누락되어도 파싱을 중단하지 않고, 문맥을 복구하며 후속 구문 분석을 지속할 수 있도록 구현했습니다.',
+        'p2_tr_list2': '<strong>의미 오류 진단:</strong> 중복 정의, 미선언 식별자, 함수 인자 개수/타입 불일치, 반환 규약 위반, 상수 재대입, <code>printf</code> 포맷 문자열과 인자 개수 불일치, 루프 밖 <code>break</code>/<code>continue</code> 사용 등을 컴파일 타임에 진단합니다.',
+        'p2_tr_list3': '<strong>오류 출력 정책:</strong> 모든 에러를 줄 번호 기준으로 정렬한 뒤, 동일한 줄에서는 대표 오류 하나만 출력해 중복 보고를 줄였습니다.',
+        'p2_tr_bridge': '아래 트러블슈팅은 그중 가장 설계 난도가 높았던 <strong>\'구문 누락 복구\'</strong> 문제를 시스템적으로 어떻게 해결했는지 다룹니다.',
+        'p2_tr_head': '<code>)</code> 하나 빠졌는데 오류가 여럿 — 오류를 기록에서 상태로 바꿔 파생 오류 제거',
+        'p2_tr_problem': '<code>foo(a, b;</code>처럼 <code>)</code>가 빠지면 핵심 오류는 <code>j</code> 하나입니다. 그런데 <code>parseErrorJ()</code>가 오류를 기록만 하고 끝나서, 호출자는 이를 모른 채 정상 호출처럼 <strong>인자 개수 검사(<code>d</code>)까지 수행해 파생 오류</strong>를 만들었습니다. 대입문을 판별하려고 앞 토큰을 읽고 <code>index</code>만큼 되돌아오는 코드도 한 번 어긋나면 <code>b = 20;</code>이 <code>= 20;</code>부터 읽혔습니다.',
+        'p2_tr_alt': '처음에는 오류 함수 안에서 줄 번호 기준(이전 토큰/현재 토큰)만 바꿔 가며 테스트를 맞췄습니다. 테스트 하나를 통과시키면 다른 입력이 깨졌습니다. 문제는 오류 함수가 아니라 <strong>오류를 발견한 함수와 이후 처리를 맡은 함수가 오류 상태를 공유하지 않는 것</strong>이었습니다.',
+        'p2_tr_sol': '<code>parseErrorJ()</code>의 반환형을 <code>void</code>에서 <code>bool</code>로 바꿔 누락 여부를 호출자에게 알리고, 호출부는 <code>)</code>가 있을 때만 인자 개수를 검사하도록 했습니다. 누락이면 현재 토큰을 소비하지 않아 다음 문장이 정상 위치에서 시작합니다. 이후에는 <strong>각 파싱 함수가 자기 문법 범위까지만 토큰을 소비한다</strong>는 규칙을 기준으로 코드를 정리했습니다.',
+        'p2_takeaway': '오류는 사용자에게 보여줄 기록에서 끝나지 않고, <strong>이후 어떤 검사를 믿을 수 있는지 결정하는 상태</strong>여야 했습니다. 괄호 하나가 빠졌는데 오류가 열 개 나온다면, 아홉 개는 컴파일러가 스스로 만든 오류일 수 있습니다.',
+        'p3_intro': 'Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서버를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 아래 아키텍처는 팀 전체 구조이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다.',
+        'p3_dev_li1': '<strong>학자 관계망 생성·저장:</strong> 논문·특허 등 성과 기록에서 학자 사이의 공동 연구 횟수와 기간을 모으고, 제품 문서에 정해진 가중치로 관계 점수를 계산해 <code>collaboration_edge</code> 테이블에 저장. 조회할 때는 점수 상위 10명의 공동 연구자로 네트워크를 구성.',
+        'p3_dev_li2': '<strong>첫 조회 시 생성:</strong> 저장된 관계가 없으면 조회 시점에 만들어 저장하고, 이후에는 저장된 결과만 읽도록 구현. 두 번째 조회부터는 원본 통계를 다시 읽거나 저장하지 않는다는 점을 Mockito <code>never()</code> 검증으로 확인.',
+        'p3_dev_li3': '<strong>검색·공고 서비스:</strong> 검색 서비스와 성과 인용 형식(특허 인용 형식 포함), 공고 서비스를 구현하고 단위 테스트 작성. 로그인하지 않은 사용자의 검색 기록은 저장하지 않는다는 규칙도 테스트로 검증.',
+        'p3_dev_li4': '<strong>API 문서 기준 정렬:</strong> 성과 상세 DTO와 공고 DTO의 필드명(<code>publishDateTime</code> / <code>publishDatetime</code>)을 팀 API 문서(RFC4)에 맞춰 고치고 Postman으로 응답 확인.',
+        'p3_dev_li5': '<strong>남은 한계:</strong> 새 성과가 들어와도 저장된 관계망은 자동으로 다시 만들어지지 않음. 다시 만들지 않는 조건은 테스트했지만 언제 다시 만들어야 하는지는 정하지 않았고, 원본이 바뀔 때의 갱신 시점을 정하는 일이 과제로 남음.',
+        'p3_tr_head': '통과한 테스트, 깨진 입구 — 비로그인 검색 기록 조회 오류',
+        'p3_tr_badge': '백엔드 / 테스트',
+        'p3_tr_problem': '검색 서비스에는 "로그인하지 않은 사용자의 검색 기록은 저장하지 않는다"는 규칙이 있었고, 서비스 단위 테스트도 통과했습니다. 그런데 로그인하지 않은 상태에서 검색 기록을 조회하면 요청이 <code>NullPointerException</code>으로 실패했습니다.',
+        'p3_tr_cause': '요청을 가장 먼저 받는 컨트롤러가 서비스를 호출하기 전에 <code>principal.uuid()</code>로 로그인 정보부터 꺼내고 있었습니다. 규칙은 서비스 안에서 지켜지고 있었지만, 비로그인 요청은 그 규칙에 닿기도 전에 입구에서 멈췄습니다. 테스트는 서비스만 검증하고 있었습니다.',
+        'p3_tr_sol': '로그인 정보가 없으면 검색 기록 조회는 빈 페이지를 바로 돌려주고, 검색어 분석은 사용자 식별값 없이 서비스로 넘기도록 고쳤습니다. 그리고 <strong>컨트롤러 단위 테스트를 새로 만들어 로그인한 경우와 하지 않은 경우를 모두 확인</strong>했습니다. 비로그인일 때 서비스의 기록 조회가 한 번도 호출되지 않는다는 점까지 검증했습니다.',
+        'p3_takeaway': '테스트가 통과한 위치와 규칙이 실제로 적용되는 위치는 다를 수 있었습니다. 이후에는 규칙을 검증할 때 서비스 안뿐 아니라, 요청이 처음 들어오는 입구에서도 같은 조건이 지켜지는지 함께 확인합니다.',
+        'p4_intro': '환자와 보호자를 연결하는 실시간 헬스케어 플랫폼입니다. 모바일(React Native) · 백엔드(Spring Boot) · AI 추론(FastAPI)으로 구성된 <strong>3-Tier 분리 구조</strong>를 설계하고 시스템 통합을 구현했습니다.',
+        'p4_dev_li1': '<strong>3-Tier 분리형 아키텍처 구축:</strong> 비즈니스 로직(Spring Boot)과 고부하 AI 연산(FastAPI)의 책임을 물리적으로 분리하여 운영 안정성을 확보했습니다.',
+        'p4_dev_li2': '<strong>심전도(ECG) 진단 모델:</strong> PTB-XL(12-lead, 500Hz)의 5개 슈퍼클래스 멀티라벨 분류. 정규화 과정에서 사라지는 진폭 정보를 잃지 않도록 리드별 peak-to-peak·표준편차·RMS(36차원)를 따로 계산해 모델에 결합.',
+        'p4_dev_li3': '<strong>데이터 동기화 및 보안:</strong> JWT 인증 기반 401 만료 자동 로그아웃 흐름을 구현하고, AsyncStorage 기반 <strong>Cache-First 전략</strong>으로 클라이언트 응답성을 개선했습니다.',
+        'p4_dev_li4': '<strong>입력 검증:</strong> 초기에는 <code>NaN</code>을 0으로 바꿔 추론했지만, 존재하지 않는 파형에도 확률이 나오는 문제가 있었습니다. 빈 배열·리드 수 불일치·숫자가 아닌 값·<code>NaN</code>/<code>Inf</code>·잘못된 샘플링 주파수는 보정하지 않고 요청을 거부하도록 변경. 클라이언트가 보낸 진폭 특징값(<code>amp</code>)은 쓰지 않고, 서버가 필터링 후 매번 다시 계산.',
+        'p4_perf_li1': '<strong>처리량(TPS) 평가:</strong> 20명 동시 접속 부하 테스트에서 주요 API 기준 <strong>TPS 56.23~66.41</strong>을 기록.',
+        'p4_perf_li2': '<strong>AI 추론 지연:</strong> 12-lead ECG(10초, 500Hz) 기준 <strong>평균 2,382.85ms, P50 2,303.27ms, P95 2,698.16ms</strong>. CPU 환경에서 BiGRU 연산과 대역 필터링이 지연의 주원인.',
+        'p4_perf_li3': '<strong>홈 화면 Cache-First:</strong> 첫 표시를 네트워크 응답(평균 604ms)이 아니라 로컬 캐시 읽기(평균 0.29ms)로 처리하고, 서버 동기화는 뒤에서 수행.',
+        'p4_perf_li4': '<strong>경계값 테스트:</strong> 비정상 입력은 서버 다운 없이 오류 응답으로 처리. 다만 검증 실패(422)가 넓은 예외 처리에 감싸여 500으로 나갈 수 있는 경로가 남아 있어 수정이 필요.',
+        'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--faint);font-size:.85em">(comparison_results.csv 기준)</span>',
+        'p4_ecg_li2': '<strong>모델 파라미터:</strong> 0.65M · <strong>아키텍처:</strong> CNN-CBAM-GRU (Amplitude Feature Injection 36차원)',
+        'p4_ecg_li3': '<strong>손실 함수:</strong> 비대칭 손실(AsymmetricLoss) 및 클래스 불균형 보정(pos_weight) 기반 학습 전략 적용',
+        'p4_ecg_li4': '<strong>비교 실험:</strong> 비교 모델 ResNet1D보다 훨씬 작은 0.65M 파라미터로 전체 성능은 비슷하게 유지하고 HYP 범주에서는 더 나은 결과. 가중 샘플링을 빼면 Macro F1·AUC는 올랐지만 HYP 성능이 떨어져, 평균 지표 대신 범주별 오류를 기준으로 설정을 선택.',
+        'p4_tr_head': 'Ubuntu EC2 로그 추적으로 ECG 분석 API 500 원인 해결',
+        'p4_tr_label_problem1': '① 증상 — ECG 분석 API 500',
+        'p4_tr_problem1': 'ECG 분석 요청(<code>POST /api/ecg/predict_window</code>)이 간헐적으로 500을 반환했고, 백엔드 로그에는 Spring이 FastAPI 서버로 보내는 <code>/predict_window</code> 호출이 <strong>Connection refused</strong>로 실패한 기록이 남았습니다.',
+        'p4_tr_label_sol1': '② 추적 — 로그 범위 좁히기',
+        'p4_tr_sol1': '<code>docker logs carelink-backend</code>로 백엔드의 외부 호출 실패를 확인한 뒤, <code>docker ps -a</code>와 <code>docker logs carelink-ai</code>로 AI 컨테이너가 종료됐는지 추적했습니다. 이어 <code>journalctl -k</code>, <code>dmesg</code>로 Ubuntu 커널 로그에서 OOM 여부를 확인했습니다.',
+        'p4_tr_label_problem2': '③ 원인 — AI 컨테이너 종료',
+        'p4_tr_problem2': 'AI 컨테이너가 떠 있지 않은 것이 원인이었습니다. FastAPI는 기동 단계(lifespan)에서 모델 가중치를 반드시 로드하는데, 운영 서버에 모델 파일이 배치되지 않으면 기동 자체가 실패했습니다. 또 저메모리 EC2 한 대에서 PostgreSQL·JVM·PyTorch 로딩에 이미지 빌드까지 겹치면서 메모리가 먼저 바닥날 수 있는 구조였습니다.',
+        'p4_tr_label_sol2': '④ 해결 — 모델 검증과 Pull-only 배포',
+        'p4_tr_sol2': '모델 파일 배치를 배포 체크리스트에 넣고, 이미지 빌드는 GitHub Actions에서 해 GHCR에 올린 뒤 <strong>EC2는 이미지를 받아 실행만</strong> 하도록 나눴습니다. 경량 Compose에는 컨테이너별 메모리 제한(PostgreSQL 256MB·백엔드 384MB·AI 512MB)과 swap을 두고, AI 컨테이너는 <strong><code>profiles: ["ai"]</code>로 필요할 때만</strong> 올리도록 했습니다.',
+        'p4_takeaway': '문제를 <strong>증상 재현 → 애플리케이션 로그 → 컨테이너 상태 → OS 커널 로그</strong> 순서로 좁히는 습관이 생겼습니다. 메모리 제한은 OOM을 없애는 장치가 아니라, 한 컨테이너의 폭주가 다른 서비스로 번지지 않게 하는 경계였습니다.',
+        'proj.minor.dev': '주요 개발 내용',
+        'proj.minor.trouble': '트러블슈팅',
+        'proj.minor.tech': '사용 기술',
+        'proj.minor.arch': '시스템 아키텍처',
+        'proj.minor.perf': '시스템 성능 최적화 및 평가 지표',
+        'proj.minor.ecg': 'ECG 분류 모델 성능',
+        'proj.minor.bench': '성능 측정',
+        'proj.minor.labrange': '주요 개발 내용 (Lab0 – Lab6)',
+        'trouble.situation': '상황',
+        'trouble.alternatives': '대안 탐색',
+        'trouble.cause': '원인',
+        'trouble.solution': '해결',
+        'trouble.takeaway': '알게된 점',
+        'footer.graduation': 'BUAA 2026.07 졸업',
+        'footer.copy': '© 2026 조현준 포트폴리오',
+        'blur.on': '켜짐',
+        'blur.off': '꺼짐',
+      },
+      en: {
+        'name': 'CHO HYUNJOON',
+        'pii.banner.title': 'Privacy mode',
+        'pii.banner.sub': ' — education, school, graduation year, age, contact and photo are hidden',
+        'nav.edu': 'Education & Languages',
+        'nav.about': 'About Me',
+        'nav.skills': 'Tech Stack',
+        'nav.hint': 'Embedded',
+        'nav.projects': 'Projects',
+        'hero.intro': 'From an OS kernel to an ECG AI inference server, I\'ve built systems at several layers, always asking one question: <strong>how should a system behave when things go wrong?</strong>',
+        'hero.cta.projects': 'View Projects',
+        'hero.cta.contact': 'Contact',
+        'hero.stat1': 'Key Projects',
+        'hero.stat2': 'TSC Chinese Level',
+        'hero.stat3': 'Top SW Ranked School',
+        'hero.stat4': 'KO · CN · EN',
+        'section.edu': 'Education & Language',
+        'edu.education': 'Education · Training',
+        'edu.school1.p': '<span class="pii">Beijing Huiwen High School</span>',
+        'edu.school1.tag': 'A 150-year-old, well-regarded public high school in Beijing\'s Dongcheng District',
+        'edu.school2.p': 'School of Software · Bachelor\'s',
+        'edu.school2.small': '2020.09 – 2026.07 (Graduated)',
+        'edu.school2.tag': 'Software Engineering #1 in China (A+)',
+        'edu.hint.title': 'Hyundai Motor Group K-New Deal Academy HINT',
+        'edu.hint.p': 'Embedded SW course · Trainee',
+        'edu.hint.small': '2026.07.27 – 2026.10.22 (In progress)',
+        'edu.hint.tag': 'STM32 · RTOS · CAN · Embedded Linux · Vehicle cybersecurity',
+        'edu.lang': 'Languages',
+        'edu.tsc.title': 'TSC Chinese Oral Proficiency <span class="tag green">Level 6</span>',
+        'edu.tsc.desc': 'Native-level business communication',
+        'edu.opic.title': 'OPIc English Oral Proficiency <span class="tag teal">IH · Intermediate High</span>',
+        'edu.opic.desc': 'Fluent English in professional environments',
+        'edu.proficiency': 'Language Proficiency',
+        'section.about': 'About Me',
+        'about.h1': 'Checking again when I think I know',
+        'about.h2': 'How I Collaborate',
+        'about.h3': 'Hobbies & Lifestyle',
+        'about.body1': 'Learning the language alone in China <span class="pii">at seventeen</span>, I heard a friend say <strong>不感冒</strong> and took it as "didn\'t catch a cold". Because I knew 感冒 meant a cold, I didn\'t ask, even though it didn\'t fit the context. It actually meant "not interested". Since then I have written down not only the meaning but <strong>what I misunderstood and why</strong>, and when a result differs from what I expected, I still start by checking the assumption I took for granted.',
+        'about.body2': 'When teammates are used to different ways of working, I separate their preferences from the conditions we can actually work under. On the academic platform, AWS access restrictions led us to move to Huawei Cloud while keeping Spring Boot on the backend, and I <strong>recorded that agreement as an RFC</strong> so later work could follow it. I bridged discussions between international and Chinese teammates in Korean, Chinese and English.',
+        'about.body3': 'I enjoy <strong>rock climbing</strong>.<br />Analyzing optimal routes and persisting through challenges mirrors <strong>engineering problem-solving</strong>. I bring the same <strong>persistence in finding a way forward</strong> beyond code, in everyday life too.',
+        'about.tag1a': 'Checking assumptions',
+        'about.tag1b': 'Logging misunderstandings',
+        'about.tag2a': 'KO · ZH · EN',
+        'about.tag2b': 'RFC documentation',
+        'about.tag2c': 'Aligning dev environments',
+        'about.tag3a': 'Climbing',
+        'about.tag3b': 'Route-finding',
+        'section.skills': 'Tech Stack',
+        'section.hint': 'Now · Embedded',
+        'hint.intro': 'I am taking the Hyundai Motor Group K-New Deal Academy HINT embedded SW course (2026.07 – 2026.10). I chose it to see on real hardware the interrupts and synchronization I had only handled on a simulator in my OS coursework.',
+        'hint.a.h': 'Interrupts, seen again on hardware',
+        'hint.a.t': 'On an STM32 (Cortex-M0+) I modified code so an LED toggles every 200 ms while a button is held, comparing polling with interrupts. In the OS I had only seen exception vectors and handlers; here I traced the path button → EXTI → NVIC → ISR through the reference manual and dealt with problems of physical input, such as debouncing, that a simulator never shows.',
+        'hint.b.h': 'Without locks, and with them',
+        'hint.b.t': 'The pipe in my OS had no lock available, so I made its intermediate state safe by reordering operations. In the STM32 RTOS labs I split work into tasks and used mutexes and semaphores to protect shared resources and synchronize tasks. Comparing the two showed me that a lock can hide the intermediate state, but in exchange you must design which task takes and releases it, and when.',
+        'hint.next': 'The rest of the course covers CAN communication, vehicle cybersecurity (TARA) and embedded Linux.',
+        'skill.sys': 'Systems / Low-level',
+        'skill.be': 'Backend / Database',
+        'skill.fe': 'Frontend (Web / Mobile)',
+        'skill.ai': 'AI & ML',
+        'skill.infra': 'Infrastructure / Collaboration',
+        'skill.emb': 'Embedded / Vehicle (training)',
+        'skill.sum.lang': 'Languages',
+        'skill.sum.fw': 'Frameworks',
+        'skill.sum.infra': 'Infra tools',
+        'skill.sum.ai': 'AI models built',
+        'section.projects': 'Projects',
+        'proj1.title': '<span class="pii">BUAA</span> OS — MIPS Microkernel OS',
+        'proj1.role': 'OS Kernel Developer (Solo)',
+        'proj1.summary': 'Step-by-step implementation of boot, virtual memory, CoW fork, and microkernel FS on GXemul MIPS simulator',
+        'proj1.result': '✓ Completed all Lab 0–6 stages',
+        'proj2.title': 'SysY Compiler Frontend & VM',
+        'proj2.role': 'Compiler Engineer (Solo)',
+        'proj2.summary': 'Lexer → Recursive Descent Parser → Symbol Table → P-Code VM, full compiler pipeline in C++',
+        'proj2.result': '✓ Error handling (a–m), P-Code generation and VM execution',
+        'proj3.title': 'Academic Results Sharing Platform',
+        'proj3.role': 'Backend (Team Project · scholar network, search and announcement services)',
+        'proj3.summary': 'Academic results search and analysis platform — on the Spring Boot backend I built the scholar network, search and announcement services and their unit tests (team project)',
+        'proj3.result': '✓ Scholar network built and stored on first view · fixed anonymous-request failure · JUnit/Mockito tests',
+        'proj4.title': 'CareLink — Elderly Health Monitoring & AI ECG Diagnosis',
+        'proj4.role': '3-Tier System Architect & AI Model Dev (Solo)',
+        'proj4.summary': 'Solo-designed 3-layer system (mobile·backend·AI) — patient-guardian connection + ECG auto-diagnosis',
+        'proj4.result': '✓ 0.65M-parameter ECG model · Macro AUC 0.925 · deployed on EC2',
+        'p1_intro': 'I implemented an educational OS running on GXemul (MIPS R3000) following the Lab0–Lab6 curriculum. The kernel provides only small primitives such as page allocation, page tables, exceptions and system calls, while <strong>fork, IPC, the file system and the shell are assembled by user-space libraries and servers</strong>. Later labs often broke assumptions made in earlier ones, so I re-verified earlier labs against the final lab before finishing.',
+        'p1_dev_li1': '<strong>Toolchain and Kernel Boot (Lab0–1):</strong> Learned the build environment with Makefiles and shell scripts, initialized CP0 and the kernel stack in <code>start.S</code> before entering C code, and implemented ELF header parsing and a kernel <code>printf</code>.',
+        'p1_dev_li2': '<strong>Memory Management (Lab2):</strong> Managed physical pages with <code>struct Page</code> and a free list and implemented two-level page tables. Because MIPS handles TLB misses in software rather than hardware, I implemented the refill path that walks the page table in the exception handler and fills the TLB.',
+        'p1_dev_li3': '<strong>Processes and Scheduling (Lab3):</strong> Implemented <code>Env</code> (PCB) allocation, ELF user-program loading and a timer-interrupt-driven scheduler. On exceptions, registers are saved to and restored from a Trapframe before returning to user mode.',
+        'p1_dev_li4': '<strong>System Calls (Lab4):</strong> Implemented the path <code>syscall</code> instruction → exception → syscall table dispatch → return value in <code>v0</code>, advancing <code>EPC += 4</code> so the same instruction is not re-executed on return.',
+        'p1_dev_li5': '<strong>Copy-on-Write fork (Lab4):</strong> Writable pages are shared as <code>PTE_COW</code> by parent and child; on a write, the user handler copies the page from the TLB Mod exception. The handler runs on a <strong>separate exception stack (UXSTACK)</strong> so writing to a COW stack does not re-trigger the same fault.',
+        'p1_dev_li6': '<strong>User-space File System (Lab5):</strong> A <strong>file-system server process outside the kernel handles requests over IPC</strong>. Implemented the block cache, bitmap-based block allocation, direct/indirect blocks and path lookup.',
+        'p1_dev_li7': '<strong>Shell and Pipes (Lab6):</strong> Loaded executables into new processes with <code>spawn</code> and implemented redirection (<code>&lt;</code>, <code>&gt;</code>) and pipelines (<code>|</code>) in the shell. Pipes live in a <strong>user-space shared page</strong>, not a kernel buffer.',
+        'p1_tr_head': 'False pipe EOF — the intermediate state of <code>dup</code>/<code>close</code> read as "closed"',
+        'p1_tr_problem': 'Whether a pipe is closed is decided by comparing <code>pageref(fd)</code> and <code>pageref(pipe)</code> instead of asking the kernel. While the other end is alive, <code>fd &lt; pipe</code>; once it is fully closed, the two become equal and that means EOF. But <code>dup</code>/<code>close</code> map or unmap two pages in two steps, so in <code>testpiperace</code> a timer interrupt between them made <strong>the two counts briefly equal while a writer was still alive, and the reader returned EOF</strong>.',
+        'p1_tr_alt': 'My first idea was to hide the intermediate state with a mutex. But this pipe runs on a user-space shared page with no shared lock or atomic primitive, and adding a lock would create new problems: <strong>lock ownership and recovery when the holder dies</strong>. What I needed to prevent was not every access, only the moment when the counts look equal while a writer is alive.',
+        'p1_tr_sol': 'Instead of hiding the intermediate state, <strong>I reordered the steps so the intermediate state can never mean the wrong thing.</strong> <code>dup</code> maps the pipe page first, and <code>close</code> unmaps the fd page first, so <code>pageref(fd) &lt; pageref(pipe)</code> holds wherever it is interrupted. The checker uses <code>env_runs</code> to detect a context switch between the two reads and re-reads if one happened.',
+        'p1_takeaway': 'If other processes can observe my code\'s intermediate state, that state is part of the design. Since then, when I meet a concurrency problem I first ask: <strong>must other executions be blocked, or can the intermediate state be made safe to observe?</strong>',
+        'p2_intro': 'I implemented SysY from the <strong>lexer through a recursive-descent parser, symbol table, P-Code generator and stack-machine interpreter</strong>. Instead of machine code, the compiler emits its own P-Code and executes it directly on a stack machine.<br>I split the stage-5 code, which had grown into a single file, into <code>Lexer</code>, <code>Parser</code>, <code>SymbolTableManager</code>, <code>ErrorHandler</code> and <code>Interpreter</code>, built with CMake.',
+        'p2_dev_li1': '<strong>Lexer Implementation:</strong> Optimized keyword classification with <code>unordered_map</code>, and consistently tokenized multi-character operators such as <code>&lt;=</code>, <code>==</code>, <code>&amp;&amp;</code> and string constants including escape sequences via a <code>peek()</code> mechanism.',
+        'p2_dev_li2': '<strong>Recursive Descent Parser Design:</strong> Implemented lookahead for <code>CompUnit</code>, ambiguity resolution inside <code>Stmt</code> between <code>LVal = Exp</code> and <code>[Exp]</code>, and layered expression parsing based on operator precedence.',
+        'p2_dev_li3': '<strong>Scope-based Symbol Table:</strong> Each symbol carries a <code>kind</code> (variable, function, parameter, array) and a <code>scope</code> number so identical names are distinguished; lookup walks from the innermost scope outward, which handles shadowing. Function names are registered before the body so recursive calls are not reported as undefined.',
+        'p2_dev_li4': '<strong>Missing-token Recovery:</strong> A missing <code>;</code>, <code>)</code> or <code>]</code> (i/j/k) is an absent token, not a wrong one, so the parser records the error without consuming the valid token in front of it and keeps going. Error line numbers use a single reference, <code>mLastNonT</code>, instead of a different rule per error.',
+        'p2_dev_li5': '<strong>P-Code Generator and Stack VM:</strong> Designed a custom P-Code instruction set for arithmetic/logical operations, branching, loops, function call/return, 1D array indexing, and I/O, then implemented a stack-machine interpreter for execution.',
+        'p2_dev_li6': '<strong>Module Split and CMake:</strong> Separated the Lexer, Parser, ErrorHandler, SymbolTableManager and Interpreter that were mixed in one large file into their own files, built with CMake, so it became clear where to look first when something broke.',
+        'p2_tr_intro': 'The compiler had to handle the <strong>a–m error categories</strong> in the spec. The ones I struggled with longest were <strong>missing <code>;</code>, <code>)</code> and <code>]</code> (i/j/k)</strong>: they must be judged by a token that is not in the input, so consuming one token wrongly made the valid code after it look broken too.',
+        'p2_tr_list1': '<strong>Syntax Error Recovery:</strong> Even when tokens such as <code>;</code>, <code>)</code>, or <code>]</code> are missing, the parser does not stop: it recovers and keeps analyzing the rest of the input.',
+        'p2_tr_list2': '<strong>Semantic Error Diagnostics:</strong> Performs compile-time diagnostics for duplicate definitions, undeclared identifiers, function arg count/type mismatches, return-contract violations, constant reassignment, mismatch between <code>printf</code> format strings and arguments, and use of <code>break</code>/<code>continue</code> outside loops.',
+        'p2_tr_list3': '<strong>Error Output Policy:</strong> Sorts all errors by line number and outputs only one representative error per line to reduce duplicate reports.',
+        'p2_tr_bridge': 'The troubleshooting below focuses on how I solved the hardest design problem among them: <strong>missing-token recovery</strong>.',
+        'p2_tr_head': 'One missing <code>)</code>, many errors — turning errors from records into state',
+        'p2_tr_problem': 'For <code>foo(a, b;</code> the real error is a single <code>j</code>. But <code>parseErrorJ()</code> only recorded the error, so the caller, unaware of it, went on as if the call were complete and <strong>ran the argument-count check (<code>d</code>), producing a derived error</strong>. The look-ahead that read forward and stepped back <code>index</code> tokens to detect assignments also caused <code>b = 20;</code> to be read from <code>= 20;</code> whenever the count slipped.',
+        'p2_tr_alt': 'At first I tweaked only the line-number rule (previous vs. current token) inside the error functions to pass tests; each fix broke another input. The real problem was not the error function but that <strong>the function that detected an error and the code that ran afterwards did not share the error state</strong>.',
+        'p2_tr_sol': 'I changed <code>parseErrorJ()</code> from <code>void</code> to <code>bool</code> so it tells the caller whether the token was missing, and the caller checks the argument count only when <code>)</code> is present. When it is missing, the current token is not consumed, so the next statement starts at the right place. After that I cleaned up the code around one rule: <strong>each parse function consumes tokens only within its own grammar rule</strong>.',
+        'p2_takeaway': 'An error should not end as a record shown to the user; it has to be <strong>state that decides which later checks can still be trusted</strong>. If one missing parenthesis yields ten errors, nine of them may have been created by the compiler itself.',
+        'p3_intro': 'A team project that integrates a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO and a vector server to search, view and analyze academic results. On the backend I <strong>implemented the scholar network, search and announcement services and wrote their unit tests with JUnit and Mockito</strong>. The architecture below is the whole team system; Redis view counting, OpenAlex sync, file storage, the common response wrapper and the AI search features were built by other teammates.',
+        'p3_dev_li1': '<strong>Scholar network build and storage:</strong> Aggregates co-authorship counts and periods between scholars from papers, patents and other research outputs, scores each relation with the weights defined in the product document, and stores it in the <code>collaboration_edge</code> table. On read, the network is built from the top 10 collaborators by score.',
+        'p3_dev_li2': '<strong>Build on first view:</strong> If no stored relations exist, the network is built and saved at read time; afterwards only the stored result is read. A Mockito <code>never()</code> check confirms that later views neither re-read the raw statistics nor save again.',
+        'p3_dev_li3': '<strong>Search and announcement services:</strong> Implemented the search service, citation formats for research outputs (including patents) and the announcement service with unit tests, including a test that anonymous users\' search history is never stored.',
+        'p3_dev_li4': '<strong>Aligned with the API spec:</strong> Fixed field names in the research-output detail DTO and announcement DTOs (<code>publishDateTime</code> / <code>publishDatetime</code>) to match the team API document (RFC4) and checked the responses with Postman.',
+        'p3_dev_li5': '<strong>Remaining limit:</strong> The stored network is not rebuilt when new research outputs arrive. I tested when it must not be rebuilt but never defined when it should be; choosing a refresh point for source changes is still open.',
+        'p3_tr_head': 'Tests passed, the entry point failed — search history request by anonymous users',
+        'p3_tr_badge': 'Backend / Testing',
+        'p3_tr_problem': 'The search service had a rule that anonymous users\' search history is not stored, and its unit tests passed. Yet requesting search history without logging in failed with a <code>NullPointerException</code>.',
+        'p3_tr_cause': 'The controller, which receives the request first, called <code>principal.uuid()</code> before it ever reached the service. The rule held inside the service, but an anonymous request stopped at the entry point before reaching it. The tests only covered the service.',
+        'p3_tr_sol': 'Without login information, the history endpoint now returns an empty page right away, and query parsing passes no user id to the service. I then <strong>added controller unit tests covering both logged-in and anonymous requests</strong>, verifying that the service\'s history lookup is never called for anonymous users.',
+        'p3_takeaway': 'The place where a test passes and the place where a rule actually applies can differ. Since then, when I verify a rule I check not only inside the service but also at the entry point where the request first arrives.',
+        'p4_intro': 'A real-time healthcare platform connecting patients and guardians. I designed and integrated a <strong>3-tier separated architecture</strong> composed of mobile (React Native), backend (Spring Boot), and AI inference (FastAPI).',
+        'p4_dev_li1': '<strong>3-Tier Separated Architecture:</strong> Improved operational stability by physically separating responsibilities between business logic (Spring Boot) and high-load AI computation (FastAPI).',
+        'p4_dev_li2': '<strong>ECG Diagnosis Model:</strong> Multi-label classification of five PTB-XL superclasses (12-lead, 500 Hz). To keep the amplitude information that normalization erases, per-lead peak-to-peak, standard deviation and RMS (36 dims) are computed separately and fed to the model.',
+        'p4_dev_li3': '<strong>Data Sync and Security:</strong> Implemented JWT-based auto-logout flow for 401 expiration and improved client responsiveness with an AsyncStorage-based <strong>Cache-First strategy</strong>.',
+        'p4_dev_li4': '<strong>Input Validation:</strong> Early code replaced <code>NaN</code> with 0 and still produced probabilities for a waveform that did not exist. Empty arrays, wrong lead counts, non-numeric values, <code>NaN</code>/<code>Inf</code> and invalid sampling rates are now rejected instead of silently corrected. Amplitude features sent by the client (<code>amp</code>) are ignored; the server recomputes them after filtering on every request.',
+        'p4_perf_li1': '<strong>Throughput (TPS) Evaluation:</strong> Recorded <strong>TPS 56.23~66.41</strong> on key APIs under a 20-concurrent-user load test.',
+        'p4_perf_li2': '<strong>AI Inference Latency:</strong> For a 12-lead ECG (10 s, 500 Hz): <strong>mean 2,382.85 ms, P50 2,303.27 ms, P95 2,698.16 ms</strong>. On CPU, the BiGRU and band-pass filtering dominate the latency.',
+        'p4_perf_li3': '<strong>Cache-First Home Screen:</strong> The first render uses a local cache read (mean 0.29 ms) instead of waiting for the network (mean 604 ms); server sync runs in the background.',
+        'p4_perf_li4': '<strong>Boundary Tests:</strong> Abnormal inputs return error responses without crashing the server. One path still needs fixing: a validation failure (422) can be wrapped by a broad exception handler and surface as a 500.',
+        'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--faint);font-size:.85em">(from comparison_results.csv)</span>',
+        'p4_ecg_li2': '<strong>Model Parameters:</strong> 0.65M · <strong>Architecture:</strong> CNN-CBAM-GRU (Amplitude Feature Injection, 36 dimensions)',
+        'p4_ecg_li3': '<strong>Loss Function:</strong> Training strategy with AsymmetricLoss and class-imbalance correction (pos_weight)',
+        'p4_ecg_li4': '<strong>Comparison:</strong> With 0.65M parameters, far fewer than the ResNet1D baseline, overall performance stayed comparable and HYP improved. Removing weighted sampling raised Macro F1/AUC but hurt HYP, so I chose settings by per-class errors rather than the averages.',
+        'p4_tr_head': 'Tracing Ubuntu EC2 logs to resolve ECG analysis API 500 errors',
+        'p4_tr_label_problem1': '① Symptom — ECG API 500',
+        'p4_tr_problem1': 'ECG analysis requests (<code>POST /api/ecg/predict_window</code>) intermittently returned 500, and the backend logs showed Spring\'s <code>/predict_window</code> call to the FastAPI server failing with <strong>Connection refused</strong>.',
+        'p4_tr_label_sol1': '② Trace — narrowing log scope',
+        'p4_tr_sol1': 'I first used <code>docker logs carelink-backend</code> to confirm the failed outbound call, then checked <code>docker ps -a</code> and <code>docker logs carelink-ai</code> to see whether the AI container had exited. I also checked Ubuntu kernel logs with <code>journalctl -k</code> and <code>dmesg</code> for possible OOM kills.',
+        'p4_tr_label_problem2': '③ Root Cause — AI container exited',
+        'p4_tr_problem2': 'The AI container was not running. FastAPI must load the model weights during startup (lifespan), so when the model file was not deployed to the server, startup itself failed. On top of that, a single low-memory EC2 instance was running PostgreSQL, the JVM and PyTorch loading while also building images, so memory could run out first.',
+        'p4_tr_label_sol2': '④ Fix — model check and pull-only deploy',
+        'p4_tr_sol2': 'I added model placement to the deployment checklist and split build from run: GitHub Actions builds images and pushes them to GHCR, and <strong>EC2 only pulls and runs them</strong>. The lightweight Compose file sets per-container memory limits (PostgreSQL 256 MB, backend 384 MB, AI 512 MB) plus swap, and the AI container starts <strong>only when needed via <code>profiles: ["ai"]</code></strong>.',
+        'p4_takeaway': 'I built the habit of narrowing problems in order: <strong>reproduce the symptom → application logs → container state → OS kernel logs</strong>. Memory limits are not a cure for OOM; they are a boundary that keeps one runaway container from taking down the others.',
+        'proj.minor.dev': 'Key Development',
+        'proj.minor.trouble': 'Troubleshooting',
+        'proj.minor.tech': 'Technologies',
+        'proj.minor.arch': 'System Architecture',
+        'proj.minor.perf': 'Performance Optimization & Metrics',
+        'proj.minor.ecg': 'ECG Model Performance',
+        'proj.minor.bench': 'Performance Measurements',
+        'proj.minor.labrange': 'Key Development (Lab0 – Lab6)',
+        'trouble.situation': 'Situation',
+        'trouble.alternatives': 'Alternatives Explored',
+        'trouble.cause': 'Root Cause',
+        'trouble.solution': 'Solution',
+        'trouble.takeaway': 'Key Takeaway',
+        'footer.graduation': 'BUAA graduated 2026.07',
+        'footer.copy': '© 2026 CHO HYUNJOON Portfolio',
+        'blur.on': 'ON',
+        'blur.off': 'OFF',
+      },
+      zh: {
+        'name': '曹贤准',
+        'pii.banner.title': '隐私保护',
+        'pii.banner.sub': ' — 已隐藏学历、学校、毕业年份、年龄、联系方式和照片',
+        'nav.edu': '学历 & 语言',
+        'nav.about': '关于我',
+        'nav.skills': '技术栈',
+        'nav.hint': '嵌入式',
+        'nav.projects': '项目',
+        'hero.intro': '从操作系统内核到 ECG AI 推理服务，我在构建系统各个层次的过程中，一直深入探究<strong>“系统在非正常情况下应当如何表现”</strong>。',
+        'hero.cta.projects': '查看项目',
+        'hero.cta.contact': '联系我',
+        'hero.stat1': '核心项目',
+        'hero.stat2': 'TSC 中文等级',
+        'hero.stat3': '全国一流软件学院',
+        'hero.stat4': '韩·中·英',
+        'section.edu': '学历 & 语言',
+        'edu.education': '学历 · 培训',
+        'edu.school1.p': '<span class="pii">北京汇文中学（高中）</span>',
+        'edu.school1.tag': '150年历史，北京东城区名校',
+        'edu.school2.p': '软件学院 · 学士',
+        'edu.school2.small': '2020.09 – 2026.07（已毕业）',
+        'edu.school2.tag': '软件工程学科评估全国第一（A+）',
+        'edu.hint.title': '现代汽车集团 K-New Deal 学院 HINT',
+        'edu.hint.p': '嵌入式软件课程 · 学员',
+        'edu.hint.small': '2026.07.27 – 2026.10.22（进行中）',
+        'edu.hint.tag': 'STM32 · RTOS · CAN · 嵌入式 Linux · 车辆网络安全',
+        'edu.lang': '语言',
+        'edu.tsc.title': 'TSC 中文口语 <span class="tag green">Level 6</span>',
+        'edu.tsc.desc': '母语级商务沟通能力',
+        'edu.opic.title': 'OPIc 英语口语 <span class="tag teal">IH · Intermediate High</span>',
+        'edu.opic.desc': '能在职场环境中用英语流利沟通',
+        'edu.proficiency': '语言水平',
+        'section.about': '关于我',
+        'about.h1': '自以为懂时再确认一次',
+        'about.h2': '协作方式',
+        'about.h3': '爱好 & 生活方式',
+        'about.body1': '<span class="pii">十七岁</span>独自去中国学语言时，我把朋友说的<strong>不感冒</strong>理解成“没感冒”。因为知道“感冒”的意思，即使语境别扭也没有追问，其实它的意思是“不感兴趣”。此后我不仅记下词义，也记下<strong>误解了什么、为什么误解</strong>；现在遇到与预期不符的结果时，我仍会先检查自己视为理所当然的前提。',
+        'about.body2': '当团队成员习惯的工作方式不同时，我会把各自的偏好与实际可用的条件分开整理。在学术平台项目中，因 AWS 访问受限，我们改用华为云，后端保留大家都熟悉的 Spring Boot，并<strong>将这一共识记录为 RFC</strong>，作为后续工作的依据。在外国成员与中国成员之间，我用韩语、中文、英语居中沟通。',
+        'about.body3': '我喜欢<strong>攀岩</strong>。<br />分析最优路线、不断挑战直到完攀的过程与<strong>工程解题</strong>非常相似。在代码之外，日常生活中也保持着<strong>执着寻路的态度</strong>。',
+        'about.tag1a': '检查前提',
+        'about.tag1b': '记录误解',
+        'about.tag2a': '韩 · 中 · 英',
+        'about.tag2b': 'RFC 文档',
+        'about.tag2c': '协调开发环境',
+        'about.tag3a': '攀岩',
+        'about.tag3b': '路线分析',
+        'section.skills': '技术栈',
+        'section.hint': '当前 · 嵌入式',
+        'hint.intro': '我正在参加现代汽车集团 K-New Deal 学院 HINT 嵌入式软件课程（2026.07 – 2026.10）。选择它，是想在真实硬件上验证在 OS 课程中只在模拟器里处理过的中断与同步。',
+        'hint.a.h': '在硬件上重新认识中断',
+        'hint.a.t': '在 STM32（Cortex-M0+）上修改代码，使按住按键时 LED 每 200ms 翻转一次，并对比了轮询与中断。在 OS 中我只看过异常向量与处理程序；这里则借助参考手册追踪按键 → EXTI → NVIC → ISR 的路径，并处理了消抖这类模拟器中不存在的物理输入问题。',
+        'hint.b.h': '没有锁的环境与有锁的环境',
+        'hint.b.t': 'OS 的管道中没有可用的锁，因此我通过调整操作顺序让中间状态变得安全。在 STM32 RTOS 实践中，我划分任务并使用互斥量与信号量实现共享资源保护和任务间同步。对比两者后我体会到：有锁可以隐藏中间状态，但作为代价，必须设计好由哪个任务、在何时获取和释放锁。',
+        'hint.next': '课程后半段将涉及 CAN 通信、车辆网络安全（TARA）与嵌入式 Linux。',
+        'skill.sys': '系统 / 底层开发',
+        'skill.be': '后端 / 数据库',
+        'skill.fe': '前端 (Web / 移动)',
+        'skill.ai': 'AI & ML',
+        'skill.infra': '基础设施 / 协作',
+        'skill.emb': '嵌入式 / 车载（培训课程）',
+        'skill.sum.lang': '编程语言',
+        'skill.sum.fw': '框架',
+        'skill.sum.infra': '基础设施工具',
+        'skill.sum.ai': 'AI 模型实现',
+        'section.projects': '项目',
+        'proj1.title': '<span class="pii">BUAA</span> OS — MIPS 微内核操作系统',
+        'proj1.role': 'OS内核开发者（个人项目）',
+        'proj1.summary': '在GXemul MIPS模拟器上逐步实现启动·虚拟内存·CoW fork·微内核文件系统',
+        'proj1.result': '✓ 完成全部 Lab 0–6 阶段',
+        'proj2.title': 'SysY 语言编译器前端 & VM 实现',
+        'proj2.role': '编译器工程师（个人项目）',
+        'proj2.summary': '词法分析器 → 递归下降语法分析器 → 符号表 → P-Code VM，用 C++ 实现完整编译器流水线',
+        'proj2.result': '✓ 实现错误处理（a–m）、P-Code 生成与虚拟机执行',
+        'proj3.title': '学术成果共享平台',
+        'proj3.role': '后端（团队项目 · 学者关系网络、检索、公告服务）',
+        'proj3.summary': '学术成果检索与分析平台 —— 在 Spring Boot 后端负责学者关系网络、检索、公告服务及单元测试（团队项目）',
+        'proj3.result': '✓ 学者关系网络首次查询时生成并存储 · 修复未登录请求异常 · JUnit/Mockito 测试',
+        'proj4.title': 'CareLink — 老年健康监测 & AI 心电诊断平台',
+        'proj4.role': '三层架构系统集成与 AI 模型构建（个人项目）',
+        'proj4.summary': '独立设计移动·后端·AI 推理三层架构——患者-监护人连接+ECG自动诊断',
+        'proj4.result': '✓ 0.65M 参数 ECG 模型 · Macro AUC 0.925 · 部署于 EC2',
+        'p1_intro': '基于 GXemul（MIPS R3000）按照 Lab0~Lab6 课程实现了教学操作系统。内核只提供页分配、页表、异常、系统调用等少量基础原语，<strong>fork、IPC、文件系统和 Shell 由用户态库与服务进程组装完成</strong>。越到后面的 Lab 越容易破坏前面代码的前提，因此以最后一个 Lab 为基准重新检查了之前各 Lab 的缺陷。',
+        'p1_dev_li1': '<strong>开发环境与内核启动（Lab0–1）：</strong> 通过 Makefile 与 Shell 脚本熟悉构建环境，在 <code>start.S</code> 中初始化 CP0 与内核栈后进入 C 代码；实现 ELF 头解析与内核 <code>printf</code>。',
+        'p1_dev_li2': '<strong>内存管理（Lab2）：</strong> 使用 <code>struct Page</code> 与空闲链表管理物理页，实现二级页表。MIPS 的 TLB miss 由软件而非硬件处理，因此实现了在异常处理程序中查页表并回填 TLB 的流程。',
+        'p1_dev_li3': '<strong>进程与调度（Lab3）：</strong> 实现 <code>Env</code>（PCB）分配、ELF 用户程序加载以及基于时钟中断的调度器。发生异常时将寄存器保存到 Trapframe 并恢复后返回用户态。',
+        'p1_dev_li4': '<strong>系统调用（Lab4）：</strong> 实现 <code>syscall</code> 指令 → 异常 → 系统调用表分派 → 通过 <code>v0</code> 返回的流程；返回时 <code>EPC += 4</code>，避免重复执行同一条指令。',
+        'p1_dev_li5': '<strong>写时复制 fork（Lab4）：</strong> 父子进程以 <code>PTE_COW</code> 共享可写页，发生写操作时由 TLB Mod 异常进入用户态处理程序复制新页。处理程序运行在<strong>独立的异常栈（UXSTACK）</strong>上，避免写 COW 栈而再次触发同一异常。',
+        'p1_dev_li6': '<strong>用户态文件系统（Lab5）：</strong> 由内核之外的 <strong>FS 服务进程通过 IPC 处理请求</strong>。实现块缓存、基于位图的块分配、直接/间接块与路径查找。',
+        'p1_dev_li7': '<strong>Shell 与管道（Lab6）：</strong> 通过 <code>spawn</code> 将可执行文件加载到新进程，在 Shell 中实现重定向（<code>&lt;</code>、<code>&gt;</code>）与管道（<code>|</code>）。管道基于<strong>用户态共享页</strong>而非内核缓冲区。',
+        'p1_tr_head': '管道假 EOF —— <code>dup</code>/<code>close</code> 的中间状态被误判为已关闭',
+        'p1_tr_problem': '管道是否关闭不询问内核，而是比较 <code>pageref(fd)</code> 与 <code>pageref(pipe)</code>。对端存活时 <code>fd &lt; pipe</code>，全部关闭后两者相等即为 EOF。但 <code>dup</code>/<code>close</code> 需要分两步 map/unmap 两个页面，在 <code>testpiperace</code> 中若时钟中断恰好发生在两步之间，<strong>写端仍存活时两个值会短暂相等，读端返回了 EOF</strong>。',
+        'p1_tr_alt': '最初想到用 mutex 隐藏中间状态。但该管道运行在用户态共享页上，没有公共锁或原子操作；新增锁又会带来<strong>锁的归属以及持锁进程退出后的恢复</strong>等新问题。真正需要阻止的不是所有访问，而是“写端存活却看起来相等”的那一刻。',
+        'p1_tr_sol': '没有去隐藏中间状态，而是<strong>调整顺序，使中间状态不会产生错误含义。</strong> <code>dup</code> 先映射 pipe 页，<code>close</code> 先解除 fd 页，这样无论在哪一步被打断，<code>pageref(fd) &lt; pageref(pipe)</code> 都成立。判定方通过 <code>env_runs</code> 检查两次读取之间是否发生调度切换，若发生则重新读取。',
+        'p1_takeaway': '如果其他进程能看到我代码的中间状态，那么中间状态本身也是设计对象。此后遇到并发问题，我会先问：<strong>“必须阻止其他执行吗？还是可以让中间状态即使被看到也不破坏约定？”</strong>',
+        'p2_intro': '实现了 SysY 语言从<strong>词法分析器到递归下降语法分析器、符号表、P-Code 生成器和栈式虚拟机解释器</strong>的完整流程。该编译器不生成机器码，而是生成自定义 P-Code 并直接在栈式虚拟机上执行。<br>将第 5 阶段膨胀成单文件的代码拆分为 <code>Lexer</code>、<code>Parser</code>、<code>SymbolTableManager</code>、<code>ErrorHandler</code>、<code>Interpreter</code>，并用 CMake 构建。',
+        'p2_dev_li1': '<strong>词法分析器（Lexer）实现：</strong> 使用 <code>unordered_map</code> 优化关键字识别，并通过 <code>peek()</code> 机制一致地处理 <code>&lt;=</code>、<code>==</code>、<code>&amp;&amp;</code> 等多字符运算符及含转义序列的字符串常量。',
+        'p2_dev_li2': '<strong>递归下降语法分析器（Recursive Descent Parser）设计：</strong> 实现 <code>CompUnit</code> 前瞻、<code>Stmt</code> 中 <code>LVal = Exp</code> 与 <code>[Exp]</code> 的歧义判定，以及基于运算符优先级的分层表达式解析。',
+        'p2_dev_li3': '<strong>基于作用域的符号表：</strong> 为每个符号标注 <code>kind</code>（变量、函数、参数、数组）与 <code>scope</code> 编号以区分同名符号，并从最内层作用域向外查找以处理遮蔽。函数名在函数体之前注册，避免递归调用被判为未定义。',
+        'p2_dev_li4': '<strong>缺失符号的错误恢复：</strong> 缺少 <code>;</code>、<code>)</code>、<code>]</code>（i/j/k）属于“不存在的符号”而非“错误的符号”，因此只记录错误、不消耗眼前的正常符号，并继续分析。错误行号不再按错误类型各自取值，而统一以 <code>mLastNonT</code> 为准。',
+        'p2_dev_li5': '<strong>P-Code 生成器与栈式 VM：</strong> 设计覆盖算术/逻辑、分支、循环、函数调用/返回、一维数组索引与 I/O 的自定义 P-Code 指令集，并实现对应栈机解释器。',
+        'p2_dev_li6': '<strong>模块拆分与 CMake：</strong> 将混在一个大文件中的 Lexer、Parser、ErrorHandler、SymbolTableManager、Interpreter 按文件拆分，并用 CMake 构建，出问题时能知道先看哪里。',
+        'p2_tr_intro': '该编译器需要处理题目规定的 <strong>a~m 类错误</strong>。花时间最多的是<strong>缺少 <code>;</code>、<code>)</code>、<code>]</code>（i/j/k）</strong>：它们要依据输入中不存在的符号来判断，一旦错误地消耗一个符号，后面的正常代码也会看起来出错。',
+        'p2_tr_list1': '<strong>语法错误恢复：</strong> 即使 <code>;</code>、<code>)</code>、<code>]</code> 等 token 缺失，也不终止解析，而是恢复语境后继续分析后续语句。',
+        'p2_tr_list2': '<strong>语义错误诊断：</strong> 在编译期诊断重复定义、未声明标识符、函数参数个数/类型不匹配、返回约束违规、常量重赋值、<code>printf</code> 格式串与参数不一致，以及循环外 <code>break</code>/<code>continue</code> 使用等问题。',
+        'p2_tr_list3': '<strong>错误输出策略：</strong> 按行号排序全部错误，并在同一行仅输出一个代表错误，减少重复报告。',
+        'p2_tr_bridge': '下面的问题排查重点展示了我如何系统性地解决其中设计难度最高的问题：<strong>“语法缺失恢复”</strong>。',
+        'p2_tr_head': '缺一个 <code>)</code> 却报多个错 —— 把错误从“记录”改为“状态”',
+        'p2_tr_problem': '对于 <code>foo(a, b;</code>，真正的错误只有一个 <code>j</code>。但 <code>parseErrorJ()</code> 只记录错误，调用方并不知情，仍按正常调用继续<strong>执行参数个数检查（<code>d</code>），产生了级联错误</strong>。为判断赋值语句而向前读取再回退 <code>index</code> 个符号的代码，一旦计数出错，<code>b = 20;</code> 就会从 <code>= 20;</code> 开始被读取。',
+        'p2_tr_alt': '起初只在错误函数内部调整行号依据（前一个符号/当前符号）来通过测试，结果通过一个测试就会破坏另一个输入。问题不在错误函数本身，而在于<strong>发现错误的函数与负责后续处理的代码之间没有共享错误状态</strong>。',
+        'p2_tr_sol': '将 <code>parseErrorJ()</code> 的返回类型从 <code>void</code> 改为 <code>bool</code>，把是否缺失告知调用方；调用方只在 <code>)</code> 存在时才检查参数个数。缺失时不消耗当前符号，下一条语句从正确位置开始。之后以<strong>“每个解析函数只消耗自己语法范围内的符号”</strong>为规则整理了代码。',
+        'p2_takeaway': '错误不应止步于展示给用户的记录，而应是<strong>决定后续哪些检查仍然可信的状态</strong>。如果少一个括号却报出十个错误，其中九个可能是编译器自己制造的。',
+        'p3_intro': '这是一个团队项目：将 Vue 3 SPA 与 Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO、向量服务集成，提供学术成果检索、查看与分析功能。我在后端<strong>实现了学者关系网络、检索和公告服务，并用 JUnit、Mockito 编写单元测试</strong>。下方架构图为团队整体结构；Redis 浏览量统计、OpenAlex 同步、文件存储、统一响应封装与 AI 检索功能由其他队员实现。',
+        'p3_dev_li1': '<strong>学者关系网络的生成与存储：</strong> 从论文、专利等成果记录中汇总学者之间的合作次数与年限，按产品文档规定的权重计算关系分数并存入 <code>collaboration_edge</code> 表。查询时取分数前 10 名合作者构成网络。',
+        'p3_dev_li2': '<strong>首次查询时生成：</strong> 若尚无已存关系，则在查询时生成并保存，之后只读取已存结果。用 Mockito <code>never()</code> 验证第二次起不再读取原始统计，也不再保存。',
+        'p3_dev_li3': '<strong>检索与公告服务：</strong> 实现检索服务、成果引用格式（含专利引用格式）与公告服务并编写单元测试，其中包括“未登录用户的检索记录不保存”这一规则的测试。',
+        'p3_dev_li4': '<strong>对齐 API 文档：</strong> 按团队 API 文档（RFC4）修正成果详情 DTO 与公告 DTO 的字段名（<code>publishDateTime</code> / <code>publishDatetime</code>），并用 Postman 确认响应。',
+        'p3_dev_li5': '<strong>遗留问题：</strong> 新成果加入后，已存的关系网络不会自动重建。我测试了“何时不重建”，却没有定义“何时该重建”，原始数据变化时的刷新时机仍是待解决的问题。',
+        'p3_tr_head': '测试通过，入口却出错 —— 未登录状态下查询检索记录',
+        'p3_tr_badge': '后端 / 测试',
+        'p3_tr_problem': '检索服务有“未登录用户的检索记录不保存”的规则，服务层单元测试也已通过。但在未登录状态下查询检索记录时，请求因 <code>NullPointerException</code> 失败。',
+        'p3_tr_cause': '最先接收请求的控制器在调用服务之前就用 <code>principal.uuid()</code> 取登录信息。规则在服务内部是成立的，但未登录请求在到达规则之前就停在了入口。而测试只覆盖了服务层。',
+        'p3_tr_sol': '没有登录信息时，检索记录接口直接返回空页，检索语句解析则不带用户标识传给服务。随后<strong>新增控制器单元测试，同时覆盖已登录与未登录两种情况</strong>，并验证未登录时服务的记录查询一次也不会被调用。',
+        'p3_takeaway': '测试通过的位置与规则真正生效的位置可能不同。此后验证规则时，我不仅检查服务内部，也会确认请求最先进入的入口处是否满足同样的条件。',
+        'p4_intro': '这是一个连接患者与监护人的实时医疗平台。我设计并实现了由移动端（React Native）、后端（Spring Boot）与 AI 推理（FastAPI）组成的 <strong>三层分离架构</strong>。',
+        'p4_dev_li1': '<strong>三层分离架构建设：</strong> 将业务逻辑（Spring Boot）与高负载 AI 计算（FastAPI）在物理层面拆分职责，提升运行稳定性。',
+        'p4_dev_li2': '<strong>心电（ECG）诊断模型：</strong> 对 PTB-XL（12 导联、500Hz）的 5 个超类进行多标签分类。为保留归一化过程中丢失的幅值信息，单独计算各导联的峰峰值、标准差与 RMS（36 维）并与模型融合。',
+        'p4_dev_li3': '<strong>数据同步与安全：</strong> 实现基于 JWT 的 401 过期自动登出流程，并通过 AsyncStorage 的 <strong>Cache-First 策略</strong>提升客户端响应性。',
+        'p4_dev_li4': '<strong>输入校验：</strong> 早期将 <code>NaN</code> 替换为 0 后推理，导致对不存在的波形也输出概率。现改为对空数组、导联数不符、非数值、<code>NaN</code>/<code>Inf</code> 以及错误采样率直接拒绝请求，而不是悄悄修正。客户端传来的幅值特征（<code>amp</code>）不被采用，服务器在滤波后每次重新计算。',
+        'p4_perf_li1': '<strong>吞吐量（TPS）评估：</strong> 在 20 人并发压测下，核心 API 记录 <strong>TPS 56.23~66.41</strong>。',
+        'p4_perf_li2': '<strong>AI 推理延迟：</strong> 以 12 导联 ECG（10 秒、500Hz）计，<strong>平均 2,382.85ms，P50 2,303.27ms，P95 2,698.16ms</strong>。在 CPU 环境下，BiGRU 运算与带通滤波是主要延迟来源。',
+        'p4_perf_li3': '<strong>首页 Cache-First：</strong> 首次展示使用本地缓存读取（平均 0.29ms）而非等待网络响应（平均 604ms），服务器同步在后台进行。',
+        'p4_perf_li4': '<strong>边界值测试：</strong> 异常输入均以错误响应处理，服务不会崩溃。但仍有一处需要修复：校验失败（422）可能被宽泛的异常处理包裹而返回 500。',
+        'p4_ecg_li1': '<strong>Macro F1:</strong> 74.52% · <strong>Macro AUC:</strong> 92.52% · <strong>HYP F1:</strong> 56.28% <span style="color:var(--faint);font-size:.85em">（基于 comparison_results.csv）</span>',
+        'p4_ecg_li2': '<strong>模型参数：</strong> 0.65M · <strong>架构：</strong> CNN-CBAM-GRU（Amplitude Feature Injection，36 维）',
+        'p4_ecg_li3': '<strong>损失函数：</strong> 采用 AsymmetricLoss 与类别不均衡校正（pos_weight）的训练策略',
+        'p4_ecg_li4': '<strong>对比实验：</strong> 以远少于对比模型 ResNet1D 的 0.65M 参数保持了相近的整体性能，并在 HYP 类别上表现更好。去掉加权采样后 Macro F1/AUC 上升但 HYP 下降，因此以各类别错误而非平均指标为依据选择配置。',
+        'p4_tr_head': '通过 Ubuntu EC2 日志追踪解决 ECG 分析 API 500 问题',
+        'p4_tr_label_problem1': '① 现象 — ECG 分析 API 500',
+        'p4_tr_problem1': 'ECG 分析请求（<code>POST /api/ecg/predict_window</code>）间歇性返回 500，后端日志显示 Spring 向 FastAPI 服务发起的 <code>/predict_window</code> 调用因 <strong>Connection refused</strong> 失败。',
+        'p4_tr_label_sol1': '② 追踪 — 缩小日志范围',
+        'p4_tr_sol1': '我先通过 <code>docker logs carelink-backend</code> 确认后端外部调用失败，再用 <code>docker ps -a</code> 和 <code>docker logs carelink-ai</code> 检查 AI 容器是否退出。随后通过 <code>journalctl -k</code>、<code>dmesg</code> 查看 Ubuntu 内核日志，确认是否存在 OOM kill。',
+        'p4_tr_label_problem2': '③ 原因 — AI 容器异常退出',
+        'p4_tr_problem2': '原因是 AI 容器没有运行。FastAPI 在启动阶段（lifespan）必须加载模型权重，若服务器上未部署模型文件，启动本身就会失败。此外，一台低内存 EC2 同时承担 PostgreSQL、JVM、PyTorch 加载以及镜像构建，内存可能先被耗尽。',
+        'p4_tr_label_sol2': '④ 解决 — 模型校验与 Pull-only 部署',
+        'p4_tr_sol2': '将模型文件部署加入发布检查清单，并拆分构建与运行：由 GitHub Actions 构建镜像并推送到 GHCR，<strong>EC2 只负责拉取并运行</strong>。轻量 Compose 为各容器设置内存上限（PostgreSQL 256MB、后端 384MB、AI 512MB）并启用 swap，AI 容器<strong>通过 <code>profiles: ["ai"]</code> 按需启动</strong>。',
+        'p4_takeaway': '养成了按<strong>复现症状 → 应用日志 → 容器状态 → 操作系统内核日志</strong>的顺序缩小问题范围的习惯。内存上限并不能消除 OOM，而是防止一个容器失控波及其他服务的边界。',
+        'proj.minor.dev': '主要开发内容',
+        'proj.minor.trouble': '问题排查',
+        'proj.minor.tech': '使用技术',
+        'proj.minor.arch': '系统架构',
+        'proj.minor.perf': '性能优化与评估指标',
+        'proj.minor.ecg': 'ECG 分类模型性能',
+        'proj.minor.bench': '性能测试',
+        'proj.minor.labrange': '主要开发内容 (Lab0 – Lab6)',
+        'trouble.situation': '问题背景',
+        'trouble.alternatives': '方案探索',
+        'trouble.cause': '原因',
+        'trouble.solution': '解决方案',
+        'trouble.takeaway': '收获',
+        'footer.graduation': 'BUAA 2026.07 毕业',
+        'footer.copy': '© 2026 曹贤准 作品集',
+        'blur.on': '已开启',
+        'blur.off': '已关闭',
+      }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'ko';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = {ko:'ko',en:'en',zh:'zh-Hans'}[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const t = TRANSLATIONS[lang]?.[el.dataset.i18n];
+        if (t !== undefined) el.textContent = t;
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        const t = TRANSLATIONS[lang]?.[key];
+        if (t !== undefined) el.innerHTML = t;
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+        const t = TRANSLATIONS[lang]?.[el.dataset.i18nAlt];
+        if (t !== undefined) el.alt = t;
+      });
+      document.title = TRANSLATIONS[lang].name + ' | Software Engineer · Backend · AI · Embedded';
+      localStorage.setItem('lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        const on = b.dataset.lang === lang;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+      syncBlurState();
+    }
+
+    function syncBlurState() {
+      const on = !document.body.classList.contains('pii-off');
+      const btn = document.getElementById('blur-toggle');
+      const state = document.getElementById('blur-state');
+      if (btn) btn.setAttribute('aria-checked', String(on));
+      if (state) state.textContent = TRANSLATIONS[currentLang][on ? 'blur.on' : 'blur.off'];
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn =>
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang))
+    );
+
+    /* ── 6. 네비게이션 active ── */
+    const navLinks=Array.from(document.querySelectorAll('.nav-link'));const drawerLinks=Array.from(document.querySelectorAll('.drawer-link'));const sections=Array.from(document.querySelectorAll('main section[id]'));
+    function syncActiveLink(){let current='';const offset=window.scrollY+130;sections.forEach(s=>{if(offset>=s.offsetTop)current=s.id;});navLinks.forEach(a=>a.classList.toggle('active',a.dataset.section===current));drawerLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));}
+    syncActiveLink();window.addEventListener('scroll',syncActiveLink,{passive:true});
+
+    /* ── 7. 햄버거 메뉴 ── */
+    const hamburger=document.getElementById('nav-hamburger');const drawer=document.getElementById('nav-drawer');let drawerOpen=false;
+    if(hamburger&&drawer){hamburger.addEventListener('click',()=>{drawerOpen=!drawerOpen;hamburger.classList.toggle('open',drawerOpen);drawer.classList.toggle('open',drawerOpen);hamburger.setAttribute('aria-label',drawerOpen?'메뉴 닫기':'메뉴 열기');});drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawerOpen=false;hamburger.classList.remove('open');drawer.classList.remove('open');});});}
+
+    /* ── 9. 프로젝트 아코디언 ── */
+    const projectCards=Array.from(document.querySelectorAll('.project-card'));
+    projectCards.forEach(card=>{const toggle=card.querySelector('.project-toggle');if(!toggle)return;toggle.addEventListener('click',()=>{const isOpen=card.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(isOpen));});});
+    let beforePrintStates=[];
+    window.addEventListener('beforeprint',()=>{beforePrintStates=projectCards.map(c=>c.classList.contains('is-open'));projectCards.forEach(c=>{c.classList.add('is-open');const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded','true');});});
+    window.addEventListener('afterprint',()=>{projectCards.forEach((c,i)=>{c.classList.toggle('is-open',beforePrintStates[i]);const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded',String(beforePrintStates[i]));});});
+
+    /* ── 10. PDF ── */
+    document.querySelectorAll('.js-print').forEach(b=>b.addEventListener('click',()=>window.print()));
+
+    /* ── 11. 맨 위로 ── */
+    document.querySelectorAll('.js-top').forEach(b=>{b.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});});
+
+    /* ── 12. PII 블러 토글 ── */
+    const blurToggle=document.getElementById('blur-toggle');
+    if(blurToggle){blurToggle.addEventListener('click',()=>{document.body.classList.toggle('pii-off');syncBlurState();});}
+
+    /* ── 14. 언어 초기화 ── */
+    applyLang(localStorage.getItem('lang') || 'ko');
+    </script>
+  </body>
+</html>
