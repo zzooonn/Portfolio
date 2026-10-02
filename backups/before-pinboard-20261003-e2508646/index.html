@@ -344,7 +344,6 @@
 @media(max-width:560px){.care-flow{grid-template-columns:1fr}.care-arrow{transform:rotate(90deg)}.care-node{padding:12px}.care-table{font-size:12px}.care-table th,.care-table td{padding:10px 5px}.care-table small{font-size:10px}.care-note{font-size:14px}.care-pipeline{padding:12px}}
 @media print{.care-node,.care-note,.care-table{break-inside:avoid}.care-table-wrap{overflow:visible}.care-details{break-inside:auto}}
 </style><link rel="stylesheet" href="assets/portfolio.css">
-<link rel="stylesheet" href="assets/pinboard.css">
 </head>
   <body class="pii-off"><a class="skip-link" href="#top">본문으로 이동</a>
 
@@ -443,20 +442,8 @@
 
 
 
-<div class="project-board">
-<article class="project-card featured" id="project-4"><div class="pin-content">
-            <div class="featured-top"><figure class="project-visual" aria-labelledby="care-map-caption">
- <div class="visual-topline"><b>CareLink</b><span data-i18n="care.visual.label">서비스 구조</span></div>
- <div class="system-map">
-  <div class="map-node"><span class="node-icon" aria-hidden="true">APP</span><div><strong>React Native</strong><small data-i18n="care.visual.app">건강 기록 · 보호자 연결</small></div></div>
-  <div class="map-connector" aria-hidden="true">↓ HTTPS / JSON</div>
-  <div class="map-node backend-node"><span class="node-icon" aria-hidden="true">API</span><div><strong>Spring Boot</strong><small data-i18n="care.visual.backend">인증 · 접근 제어 · ECG 프록시</small></div></div>
-  <div class="map-connector" aria-hidden="true">↓ ECG proxy</div>
-  <div class="map-node"><span class="node-icon" aria-hidden="true">AI</span><div><strong>FastAPI · PyTorch</strong><small data-i18n="care.visual.ai">입력 검증 · 전처리 · 추론</small></div></div>
-  <div class="map-storage"><strong>Spring Boot ↔ PostgreSQL</strong><span data-i18n="care.visual.store">건강 기록 · 연결 정보 저장</span></div>
- </div>
- <figcaption class="visual-caption" id="care-map-caption" data-i18n="care.visual.caption">구현 구조 요약 · 앱은 Spring Boot를 통해 AI 서비스를 호출</figcaption>
-</figure><div class="project-overview">
+<article class="project-card featured" id="project-4">
+            <div class="featured-top"><div class="project-overview">
               <span class="project-index mono">01</span>
               <div class="project-head"><span class="featured-marker" data-i18n="project.featured">대표작 · 개인 개발</span>
                 <h3 data-i18n="proj4.title">CareLink · 건강 기록과 ECG 분석</h3>
@@ -470,7 +457,18 @@
                 </div>
               <div class="project-technologies"><span>React Native</span><span>Spring Boot</span><span>FastAPI · PyTorch</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button></div>
               
-            </div></div>
+            </div><figure class="project-visual" aria-labelledby="care-map-caption">
+ <div class="visual-topline"><b>CareLink</b><span data-i18n="care.visual.label">서비스 구조</span></div>
+ <div class="system-map">
+  <div class="map-node"><span class="node-icon" aria-hidden="true">APP</span><div><strong>React Native</strong><small data-i18n="care.visual.app">건강 기록 · 보호자 연결</small></div></div>
+  <div class="map-connector" aria-hidden="true">↓ HTTPS / JSON</div>
+  <div class="map-node backend-node"><span class="node-icon" aria-hidden="true">API</span><div><strong>Spring Boot</strong><small data-i18n="care.visual.backend">인증 · 접근 제어 · ECG 프록시</small></div></div>
+  <div class="map-connector" aria-hidden="true">↓ ECG proxy</div>
+  <div class="map-node"><span class="node-icon" aria-hidden="true">AI</span><div><strong>FastAPI · PyTorch</strong><small data-i18n="care.visual.ai">입력 검증 · 전처리 · 추론</small></div></div>
+  <div class="map-storage"><strong>Spring Boot ↔ PostgreSQL</strong><span data-i18n="care.visual.store">건강 기록 · 연결 정보 저장</span></div>
+ </div>
+ <figcaption class="visual-caption" id="care-map-caption" data-i18n="care.visual.caption">구현 구조 요약 · 앱은 Spring Boot를 통해 AI 서비스를 호출</figcaption>
+</figure></div>
             <div class="project-body" id="project-04-body">
               <div class="project-inner">
 <p class="body-text" data-i18n-html="care.intro">노인의 건강 기록과 심전도 분석을 돕기 위해 혼자 진행한 졸업논문 프로젝트입니다. 모바일 앱·백엔드·ECG 모델을 구현하며, <strong>모델이 결과를 내도 되는 입력의 조건과 제한된 서버에서 실행할 방법</strong>을 함께 다뤘습니다.</p>
@@ -484,20 +482,10 @@
 <details class="implementation-details care-details"><summary data-i18n-html="care.arch.title">서비스 구조와 배포 판단</summary><div class="implementation-body"><div class="care-flow"><div class="care-node"><strong>React Native · Expo</strong><p data-i18n-html="care.arch.app">건강 기록 · 보호자 연결 · ECG 화면</p></div><span class="care-arrow" aria-hidden="true">→</span><div class="care-node"><strong>Spring Boot</strong><p data-i18n-html="care.arch.backend">인증 · 접근 제어 · ECG 프록시</p></div><span class="care-arrow" aria-hidden="true">→</span><div class="care-node"><strong>FastAPI · PyTorch</strong><p data-i18n-html="care.arch.ai">입력 검증 · 전처리 · 모델 추론</p></div></div><p class="care-note" data-i18n-html="care.arch.db">Spring Boot ↔ PostgreSQL: 건강 기록·보호자 연결·알림 저장. ECG 추론 응답은 그대로 반환하며, 기록 저장은 별도의 건강 기록 API에서 수행합니다.</p><p class="body-text" data-i18n-html="care.arch.reason"><strong>분리 이유:</strong> 인증·건강 기록을 처리하는 Java 백엔드와 모델 가중치·Python 의존성·전처리·추론 자원을 다루는 AI 서비스는 변경 주기가 달랐습니다. 앱은 Spring을 통해 AI에 접근하고, AI 실행 환경은 별도 컨테이너로 구성했습니다.</p><div><h4 class="minor-title" data-i18n-html="care.deploy.title">저메모리 서버에서 빌드와 실행을 나누기</h4><p class="body-text" data-i18n-html="care.deploy.problem">한 EC2에서 PostgreSQL·JVM·PyTorch 실행과 이미지 빌드가 겹치면 메모리 사용이 몰렸습니다. FastAPI는 시작할 때 모델 가중치를 로드하므로, 모델 파일 누락이나 모델 구조 불일치도 기동 실패의 조건이었습니다.</p><p class="body-text" data-i18n-html="care.deploy.change">이미지는 <strong>GitHub Actions에서 빌드해 GHCR에 저장</strong>하고, EC2에서는 pull 후 실행하도록 분리했습니다. 경량 Compose에는 PostgreSQL 256MB·백엔드 384MB·AI 512MB 제한을 두고, AI는 <code>profiles: ["ai"]</code>로 선택 실행하도록 구성했습니다. 모델 가중치는 이미지와 별도로 배치합니다.</p><p class="care-note" data-i18n-html="care.deploy.limit">메모리 제한만으로 OOM이 사라지는 것은 아닙니다. 경량 Compose에서 로컬 AI를 사용할 때는 <code>AI_ECG_SERVER_URL</code>과 양쪽 API 키를 별도로 맞춰야 합니다. 현재 구성이 자동으로 모든 배포 조건을 갖춘 것은 아닙니다.</p></div><div><h4 class="minor-title" data-i18n-html="care.app.title">인증·캐시·데모의 실제 동작</h4><ul class="arrow-list"><li data-i18n-html="care.app.auth"><strong>인증:</strong> <code>authFetch()</code>는 401 응답 시 refresh token으로 갱신을 시도하고 원 요청을 재시도합니다. 갱신에 실패하면 세션을 지우고 초기 화면으로 돌아갑니다.</li><li data-i18n-html="care.app.cache"><strong>캐시:</strong> 사용자명·프로필 이미지·보호자 목록을 먼저 읽고, 사용자 정보·건강 요약을 서버와 동기화합니다. 10초 이내 중복 요청을 막는 처리를 두었습니다.</li><li data-i18n-html="care.app.demo"><strong>데모 범위:</strong> ECG 화면은 합성 신호와 서버 샘플을 사용합니다. 서버 샘플 파일이 없으면 생성한 데모 파형을 반환합니다. 건강 이상 알림은 DB에 저장하며 외부 push 발송은 로그 처리 수준입니다.</li></ul></div></div></details>
 <details class="implementation-details care-details"><summary data-i18n-html="care.metrics.title">측정 결과와 재현 조건</summary><div class="implementation-body"><p class="body-text" data-i18n-html="care.metrics.intro">12유도 ECG 추론은 측정 파일마다 실행 조건이 달라 별도로 표시했습니다. 아래 값은 기록된 실험의 결과이며, 서버 사양을 통일한 전후 성능 비교로 해석하지 않았습니다.</p><div class="care-table-wrap"><table class="care-table"><thead><tr><th data-i18n-html="care.metrics.scenario" scope="col">측정 항목 · 출처</th><th data-i18n-html="care.metrics.count" scope="col">횟수</th><th data-i18n-html="care.metrics.mean" scope="col">평균</th><th scope="col">P95</th></tr></thead><tbody><tr><th scope="row"><span data-i18n-html="care.metrics.ecg100">AI 직접 호출</span><small>carelink_measured_metrics.json</small></th><td>100</td><td>2,396.58ms</td><td>2,725.98ms</td></tr><tr><th scope="row"><span data-i18n-html="care.metrics.ecg30">별도 ECG 측정</span><small>benchmark_results.json</small></th><td>30</td><td>2,382.85ms</td><td>2,698.16ms</td></tr></tbody></table></div><p class="body-text" data-i18n-html="care.metrics.cache"><strong>캐시 측정:</strong> <code>carelink_measured_metrics.json</code>에 로컬 캐시 읽기 평균 0.29ms, 네트워크 동기화 평균 603.97ms가 기록돼 있습니다. 서로 다른 작업의 소요 시간이며 화면 전체 렌더링 속도의 개선율로 환산하지 않았습니다.</p><p class="care-note" data-i18n-html="care.metrics.next"><strong>다음 검증:</strong> 모델·전처리·임계값 버전을 묶어 연구와 서빙의 차이를 줄이고, 동일한 서버 조건에서 초기화 시간·추론 지연·컨테이너별 최대 메모리를 함께 측정하려 합니다.</p></div></details>
 </div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-04-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-<article class="project-card" id="project-3"><div class="pin-content">
-            <div class="project-preview-row academic-preview-row"><figure class="project-visual academic-visual" aria-labelledby="academic-map-caption">
- <div class="visual-topline"><b>Academic Platform</b><span data-i18n="academic.arch.label">팀 전체 구조</span></div>
- <div class="system-map academic-map">
-  <div class="map-node"><strong>Vue 3 · TypeScript</strong><small data-i18n="academic.arch.web">학술 성과 검색 · 조회 화면</small></div>
-  <div class="map-connector" aria-hidden="true">↓ REST API</div>
-  <div class="map-node backend-node"><strong>Spring Boot · Java</strong><small data-i18n="academic.arch.api">요청 처리 · 서비스 · 인증</small><small class="scope-label" data-i18n="academic.arch.scope">본인: 관계망 · 검색 · 공고 · 단위 테스트</small></div>
-  <div class="map-connector" data-i18n="academic.arch.fanout">↓ 백엔드에서 각 서비스 연동</div>
-  <div class="academic-data-services"><div class="map-node"><strong>PostgreSQL</strong><small data-i18n="academic.arch.pg">학술 · 관계 데이터</small></div><div class="map-node"><strong>Elasticsearch</strong><small data-i18n="academic.arch.es">성과 문서 검색</small></div><div class="map-node"><strong>Redis</strong><small data-i18n="academic.arch.redis">캐시 · 조회수 집계</small></div><div class="map-node"><strong>MinIO</strong><small data-i18n="academic.arch.minio">파일 저장</small></div></div>
- </div>
- <figcaption class="visual-caption" id="academic-map-caption" data-i18n="academic.arch.caption">팀 전체 구조 요약 · 본인 구현 범위는 백엔드에 표시</figcaption>
-</figure><div class="project-overview">
+            </div>
+          </article>
+<article class="project-card" id="project-3">
+            <div class="project-preview-row academic-preview-row"><div class="project-overview">
               <span class="project-index mono">02</span>
               <div class="project-head">
                 <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼 · 백엔드</h3>
@@ -511,7 +499,17 @@
                 </div>
               <div class="project-technologies"><span>Java</span><span>Spring Boot</span><span>JUnit · Mockito</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button><br><a class="repo-link" href="https://github.com/saitewasreset/BUAA-SSAD-2025-Project-Group1-AcademicPlatform" target="_blank" rel="noopener noreferrer" data-i18n="academic.repo">프로젝트 저장소 ↗</a></div>
               
-            </div></div>
+            </div><figure class="project-visual academic-visual" aria-labelledby="academic-map-caption">
+ <div class="visual-topline"><b>Academic Platform</b><span data-i18n="academic.arch.label">팀 전체 구조</span></div>
+ <div class="system-map academic-map">
+  <div class="map-node"><strong>Vue 3 · TypeScript</strong><small data-i18n="academic.arch.web">학술 성과 검색 · 조회 화면</small></div>
+  <div class="map-connector" aria-hidden="true">↓ REST API</div>
+  <div class="map-node backend-node"><strong>Spring Boot · Java</strong><small data-i18n="academic.arch.api">요청 처리 · 서비스 · 인증</small><small class="scope-label" data-i18n="academic.arch.scope">본인: 관계망 · 검색 · 공고 · 단위 테스트</small></div>
+  <div class="map-connector" data-i18n="academic.arch.fanout">↓ 백엔드에서 각 서비스 연동</div>
+  <div class="academic-data-services"><div class="map-node"><strong>PostgreSQL</strong><small data-i18n="academic.arch.pg">학술 · 관계 데이터</small></div><div class="map-node"><strong>Elasticsearch</strong><small data-i18n="academic.arch.es">성과 문서 검색</small></div><div class="map-node"><strong>Redis</strong><small data-i18n="academic.arch.redis">캐시 · 조회수 집계</small></div><div class="map-node"><strong>MinIO</strong><small data-i18n="academic.arch.minio">파일 저장</small></div></div>
+ </div>
+ <figcaption class="visual-caption" id="academic-map-caption" data-i18n="academic.arch.caption">팀 전체 구조 요약 · 본인 구현 범위는 백엔드에 표시</figcaption>
+</figure></div>
             <div class="project-body" id="project-03-body">
               <div class="project-inner">
                 <p class="body-text" data-i18n-html="p3_intro">Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 상단 구조도는 팀 전체 구성이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다.</p><div>
@@ -578,10 +576,10 @@
                   <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list"><span class="tag green">Spring Boot 3</span><span class="tag green">JPA</span><span class="tag green">PostgreSQL</span><span class="tag green">JUnit 5</span><span class="tag green">Mockito</span><span class="tag slate">Postman</span><span class="tag slate">Maven</span><span class="tag slate">Docker Compose</span></div>
                 </div></div></details></div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-03-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-<article class="project-card" id="project-2"><div class="pin-content">
-            <div class="project-preview-row"><figure class="project-visual mini-visual"><div class="mini-pipeline"><span>SysY source</span><i aria-hidden="true">↓</i><span>Parser → P-Code</span><i aria-hidden="true">↓</i><span>Stack VM</span></div><figcaption data-i18n="sysy.visual.caption">구현 흐름 · 소스 분석부터 가상 머신 실행까지</figcaption></figure><div class="project-overview">
+            </div>
+          </article>
+<article class="project-card" id="project-2">
+            <div class="project-preview-row"><div class="project-overview">
               <span class="project-index mono">03</span>
               <div class="project-head">
                 <h3 data-i18n="proj2.title">SysY 컴파일러 · 구문 분석과 VM</h3>
@@ -593,9 +591,9 @@
                   <span class="tagline-summary" data-i18n="proj2.summary">SysY 소스를 분석해 P-Code를 생성하고 스택 머신으로 실행하는 컴파일러</span>
                   <span class="tagline-result" data-i18n="proj2.result">누락 토큰 상태를 전달해 파생 오류를 막고 후속 구문 분석 유지</span>
                 </div>
-              <div class="project-technologies"><span>C++</span><span>CMake</span><span>P-Code VM</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button><br><a class="repo-link" href="https://github.com/zzooonn/Compiler" target="_blank" rel="noopener noreferrer" data-i18n="project.repo">프로젝트 저장소 ↗</a></div>
+              <div class="project-technologies"><span>C++</span><span>CMake</span><span>P-Code VM</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button></div>
               
-            </div></div>
+            </div><figure class="project-visual mini-visual"><div class="mini-pipeline"><span>SysY source</span><i aria-hidden="true">↓</i><span>Parser → P-Code</span><i aria-hidden="true">↓</i><span>Stack VM</span></div><figcaption data-i18n="sysy.visual.caption">구현 흐름 · 소스 분석부터 가상 머신 실행까지</figcaption></figure></div>
             <div class="project-body" id="project-02-body">
               <div class="project-inner">
                 <p class="body-text" data-i18n-html="p2_intro">SysY의 Lexer·재귀 하향 Parser·심볼 테이블·P-Code 생성기·스택 머신 VM을 C++로 구현했습니다. 중복 정의와 함수 인자 불일치 등 의미 오류도 진단합니다. 대표 사례는 <strong>누락된 토큰 하나가 뒤의 정상 코드까지 오류로 만드는 문제</strong>입니다.</p><div>
@@ -670,10 +668,10 @@
                   <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list"><span class="tag accent">C++17</span><span class="tag accent">CMake</span><span class="tag accent">Lexer / Parser</span><span class="tag accent">P-Code VM</span><span class="tag accent">Symbol Table</span></div>
                 </div></div></details></div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-02-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-<article class="project-card" id="project-1"><div class="pin-content">
-            <div class="project-preview-row"><figure class="project-visual mini-visual"><div class="mini-pipeline"><span>User / IPC</span><i aria-hidden="true">↓</i><span>MIPS kernel</span><i aria-hidden="true">↓</i><span>Virtual memory</span></div><figcaption data-i18n="os.visual.caption">구현 구조 · 사용자 프로그램과 커널, 메모리 관리</figcaption></figure><div class="project-overview">
+            </div>
+          </article>
+<article class="project-card" id="project-1">
+            <div class="project-preview-row"><div class="project-overview">
               <span class="project-index mono">04</span>
               <div class="project-head">
                 <h3 data-i18n="proj1.title">MIPS 운영체제 · 메모리와 프로세스</h3>
@@ -685,9 +683,9 @@
                   <span class="tagline-summary" data-i18n="proj1.summary">MIPS 시뮬레이터에서 가상메모리·프로세스·사용자 공간 파일 시스템 구현</span>
                   <span class="tagline-result" data-i18n="proj1.result">매핑 순서 조정과 판정 재시도로 파이프의 거짓 EOF 해결</span>
                 </div>
-              <div class="project-technologies"><span>C</span><span>MIPS Assembly</span><span>GXemul</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-01-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button><br><a class="repo-link" href="https://github.com/zzooonn/MIPS_OS" target="_blank" rel="noopener noreferrer" data-i18n="project.repo">프로젝트 저장소 ↗</a></div>
+              <div class="project-technologies"><span>C</span><span>MIPS Assembly</span><span>GXemul</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-01-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button></div>
               
-            </div></div>
+            </div><figure class="project-visual mini-visual"><div class="mini-pipeline"><span>User / IPC</span><i aria-hidden="true">↓</i><span>MIPS kernel</span><i aria-hidden="true">↓</i><span>Virtual memory</span></div><figcaption data-i18n="os.visual.caption">구현 구조 · 사용자 프로그램과 커널, 메모리 관리</figcaption></figure></div>
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
                 <p class="body-text" data-i18n-html="p1_intro">GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 구현한 개인 과제입니다. 커널의 메모리·예외·시스템콜 처리와 사용자 공간의 fork·IPC·파일 시스템·셸을 구현했습니다. 대표 사례는 <strong>파이프가 닫히지 않았는데 EOF로 판정한 동시성 오류</strong>입니다.</p><div>
@@ -759,9 +757,8 @@
                   <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
                 </div></div></details></div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-01-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-</div></div>
+            </div>
+          </article></div>
         </div>
       </section><section id="hint" class="section">
         <div class="container">
@@ -1509,9 +1506,9 @@ Object.assign(TRANSLATIONS.ko, {"hero.intro": "<strong>시스템의 동작을 �
 Object.assign(TRANSLATIONS.en, {"hero.intro": "<strong>A developer who understands systems<br>and handles service failures</strong>", "hero.evidence": "I implemented virtual memory and a compiler, and connected a Spring Boot backend to an AI inference service. I check invalid inputs and failed requests alongside the normal flow.", "focus.backend": "Authentication · APIs · Request boundary tests", "focus.system": "Memory · Concurrency · Parsing", "focus.serving": "Input validation · Inference APIs · Containers", "projects.lead": "Starting with CareLink, an app-to-server personal project, these cases cover backend testing and system implementation. Each describes my scope and how I resolved a problem.", "project.featured": "FEATURED · PERSONAL PROJECT", "care.visual.label": "SERVICE ARCHITECTURE", "care.visual.app": "Health records · Guardian links", "care.visual.backend": "Authentication · Access control · ECG proxy", "care.visual.ai": "Validation · Preprocessing · Inference", "care.visual.store": "Health records · Guardian links", "care.visual.caption": "Implementation overview · The app reaches AI through Spring Boot", "academic.visual.caption": "Team planning prototype · Search screen (Chinese original)", "academic.visual.alt": "Search screen from the academic platform team planning prototype", "academic.repo": "Project repository ↗", "sysy.visual.caption": "Implementation flow · Source analysis to virtual machine execution", "os.visual.caption": "Implementation overview · User programs, kernel and memory management", "proj1.title": "MIPS OS · Memory and Processes", "proj2.title": "SysY Compiler · Parser and VM", "proj3.title": "Academic Sharing Platform · Backend", "proj4.title": "CareLink · Health Records and ECG Analysis"});
 Object.assign(TRANSLATIONS.zh, {"hero.intro": "<strong>理解系统运行机制，<br>处理服务异常的开发者</strong>", "hero.evidence": "实现虚拟内存和编译器，并将 Spring Boot 后端与 AI 推理服务连接。除了正常流程，也检查无效输入和失败请求。", "focus.backend": "认证 · API · 请求入口测试", "focus.system": "内存 · 并发 · 语法分析", "focus.serving": "输入校验 · 推理 API · 容器部署", "projects.lead": "从独立完成的 CareLink 应用与服务端开始，展示后端测试及系统实现经验。每个项目说明个人职责与问题解决过程。", "project.featured": "代表项目 · 独立开发", "care.visual.label": "服务架构", "care.visual.app": "健康记录 · 监护人连接", "care.visual.backend": "认证 · 访问控制 · ECG 代理", "care.visual.ai": "输入校验 · 预处理 · 推理", "care.visual.store": "健康记录 · 监护人连接", "care.visual.caption": "实现结构概要 · 应用通过 Spring Boot 访问 AI 服务", "academic.visual.caption": "团队规划原型 · 检索页面（中文原图）", "academic.visual.alt": "学术成果分享平台团队规划原型的检索页面", "academic.repo": "项目代码仓库 ↗", "sysy.visual.caption": "实现流程 · 从源码分析到虚拟机执行", "os.visual.caption": "实现结构 · 用户程序、内核与内存管理", "proj1.title": "MIPS 操作系统 · 内存与进程", "proj2.title": "SysY 编译器 · 语法分析与虚拟机", "proj3.title": "学术成果分享平台 · 后端", "proj4.title": "CareLink · 健康记录与 ECG 分析"});
 
-Object.assign(TRANSLATIONS.ko, {'nav.pdf':'PDF 저장','project.repo':'프로젝트 저장소 ↗'});
-Object.assign(TRANSLATIONS.en, {'nav.pdf':'Save PDF','project.repo':'Project repository ↗'});
-Object.assign(TRANSLATIONS.zh, {'nav.pdf':'保存 PDF','project.repo':'项目代码仓库 ↗'});
+Object.assign(TRANSLATIONS.ko, {'nav.pdf':'PDF 저장'});
+Object.assign(TRANSLATIONS.en, {'nav.pdf':'Save PDF'});
+Object.assign(TRANSLATIONS.zh, {'nav.pdf':'保存 PDF'});
 Object.assign(TRANSLATIONS.ko, {"academic.arch.label": "팀 전체 구조", "academic.arch.web": "학술 성과 검색 · 조회 화면", "academic.arch.api": "요청 처리 · 서비스 · 인증", "academic.arch.scope": "본인: 관계망 · 검색 · 공고 · 단위 테스트", "academic.arch.pg": "학술 · 관계 데이터", "academic.arch.es": "성과 문서 검색", "academic.arch.redis": "캐시 · 조회수 집계", "academic.arch.minio": "파일 저장", "academic.arch.fanout": "↓ 백엔드에서 각 서비스 연동", "academic.arch.caption": "팀 전체 구조 요약 · 본인 구현 범위는 백엔드에 표시", "academic.arch.detail": "Spring Boot가 관계형 데이터, 문서 검색, 캐시, 파일 저장소를 각각 연동합니다. 관계망·검색·공고 서비스와 관련 단위 테스트 및 컨트롤러 테스트가 본인 구현 범위입니다.", "p3_intro": "Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 상단 구조도는 팀 전체 구성이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다."});
 Object.assign(TRANSLATIONS.en, {"academic.arch.label": "TEAM ARCHITECTURE", "academic.arch.web": "Academic search and detail pages", "academic.arch.api": "Requests · Services · Authentication", "academic.arch.scope": "My scope: networks · search · announcements · unit tests", "academic.arch.pg": "Academic and collaboration data", "academic.arch.es": "Document search", "academic.arch.redis": "Cache and view counts", "academic.arch.minio": "File storage", "academic.arch.fanout": "↓ Backend integrates each service", "academic.arch.caption": "Team architecture overview · My scope is marked in the backend", "academic.arch.detail": "Spring Boot integrates relational data, document search, cache and file storage as separate services. I implemented scholar networks, search and announcements, with service and controller unit tests.", "p3_intro": "This team project integrates a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis and MinIO to search, view and analyze academic outputs. I <strong>implemented scholar networks, search and announcement services, and wrote JUnit/Mockito unit tests</strong>. The overview above shows the team architecture. Redis view counting, OpenAlex sync, file storage, the common response format and AI search were implemented by other teammates."});
 Object.assign(TRANSLATIONS.zh, {"academic.arch.label": "团队整体架构", "academic.arch.web": "学术成果检索与详情页面", "academic.arch.api": "请求处理 · 服务 · 认证", "academic.arch.scope": "本人：关系网络 · 检索 · 公告 · 单元测试", "academic.arch.pg": "学术与合作关系数据", "academic.arch.es": "成果文档检索", "academic.arch.redis": "缓存与浏览量统计", "academic.arch.minio": "文件存储", "academic.arch.fanout": "↓ 后端分别连接各项服务", "academic.arch.caption": "团队整体架构概要 · 本人实现范围标注于后端", "academic.arch.detail": "Spring Boot 分别连接关系型数据、文档检索、缓存和文件存储。本人实现学者关系网络、检索与公告服务，并编写相关服务层和控制器单元测试。", "p3_intro": "这是一个团队项目：将 Vue 3 SPA 与 Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 集成，提供学术成果检索、查看与分析功能。我在后端<strong>实现了学者关系网络、检索和公告服务，并用 JUnit、Mockito 编写单元测试</strong>。上方结构图为团队整体架构；Redis 浏览量统计、OpenAlex 同步、文件存储、统一响应封装与 AI 检索功能由其他队员实现。"});
@@ -1519,31 +1516,9 @@ Object.assign(TRANSLATIONS.zh, {"academic.arch.label": "团队整体架构", "ac
 function getSavedLang(){try{return localStorage.getItem('portfolio-language')}catch{return null}}
 function saveLang(lang){try{localStorage.setItem('portfolio-language',lang)}catch{}}
 function updateProjectLabel(card){const label=card.querySelector('.project-read');const key=card.classList.contains('is-open')?'project.close':'project.open';if(label){label.dataset.i18n=key;label.textContent=TRANSLATIONS[currentLang][key];}}
-function setProjectOpen(card, open, scroll = false) {
-  if (open) document.querySelectorAll('.project-card.is-open').forEach(other => {
-    if (other === card) return;
-    other.classList.remove('is-open');
-    other.querySelector('.project-toggle').setAttribute('aria-expanded', 'false');
-    updateProjectLabel(other);
-  });
-  card.classList.toggle('is-open', open);
-  card.querySelector('.project-toggle').setAttribute('aria-expanded', String(open));
-  updateProjectLabel(card);
-  if (scroll) requestAnimationFrame(() => requestAnimationFrame(() => card.scrollIntoView({block:'start',behavior:'auto'})));
-}
-function openLinkedProject() {
-  let id;
-  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
-  const card = document.getElementById(id);
-  if (card?.classList.contains('project-card')) setProjectOpen(card, true, true);
-}
+function openLinkedProject(){const id=decodeURIComponent(location.hash.slice(1));const el=document.getElementById(id);if(el?.classList.contains('project-card')){el.classList.add('is-open');el.querySelector('.project-toggle').setAttribute('aria-expanded','true');updateProjectLabel(el);}}
 window.addEventListener('hashchange',openLinkedProject);
-document.addEventListener('click',event=>{
-  const link=event.target.closest('a[href^="#project-"]');
-  if(!link)return;
-  const card=document.getElementById(link.getAttribute('href').slice(1));
-  if(card?.classList.contains('project-card'))setProjectOpen(card,true,true);
-});
+document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#project-"]');if(!link)return;const card=document.getElementById(link.getAttribute('href').slice(1));if(card?.classList.contains('project-card')){card.classList.add('is-open');card.querySelector('.project-toggle').setAttribute('aria-expanded','true');updateProjectLabel(card);}});
     const savedLanguage = getSavedLang();
     let currentLang = Object.hasOwn(TRANSLATIONS, savedLanguage) ? savedLanguage : 'ko';
 
@@ -1564,6 +1539,7 @@ document.addEventListener('click',event=>{
         const t = TRANSLATIONS[lang]?.[el.dataset.i18nAlt];
         if (t !== undefined) el.alt = t;
       });
+      document.querySelector('.hero-focus')?.setAttribute('aria-label', {ko:'주요 개발 경험',en:'Core development experience',zh:'主要开发经验'}[lang]);
       const menuButton=document.getElementById('nav-hamburger');if(menuButton)menuButton.setAttribute('aria-label', {ko:['메뉴 열기','메뉴 닫기'],en:['Open menu','Close menu'],zh:['打开菜单','关闭菜单']}[lang][menuButton.getAttribute('aria-expanded')==='true'?1:0]);
       document.title = TRANSLATIONS[lang].name + ' | Software Engineer';
       document.querySelectorAll('.project-card').forEach(updateProjectLabel);
@@ -1599,15 +1575,7 @@ document.addEventListener('click',event=>{
 
     /* ── 9. 프로젝트 아코디언 ── */
     const projectCards=Array.from(document.querySelectorAll('.project-card'));
-    projectCards.forEach(card=>{
-  const toggle=card.querySelector('.project-toggle');
-  if(!toggle)return;
-  toggle.addEventListener('click',()=>setProjectOpen(card,!card.classList.contains('is-open'),true));
-  card.querySelector('.project-close')?.addEventListener('click',()=>{
-    setProjectOpen(card,false,true);
-    toggle.focus({preventScroll:true});
-  });
-});
+    projectCards.forEach(card=>{const toggle=card.querySelector('.project-toggle');if(!toggle)return;toggle.addEventListener('click',()=>{const isOpen=card.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(isOpen));updateProjectLabel(card);});});
     let beforePrintStates=[];let detailPrintStates=[];
     window.addEventListener('beforeprint',()=>{detailPrintStates=Array.from(document.querySelectorAll('details')).map(d=>[d,d.open]);detailPrintStates.forEach(([d])=>d.open=true);beforePrintStates=projectCards.map(c=>c.classList.contains('is-open'));projectCards.forEach(c=>{c.classList.add('is-open');const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded','true');updateProjectLabel(c);});});
     window.addEventListener('afterprint',()=>{detailPrintStates.forEach(([d,open])=>d.open=open);projectCards.forEach((c,i)=>{c.classList.toggle('is-open',beforePrintStates[i]);const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded',String(beforePrintStates[i]));updateProjectLabel(c);});});
@@ -1625,4 +1593,4 @@ document.addEventListener('click',event=>{
     /* ── 14. 언어 초기화 ── */
     applyLang(currentLang);
     
-openLinkedProject();</script><script src="assets/pinboard.js" defer></script></body></html>
+openLinkedProject();</script></body></html>

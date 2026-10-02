@@ -284,7 +284,7 @@
       .icon-link { color: var(--faint); text-decoration: none; cursor: not-allowed; }
       a.icon-link { cursor: pointer; color: var(--muted); }
 
-      @media (max-width: 960px) {
+      @media (max-width: 860px) {
         .nav-links { display: none; }
         .nav-actions .print-button, .nav-actions .button.dark { display: none; }
         .nav-hamburger { display: flex; }
@@ -343,9 +343,7 @@
 .care-scope li{font-size:15.5px;line-height:1.8}.care-note{font-size:14.5px;color:var(--muted);line-height:1.8;padding:12px 14px;background:var(--bg-soft);border-left:2px solid var(--line)}.care-details .body-text+.body-text,.care-details .body-text+.care-note{margin-top:14px}.care-pipeline{margin-top:12px;padding:16px;border:1px solid var(--line);border-radius:6px}.care-pipeline .care-note{margin-top:12px}.care-file{font:12px var(--mono);color:var(--faint);margin-top:12px}.care-flow{display:grid;grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr) 16px minmax(0,1fr);align-items:center;gap:8px}.care-node{border:1px solid var(--line);border-radius:6px;padding:14px 12px;align-self:stretch;background:var(--bg-soft)}.care-node strong{font-size:14px}.care-node p{font-size:13px;color:var(--muted);margin-top:7px;line-height:1.7}.care-arrow{text-align:center;color:var(--accent)}.care-table-wrap{overflow-x:auto}.care-table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}.care-table th,.care-table td{padding:12px 9px;border-bottom:1px solid var(--line);vertical-align:top}.care-table thead{background:var(--bg-soft)}.care-table td{white-space:nowrap;font-variant-numeric:tabular-nums}.care-table small{display:block;font:11px var(--mono);color:var(--muted);margin-top:5px;overflow-wrap:anywhere}.care-table tbody th{font-weight:500}.care-details .implementation-body{padding-bottom:5px}
 @media(max-width:560px){.care-flow{grid-template-columns:1fr}.care-arrow{transform:rotate(90deg)}.care-node{padding:12px}.care-table{font-size:12px}.care-table th,.care-table td{padding:10px 5px}.care-table small{font-size:10px}.care-note{font-size:14px}.care-pipeline{padding:12px}}
 @media print{.care-node,.care-note,.care-table{break-inside:avoid}.care-table-wrap{overflow:visible}.care-details{break-inside:auto}}
-</style><link rel="stylesheet" href="assets/portfolio.css">
-<link rel="stylesheet" href="assets/pinboard.css">
-</head>
+</style></head>
   <body class="pii-off"><a class="skip-link" href="#top">본문으로 이동</a>
 
     <!-- 개인정보 보호 배너 -->
@@ -374,7 +372,7 @@
           
           
         </div>
-        <div class="nav-actions"><button class="button print-button js-print" type="button" data-i18n="nav.pdf">PDF 저장</button>
+        <div class="nav-actions">
           <a class="button dark" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.73.08-.73 1.2.09 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.1-.78.42-1.29.76-1.59-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"></path></svg>
             GitHub
@@ -389,7 +387,7 @@
         
         
         <div class="drawer-divider"></div>
-        <div class="drawer-actions"><button class="button js-print" type="button" data-i18n="nav.pdf">PDF 저장</button>
+        <div class="drawer-actions">
           <a class="button dark" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="flex:1">GitHub</a>
         </div>
       </div>
@@ -403,7 +401,7 @@
           <div class="hero-grid">
             <div class="hero-copy"><p class="hero-eyebrow">SOFTWARE ENGINEER</p>
               <h1 class="hero-title" data-i18n="name">조현준</h1>
-              <p class="hero-intro" data-i18n-html="hero.intro"><strong>시스템의 동작을 이해하고,<br>서비스의 예외 상황을 해결하는 개발자</strong></p><p class="hero-evidence" data-i18n="hero.evidence">가상메모리와 컴파일러를 직접 구현하고, Spring Boot 백엔드와 AI 추론 서비스를 연결했습니다. 정상 흐름뿐 아니라 잘못된 입력과 실패한 요청까지 확인합니다.</p>
+              <p class="hero-intro" data-i18n-html="hero.intro"><strong>비정상 상황에서 시스템이 어떻게 동작해야 하는지 고민합니다.</strong></p><p class="hero-evidence" data-i18n="hero.evidence">OS의 동시성 오류, 컴파일러의 누락 토큰, 백엔드의 비로그인 요청, AI 서버의 배포 장애를 다루며 원인을 추적하고 처리 방식을 고쳤습니다.</p>
               <div class="hero-actions">
                 <a class="button primary" href="#projects" data-i18n="hero.cta.projects">프로젝트 보기</a><a class="button" href="https://github.com/zzooonn" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a class="button" href="mailto:kevinjo11@naver.com" data-i18n="hero.cta.contact">연락하기</a>
@@ -423,8 +421,7 @@
               </article>
             </div>
           </div>
-        
-</div>
+        </div>
       </section>
 
       
@@ -439,68 +436,113 @@
     <section id="projects" class="section">
         <div class="container">
           <h2 class="section-heading" data-i18n="section.projects">대표 프로젝트</h2>
-          <div class="section-body"><p class="projects-lead" data-i18n="projects.lead">앱부터 서버까지 구현한 CareLink를 시작으로, 백엔드 테스트와 시스템 구현 경험을 정리했습니다. 각 프로젝트에서 담당 범위와 문제 해결 과정을 확인할 수 있습니다.</p>
+          <div class="section-body"><p class="projects-lead" data-i18n="projects.lead">구현한 기능과 함께, 문제가 생겼을 때 확인한 가정과 수정 근거를 정리했습니다.</p>
 
+          <!-- PROJECT 01 -->
+          
 
+          <!-- PROJECT 02 -->
+          
 
-<div class="project-board">
-<article class="project-card featured" id="project-4"><div class="pin-content">
-            <div class="featured-top"><figure class="project-visual" aria-labelledby="care-map-caption">
- <div class="visual-topline"><b>CareLink</b><span data-i18n="care.visual.label">서비스 구조</span></div>
- <div class="system-map">
-  <div class="map-node"><span class="node-icon" aria-hidden="true">APP</span><div><strong>React Native</strong><small data-i18n="care.visual.app">건강 기록 · 보호자 연결</small></div></div>
-  <div class="map-connector" aria-hidden="true">↓ HTTPS / JSON</div>
-  <div class="map-node backend-node"><span class="node-icon" aria-hidden="true">API</span><div><strong>Spring Boot</strong><small data-i18n="care.visual.backend">인증 · 접근 제어 · ECG 프록시</small></div></div>
-  <div class="map-connector" aria-hidden="true">↓ ECG proxy</div>
-  <div class="map-node"><span class="node-icon" aria-hidden="true">AI</span><div><strong>FastAPI · PyTorch</strong><small data-i18n="care.visual.ai">입력 검증 · 전처리 · 추론</small></div></div>
-  <div class="map-storage"><strong>Spring Boot ↔ PostgreSQL</strong><span data-i18n="care.visual.store">건강 기록 · 연결 정보 저장</span></div>
- </div>
- <figcaption class="visual-caption" id="care-map-caption" data-i18n="care.visual.caption">구현 구조 요약 · 앱은 Spring Boot를 통해 AI 서비스를 호출</figcaption>
-</figure><div class="project-overview">
+          <!-- PROJECT 03 -->
+          
+
+          <!-- PROJECT 04 -->
+          
+
+          <article class="project-card" id="project-1">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-01-body">
               <span class="project-index mono">01</span>
-              <div class="project-head"><span class="featured-marker" data-i18n="project.featured">대표작 · 개인 개발</span>
-                <h3 data-i18n="proj4.title">CareLink · 건강 기록과 ECG 분석</h3>
+              <div class="project-head">
+                <h3 data-i18n-html="proj1.title"><span class="pii">BUAA</span> OS — MIPS 마이크로커널 운영체제</h3>
                 <div class="project-meta">
-                  <span>2025.10 – 2026.03</span>
-                  <span data-i18n="proj4.role">졸업논문 · 개인 개발 (앱·백엔드·AI)</span>
+                  <span>2024.03 – 2024.07 · <span class="pii">BUAA</span> OS Course</span>
+                  <span data-i18n="proj1.role">개인 프로젝트 · OS 수업</span>
                 </div>
                 <div class="project-tagline">
-                  <span class="tagline-summary" data-i18n="proj4.summary">건강 기록·보호자 연결 앱과 12유도 ECG 분류·추론 서비스 구현</span>
-                  <span class="tagline-result" data-i18n="proj4.result">비정상 입력의 추론 차단 · 이미지 빌드와 서버 실행 분리</span>
+                  <span class="tagline-summary" data-i18n="proj1.summary">MIPS 시뮬레이터에서 가상메모리·프로세스·사용자 공간 파일 시스템 구현</span>
+                  <span class="tagline-result" data-i18n="proj1.result">매핑 순서 조정과 판정 재시도로 파이프의 거짓 EOF 해결</span>
                 </div>
-              <div class="project-technologies"><span>React Native</span><span>Spring Boot</span><span>FastAPI · PyTorch</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button></div>
-              
-            </div></div>
-            <div class="project-body" id="project-04-body">
+              <div class="project-technologies"><span>C</span><span>MIPS Assembly</span><span>GXemul</span></div><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span></div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+            </button>
+            <div class="project-body" id="project-01-body">
               <div class="project-inner">
-<p class="body-text" data-i18n-html="care.intro">노인의 건강 기록과 심전도 분석을 돕기 위해 혼자 진행한 졸업논문 프로젝트입니다. 모바일 앱·백엔드·ECG 모델을 구현하며, <strong>모델이 결과를 내도 되는 입력의 조건과 제한된 서버에서 실행할 방법</strong>을 함께 다뤘습니다.</p>
-<div><h4 class="minor-title" data-i18n-html="care.scope.title">담당 범위</h4><ul class="arrow-list care-scope"><li data-i18n-html="care.scope.app"><strong>모바일:</strong> React Native·Expo 앱, 건강 기록·보호자 연결 화면, JWT 세션과 로컬 캐시.</li><li data-i18n-html="care.scope.backend"><strong>백엔드:</strong> Spring Boot 인증·접근 제어, PostgreSQL 저장, FastAPI로 ECG 요청을 전달하는 프록시.</li><li data-i18n-html="care.scope.ai"><strong>AI·배포:</strong> PyTorch 모델 학습·비교 실험, 전처리·추론 API, Docker Compose와 GitHub Actions 배포 구성.</li></ul></div>
-<div><h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4><div class="troubleshoot">
-<div class="troubleshoot-head"><div class="troubleshoot-title" data-i18n-html="care.case.title">NaN을 0으로 바꿨더니, 잘못된 파형에도 확률이 나왔다</div><span class="badge-primary">Input validation / AI serving</span></div>
-<div class="troubleshoot-grid"><div><div class="trouble-block"><div class="trouble-label" data-i18n-html="care.case.problem.label">문제</div><p class="body-text" data-i18n-html="care.case.problem">초기 전처리는 <code>NaN</code>을 0으로 치환했습니다. 요청은 처리됐지만, 센서 오류나 누락으로 생긴 값이 정상 신호의 진폭처럼 모델에 들어갔습니다. <strong>추론이 성공했다는 사실만으로 입력의 의미까지 보장할 수 없었습니다.</strong></p></div><div class="trouble-block"><div class="trouble-label" data-i18n-html="care.case.choice.label">판단과 변경</div><p class="body-text" data-i18n-html="care.case.choice">잘못된 값을 조용히 보정하는 대신 <strong>추론 전에 요청을 거부</strong>하도록 바꿨습니다. 빈 배열·비정형 배열·리드 수 불일치·숫자가 아닌 값·<code>NaN</code>/<code>Inf</code>·잘못된 샘플링 주파수를 검사합니다. 클라이언트가 보낸 진폭 특징 <code>amp</code>도 사용하지 않고 서버가 필터링 후 다시 계산합니다.</p></div><div class="trouble-block"><div class="trouble-label" data-i18n-html="care.case.result.label">결과와 남은 한계</div><p class="body-text" data-i18n-html="care.case.result">유효하지 않은 값이 모델의 확률로 바뀌는 경로를 막았습니다. 다만 내부 검증의 <code>422 HTTPException</code>이 넓은 예외 처리에 잡혀 <code>500</code>으로 반환될 수 있습니다. <strong>추론 차단과 별개로, 클라이언트가 입력 오류를 구분할 수 있도록 상태 코드 전달을 고쳐야 합니다.</strong></p></div></div>
-<div><details class="code-details"><summary data-i18n-html="care.input.details">입력 검증과 전처리 흐름</summary><div class="care-pipeline"><p class="body-text" data-i18n-html="care.input.flow">행렬·숫자·유한값 검사 → 12리드 형태 통일 → 500Hz 리샘플링 → 5000샘플 길이 조정 → 대역 필터 → 진폭 특징 36차원 추출 → 리드별 정규화 → 추론</p><p class="care-note" data-i18n-html="care.input.note">유효한 다른 샘플링 주파수는 500Hz로 변환합니다. 길이가 짧으면 앞쪽에 0을 채우고, 길면 뒤쪽 5000샘플을 사용합니다. 이는 NaN을 정상 관측값처럼 0으로 치환하는 처리와 구분했습니다.</p><p class="care-file">ai/src/server.py</p></div></details>
-<div class="takeaway"><div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div><p class="body-text" data-i18n-html="care.takeaway">모델의 출력이 의미를 가지려면 입력 검증·전처리·가중치·임계값이 같은 전제를 공유해야 했습니다. 정확도뿐 아니라 <strong>어떤 입력에서 판단을 멈춰야 하는지</strong>도 구현의 일부였습니다.</p></div></div></div></div></div>
-<details class="implementation-details care-details"><summary data-i18n-html="care.model.title">모델 설계와 평가 기준</summary><div class="implementation-body"><div><h4 class="minor-title" data-i18n-html="care.model.amp.title">정규화 과정에서 진폭 정보를 잃지 않도록</h4><p class="body-text" data-i18n-html="care.model.amp">CNN·CBAM·BiGRU로 파형과 시간 흐름을 처리하고, 필터링 후 정규화 전에 리드별 peak-to-peak·표준편차·RMS를 추출했습니다. 이 <strong>36차원 진폭 특징을 시계열 특징과 결합</strong>해 정규화로 사라질 수 있는 크기 정보를 별도로 전달했습니다.</p></div><div><h4 class="minor-title" data-i18n-html="care.model.eval.title">평균 지표와 HYP 범주의 오류를 함께 비교</h4><p class="body-text" data-i18n-html="care.model.eval">연구 비교 실험에서는 약 65만 파라미터 모델로 ResNet1D와 비슷한 전체 성능을 유지하면서 HYP 범주에서 더 나은 결과를 얻었습니다. 가중 샘플링을 제거했을 때 Macro F1·AUC는 높아졌지만 HYP 성능은 떨어졌습니다. <strong>평균 지표와 범주별 오류를 함께 보고</strong> 손실 함수·샘플링 설정을 판단했습니다.</p></div><p class="care-note" data-i18n-html="care.model.boundary"><strong>연구·서빙 구분:</strong> 비교 실험용 <code>run_comparison.py</code>와 서빙용 <code>server.py</code>·<code>train_local.py</code>는 같은 모델 이름을 쓰지만 CNN 깊이와 GRU 크기가 다릅니다. 연구 모델의 수치와 가중치를 서빙 모델에 그대로 적용할 수 없습니다. 전처리·임계값·모델 버전을 함께 관리하는 것이 후속 과제입니다.</p></div></details>
-<details class="implementation-details care-details"><summary data-i18n-html="care.arch.title">서비스 구조와 배포 판단</summary><div class="implementation-body"><div class="care-flow"><div class="care-node"><strong>React Native · Expo</strong><p data-i18n-html="care.arch.app">건강 기록 · 보호자 연결 · ECG 화면</p></div><span class="care-arrow" aria-hidden="true">→</span><div class="care-node"><strong>Spring Boot</strong><p data-i18n-html="care.arch.backend">인증 · 접근 제어 · ECG 프록시</p></div><span class="care-arrow" aria-hidden="true">→</span><div class="care-node"><strong>FastAPI · PyTorch</strong><p data-i18n-html="care.arch.ai">입력 검증 · 전처리 · 모델 추론</p></div></div><p class="care-note" data-i18n-html="care.arch.db">Spring Boot ↔ PostgreSQL: 건강 기록·보호자 연결·알림 저장. ECG 추론 응답은 그대로 반환하며, 기록 저장은 별도의 건강 기록 API에서 수행합니다.</p><p class="body-text" data-i18n-html="care.arch.reason"><strong>분리 이유:</strong> 인증·건강 기록을 처리하는 Java 백엔드와 모델 가중치·Python 의존성·전처리·추론 자원을 다루는 AI 서비스는 변경 주기가 달랐습니다. 앱은 Spring을 통해 AI에 접근하고, AI 실행 환경은 별도 컨테이너로 구성했습니다.</p><div><h4 class="minor-title" data-i18n-html="care.deploy.title">저메모리 서버에서 빌드와 실행을 나누기</h4><p class="body-text" data-i18n-html="care.deploy.problem">한 EC2에서 PostgreSQL·JVM·PyTorch 실행과 이미지 빌드가 겹치면 메모리 사용이 몰렸습니다. FastAPI는 시작할 때 모델 가중치를 로드하므로, 모델 파일 누락이나 모델 구조 불일치도 기동 실패의 조건이었습니다.</p><p class="body-text" data-i18n-html="care.deploy.change">이미지는 <strong>GitHub Actions에서 빌드해 GHCR에 저장</strong>하고, EC2에서는 pull 후 실행하도록 분리했습니다. 경량 Compose에는 PostgreSQL 256MB·백엔드 384MB·AI 512MB 제한을 두고, AI는 <code>profiles: ["ai"]</code>로 선택 실행하도록 구성했습니다. 모델 가중치는 이미지와 별도로 배치합니다.</p><p class="care-note" data-i18n-html="care.deploy.limit">메모리 제한만으로 OOM이 사라지는 것은 아닙니다. 경량 Compose에서 로컬 AI를 사용할 때는 <code>AI_ECG_SERVER_URL</code>과 양쪽 API 키를 별도로 맞춰야 합니다. 현재 구성이 자동으로 모든 배포 조건을 갖춘 것은 아닙니다.</p></div><div><h4 class="minor-title" data-i18n-html="care.app.title">인증·캐시·데모의 실제 동작</h4><ul class="arrow-list"><li data-i18n-html="care.app.auth"><strong>인증:</strong> <code>authFetch()</code>는 401 응답 시 refresh token으로 갱신을 시도하고 원 요청을 재시도합니다. 갱신에 실패하면 세션을 지우고 초기 화면으로 돌아갑니다.</li><li data-i18n-html="care.app.cache"><strong>캐시:</strong> 사용자명·프로필 이미지·보호자 목록을 먼저 읽고, 사용자 정보·건강 요약을 서버와 동기화합니다. 10초 이내 중복 요청을 막는 처리를 두었습니다.</li><li data-i18n-html="care.app.demo"><strong>데모 범위:</strong> ECG 화면은 합성 신호와 서버 샘플을 사용합니다. 서버 샘플 파일이 없으면 생성한 데모 파형을 반환합니다. 건강 이상 알림은 DB에 저장하며 외부 push 발송은 로그 처리 수준입니다.</li></ul></div></div></details>
-<details class="implementation-details care-details"><summary data-i18n-html="care.metrics.title">측정 결과와 재현 조건</summary><div class="implementation-body"><p class="body-text" data-i18n-html="care.metrics.intro">12유도 ECG 추론은 측정 파일마다 실행 조건이 달라 별도로 표시했습니다. 아래 값은 기록된 실험의 결과이며, 서버 사양을 통일한 전후 성능 비교로 해석하지 않았습니다.</p><div class="care-table-wrap"><table class="care-table"><thead><tr><th data-i18n-html="care.metrics.scenario" scope="col">측정 항목 · 출처</th><th data-i18n-html="care.metrics.count" scope="col">횟수</th><th data-i18n-html="care.metrics.mean" scope="col">평균</th><th scope="col">P95</th></tr></thead><tbody><tr><th scope="row"><span data-i18n-html="care.metrics.ecg100">AI 직접 호출</span><small>carelink_measured_metrics.json</small></th><td>100</td><td>2,396.58ms</td><td>2,725.98ms</td></tr><tr><th scope="row"><span data-i18n-html="care.metrics.ecg30">별도 ECG 측정</span><small>benchmark_results.json</small></th><td>30</td><td>2,382.85ms</td><td>2,698.16ms</td></tr></tbody></table></div><p class="body-text" data-i18n-html="care.metrics.cache"><strong>캐시 측정:</strong> <code>carelink_measured_metrics.json</code>에 로컬 캐시 읽기 평균 0.29ms, 네트워크 동기화 평균 603.97ms가 기록돼 있습니다. 서로 다른 작업의 소요 시간이며 화면 전체 렌더링 속도의 개선율로 환산하지 않았습니다.</p><p class="care-note" data-i18n-html="care.metrics.next"><strong>다음 검증:</strong> 모델·전처리·임계값 버전을 묶어 연구와 서빙의 차이를 줄이고, 동일한 서버 조건에서 초기화 시간·추론 지연·컨테이너별 최대 메모리를 함께 측정하려 합니다.</p></div></details>
-</div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-04-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-<article class="project-card" id="project-3"><div class="pin-content">
-            <div class="project-preview-row academic-preview-row"><figure class="project-visual academic-visual" aria-labelledby="academic-map-caption">
- <div class="visual-topline"><b>Academic Platform</b><span data-i18n="academic.arch.label">팀 전체 구조</span></div>
- <div class="system-map academic-map">
-  <div class="map-node"><strong>Vue 3 · TypeScript</strong><small data-i18n="academic.arch.web">학술 성과 검색 · 조회 화면</small></div>
-  <div class="map-connector" aria-hidden="true">↓ REST API</div>
-  <div class="map-node backend-node"><strong>Spring Boot · Java</strong><small data-i18n="academic.arch.api">요청 처리 · 서비스 · 인증</small><small class="scope-label" data-i18n="academic.arch.scope">본인: 관계망 · 검색 · 공고 · 단위 테스트</small></div>
-  <div class="map-connector" data-i18n="academic.arch.fanout">↓ 백엔드에서 각 서비스 연동</div>
-  <div class="academic-data-services"><div class="map-node"><strong>PostgreSQL</strong><small data-i18n="academic.arch.pg">학술 · 관계 데이터</small></div><div class="map-node"><strong>Elasticsearch</strong><small data-i18n="academic.arch.es">성과 문서 검색</small></div><div class="map-node"><strong>Redis</strong><small data-i18n="academic.arch.redis">캐시 · 조회수 집계</small></div><div class="map-node"><strong>MinIO</strong><small data-i18n="academic.arch.minio">파일 저장</small></div></div>
- </div>
- <figcaption class="visual-caption" id="academic-map-caption" data-i18n="academic.arch.caption">팀 전체 구조 요약 · 본인 구현 범위는 백엔드에 표시</figcaption>
-</figure><div class="project-overview">
+                <p class="body-text" data-i18n-html="p1_intro">GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 구현한 개인 과제입니다. 커널의 메모리·예외·시스템콜 처리와 사용자 공간의 fork·IPC·파일 시스템·셸을 구현했습니다. 대표 사례는 <strong>파이프가 닫히지 않았는데 EOF로 판정한 동시성 오류</strong>입니다.</p><div>
+                  <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
+                  <div class="troubleshoot">
+                    <div class="troubleshoot-head">
+                      <div class="troubleshoot-title" data-i18n-html="p1_tr_head">Pipe 거짓 EOF — <code>dup</code>/<code>close</code> 중간 상태를 닫힘으로 오판하는 문제</div>
+                      <span class="badge-primary">Kernel / IPC</span>
+                    </div>
+                    <div class="troubleshoot-grid">
+                      <div>
+                        <div class="trouble-block">
+                          <div class="trouble-label problem" data-i18n="trouble.situation">상황</div>
+                          <p class="body-text" data-i18n-html="p1_tr_problem">파이프가 닫혔는지는 커널에 묻지 않고 <code>pageref(fd)</code>와 <code>pageref(pipe)</code>를 비교해 판단합니다. 반대편이 살아 있으면 <code>fd &lt; pipe</code>이고, 모두 닫히면 두 값이 같아져 EOF가 됩니다. 그런데 <code>dup</code>/<code>close</code>는 두 페이지를 각각 map·unmap하는 두 단계라서, <code>testpiperace</code>에서 그 사이에 타이머 인터럽트가 끼면 writer가 살아 있는데도 <strong>두 값이 순간적으로 같아져 reader가 EOF를 반환</strong>했습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label alt" data-i18n="trouble.alternatives">대안 탐색</div>
+                          <p class="body-text" data-i18n-html="p1_tr_alt">처음에는 mutex로 중간 상태를 가리는 방법을 떠올렸습니다. 하지만 이 파이프는 사용자 공간 공유 페이지에서 동작해 공용 락이나 원자 연산이 제공되지 않았고, 락을 새로 만들면 <strong>락의 소유권과, 락을 잡은 프로세스가 죽었을 때의 복구</strong>라는 새 문제가 생겼습니다. 막아야 할 것은 모든 접근이 아니라 "writer가 살아 있는데 두 값이 같아 보이는 순간" 하나였습니다.</p>
+                        </div>
+                        <div class="trouble-block">
+                          <div class="trouble-label sol" data-i18n="trouble.solution">해결</div>
+                          <p class="body-text" data-i18n-html="p1_tr_sol">중간 상태를 숨기는 대신 <strong>중간 상태가 틀린 의미를 갖지 않도록 순서를 바꿨습니다.</strong> <code>dup</code>은 pipe 페이지를 먼저 map하고, <code>close</code>는 fd 페이지를 먼저 unmap합니다. 그러면 어느 순간에 끊겨도 <code>pageref(fd) &lt; pageref(pipe)</code>가 유지됩니다. 판정하는 쪽은 두 값을 읽는 사이에 스케줄 전환이 있었는지 <code>env_runs</code>로 확인하고, 있었다면 다시 읽습니다.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <details class="code-details"><summary data-i18n="project.code">관련 코드 · 로그 보기</summary><div class="code-box">
+                          <div class="code-top mono"><span class="filename">user/pipe.c — close 순서 · 닫힘 판정</span></div>
+                          <pre><code><span style="color:#7f848e;">/* ① close: fd를 먼저 내려 어느 순간에도 fd_ref &lt; pipe_ref */</span>
+<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#e5c07b;">struct Fd</span> *fd) {
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd);              <span style="color:#7f848e;">/* fd 먼저 */</span>
+  <span style="color:#61afef;">syscall_mem_unmap</span>(0, <span style="color:#61afef;">fd2data</span>(fd));   <span style="color:#7f848e;">/* pipe 나중 */</span>
+  <span style="color:#c678dd;">return</span> 0;
+}
+
+<span style="color:#7f848e;">/* ② 판정: 두 값을 같은 실행 구간에서 읽었는지 확인 */</span>
+<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">_pipe_is_closed</span>(<span style="color:#e5c07b;">struct Fd</span> *fd, <span style="color:#e5c07b;">struct Pipe</span> *p) {
+  <span style="color:#c678dd;">int</span> fd_ref, pipe_ref, runs;
+  <span style="color:#c678dd;">do</span> {
+    runs     = env-&gt;env_runs;
+    fd_ref   = <span style="color:#61afef;">pageref</span>(fd);
+    pipe_ref = <span style="color:#61afef;">pageref</span>(p);
+  } <span style="color:#c678dd;">while</span> (runs != env-&gt;env_runs);  <span style="color:#7f848e;">/* 도중에 스케줄되면 다시 읽기 */</span>
+  <span style="color:#c678dd;">return</span> fd_ref == pipe_ref;
+}</code></pre>
+                        </div></details>
+                        <div class="takeaway">
+                          <div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div>
+                          <p class="body-text" data-i18n-html="p1_takeaway">다른 프로세스가 내 코드의 중간 상태를 볼 수 있다면 그 중간 상태도 설계 대상이었습니다. 이후 동시성 문제를 만나면 먼저 <strong>"다른 실행을 막아야 하는가, 아니면 중간 상태가 보여도 약속이 깨지지 않게 만들 수 있는가"</strong>를 묻게 됐습니다.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                
+              <details class="implementation-details"><summary data-i18n="project.more">상세 구현 · 구조 · 측정</summary><div class="implementation-body"><div>
+                  <h4 class="minor-title" data-i18n="proj.minor.labrange">주요 개발 내용 (Lab0 – Lab6)</h4>
+                  <ul class="arrow-list">
+                    <li data-i18n-html="p1_dev_li1"><strong>개발 환경과 커널 부팅 (Lab0–1):</strong> Makefile·셸 스크립트로 빌드 환경을 익히고, <code>start.S</code>에서 CP0 초기화와 커널 스택을 설정한 뒤 C 코드로 진입. ELF 헤더 파싱과 커널용 <code>printf</code> 구현.</li>
+                    <li data-i18n-html="p1_dev_li2"><strong>메모리 관리 (Lab2):</strong> <code>struct Page</code>와 free list로 물리 페이지를 관리하고 2단계 페이지 테이블 구현. MIPS는 TLB miss를 하드웨어가 아닌 소프트웨어가 처리하므로, 예외 핸들러에서 페이지 테이블을 조회해 TLB를 채우는 흐름을 구현.</li>
+                    <li data-i18n-html="p1_dev_li3"><strong>프로세스와 스케줄링 (Lab3):</strong> <code>Env</code>(PCB) 할당, ELF 사용자 프로그램 적재, 타이머 인터럽트 기반 스케줄러 구현. 예외가 발생하면 Trapframe에 레지스터를 저장하고 복원해 사용자 모드로 돌아감.</li>
+                    <li data-i18n-html="p1_dev_li4"><strong>시스템콜 (Lab4):</strong> <code>syscall</code> 명령 → 예외 → 시스템콜 테이블 분기 → <code>v0</code> 반환 흐름 구현. 복귀할 때 <code>EPC += 4</code>로 같은 명령이 반복 실행되지 않게 처리.</li>
+                    <li data-i18n-html="p1_dev_li5"><strong>Copy-on-Write fork (Lab4):</strong> 쓰기 가능한 페이지를 부모·자식 모두 <code>PTE_COW</code>로 공유하고, 쓰기가 일어나면 TLB Mod 예외에서 사용자 핸들러가 새 페이지를 복사. 핸들러가 COW 스택에 써서 같은 예외를 다시 일으키지 않도록 <strong>별도 예외 스택(UXSTACK)</strong>에서 실행.</li>
+                    <li data-i18n-html="p1_dev_li6"><strong>사용자 공간 파일 시스템 (Lab5):</strong> 커널 밖의 <strong>FS 서버 프로세스가 IPC로 요청을 처리</strong>하는 구조. 블록 캐시, 비트맵 기반 블록 할당, direct/indirect 블록, 경로 탐색 구현.</li>
+                    <li data-i18n-html="p1_dev_li7"><strong>셸과 파이프 (Lab6):</strong> <code>spawn</code>으로 실행 파일을 새 프로세스에 적재하고, 셸에서 리다이렉션(<code>&lt;</code>, <code>&gt;</code>)과 파이프라인(<code>|</code>) 구현. 파이프는 커널 버퍼가 아닌 <strong>사용자 공간 공유 페이지</strong>로 동작.</li>
+                  </ul>
+                </div><div>
+                  <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
+                  <div class="tag-list"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
+                </div></div></details></div>
+            </div>
+          </article><article class="project-card" id="project-3">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body">
               <span class="project-index mono">02</span>
               <div class="project-head">
-                <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼 · 백엔드</h3>
+                <h3 data-i18n="proj3.title">학술 성과 공유 플랫폼</h3>
                 <div class="project-meta">
                   <span>2025.11 – 2026.02 · <span class="pii">BUAA</span> SSAD Course</span>
                   <span data-i18n="proj3.role">Backend (팀 프로젝트 · 학자 관계망·검색·공고 서비스)</span>
@@ -509,12 +551,12 @@
                   <span class="tagline-summary" data-i18n="proj3.summary">연구자와 학술 성과를 연결하는 플랫폼의 관계망·검색·공고 서비스 담당</span>
                   <span class="tagline-result" data-i18n="proj3.result">비로그인 조회 오류 수정 · 컨트롤러 테스트로 로그인 여부별 동작 검증</span>
                 </div>
-              <div class="project-technologies"><span>Java</span><span>Spring Boot</span><span>JUnit · Mockito</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-03-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button><br><a class="repo-link" href="https://github.com/saitewasreset/BUAA-SSAD-2025-Project-Group1-AcademicPlatform" target="_blank" rel="noopener noreferrer" data-i18n="academic.repo">프로젝트 저장소 ↗</a></div>
-              
-            </div></div>
+              <div class="project-technologies"><span>Java</span><span>Spring Boot</span><span>JUnit · Mockito</span></div><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span></div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+            </button>
             <div class="project-body" id="project-03-body">
               <div class="project-inner">
-                <p class="body-text" data-i18n-html="p3_intro">Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 상단 구조도는 팀 전체 구성이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다.</p><div>
+                <p class="body-text" data-i18n-html="p3_intro">Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO, 벡터 서버를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 아래 아키텍처는 팀 전체 구조이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다.</p><div>
                   <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
@@ -564,7 +606,90 @@
                 
               <details class="implementation-details"><summary data-i18n="project.more">상세 구현 · 구조 · 측정</summary><div class="implementation-body"><div>
                   <h4 class="minor-title" data-i18n="proj.minor.arch">시스템 아키텍처</h4>
-                  <p class="body-text" data-i18n="academic.arch.detail">Spring Boot가 관계형 데이터, 문서 검색, 캐시, 파일 저장소를 각각 연동합니다. 관계망·검색·공고 서비스와 관련 단위 테스트 및 컨트롤러 테스트가 본인 구현 범위입니다.</p>
+                  <div class="svg-wrap">
+                    <p>System Architecture — Vue 3 · Spring Boot 3 · Maven · PostgreSQL 18 · Elasticsearch · Redis · MinIO · Vector Service · OpenAlex / ORCID / LLM</p>
+                    <svg width="100%" viewBox="0 0 720 1020" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+                      <defs><marker id="arrowAP2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></marker></defs>
+                      <rect x="8" y="260" width="704" height="710" rx="16" fill="none" stroke="#1f4f8a" stroke-width="1.1" stroke-dasharray="6 4" opacity="0.3"></rect>
+                      <rect x="18" y="248" width="168" height="22" rx="5" fill="#f7f7f5"></rect>
+                      <text x="102" y="263" text-anchor="middle" font-size="12" fill="#1f4f8a" font-weight="700">Docker Compose 환경</text>
+                      <text x="360" y="18" text-anchor="middle" font-size="12" fill="#888" font-weight="600" letter-spacing="0.5">프론트엔드 클라이언트</text>
+                      <rect x="100" y="26" width="520" height="76" rx="11" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1"></rect>
+                      <text x="360" y="54" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#1d1f23">Vue 3 / TypeScript / Vite (SPA)</text>
+                      <text x="360" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5b616b">views · components · Pinia stores · router · api · types · utils</text>
+                      <line x1="280" y1="102" x2="225" y2="300" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none" opacity="0.6"></line>
+                      <line x1="205" y1="300" x2="260" y2="102" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowAP2)" fill="none" opacity="0.6"></line>
+                      <rect x="96" y="185" width="164" height="38" rx="5" fill="#fff" opacity="0.96"></rect>
+                      <text x="178" y="200" text-anchor="middle" font-size="12" fill="#1d1f23" font-weight="700">REST API / HTTP</text>
+                      <text x="178" y="215" text-anchor="middle" font-size="11" fill="#1d1f23">JWT Bearer · JSON</text>
+                      <rect x="18" y="300" width="428" height="265" rx="14" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="232" y="296" text-anchor="middle" font-size="11" fill="#888" font-weight="600">백엔드 컨테이너 · port 8080</text>
+                      <rect x="30" y="312" width="404" height="66" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.8"></rect>
+                      <text x="232" y="339" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#1d1f23">Spring Boot 3 + Java 21</text>
+                      <text x="232" y="361" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">Spring Security · JWT Filter · JPA/Hibernate · Flyway · Maven</text>
+                      <rect x="30" y="390" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="127" y="412" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Controller 계층 A</text>
+                      <text x="127" y="430" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5b616b">account · general · search · output</text>
+                      <rect x="239" y="390" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="336" y="412" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Controller 계층 B</text>
+                      <text x="336" y="430" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#5b616b">scholar · analyze · announcement · storage · update</text>
+                      <rect x="30" y="456" width="195" height="52" rx="8" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="127" y="478" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Service 계층</text>
+                      <text x="127" y="496" text-anchor="middle" dominant-baseline="central" font-size="9.8" fill="#5b616b">search · output · scholar · analyze · vector</text>
+                      <rect x="239" y="456" width="195" height="52" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="336" y="478" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#1d1f23">Scheduler / Tasks</text>
+                      <text x="336" y="496" text-anchor="middle" dominant-baseline="central" font-size="9.8" fill="#1d1f23">metrics update · hot point sync · summary refresh</text>
+                      <rect x="460" y="300" width="252" height="190" rx="13" fill="none" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="586" y="296" text-anchor="middle" font-size="11" fill="#888" font-weight="600">주 데이터 저장소</text>
+                      <rect x="472" y="312" width="228" height="66" rx="9" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.8"></rect>
+                      <text x="586" y="339" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="800" fill="#1d1f23">PostgreSQL 18</text>
+                      <text x="586" y="361" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b616b">주 트랜잭션 데이터 관리</text>
+                      <rect x="472" y="390" width="228" height="40" rx="9" fill="#f1f3f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="586" y="410" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="#1d1f23">JPA Repository · entities</text>
+                      <line x1="435" y1="410" x2="465" y2="410" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <line x1="465" y1="425" x2="435" y2="425" stroke="#9aa0a8" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <text x="450" y="405" text-anchor="middle" font-size="10" fill="#5b616b" font-weight="700">JPA</text>
+                      <rect x="18" y="600" width="218" height="120" rx="13" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1" opacity="0.6"></rect>
+                      <text x="127" y="595" text-anchor="middle" font-size="11" fill="#666">검색 엔진</text>
+                      <text x="127" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#1d1f23">Elasticsearch</text>
+                      <text x="127" y="645" text-anchor="middle" font-size="11" fill="#1d1f23">문서 색인 · 검색 필터</text>
+                      <rect x="30" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="127" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">keyword · criteria search</text>
+                      <rect x="252" y="600" width="218" height="120" rx="13" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1" opacity="0.6"></rect>
+                      <text x="361" y="595" text-anchor="middle" font-size="11" fill="#666">캐시 / 카운터</text>
+                      <text x="361" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#1d1f23">Redis</text>
+                      <text x="361" y="645" text-anchor="middle" font-size="11" fill="#1d1f23">방문 수 · 조회 수 · 데이터 캐싱</text>
+                      <rect x="264" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="361" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">heartbeat / view count</text>
+                      <rect x="486" y="600" width="218" height="120" rx="13" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="1" opacity="0.6"></rect>
+                      <text x="595" y="595" text-anchor="middle" font-size="11" fill="#666">오브젝트 스토리지</text>
+                      <text x="595" y="625" text-anchor="middle" font-size="14" font-weight="800" fill="#1d1f23">MinIO</text>
+                      <text x="595" y="645" text-anchor="middle" font-size="11" fill="#1d1f23">S3 호환 파일 저장소</text>
+                      <rect x="498" y="665" width="194" height="30" rx="6" fill="#fff" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="595" y="680" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">avatars · uploaded assets</text>
+                      <line x1="127" y1="565" x2="127" y2="592" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <line x1="361" y1="565" x2="361" y2="592" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <line x1="595" y1="565" x2="595" y2="592" stroke="#9aa0a8" stroke-width="1.5" marker-end="url(#arrowAP2)" fill="none"></line>
+                      <rect x="18" y="760" width="684" height="135" rx="13" fill="#f1f3f5" stroke="#adb5bd" stroke-width="0.7" stroke-dasharray="5 3" opacity="0.7"></rect>
+                      <text x="360" y="755" text-anchor="middle" font-size="11" fill="#666" font-weight="600">AI / 외부 연동 레이어</text>
+                      <rect x="30" y="775" width="200" height="55" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="130" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">Vector Service</text>
+                      <text x="130" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">DJL / Python vector-server</text>
+                      <rect x="242" y="775" width="200" height="55" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="342" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">LLM / Translation</text>
+                      <text x="342" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">query parse · language utility</text>
+                      <rect x="454" y="775" width="238" height="55" rx="8" fill="#f7f7f5" stroke="#9aa0a8" stroke-width="0.5"></rect>
+                      <text x="573" y="794" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1d1f23">OpenAlex / ORCID API</text>
+                      <text x="573" y="810" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1d1f23">External Academic Metadata</text>
+                      <rect x="30" y="850" width="662" height="30" rx="7" fill="#f1f3f5" stroke="#adb5bd" stroke-width="0.5"></rect>
+                      <text x="361" y="865" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#666" font-weight="600">Backend orchestrates storage, search, cache, and external AI/data services</text>
+                      <rect x="18" y="930" width="684" height="36" rx="8" fill="#f1f3f5"></rect>
+                      <text x="36" y="952" font-size="11" fill="#1d1f23" font-weight="700">─── 요청</text>
+                      <text x="100" y="952" font-size="11" fill="#1d1f23">- - - 응답</text>
+                      <text x="170" y="952" font-size="11" fill="#666">│ │ Docker 컨테이너</text>
+                      <text x="340" y="952" font-size="11" fill="#1f4f8a">│ │ Docker Compose 경계</text>
+                    </svg>
+                  </div>
                 </div><div>
                   <h4 class="minor-title" data-i18n="proj.minor.dev">주요 개발 내용</h4>
                   <ul class="arrow-list">
@@ -578,13 +703,42 @@
                   <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list"><span class="tag green">Spring Boot 3</span><span class="tag green">JPA</span><span class="tag green">PostgreSQL</span><span class="tag green">JUnit 5</span><span class="tag green">Mockito</span><span class="tag slate">Postman</span><span class="tag slate">Maven</span><span class="tag slate">Docker Compose</span></div>
                 </div></div></details></div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-03-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-<article class="project-card" id="project-2"><div class="pin-content">
-            <div class="project-preview-row"><figure class="project-visual mini-visual"><div class="mini-pipeline"><span>SysY source</span><i aria-hidden="true">↓</i><span>Parser → P-Code</span><i aria-hidden="true">↓</i><span>Stack VM</span></div><figcaption data-i18n="sysy.visual.caption">구현 흐름 · 소스 분석부터 가상 머신 실행까지</figcaption></figure><div class="project-overview">
+            </div>
+          </article><article class="project-card" id="project-4">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-04-body">
               <span class="project-index mono">03</span>
               <div class="project-head">
-                <h3 data-i18n="proj2.title">SysY 컴파일러 · 구문 분석과 VM</h3>
+                <h3 data-i18n="proj4.title">CareLink — 건강 모니터링 · ECG 분석 플랫폼</h3>
+                <div class="project-meta">
+                  <span>2025.10 – 2026.03</span>
+                  <span data-i18n="proj4.role">졸업논문 · 개인 개발 (앱·백엔드·AI)</span>
+                </div>
+                <div class="project-tagline">
+                  <span class="tagline-summary" data-i18n="proj4.summary">건강 기록·보호자 연결 앱과 12유도 ECG 분류·추론 서비스 구현</span>
+                  <span class="tagline-result" data-i18n="proj4.result">비정상 입력의 추론 차단 · 이미지 빌드와 서버 실행 분리</span>
+                </div>
+              <div class="project-technologies"><span>React Native</span><span>Spring Boot</span><span>FastAPI · PyTorch</span></div><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span></div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+            </button>
+            <div class="project-body" id="project-04-body">
+              <div class="project-inner">
+<p class="body-text" data-i18n-html="care.intro">노인의 건강 기록과 심전도 분석을 돕기 위해 혼자 진행한 졸업논문 프로젝트입니다. 모바일 앱·백엔드·ECG 모델을 구현하며, <strong>모델이 결과를 내도 되는 입력의 조건과 제한된 서버에서 실행할 방법</strong>을 함께 다뤘습니다.</p>
+<div><h4 class="minor-title" data-i18n-html="care.scope.title">담당 범위</h4><ul class="arrow-list care-scope"><li data-i18n-html="care.scope.app"><strong>모바일:</strong> React Native·Expo 앱, 건강 기록·보호자 연결 화면, JWT 세션과 로컬 캐시.</li><li data-i18n-html="care.scope.backend"><strong>백엔드:</strong> Spring Boot 인증·접근 제어, PostgreSQL 저장, FastAPI로 ECG 요청을 전달하는 프록시.</li><li data-i18n-html="care.scope.ai"><strong>AI·배포:</strong> PyTorch 모델 학습·비교 실험, 전처리·추론 API, Docker Compose와 GitHub Actions 배포 구성.</li></ul></div>
+<div><h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4><div class="troubleshoot">
+<div class="troubleshoot-head"><div class="troubleshoot-title" data-i18n-html="care.case.title">NaN을 0으로 바꿨더니, 잘못된 파형에도 확률이 나왔다</div><span class="badge-primary">Input validation / AI serving</span></div>
+<div class="troubleshoot-grid"><div><div class="trouble-block"><div class="trouble-label" data-i18n-html="care.case.problem.label">문제</div><p class="body-text" data-i18n-html="care.case.problem">초기 전처리는 <code>NaN</code>을 0으로 치환했습니다. 요청은 처리됐지만, 센서 오류나 누락으로 생긴 값이 정상 신호의 진폭처럼 모델에 들어갔습니다. <strong>추론이 성공했다는 사실만으로 입력의 의미까지 보장할 수 없었습니다.</strong></p></div><div class="trouble-block"><div class="trouble-label" data-i18n-html="care.case.choice.label">판단과 변경</div><p class="body-text" data-i18n-html="care.case.choice">잘못된 값을 조용히 보정하는 대신 <strong>추론 전에 요청을 거부</strong>하도록 바꿨습니다. 빈 배열·비정형 배열·리드 수 불일치·숫자가 아닌 값·<code>NaN</code>/<code>Inf</code>·잘못된 샘플링 주파수를 검사합니다. 클라이언트가 보낸 진폭 특징 <code>amp</code>도 사용하지 않고 서버가 필터링 후 다시 계산합니다.</p></div><div class="trouble-block"><div class="trouble-label" data-i18n-html="care.case.result.label">결과와 남은 한계</div><p class="body-text" data-i18n-html="care.case.result">유효하지 않은 값이 모델의 확률로 바뀌는 경로를 막았습니다. 다만 내부 검증의 <code>422 HTTPException</code>이 넓은 예외 처리에 잡혀 <code>500</code>으로 반환될 수 있습니다. <strong>추론 차단과 별개로, 클라이언트가 입력 오류를 구분할 수 있도록 상태 코드 전달을 고쳐야 합니다.</strong></p></div></div>
+<div><details class="code-details"><summary data-i18n-html="care.input.details">입력 검증과 전처리 흐름</summary><div class="care-pipeline"><p class="body-text" data-i18n-html="care.input.flow">행렬·숫자·유한값 검사 → 12리드 형태 통일 → 500Hz 리샘플링 → 5000샘플 길이 조정 → 대역 필터 → 진폭 특징 36차원 추출 → 리드별 정규화 → 추론</p><p class="care-note" data-i18n-html="care.input.note">유효한 다른 샘플링 주파수는 500Hz로 변환합니다. 길이가 짧으면 앞쪽에 0을 채우고, 길면 뒤쪽 5000샘플을 사용합니다. 이는 NaN을 정상 관측값처럼 0으로 치환하는 처리와 구분했습니다.</p><p class="care-file">ai/src/server.py</p></div></details>
+<div class="takeaway"><div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div><p class="body-text" data-i18n-html="care.takeaway">모델의 출력이 의미를 가지려면 입력 검증·전처리·가중치·임계값이 같은 전제를 공유해야 했습니다. 정확도뿐 아니라 <strong>어떤 입력에서 판단을 멈춰야 하는지</strong>도 구현의 일부였습니다.</p></div></div></div></div></div>
+<details class="implementation-details care-details"><summary data-i18n-html="care.model.title">모델 설계와 평가 기준</summary><div class="implementation-body"><div><h4 class="minor-title" data-i18n-html="care.model.amp.title">정규화 과정에서 진폭 정보를 잃지 않도록</h4><p class="body-text" data-i18n-html="care.model.amp">CNN·CBAM·BiGRU로 파형과 시간 흐름을 처리하고, 필터링 후 정규화 전에 리드별 peak-to-peak·표준편차·RMS를 추출했습니다. 이 <strong>36차원 진폭 특징을 시계열 특징과 결합</strong>해 정규화로 사라질 수 있는 크기 정보를 별도로 전달했습니다.</p></div><div><h4 class="minor-title" data-i18n-html="care.model.eval.title">평균 지표와 HYP 범주의 오류를 함께 비교</h4><p class="body-text" data-i18n-html="care.model.eval">연구 비교 실험에서는 약 65만 파라미터 모델로 ResNet1D와 비슷한 전체 성능을 유지하면서 HYP 범주에서 더 나은 결과를 얻었습니다. 가중 샘플링을 제거했을 때 Macro F1·AUC는 높아졌지만 HYP 성능은 떨어졌습니다. <strong>평균 지표와 범주별 오류를 함께 보고</strong> 손실 함수·샘플링 설정을 판단했습니다.</p></div><p class="care-note" data-i18n-html="care.model.boundary"><strong>연구·서빙 구분:</strong> 비교 실험용 <code>run_comparison.py</code>와 서빙용 <code>server.py</code>·<code>train_local.py</code>는 같은 모델 이름을 쓰지만 CNN 깊이와 GRU 크기가 다릅니다. 연구 모델의 수치와 가중치를 서빙 모델에 그대로 적용할 수 없습니다. 전처리·임계값·모델 버전을 함께 관리하는 것이 후속 과제입니다.</p></div></details>
+<details class="implementation-details care-details"><summary data-i18n-html="care.arch.title">서비스 구조와 배포 판단</summary><div class="implementation-body"><div class="care-flow"><div class="care-node"><strong>React Native · Expo</strong><p data-i18n-html="care.arch.app">건강 기록 · 보호자 연결 · ECG 화면</p></div><span class="care-arrow" aria-hidden="true">→</span><div class="care-node"><strong>Spring Boot</strong><p data-i18n-html="care.arch.backend">인증 · 접근 제어 · ECG 프록시</p></div><span class="care-arrow" aria-hidden="true">→</span><div class="care-node"><strong>FastAPI · PyTorch</strong><p data-i18n-html="care.arch.ai">입력 검증 · 전처리 · 모델 추론</p></div></div><p class="care-note" data-i18n-html="care.arch.db">Spring Boot ↔ PostgreSQL: 건강 기록·보호자 연결·알림 저장. ECG 추론 응답은 그대로 반환하며, 기록 저장은 별도의 건강 기록 API에서 수행합니다.</p><p class="body-text" data-i18n-html="care.arch.reason"><strong>분리 이유:</strong> 인증·건강 기록을 처리하는 Java 백엔드와 모델 가중치·Python 의존성·전처리·추론 자원을 다루는 AI 서비스는 변경 주기가 달랐습니다. 앱은 Spring을 통해 AI에 접근하고, AI 실행 환경은 별도 컨테이너로 구성했습니다.</p><div><h4 class="minor-title" data-i18n-html="care.deploy.title">저메모리 서버에서 빌드와 실행을 나누기</h4><p class="body-text" data-i18n-html="care.deploy.problem">한 EC2에서 PostgreSQL·JVM·PyTorch 실행과 이미지 빌드가 겹치면 메모리 사용이 몰렸습니다. FastAPI는 시작할 때 모델 가중치를 로드하므로, 모델 파일 누락이나 모델 구조 불일치도 기동 실패의 조건이었습니다.</p><p class="body-text" data-i18n-html="care.deploy.change">이미지는 <strong>GitHub Actions에서 빌드해 GHCR에 저장</strong>하고, EC2에서는 pull 후 실행하도록 분리했습니다. 경량 Compose에는 PostgreSQL 256MB·백엔드 384MB·AI 512MB 제한을 두고, AI는 <code>profiles: ["ai"]</code>로 선택 실행하도록 구성했습니다. 모델 가중치는 이미지와 별도로 배치합니다.</p><p class="care-note" data-i18n-html="care.deploy.limit">메모리 제한만으로 OOM이 사라지는 것은 아닙니다. 경량 Compose에서 로컬 AI를 사용할 때는 <code>AI_ECG_SERVER_URL</code>과 양쪽 API 키를 별도로 맞춰야 합니다. 현재 구성이 자동으로 모든 배포 조건을 갖춘 것은 아닙니다.</p></div><div><h4 class="minor-title" data-i18n-html="care.app.title">인증·캐시·데모의 실제 동작</h4><ul class="arrow-list"><li data-i18n-html="care.app.auth"><strong>인증:</strong> <code>authFetch()</code>는 401 응답 시 refresh token으로 갱신을 시도하고 원 요청을 재시도합니다. 갱신에 실패하면 세션을 지우고 초기 화면으로 돌아갑니다.</li><li data-i18n-html="care.app.cache"><strong>캐시:</strong> 사용자명·프로필 이미지·보호자 목록을 먼저 읽고, 사용자 정보·건강 요약을 서버와 동기화합니다. 10초 이내 중복 요청을 막는 처리를 두었습니다.</li><li data-i18n-html="care.app.demo"><strong>데모 범위:</strong> ECG 화면은 합성 신호와 서버 샘플을 사용합니다. 서버 샘플 파일이 없으면 생성한 데모 파형을 반환합니다. 건강 이상 알림은 DB에 저장하며 외부 push 발송은 로그 처리 수준입니다.</li></ul></div></div></details>
+<details class="implementation-details care-details"><summary data-i18n-html="care.metrics.title">측정 결과와 재현 조건</summary><div class="implementation-body"><p class="body-text" data-i18n-html="care.metrics.intro">12유도 ECG 추론은 측정 파일마다 실행 조건이 달라 별도로 표시했습니다. 아래 값은 기록된 실험의 결과이며, 서버 사양을 통일한 전후 성능 비교로 해석하지 않았습니다.</p><div class="care-table-wrap"><table class="care-table"><thead><tr><th data-i18n-html="care.metrics.scenario" scope="col">측정 항목 · 출처</th><th data-i18n-html="care.metrics.count" scope="col">횟수</th><th data-i18n-html="care.metrics.mean" scope="col">평균</th><th scope="col">P95</th></tr></thead><tbody><tr><th scope="row"><span data-i18n-html="care.metrics.ecg100">AI 직접 호출</span><small>carelink_measured_metrics.json</small></th><td>100</td><td>2,396.58ms</td><td>2,725.98ms</td></tr><tr><th scope="row"><span data-i18n-html="care.metrics.ecg30">별도 ECG 측정</span><small>benchmark_results.json</small></th><td>30</td><td>2,382.85ms</td><td>2,698.16ms</td></tr></tbody></table></div><p class="body-text" data-i18n-html="care.metrics.cache"><strong>캐시 측정:</strong> <code>carelink_measured_metrics.json</code>에 로컬 캐시 읽기 평균 0.29ms, 네트워크 동기화 평균 603.97ms가 기록돼 있습니다. 서로 다른 작업의 소요 시간이며 화면 전체 렌더링 속도의 개선율로 환산하지 않았습니다.</p><p class="care-note" data-i18n-html="care.metrics.next"><strong>다음 검증:</strong> 모델·전처리·임계값 버전을 묶어 연구와 서빙의 차이를 줄이고, 동일한 서버 조건에서 초기화 시간·추론 지연·컨테이너별 최대 메모리를 함께 측정하려 합니다.</p></div></details>
+</div>
+            </div>
+          </article><article class="project-card" id="project-2">
+            <button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body">
+              <span class="project-index mono">04</span>
+              <div class="project-head">
+                <h3 data-i18n="proj2.title">SysY 언어 컴파일러 프론트엔드 &amp; VM 구현</h3>
                 <div class="project-meta">
                   <span>2024.10 – 2025.01 · <span class="pii">BUAA</span> Compiler Course</span>
                   <span data-i18n="proj2.role">개인 프로젝트 · 컴파일러 수업</span>
@@ -593,9 +747,9 @@
                   <span class="tagline-summary" data-i18n="proj2.summary">SysY 소스를 분석해 P-Code를 생성하고 스택 머신으로 실행하는 컴파일러</span>
                   <span class="tagline-result" data-i18n="proj2.result">누락 토큰 상태를 전달해 파생 오류를 막고 후속 구문 분석 유지</span>
                 </div>
-              <div class="project-technologies"><span>C++</span><span>CMake</span><span>P-Code VM</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-02-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button><br><a class="repo-link" href="https://github.com/zzooonn/Compiler" target="_blank" rel="noopener noreferrer" data-i18n="project.repo">프로젝트 저장소 ↗</a></div>
-              
-            </div></div>
+              <div class="project-technologies"><span>C++</span><span>CMake</span><span>P-Code VM</span></div><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span></div>
+              <span class="project-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"></path></svg></span>
+            </button>
             <div class="project-body" id="project-02-body">
               <div class="project-inner">
                 <p class="body-text" data-i18n-html="p2_intro">SysY의 Lexer·재귀 하향 Parser·심볼 테이블·P-Code 생성기·스택 머신 VM을 C++로 구현했습니다. 중복 정의와 함수 인자 불일치 등 의미 오류도 진단합니다. 대표 사례는 <strong>누락된 토큰 하나가 뒤의 정상 코드까지 오류로 만드는 문제</strong>입니다.</p><div>
@@ -670,98 +824,8 @@
                   <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
                   <div class="tag-list"><span class="tag accent">C++17</span><span class="tag accent">CMake</span><span class="tag accent">Lexer / Parser</span><span class="tag accent">P-Code VM</span><span class="tag accent">Symbol Table</span></div>
                 </div></div></details></div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-02-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-<article class="project-card" id="project-1"><div class="pin-content">
-            <div class="project-preview-row"><figure class="project-visual mini-visual"><div class="mini-pipeline"><span>User / IPC</span><i aria-hidden="true">↓</i><span>MIPS kernel</span><i aria-hidden="true">↓</i><span>Virtual memory</span></div><figcaption data-i18n="os.visual.caption">구현 구조 · 사용자 프로그램과 커널, 메모리 관리</figcaption></figure><div class="project-overview">
-              <span class="project-index mono">04</span>
-              <div class="project-head">
-                <h3 data-i18n="proj1.title">MIPS 운영체제 · 메모리와 프로세스</h3>
-                <div class="project-meta">
-                  <span>2024.03 – 2024.07 · <span class="pii">BUAA</span> OS Course</span>
-                  <span data-i18n="proj1.role">개인 프로젝트 · OS 수업</span>
-                </div>
-                <div class="project-tagline">
-                  <span class="tagline-summary" data-i18n="proj1.summary">MIPS 시뮬레이터에서 가상메모리·프로세스·사용자 공간 파일 시스템 구현</span>
-                  <span class="tagline-result" data-i18n="proj1.result">매핑 순서 조정과 판정 재시도로 파이프의 거짓 EOF 해결</span>
-                </div>
-              <div class="project-technologies"><span>C</span><span>MIPS Assembly</span><span>GXemul</span></div><button class="project-toggle" type="button" aria-expanded="false" aria-controls="project-01-body"><span class="project-read" data-i18n="project.open">문제 해결 과정 보기</span><span class="project-chevron" aria-hidden="true">↓</span></button><br><a class="repo-link" href="https://github.com/zzooonn/MIPS_OS" target="_blank" rel="noopener noreferrer" data-i18n="project.repo">프로젝트 저장소 ↗</a></div>
-              
-            </div></div>
-            <div class="project-body" id="project-01-body">
-              <div class="project-inner">
-                <p class="body-text" data-i18n-html="p1_intro">GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 구현한 개인 과제입니다. 커널의 메모리·예외·시스템콜 처리와 사용자 공간의 fork·IPC·파일 시스템·셸을 구현했습니다. 대표 사례는 <strong>파이프가 닫히지 않았는데 EOF로 판정한 동시성 오류</strong>입니다.</p><div>
-                  <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
-                  <div class="troubleshoot">
-                    <div class="troubleshoot-head">
-                      <div class="troubleshoot-title" data-i18n-html="p1_tr_head">Pipe 거짓 EOF — <code>dup</code>/<code>close</code> 중간 상태를 닫힘으로 오판하는 문제</div>
-                      <span class="badge-primary">Kernel / IPC</span>
-                    </div>
-                    <div class="troubleshoot-grid">
-                      <div>
-                        <div class="trouble-block">
-                          <div class="trouble-label problem" data-i18n="trouble.situation">상황</div>
-                          <p class="body-text" data-i18n-html="p1_tr_problem">파이프가 닫혔는지는 커널에 묻지 않고 <code>pageref(fd)</code>와 <code>pageref(pipe)</code>를 비교해 판단합니다. 반대편이 살아 있으면 <code>fd &lt; pipe</code>이고, 모두 닫히면 두 값이 같아져 EOF가 됩니다. 그런데 <code>dup</code>/<code>close</code>는 두 페이지를 각각 map·unmap하는 두 단계라서, <code>testpiperace</code>에서 그 사이에 타이머 인터럽트가 끼면 writer가 살아 있는데도 <strong>두 값이 순간적으로 같아져 reader가 EOF를 반환</strong>했습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label alt" data-i18n="trouble.alternatives">대안 탐색</div>
-                          <p class="body-text" data-i18n-html="p1_tr_alt">처음에는 mutex로 중간 상태를 가리는 방법을 떠올렸습니다. 하지만 이 파이프는 사용자 공간 공유 페이지에서 동작해 공용 락이나 원자 연산이 제공되지 않았고, 락을 새로 만들면 <strong>락의 소유권과, 락을 잡은 프로세스가 죽었을 때의 복구</strong>라는 새 문제가 생겼습니다. 막아야 할 것은 모든 접근이 아니라 "writer가 살아 있는데 두 값이 같아 보이는 순간" 하나였습니다.</p>
-                        </div>
-                        <div class="trouble-block">
-                          <div class="trouble-label sol" data-i18n="trouble.solution">해결</div>
-                          <p class="body-text" data-i18n-html="p1_tr_sol">중간 상태를 숨기는 대신 <strong>중간 상태가 틀린 의미를 갖지 않도록 순서를 바꿨습니다.</strong> <code>dup</code>은 pipe 페이지를 먼저 map하고, <code>close</code>는 fd 페이지를 먼저 unmap합니다. 그러면 어느 순간에 끊겨도 <code>pageref(fd) &lt; pageref(pipe)</code>가 유지됩니다. 판정하는 쪽은 두 값을 읽는 사이에 스케줄 전환이 있었는지 <code>env_runs</code>로 확인하고, 있었다면 다시 읽습니다.</p>
-                        </div>
-                      </div>
-                      <div>
-                        <details class="code-details"><summary data-i18n="project.code">관련 코드 · 로그 보기</summary><div class="code-box">
-                          <div class="code-top mono"><span class="filename">user/pipe.c — close 순서 · 닫힘 판정</span></div>
-                          <pre><code><span style="color:#7f848e;">/* ① close: fd를 먼저 내려 어느 순간에도 fd_ref &lt; pipe_ref */</span>
-<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">pipe_close</span>(<span style="color:#e5c07b;">struct Fd</span> *fd) {
-  <span style="color:#61afef;">syscall_mem_unmap</span>(0, fd);              <span style="color:#7f848e;">/* fd 먼저 */</span>
-  <span style="color:#61afef;">syscall_mem_unmap</span>(0, <span style="color:#61afef;">fd2data</span>(fd));   <span style="color:#7f848e;">/* pipe 나중 */</span>
-  <span style="color:#c678dd;">return</span> 0;
-}
-
-<span style="color:#7f848e;">/* ② 판정: 두 값을 같은 실행 구간에서 읽었는지 확인 */</span>
-<span style="color:#c678dd;">static int</span> <span style="color:#61afef;">_pipe_is_closed</span>(<span style="color:#e5c07b;">struct Fd</span> *fd, <span style="color:#e5c07b;">struct Pipe</span> *p) {
-  <span style="color:#c678dd;">int</span> fd_ref, pipe_ref, runs;
-  <span style="color:#c678dd;">do</span> {
-    runs     = env-&gt;env_runs;
-    fd_ref   = <span style="color:#61afef;">pageref</span>(fd);
-    pipe_ref = <span style="color:#61afef;">pageref</span>(p);
-  } <span style="color:#c678dd;">while</span> (runs != env-&gt;env_runs);  <span style="color:#7f848e;">/* 도중에 스케줄되면 다시 읽기 */</span>
-  <span style="color:#c678dd;">return</span> fd_ref == pipe_ref;
-}</code></pre>
-                        </div></details>
-                        <div class="takeaway">
-                          <div class="takeaway-title" data-i18n="trouble.takeaway">알게된 점</div>
-                          <p class="body-text" data-i18n-html="p1_takeaway">다른 프로세스가 내 코드의 중간 상태를 볼 수 있다면 그 중간 상태도 설계 대상이었습니다. 이후 동시성 문제를 만나면 먼저 <strong>"다른 실행을 막아야 하는가, 아니면 중간 상태가 보여도 약속이 깨지지 않게 만들 수 있는가"</strong>를 묻게 됐습니다.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                
-                
-              <details class="implementation-details"><summary data-i18n="project.more">상세 구현 · 구조 · 측정</summary><div class="implementation-body"><div>
-                  <h4 class="minor-title" data-i18n="proj.minor.labrange">주요 개발 내용 (Lab0 – Lab6)</h4>
-                  <ul class="arrow-list">
-                    <li data-i18n-html="p1_dev_li1"><strong>개발 환경과 커널 부팅 (Lab0–1):</strong> Makefile·셸 스크립트로 빌드 환경을 익히고, <code>start.S</code>에서 CP0 초기화와 커널 스택을 설정한 뒤 C 코드로 진입. ELF 헤더 파싱과 커널용 <code>printf</code> 구현.</li>
-                    <li data-i18n-html="p1_dev_li2"><strong>메모리 관리 (Lab2):</strong> <code>struct Page</code>와 free list로 물리 페이지를 관리하고 2단계 페이지 테이블 구현. MIPS는 TLB miss를 하드웨어가 아닌 소프트웨어가 처리하므로, 예외 핸들러에서 페이지 테이블을 조회해 TLB를 채우는 흐름을 구현.</li>
-                    <li data-i18n-html="p1_dev_li3"><strong>프로세스와 스케줄링 (Lab3):</strong> <code>Env</code>(PCB) 할당, ELF 사용자 프로그램 적재, 타이머 인터럽트 기반 스케줄러 구현. 예외가 발생하면 Trapframe에 레지스터를 저장하고 복원해 사용자 모드로 돌아감.</li>
-                    <li data-i18n-html="p1_dev_li4"><strong>시스템콜 (Lab4):</strong> <code>syscall</code> 명령 → 예외 → 시스템콜 테이블 분기 → <code>v0</code> 반환 흐름 구현. 복귀할 때 <code>EPC += 4</code>로 같은 명령이 반복 실행되지 않게 처리.</li>
-                    <li data-i18n-html="p1_dev_li5"><strong>Copy-on-Write fork (Lab4):</strong> 쓰기 가능한 페이지를 부모·자식 모두 <code>PTE_COW</code>로 공유하고, 쓰기가 일어나면 TLB Mod 예외에서 사용자 핸들러가 새 페이지를 복사. 핸들러가 COW 스택에 써서 같은 예외를 다시 일으키지 않도록 <strong>별도 예외 스택(UXSTACK)</strong>에서 실행.</li>
-                    <li data-i18n-html="p1_dev_li6"><strong>사용자 공간 파일 시스템 (Lab5):</strong> 커널 밖의 <strong>FS 서버 프로세스가 IPC로 요청을 처리</strong>하는 구조. 블록 캐시, 비트맵 기반 블록 할당, direct/indirect 블록, 경로 탐색 구현.</li>
-                    <li data-i18n-html="p1_dev_li7"><strong>셸과 파이프 (Lab6):</strong> <code>spawn</code>으로 실행 파일을 새 프로세스에 적재하고, 셸에서 리다이렉션(<code>&lt;</code>, <code>&gt;</code>)과 파이프라인(<code>|</code>) 구현. 파이프는 커널 버퍼가 아닌 <strong>사용자 공간 공유 페이지</strong>로 동작.</li>
-                  </ul>
-                </div><div>
-                  <h4 class="minor-title" data-i18n="proj.minor.tech">사용 기술</h4>
-                  <div class="tag-list"><span class="tag accent">C</span><span class="tag accent">MIPS Assembly</span><span class="tag slate">GXemul Simulator</span><span class="tag accent">Microkernel</span><span class="tag accent">IPC (Pipe)</span><span class="tag accent">Virtual Memory</span><span class="tag accent">File System</span></div>
-                </div></div></details></div>
-            <div class="project-end"><button class="project-close" type="button" aria-controls="project-01-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
-          </div></article>
-</div></div>
+            </div>
+          </article></div>
         </div>
       </section><section id="hint" class="section">
         <div class="container">
@@ -821,20 +885,12 @@
               <div class="card-header"><h3 data-i18n="edu.education">학력 · 교육</h3></div>
               <div class="timeline"><div class="timeline-item">
                   <span class="timeline-point">●</span>
-                  <h4 data-i18n="edu.hint.title">현대자동차그룹 K-뉴딜 아카데미 HINT</h4>
-                  <p data-i18n="edu.hint.p">임베디드 SW 과정 · 교육생</p>
-                  <small data-i18n="edu.hint.small">2026.07.27 – 2026.10.22 (수강 중)</small>
-                  <div><span class="tag accent" data-i18n="edu.hint.tag">실습: STM32 · RTOS</span></div>
-                </div>
-<div class="timeline-item">
-                  <span class="timeline-point">●</span>
                   <h4><span class="pii">北京航空航天大学 (BUAA)</span></h4>
                   <p class="pii" data-i18n="edu.school2.p">软件学院 (School of Software) · 학사</p>
                   <small class="pii" data-i18n="edu.school2.small">2020.09 – 2026.07 (졸업)</small>
                   
                 </div>
-                
-<div class="timeline-item">
+                <div class="timeline-item">
                   <span class="timeline-point">●</span>
                   <h4><span class="pii">北京汇文中学</span></h4>
                   <p data-i18n-html="edu.school1.p"><span class="pii">북경 회문고등학교</span></p>
@@ -842,22 +898,21 @@
                   
                 </div>
                 
-                
+                <div class="timeline-item">
+                  <span class="timeline-point">●</span>
+                  <h4 data-i18n="edu.hint.title">현대자동차그룹 K-뉴딜 아카데미 HINT</h4>
+                  <p data-i18n="edu.hint.p">임베디드 SW 과정 · 교육생</p>
+                  <small data-i18n="edu.hint.small">2026.07.27 – 2026.10.22 (수강 중)</small>
+                  <div><span class="tag accent" data-i18n="edu.hint.tag">실습: STM32 · RTOS</span></div>
+                </div>
               </div>
             </article>
 
             <article class="info-card">
               
               <div class="card-header"><h3 data-i18n="edu.lang">어학</h3></div>
-              <div class="cert-list"><div class="cert-card">
-                  <div class="cert-copy">
-                    <h4 data-i18n-html="edu.opic.title">OPIc 영어 회화 <span class="tag teal">IH · Intermediate High</span></h4>
-                    <p data-i18n="edu.opic.desc">영어 말하기 평가 IH 등급</p>
-                    <small>2025.12.22</small>
-                  </div>
-                  
-                </div>
-<div class="cert-card">
+              <div class="cert-list">
+                <div class="cert-card">
                   <div class="cert-copy">
                     <h4 data-i18n-html="edu.tsc.title">TSC 중국어 회화 <span class="tag green">Level 6</span></h4>
                     <p data-i18n="edu.tsc.desc">중국 현지 고교·대학 수학 경험</p>
@@ -865,7 +920,14 @@
                   </div>
                   
                 </div>
-                
+                <div class="cert-card">
+                  <div class="cert-copy">
+                    <h4 data-i18n-html="edu.opic.title">OPIc 영어 회화 <span class="tag teal">IH · Intermediate High</span></h4>
+                    <p data-i18n="edu.opic.desc">영어 말하기 평가 IH 등급</p>
+                    <small>2025.12.22</small>
+                  </div>
+                  
+                </div>
               </div>
             </article>
           </div>
@@ -1504,48 +1566,13 @@
   }
 };
 
-
-Object.assign(TRANSLATIONS.ko, {"hero.intro": "<strong>시스템의 동작을 이해하고,<br>서비스의 예외 상황을 해결하는 개발자</strong>", "hero.evidence": "가상메모리와 컴파일러를 직접 구현하고, Spring Boot 백엔드와 AI 추론 서비스를 연결했습니다. 정상 흐름뿐 아니라 잘못된 입력과 실패한 요청까지 확인합니다.", "focus.backend": "인증 · API · 요청 경계 테스트", "focus.system": "메모리 · 동시성 · 구문 분석", "focus.serving": "입력 검증 · 추론 API · 컨테이너 배포", "projects.lead": "앱부터 서버까지 구현한 CareLink를 시작으로, 백엔드 테스트와 시스템 구현 경험을 정리했습니다. 각 프로젝트에서 담당 범위와 문제 해결 과정을 확인할 수 있습니다.", "project.featured": "대표작 · 개인 개발", "care.visual.label": "서비스 구조", "care.visual.app": "건강 기록 · 보호자 연결", "care.visual.backend": "인증 · 접근 제어 · ECG 프록시", "care.visual.ai": "입력 검증 · 전처리 · 추론", "care.visual.store": "건강 기록 · 연결 정보 저장", "care.visual.caption": "구현 구조 요약 · 앱은 Spring Boot를 통해 AI 서비스를 호출", "academic.visual.caption": "팀 기획 프로토타입 · 검색 화면 (중국어 원본)", "academic.visual.alt": "학술 성과 공유 플랫폼 팀 기획 프로토타입의 검색 화면", "academic.repo": "프로젝트 저장소 ↗", "sysy.visual.caption": "구현 흐름 · 소스 분석부터 가상 머신 실행까지", "os.visual.caption": "구현 구조 · 사용자 프로그램과 커널, 메모리 관리", "proj1.title": "MIPS 운영체제 · 메모리와 프로세스", "proj2.title": "SysY 컴파일러 · 구문 분석과 VM", "proj3.title": "학술 성과 공유 플랫폼 · 백엔드", "proj4.title": "CareLink · 건강 기록과 ECG 분석"});
-Object.assign(TRANSLATIONS.en, {"hero.intro": "<strong>A developer who understands systems<br>and handles service failures</strong>", "hero.evidence": "I implemented virtual memory and a compiler, and connected a Spring Boot backend to an AI inference service. I check invalid inputs and failed requests alongside the normal flow.", "focus.backend": "Authentication · APIs · Request boundary tests", "focus.system": "Memory · Concurrency · Parsing", "focus.serving": "Input validation · Inference APIs · Containers", "projects.lead": "Starting with CareLink, an app-to-server personal project, these cases cover backend testing and system implementation. Each describes my scope and how I resolved a problem.", "project.featured": "FEATURED · PERSONAL PROJECT", "care.visual.label": "SERVICE ARCHITECTURE", "care.visual.app": "Health records · Guardian links", "care.visual.backend": "Authentication · Access control · ECG proxy", "care.visual.ai": "Validation · Preprocessing · Inference", "care.visual.store": "Health records · Guardian links", "care.visual.caption": "Implementation overview · The app reaches AI through Spring Boot", "academic.visual.caption": "Team planning prototype · Search screen (Chinese original)", "academic.visual.alt": "Search screen from the academic platform team planning prototype", "academic.repo": "Project repository ↗", "sysy.visual.caption": "Implementation flow · Source analysis to virtual machine execution", "os.visual.caption": "Implementation overview · User programs, kernel and memory management", "proj1.title": "MIPS OS · Memory and Processes", "proj2.title": "SysY Compiler · Parser and VM", "proj3.title": "Academic Sharing Platform · Backend", "proj4.title": "CareLink · Health Records and ECG Analysis"});
-Object.assign(TRANSLATIONS.zh, {"hero.intro": "<strong>理解系统运行机制，<br>处理服务异常的开发者</strong>", "hero.evidence": "实现虚拟内存和编译器，并将 Spring Boot 后端与 AI 推理服务连接。除了正常流程，也检查无效输入和失败请求。", "focus.backend": "认证 · API · 请求入口测试", "focus.system": "内存 · 并发 · 语法分析", "focus.serving": "输入校验 · 推理 API · 容器部署", "projects.lead": "从独立完成的 CareLink 应用与服务端开始，展示后端测试及系统实现经验。每个项目说明个人职责与问题解决过程。", "project.featured": "代表项目 · 独立开发", "care.visual.label": "服务架构", "care.visual.app": "健康记录 · 监护人连接", "care.visual.backend": "认证 · 访问控制 · ECG 代理", "care.visual.ai": "输入校验 · 预处理 · 推理", "care.visual.store": "健康记录 · 监护人连接", "care.visual.caption": "实现结构概要 · 应用通过 Spring Boot 访问 AI 服务", "academic.visual.caption": "团队规划原型 · 检索页面（中文原图）", "academic.visual.alt": "学术成果分享平台团队规划原型的检索页面", "academic.repo": "项目代码仓库 ↗", "sysy.visual.caption": "实现流程 · 从源码分析到虚拟机执行", "os.visual.caption": "实现结构 · 用户程序、内核与内存管理", "proj1.title": "MIPS 操作系统 · 内存与进程", "proj2.title": "SysY 编译器 · 语法分析与虚拟机", "proj3.title": "学术成果分享平台 · 后端", "proj4.title": "CareLink · 健康记录与 ECG 分析"});
-
-Object.assign(TRANSLATIONS.ko, {'nav.pdf':'PDF 저장','project.repo':'프로젝트 저장소 ↗'});
-Object.assign(TRANSLATIONS.en, {'nav.pdf':'Save PDF','project.repo':'Project repository ↗'});
-Object.assign(TRANSLATIONS.zh, {'nav.pdf':'保存 PDF','project.repo':'项目代码仓库 ↗'});
-Object.assign(TRANSLATIONS.ko, {"academic.arch.label": "팀 전체 구조", "academic.arch.web": "학술 성과 검색 · 조회 화면", "academic.arch.api": "요청 처리 · 서비스 · 인증", "academic.arch.scope": "본인: 관계망 · 검색 · 공고 · 단위 테스트", "academic.arch.pg": "학술 · 관계 데이터", "academic.arch.es": "성과 문서 검색", "academic.arch.redis": "캐시 · 조회수 집계", "academic.arch.minio": "파일 저장", "academic.arch.fanout": "↓ 백엔드에서 각 서비스 연동", "academic.arch.caption": "팀 전체 구조 요약 · 본인 구현 범위는 백엔드에 표시", "academic.arch.detail": "Spring Boot가 관계형 데이터, 문서 검색, 캐시, 파일 저장소를 각각 연동합니다. 관계망·검색·공고 서비스와 관련 단위 테스트 및 컨트롤러 테스트가 본인 구현 범위입니다.", "p3_intro": "Vue 3 SPA와 Spring Boot, PostgreSQL, Elasticsearch, Redis, MinIO를 연동해 학술 성과를 검색·조회·분석하는 팀 프로젝트입니다. 저는 백엔드에서 <strong>학자 관계망, 검색, 공고 서비스를 구현하고 JUnit·Mockito로 단위 테스트</strong>를 작성했습니다. 상단 구조도는 팀 전체 구성이며, Redis 조회수 집계, OpenAlex 동기화, 파일 저장소, 공통 응답 형식, AI 검색 기능은 다른 팀원이 구현했습니다."});
-Object.assign(TRANSLATIONS.en, {"academic.arch.label": "TEAM ARCHITECTURE", "academic.arch.web": "Academic search and detail pages", "academic.arch.api": "Requests · Services · Authentication", "academic.arch.scope": "My scope: networks · search · announcements · unit tests", "academic.arch.pg": "Academic and collaboration data", "academic.arch.es": "Document search", "academic.arch.redis": "Cache and view counts", "academic.arch.minio": "File storage", "academic.arch.fanout": "↓ Backend integrates each service", "academic.arch.caption": "Team architecture overview · My scope is marked in the backend", "academic.arch.detail": "Spring Boot integrates relational data, document search, cache and file storage as separate services. I implemented scholar networks, search and announcements, with service and controller unit tests.", "p3_intro": "This team project integrates a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis and MinIO to search, view and analyze academic outputs. I <strong>implemented scholar networks, search and announcement services, and wrote JUnit/Mockito unit tests</strong>. The overview above shows the team architecture. Redis view counting, OpenAlex sync, file storage, the common response format and AI search were implemented by other teammates."});
-Object.assign(TRANSLATIONS.zh, {"academic.arch.label": "团队整体架构", "academic.arch.web": "学术成果检索与详情页面", "academic.arch.api": "请求处理 · 服务 · 认证", "academic.arch.scope": "本人：关系网络 · 检索 · 公告 · 单元测试", "academic.arch.pg": "学术与合作关系数据", "academic.arch.es": "成果文档检索", "academic.arch.redis": "缓存与浏览量统计", "academic.arch.minio": "文件存储", "academic.arch.fanout": "↓ 后端分别连接各项服务", "academic.arch.caption": "团队整体架构概要 · 本人实现范围标注于后端", "academic.arch.detail": "Spring Boot 分别连接关系型数据、文档检索、缓存和文件存储。本人实现学者关系网络、检索与公告服务，并编写相关服务层和控制器单元测试。", "p3_intro": "这是一个团队项目：将 Vue 3 SPA 与 Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 集成，提供学术成果检索、查看与分析功能。我在后端<strong>实现了学者关系网络、检索和公告服务，并用 JUnit、Mockito 编写单元测试</strong>。上方结构图为团队整体架构；Redis 浏览量统计、OpenAlex 同步、文件存储、统一响应封装与 AI 检索功能由其他队员实现。"});
-
 function getSavedLang(){try{return localStorage.getItem('portfolio-language')}catch{return null}}
 function saveLang(lang){try{localStorage.setItem('portfolio-language',lang)}catch{}}
 function updateProjectLabel(card){const label=card.querySelector('.project-read');const key=card.classList.contains('is-open')?'project.close':'project.open';if(label){label.dataset.i18n=key;label.textContent=TRANSLATIONS[currentLang][key];}}
-function setProjectOpen(card, open, scroll = false) {
-  if (open) document.querySelectorAll('.project-card.is-open').forEach(other => {
-    if (other === card) return;
-    other.classList.remove('is-open');
-    other.querySelector('.project-toggle').setAttribute('aria-expanded', 'false');
-    updateProjectLabel(other);
-  });
-  card.classList.toggle('is-open', open);
-  card.querySelector('.project-toggle').setAttribute('aria-expanded', String(open));
-  updateProjectLabel(card);
-  if (scroll) requestAnimationFrame(() => requestAnimationFrame(() => card.scrollIntoView({block:'start',behavior:'auto'})));
-}
-function openLinkedProject() {
-  let id;
-  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
-  const card = document.getElementById(id);
-  if (card?.classList.contains('project-card')) setProjectOpen(card, true, true);
-}
+function openLinkedProject(){const id=decodeURIComponent(location.hash.slice(1));const el=document.getElementById(id);if(el?.classList.contains('project-card')){el.classList.add('is-open');el.querySelector('.project-toggle').setAttribute('aria-expanded','true');updateProjectLabel(el);}}
 window.addEventListener('hashchange',openLinkedProject);
-document.addEventListener('click',event=>{
-  const link=event.target.closest('a[href^="#project-"]');
-  if(!link)return;
-  const card=document.getElementById(link.getAttribute('href').slice(1));
-  if(card?.classList.contains('project-card'))setProjectOpen(card,true,true);
-});
-    const savedLanguage = getSavedLang();
-    let currentLang = Object.hasOwn(TRANSLATIONS, savedLanguage) ? savedLanguage : 'ko';
+document.addEventListener('click',event=>{const link=event.target.closest('a[href^="#project-"]');if(!link)return;const card=document.getElementById(link.getAttribute('href').slice(1));if(card?.classList.contains('project-card')){card.classList.add('is-open');card.querySelector('.project-toggle').setAttribute('aria-expanded','true');updateProjectLabel(card);}});
+    let currentLang = getSavedLang() || 'ko';
 
     function applyLang(lang) {
       if (!TRANSLATIONS[lang]) lang = 'ko';
@@ -1564,7 +1591,6 @@ document.addEventListener('click',event=>{
         const t = TRANSLATIONS[lang]?.[el.dataset.i18nAlt];
         if (t !== undefined) el.alt = t;
       });
-      const menuButton=document.getElementById('nav-hamburger');if(menuButton)menuButton.setAttribute('aria-label', {ko:['메뉴 열기','메뉴 닫기'],en:['Open menu','Close menu'],zh:['打开菜单','关闭菜单']}[lang][menuButton.getAttribute('aria-expanded')==='true'?1:0]);
       document.title = TRANSLATIONS[lang].name + ' | Software Engineer';
       document.querySelectorAll('.project-card').forEach(updateProjectLabel);
       saveLang(lang);
@@ -1595,22 +1621,14 @@ document.addEventListener('click',event=>{
 
     /* ── 7. 햄버거 메뉴 ── */
     const hamburger=document.getElementById('nav-hamburger');const drawer=document.getElementById('nav-drawer');let drawerOpen=false;
-    if(hamburger&&drawer){hamburger.addEventListener('click',()=>{drawerOpen=!drawerOpen;hamburger.classList.toggle('open',drawerOpen);drawer.classList.toggle('open',drawerOpen);hamburger.setAttribute('aria-label',{ko:['메뉴 열기','메뉴 닫기'],en:['Open menu','Close menu'],zh:['打开菜单','关闭菜单']}[currentLang][drawerOpen?1:0]);hamburger.setAttribute('aria-expanded',String(drawerOpen));});drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawerOpen=false;hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.setAttribute('aria-label',{ko:'메뉴 열기',en:'Open menu',zh:'打开菜单'}[currentLang]);drawer.classList.remove('open');});});}
+    if(hamburger&&drawer){hamburger.addEventListener('click',()=>{drawerOpen=!drawerOpen;hamburger.classList.toggle('open',drawerOpen);drawer.classList.toggle('open',drawerOpen);hamburger.setAttribute('aria-label',drawerOpen?'메뉴 닫기':'메뉴 열기');hamburger.setAttribute('aria-expanded',String(drawerOpen));});drawer.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{drawerOpen=false;hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');drawer.classList.remove('open');});});}
 
     /* ── 9. 프로젝트 아코디언 ── */
     const projectCards=Array.from(document.querySelectorAll('.project-card'));
-    projectCards.forEach(card=>{
-  const toggle=card.querySelector('.project-toggle');
-  if(!toggle)return;
-  toggle.addEventListener('click',()=>setProjectOpen(card,!card.classList.contains('is-open'),true));
-  card.querySelector('.project-close')?.addEventListener('click',()=>{
-    setProjectOpen(card,false,true);
-    toggle.focus({preventScroll:true});
-  });
-});
+    projectCards.forEach(card=>{const toggle=card.querySelector('.project-toggle');if(!toggle)return;toggle.addEventListener('click',()=>{const isOpen=card.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(isOpen));updateProjectLabel(card);});});
     let beforePrintStates=[];let detailPrintStates=[];
-    window.addEventListener('beforeprint',()=>{detailPrintStates=Array.from(document.querySelectorAll('details')).map(d=>[d,d.open]);detailPrintStates.forEach(([d])=>d.open=true);beforePrintStates=projectCards.map(c=>c.classList.contains('is-open'));projectCards.forEach(c=>{c.classList.add('is-open');const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded','true');updateProjectLabel(c);});});
-    window.addEventListener('afterprint',()=>{detailPrintStates.forEach(([d,open])=>d.open=open);projectCards.forEach((c,i)=>{c.classList.toggle('is-open',beforePrintStates[i]);const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded',String(beforePrintStates[i]));updateProjectLabel(c);});});
+    window.addEventListener('beforeprint',()=>{detailPrintStates=Array.from(document.querySelectorAll('details')).map(d=>[d,d.open]);detailPrintStates.forEach(([d])=>d.open=true);beforePrintStates=projectCards.map(c=>c.classList.contains('is-open'));projectCards.forEach(c=>{c.classList.add('is-open');const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded','true');});});
+    window.addEventListener('afterprint',()=>{detailPrintStates.forEach(([d,open])=>d.open=open);projectCards.forEach((c,i)=>{c.classList.toggle('is-open',beforePrintStates[i]);const t=c.querySelector('.project-toggle');if(t)t.setAttribute('aria-expanded',String(beforePrintStates[i]));});});
 
     /* ── 10. PDF ── */
     document.querySelectorAll('.js-print').forEach(b=>b.addEventListener('click',()=>window.print()));
@@ -1623,6 +1641,6 @@ document.addEventListener('click',event=>{
     if(blurToggle){blurToggle.addEventListener('click',()=>{document.body.classList.toggle('pii-off');syncBlurState();});}
 
     /* ── 14. 언어 초기화 ── */
-    applyLang(currentLang);
+    applyLang(getSavedLang() || 'ko');
     
-openLinkedProject();</script><script src="assets/pinboard.js" defer></script></body></html>
+openLinkedProject();</script></body></html>

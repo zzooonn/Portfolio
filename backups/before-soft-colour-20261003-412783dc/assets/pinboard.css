@@ -1,0 +1,177 @@
+/* A quiet project board: white surfaces, readable type and visible evidence. */
+.container { max-width: 1160px; padding-inline: 32px; }
+.site-nav { background: #fff; }
+.nav-inner { height: 64px; }
+:root { --nav-h: 64px; }
+.brand { font-size: 19px; letter-spacing: -.03em; }
+.nav-links { gap: 24px; }
+.nav-link { font-size: 15px; }
+.button { height: 44px; padding-inline: 18px; border-radius: 999px; font-size: 15px; }
+.nav-actions .button { height: 40px; }
+.lang-switcher { border-color: #e5e5e5; }
+.lang-btn { min-height: 30px; padding-inline: 12px; font-size: 13px; }
+.lang-btn .flag { display: none; }
+.hero { padding: 56px 0 50px; }
+.hero-grid { grid-template-columns: minmax(0, 1fr) 132px; align-items: center; gap: 64px; }
+.hero-title { font-size: 48px; line-height: 1.15; letter-spacing: -.045em; margin-bottom: 18px; }
+.hero-intro { font-size: 26px; line-height: 1.5; letter-spacing: -.025em; }
+.hero-evidence { font-size: 17px; line-height: 1.85; margin-top: 18px; }
+.hero-eyebrow { letter-spacing: .06em; font-size: 12px; }
+.hero-actions { margin-top: 26px; gap: 10px; }
+.hero-card-mark { width: 132px; border-radius: 14px; box-shadow: none; }
+.hero-card-subtitle { font-size: 14px; margin-top: 14px; }
+.badge-row .tag { font-size: 13px; line-height: 1.75; }
+.section { padding: 48px 0; }
+#projects .section-heading { font-size: 26px; letter-spacing: -.03em; margin-bottom: 12px; }
+.projects-lead { font-size: 17px; line-height: 1.8; max-width: 46em; margin-bottom: 30px; }
+.project-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.project-board.has-masonry { grid-auto-rows: 8px; }
+.project-card, .project-card.featured, .project-card:first-of-type {
+  border: 1px solid #dedfe1; border-radius: 16px; background: #fff;
+  margin: 0; overflow: hidden; min-width: 0; scroll-margin-top: 88px;
+}
+.project-board.has-masonry .project-card { height: 100%; align-self: stretch; }
+.project-card:hover { border-color: #a9aeb5; }
+.project-card:focus-within { border-color: #5a626d; }
+.pin-content { min-width: 0; }
+.featured-top, .project-preview-row, .project-preview-row.academic-preview-row {
+  display: flex; flex-direction: column; gap: 0; align-items: stretch;
+}
+.project-visual, .mini-visual {
+  padding: 26px 28px 22px; width: 100%; max-width: none;
+  background: #fff; border-bottom: 1px solid #e6e7e8;
+}
+.visual-topline { padding-bottom: 14px; font-size: 13px; align-items: center; }
+.visual-topline b { font-size: 18px; letter-spacing: -.015em; }
+.system-map { margin: 0; max-width: none; padding: 18px 0 16px; }
+.map-node, .map-node.backend-node { border-color: #d7dadd; border-radius: 7px; padding: 12px 14px; }
+.map-node strong { font-size: 16px; line-height: 1.5; }
+.map-node small, .backend-node small { font-size: 14px; line-height: 1.7; margin-top: 5px; }
+.map-connector { font-size: 13px; padding: 6px 0; color: #565e68; }
+.map-storage { margin-top: 14px; font-size: 14px; gap: 4px 12px; }
+.map-storage strong { font-size: 14px; }
+.visual-caption, .academic-visual figcaption, .mini-visual figcaption { font-size: 14px; line-height: 1.75; color: #505761; padding-top: 12px; }
+.academic-data-services { gap: 10px; }
+.academic-data-services .map-node { padding: 10px 12px; }
+.academic-data-services strong { font-size: 15px; }
+.academic-data-services small { font-size: 14px; }
+.academic-map .scope-label { font-size: 14px; padding-top: 8px; margin-top: 9px; }
+.mini-visual { min-height: 240px; justify-content: center; }
+.mini-pipeline { flex-direction: row; align-items: center; gap: 9px; padding: 12px 0 20px; }
+.mini-pipeline span { flex: 1; min-width: 0; text-align: center; padding: 16px 8px; border-radius: 7px; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.mini-pipeline i { flex: none; transform: rotate(-90deg); font-size: 14px; }
+.mini-visual figcaption { border-top: 1px solid var(--line); margin-top: 0; }
+.project-overview, .featured .project-overview { padding: 24px 28px 28px; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; }
+.project-index { font-size: 14px; color: #59616c; }
+.project-head h3, .featured .project-head h3 { font-size: 23px; line-height: 1.45; letter-spacing: -.025em; }
+.featured-marker { font-size: 14px; font-weight: 600; margin-bottom: 7px; color: #444c57; }
+.project-meta { font-size: 15px; line-height: 1.75; margin-top: 10px; }
+.project-tagline { margin-top: 14px; gap: 12px; }
+.tagline-summary { font-size: 17px; line-height: 1.8; }
+.tagline-result { font-size: 16px; line-height: 1.75; padding-left: 12px; border-left: 2px solid #b4bac1; }
+.project-technologies { margin-top: 16px; gap: 7px; }
+.project-technologies span { font-size: 13px; line-height: 1.6; padding: 3px 9px; border: 1px solid #e1e3e5; border-radius: 999px; background: #fff; }
+.project-toggle { border: 1px solid #ccd0d4; border-radius: 999px; padding: 9px 16px; min-height: 44px; margin-top: 20px; text-decoration: none; gap: 14px; }
+.project-toggle:hover { border-color: #525c69; text-decoration: none; }
+.project-read { font-size: 15px; font-weight: 600; }
+.project-chevron { font-size: 15px; }
+.repo-link { font-size: 15px; margin-top: 14px; }
+.project-end { padding: 0 36px 30px; text-align: right; }
+.project-close { min-height: 44px; padding: 9px 18px; border: 1px solid #ccd0d4; border-radius: 999px; background: #fff; color: var(--text); font: 600 15px var(--sans); cursor: pointer; }
+.project-close:hover { border-color: #525c69; }
+.project-card.is-open { grid-column: 1 / -1; }
+.project-card.is-open .featured-top, .project-card.is-open .project-preview-row, .project-card.is-open .project-preview-row.academic-preview-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center;
+}
+.project-card.is-open .project-visual { border-bottom: 0; border-right: 1px solid #e6e7e8; }
+.project-card.is-open .project-overview { padding: 28px; }
+.project-body { border-top: 1px solid #e6e7e8; }
+.project-inner { max-width: 880px; margin: auto; padding: 32px 36px 40px; gap: 30px; }
+.body-text, .troubleshoot .body-text { font-size: 17px; line-height: 1.9; }
+.minor-title { font-size: 19px; margin-bottom: 14px; }
+.troubleshoot-title { font-size: 19px; }
+.trouble-label { margin-bottom: 6px; }
+.implementation-details > summary, .code-details > summary { font-size: 16px; min-height: 44px; }
+.about-card h3 { font-size: 19px; }
+.care-scope li { font-size: 16px; }
+.care-node p, .care-note { font-size: 15px; }
+.hint-note { font-size: 15px; }
+.footer { background: #fff; }
+@media (max-width: 1000px) {
+  .container { padding-inline: 24px; }
+  .project-visual, .mini-visual { padding: 24px; }
+  .project-overview, .featured .project-overview { padding: 22px 24px 26px; }
+  .project-head h3, .featured .project-head h3 { font-size: 22px; }
+  .project-index { display: none; }
+  .project-overview, .featured .project-overview { grid-template-columns: 1fr; }
+  .mini-pipeline { flex-direction: column; }
+  .mini-pipeline span { width: 100%; padding: 9px 12px; }
+  .mini-pipeline i { transform: none; }
+}
+@media (max-width: 740px) {
+  .project-board { grid-template-columns: 1fr; }
+  .project-board.has-masonry { grid-auto-rows: auto; }
+  .project-board.has-masonry .project-card { height: auto; }
+  .project-card.is-open { grid-column: auto; }
+  .project-card.is-open .featured-top, .project-card.is-open .project-preview-row, .project-card.is-open .project-preview-row.academic-preview-row { display: flex; }
+  .project-card.is-open .project-visual { border-right: 0; border-bottom: 1px solid #e6e7e8; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) 108px; gap: 28px; }
+  .hero-card-mark { width: 108px; }
+  .hero-title { font-size: 40px; }
+  .hero-intro { font-size: 23px; }
+  .hero { padding: 38px 0; }
+  .mini-pipeline { flex-direction: row; }
+  .mini-pipeline span { padding: 16px 8px; }
+  .mini-pipeline i { transform: rotate(-90deg); }
+  .project-inner { padding: 26px; }
+}
+@media (max-width: 560px) {
+  .container { padding-inline: 18px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 36px; }
+  .hero-intro { font-size: 22px; }
+  .hero-evidence { font-size: 16px; }
+  .hero-actions .button { font-size: 14px; padding-inline: 14px; }
+  #projects .section-heading { font-size: 24px; }
+  .projects-lead { font-size: 16px; margin-bottom: 24px; }
+  .project-board { gap: 20px; }
+  .project-visual, .mini-visual { padding: 22px 20px; }
+  .project-overview, .featured .project-overview, .project-card.is-open .project-overview { padding: 22px 20px 26px; }
+  .project-head h3, .featured .project-head h3 { font-size: 22px; }
+  .tagline-summary { font-size: 16px; }
+  .tagline-result { font-size: 15px; }
+  .project-meta { font-size: 14px; }
+  .project-inner { padding: 24px 20px 30px; }
+  .project-end { padding: 0 20px 24px; }
+  .body-text, .troubleshoot .body-text { font-size: 16px; }
+  .mini-pipeline { gap: 5px; }
+  .mini-pipeline span { font-size: 12px; padding: 12px 5px; }
+  .academic-data-services .map-node { padding: 10px; }
+  .academic-data-services strong { font-size: 14px; }
+  .visual-topline { align-items: baseline; }
+  .visual-topline b { font-size: 17px; }
+  .map-node strong { font-size: 15px; }
+  .nav-hamburger { width: 44px; height: 44px; border-radius: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+@media print {
+  .container { padding: 0; max-width: none; }
+  .project-board, .project-board.has-masonry { display: block; }
+  .project-card, .project-card.featured, .project-card:first-of-type, .project-board.has-masonry .project-card { height: auto; border: 0; border-bottom: 1px solid #ccc; border-radius: 0; overflow: visible; }
+  .project-card.is-open .featured-top, .project-card.is-open .project-preview-row, .project-card.is-open .project-preview-row.academic-preview-row { display: block; }
+  .project-visual { display: none !important; }
+  .project-end { display: none !important; }
+  .project-overview, .featured .project-overview, .project-card.is-open .project-overview { padding: 4mm 0; display: block; }
+  .project-head h3, .featured .project-head h3 { font-size: 14pt; }
+  .project-meta, .tagline-summary, .tagline-result { font-size: 10pt; }
+  .tagline-result { padding-left: 0; border: 0; }
+  .project-inner { padding: 0 0 4mm; max-width: none; gap: 4mm; }
+  .body-text, .troubleshoot .body-text { font-size: 10pt; }
+  .minor-title { font-size: 11pt; }
+  .project-technologies span { font-size: 9pt; padding: 0; border: 0; }
+  .hero-title { font-size: 24pt; }
+  .hero-intro { font-size: 15pt; }
+  .hero-evidence { font-size: 10pt; }
+}
