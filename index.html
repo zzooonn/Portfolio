@@ -690,7 +690,32 @@
             </div></div>
             <div class="project-body" id="project-01-body">
               <div class="project-inner">
-                <p class="body-text" data-i18n-html="p1_intro">GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 구현한 개인 과제입니다. 커널의 메모리·예외·시스템콜 처리와 사용자 공간의 fork·IPC·파일 시스템·셸을 구현했습니다. 대표 사례는 <strong>파이프가 닫히지 않았는데 EOF로 판정한 동시성 오류</strong>입니다.</p><div>
+                <p class="body-text" data-i18n-html="p1_intro">GXemul(MIPS R3000) 위에서 동작하는 교육용 OS를 구현한 개인 과제입니다. 커널의 메모리·예외·시스템콜 처리와 사용자 공간의 fork·IPC·파일 시스템·셸을 구현했습니다. 대표 사례는 <strong>파이프가 닫히지 않았는데 EOF로 판정한 동시성 오류</strong>입니다.</p>
+                <div class="pipe-demo" data-pipe-demo data-testid="mips-pipe-demo" data-state="ready" role="group" aria-labelledby="pipe-demo-title">
+                  <span class="pipe-demo-eyebrow" data-pipe-copy="eyebrow">10초 데모 · PIPE</span>
+                  <h4 id="pipe-demo-title" data-pipe-copy="title">닫는 순서만 바꿔보세요</h4>
+                  <p class="pipe-demo-intro" data-pipe-copy="intro">읽기 연결 3개, 쓰기 연결 1개. 읽기 연결 하나만 닫고, writer는 계속 열어둡니다.</p>
+                  <div class="pipe-demo-modes" role="group" aria-label="close 순서 선택" data-pipe-group>
+                    <button type="button" data-pipe-mode="unsafe" data-pipe-copy="unsafe" data-testid="mips-pipe-unsafe-button" aria-pressed="true">수정 전 · 데이터 먼저</button>
+                    <button type="button" data-pipe-mode="safe" data-pipe-copy="safe" data-testid="mips-pipe-safe-button" aria-pressed="false">수정 후 · fd 먼저</button>
+                  </div>
+                  <dl class="pipe-demo-counts">
+                    <div><dt><code>fd_ref</code><span data-pipe-copy="fdLabel">읽기 fd 참조</span></dt><dd data-pipe-fd>3</dd></div>
+                    <div><dt><code>pipe_ref</code><span data-pipe-copy="refLabel">공용 데이터 참조</span></dt><dd data-pipe-ref>4</dd></div>
+                    <div><dt><code>writer</code><span data-pipe-copy="writerLabel">열린 쓰기 연결</span></dt><dd data-pipe-writer>1</dd></div>
+                  </dl>
+                  <div class="pipe-demo-result" role="status" aria-live="polite" aria-atomic="true">
+                    <p class="pipe-demo-verdict"><code data-pipe-equation>3 &lt; 4</code><strong data-pipe-verdict>writer가 열려 있습니다</strong></p>
+                    <p data-pipe-message>fd_ref는 읽기 fd 페이지의 참조 수, pipe_ref는 읽기·쓰기가 함께 쓰는 데이터 페이지의 참조 수입니다. 다음 단계에서 첫 매핑을 해제합니다.</p>
+                  </div>
+                  <div class="pipe-demo-actions">
+                    <span class="pipe-demo-progress"><span data-pipe-copy="stepLabel">단계</span> <span data-pipe-progress>0 / 2</span></span>
+                    <button type="button" class="pipe-demo-next" data-pipe-next data-testid="mips-pipe-next-button">다음 단계 →</button>
+                    <button type="button" data-pipe-reset data-pipe-copy="reset" data-testid="mips-pipe-reset-button">처음으로</button>
+                  </div>
+                  <p class="pipe-demo-note" data-pipe-copy="note">빈 버퍼에서 읽는 상황을 단순화한 개념 데모입니다. 실제 OS를 실행하지 않습니다.</p>
+                </div>
+                <div>
                   <h4 class="minor-title" data-i18n="proj.minor.trouble">트러블슈팅</h4>
                   <div class="troubleshoot">
                     <div class="troubleshoot-head">
@@ -761,7 +786,35 @@
                 </div></div></details></div>
             <div class="project-end"><button class="project-close" type="button" aria-controls="project-01-body" data-i18n="project.close">상세 내용 닫기</button></div></div>
           </div></article>
-</div></div>
+</div>
+            <div class="ongoing-projects">
+              <h3 class="ongoing-heading" data-i18n="ring.section">진행 중인 프로젝트</h3>
+              <article class="ongoing-card" id="ringpilot" aria-labelledby="ringpilot-title" data-testid="ringpilot-project-card">
+                <div class="ongoing-copy">
+                  <div class="ongoing-meta"><span class="ongoing-badge" data-i18n="ring.badge">개발 중</span><span data-i18n="ring.period">2026.09 – 현재</span></div>
+                  <h4 id="ringpilot-title" data-i18n="ring.title">RingPilot · BLE 스마트링 리모컨</h4>
+                  <p class="ongoing-summary" data-i18n="ring.summary">손가락 움직임으로 스마트폰의 포인터·클릭·스와이프를 제어하기 위한 검지 착용형 리모컨을 개발하고 있습니다.</p>
+                  <p class="ongoing-scope"><strong data-i18n="ring.scope.label">본인 담당</strong><span data-i18n="ring.scope">IMU 기반 제스처 모델 설계·비교 실험, 정검출·오발행 중심의 평가 기준 정리</span></p>
+                  <dl class="ongoing-status">
+                    <div><dt data-i18n="ring.verified.label">확인한 기능</dt><dd data-i18n="ring.verified">프로젝트에서 HID 포인터·클릭과 GATT 동시 동작, BLE 센서 수집, 스위치 입력·배터리 구동을 확인했습니다.</dd></div>
+                    <div><dt data-i18n="ring.current.label">현재 단계</dt><dd data-i18n="ring.current">센서와 앱의 설정을 맞춘 조건으로 학습 데이터를 다시 수집하는 단계입니다.</dd></div>
+                    <div><dt data-i18n="ring.next.label">다음 검증</dt><dd data-i18n="ring.next">새 데이터로 모델 재평가, 보드 추론과 착용 상태에서 전체 조작 검증</dd></div>
+                  </dl>
+                  <p class="ongoing-technologies">nRF52840 · Arduino · BLE · Android · TensorFlow/Keras</p>
+                  <div class="ongoing-footer"><a class="button" href="https://github.com/HINTRingPilot/RingPilot" target="_blank" rel="noopener noreferrer" data-i18n="project.repo" data-testid="ringpilot-repository-link">프로젝트 저장소 ↗</a><span data-i18n="ring.asof">2026.10.23 기록 기준</span></div>
+                </div>
+                <figure class="ongoing-visual" aria-labelledby="ringpilot-flow-caption">
+                  <span class="ongoing-flow-label" data-i18n="ring.flow.label">수집부터 모델 평가까지</span>
+                  <ol class="ongoing-flow">
+                    <li><strong>XIAO nRF52840 Sense</strong><span data-i18n="ring.flow.sensor">6축 IMU · BLE 스트리밍</span></li>
+                    <li><strong>Android</strong><span data-i18n="ring.flow.app">무선 수집 앱 · 세션 기록</span></li>
+                    <li><strong>Python · TensorFlow/Keras</strong><span data-i18n="ring.flow.model">로컬 모델 학습 · 평가</span></li>
+                  </ol>
+                  <figcaption id="ringpilot-flow-caption" data-i18n="ring.flow.goal">목표: 링에서 제스처를 인식해 스마트폰 조작</figcaption>
+                </figure>
+              </article>
+            </div>
+          </div>
         </div>
       </section><section id="hint" class="section">
         <div class="container">
@@ -1516,6 +1569,70 @@ Object.assign(TRANSLATIONS.ko, {"academic.arch.label": "팀 전체 구조", "aca
 Object.assign(TRANSLATIONS.en, {"academic.arch.label": "TEAM ARCHITECTURE", "academic.arch.web": "Academic search and detail pages", "academic.arch.api": "Requests · Services · Authentication", "academic.arch.scope": "My scope: networks · search · announcements · unit tests", "academic.arch.pg": "Academic and collaboration data", "academic.arch.es": "Document search", "academic.arch.redis": "Cache and view counts", "academic.arch.minio": "File storage", "academic.arch.fanout": "↓ Backend integrates each service", "academic.arch.caption": "Team architecture overview · My scope is marked in the backend", "academic.arch.detail": "Spring Boot integrates relational data, document search, cache and file storage as separate services. I implemented scholar networks, search and announcements, with service and controller unit tests.", "p3_intro": "This team project integrates a Vue 3 SPA with Spring Boot, PostgreSQL, Elasticsearch, Redis and MinIO to search, view and analyze academic outputs. I <strong>implemented scholar networks, search and announcement services, and wrote JUnit/Mockito unit tests</strong>. The overview above shows the team architecture. Redis view counting, OpenAlex sync, file storage, the common response format and AI search were implemented by other teammates."});
 Object.assign(TRANSLATIONS.zh, {"academic.arch.label": "团队整体架构", "academic.arch.web": "学术成果检索与详情页面", "academic.arch.api": "请求处理 · 服务 · 认证", "academic.arch.scope": "本人：关系网络 · 检索 · 公告 · 单元测试", "academic.arch.pg": "学术与合作关系数据", "academic.arch.es": "成果文档检索", "academic.arch.redis": "缓存与浏览量统计", "academic.arch.minio": "文件存储", "academic.arch.fanout": "↓ 后端分别连接各项服务", "academic.arch.caption": "团队整体架构概要 · 本人实现范围标注于后端", "academic.arch.detail": "Spring Boot 分别连接关系型数据、文档检索、缓存和文件存储。本人实现学者关系网络、检索与公告服务，并编写相关服务层和控制器单元测试。", "p3_intro": "这是一个团队项目：将 Vue 3 SPA 与 Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 集成，提供学术成果检索、查看与分析功能。我在后端<strong>实现了学者关系网络、检索和公告服务，并用 JUnit、Mockito 编写单元测试</strong>。上方结构图为团队整体架构；Redis 浏览量统计、OpenAlex 同步、文件存储、统一响应封装与 AI 检索功能由其他队员实现。"});
 
+Object.assign(TRANSLATIONS.ko, {
+  'ring.section': '진행 중인 프로젝트',
+  'ring.badge': '개발 중',
+  'ring.period': '2026.09 – 현재',
+  'ring.title': 'RingPilot · BLE 스마트링 리모컨',
+  'ring.summary': '손가락 움직임으로 스마트폰의 포인터·클릭·스와이프를 제어하기 위한 검지 착용형 리모컨을 개발하고 있습니다.',
+  'ring.scope.label': '본인 담당',
+  'ring.scope': 'IMU 기반 제스처 모델 설계·비교 실험, 정검출·오발행 중심의 평가 기준 정리',
+  'ring.verified.label': '확인한 기능',
+  'ring.verified': '프로젝트에서 HID 포인터·클릭과 GATT 동시 동작, BLE 센서 수집, 스위치 입력·배터리 구동을 확인했습니다.',
+  'ring.current.label': '현재 단계',
+  'ring.current': '센서와 앱의 설정을 맞춘 조건으로 학습 데이터를 다시 수집하는 단계입니다.',
+  'ring.next.label': '다음 검증',
+  'ring.next': '새 데이터로 모델 재평가, 보드 추론과 착용 상태에서 전체 조작 검증',
+  'ring.asof': '2026.10.23 기록 기준',
+  'ring.flow.label': '수집부터 모델 평가까지',
+  'ring.flow.sensor': '6축 IMU · BLE 스트리밍',
+  'ring.flow.app': '무선 수집 앱 · 세션 기록',
+  'ring.flow.model': '로컬 모델 학습 · 평가',
+  'ring.flow.goal': '목표: 링에서 제스처를 인식해 스마트폰 조작'
+});
+Object.assign(TRANSLATIONS.en, {
+  'ring.section': 'Work in progress',
+  'ring.badge': 'IN DEVELOPMENT',
+  'ring.period': '2026.09 – Present',
+  'ring.title': 'RingPilot · BLE Smart Ring Remote',
+  'ring.summary': 'An index-finger remote being developed to control smartphone pointing, clicks and swipes with finger movements.',
+  'ring.scope.label': 'My scope',
+  'ring.scope': 'IMU gesture-model design and comparison experiments; evaluation of detected commands and false triggers',
+  'ring.verified.label': 'Verified functions',
+  'ring.verified': 'Project tests confirmed simultaneous HID pointing/clicks and GATT, BLE sensor collection, switch inputs and battery operation.',
+  'ring.current.label': 'Current stage',
+  'ring.current': 'Recollecting training data with matching sensor and app settings.',
+  'ring.next.label': 'Next validation',
+  'ring.next': 'Reevaluate models on new data, then validate on-board inference and the complete interaction while worn.',
+  'ring.asof': 'As recorded on 2026.10.23',
+  'ring.flow.label': 'FROM COLLECTION TO MODEL EVALUATION',
+  'ring.flow.sensor': '6-axis IMU · BLE streaming',
+  'ring.flow.app': 'Wireless collection app · Session recording',
+  'ring.flow.model': 'Local model training · Evaluation',
+  'ring.flow.goal': 'Goal: recognize gestures on the ring to control a smartphone'
+});
+Object.assign(TRANSLATIONS.zh, {
+  'ring.section': '进行中的项目',
+  'ring.badge': '开发中',
+  'ring.period': '2026.09 – 至今',
+  'ring.title': 'RingPilot · BLE 智能指环遥控器',
+  'ring.summary': '正在开发佩戴于食指的遥控器，通过手指动作控制智能手机的指针、点击与滑动。',
+  'ring.scope.label': '本人职责',
+  'ring.scope': '基于 IMU 的手势模型设计与对比实验，整理以命令检出与误触发为核心的评价标准',
+  'ring.verified.label': '已验证功能',
+  'ring.verified': '项目已验证 HID 指针与点击和 GATT 同时运行、BLE 传感器数据采集、开关输入及电池供电。',
+  'ring.current.label': '当前阶段',
+  'ring.current': '在传感器与应用设置一致的条件下，重新采集训练数据。',
+  'ring.next.label': '下一步验证',
+  'ring.next': '使用新数据重新评估模型，验证板端推理与佩戴状态下的完整操作。',
+  'ring.asof': '依据 2026.10.23 的记录',
+  'ring.flow.label': '从采集到模型评估',
+  'ring.flow.sensor': '六轴 IMU · BLE 数据流',
+  'ring.flow.app': '无线采集应用 · 会话记录',
+  'ring.flow.model': '本地模型训练与评估',
+  'ring.flow.goal': '目标：在指环上识别手势，控制智能手机'
+});
+
 function getSavedLang(){try{return localStorage.getItem('portfolio-language')}catch{return null}}
 function saveLang(lang){try{localStorage.setItem('portfolio-language',lang)}catch{}}
 function updateProjectLabel(card){const label=card.querySelector('.project-read');const key=card.classList.contains('is-open')?'project.close':'project.open';if(label){label.dataset.i18n=key;label.textContent=TRANSLATIONS[currentLang][key];}}
@@ -1625,4 +1742,4 @@ document.addEventListener('click',event=>{
     /* ── 14. 언어 초기화 ── */
     applyLang(currentLang);
     
-openLinkedProject();</script><script src="assets/pinboard.js" defer></script></body></html>
+openLinkedProject();</script><script src="assets/pinboard.js" defer></script><script src="assets/pipe-demo.js" defer></script></body></html>
