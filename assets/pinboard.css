@@ -177,6 +177,11 @@ strong, .map-node strong, .map-storage strong,
 .ongoing-status dt { color: #385e4d; font-weight: var(--weight-emphasis); }
 .ongoing-status dd { margin: 0; color: var(--muted); }
 .ongoing-technologies { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.ring-details { margin-top: 18px; }
+.ring-details .minor-title { margin: 0 0 8px; font-size: 16px; }
+.ring-details .body-text { font-size: 15px; line-height: 1.85; }
+.ring-details .hint-note { margin-top: 0; font-size: 13px; }
+.ring-details + .ongoing-technologies { margin-top: 18px; }
 .ongoing-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 18px; }
 .ongoing-footer .button { color: #385e4d; border-color: #c5d9d0; }
 .ongoing-footer .button:hover { background: #edf5f0; border-color: #385e4d; }

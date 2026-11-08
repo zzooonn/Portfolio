@@ -367,7 +367,7 @@
         <a class="brand" href="#top" aria-label="맨 위로 이동">
           <span class="brand-name" data-i18n="name">조현준</span>
         </a>
-        <div class="nav-links" id="nav-links"><a class="nav-link" href="#projects" data-section="projects" data-i18n="nav.projects">프로젝트</a><a class="nav-link" href="#hint" data-section="hint" data-i18n="nav.hint">현재 실습</a><a class="nav-link" href="#skills" data-section="skills" data-i18n="nav.skills">기술 · 경험</a><a class="nav-link" href="#about" data-section="about" data-i18n="nav.about">협업 · 소개</a><a class="nav-link" href="#edu" data-section="edu" data-i18n="nav.edu">학력 / 어학</a>
+        <div class="nav-links" id="nav-links"><a class="nav-link" href="#projects" data-section="projects" data-i18n="nav.projects">프로젝트</a><a class="nav-link" href="#hint" data-section="hint" data-i18n="nav.hint">교육 · 실습</a><a class="nav-link" href="#skills" data-section="skills" data-i18n="nav.skills">기술 · 경험</a><a class="nav-link" href="#about" data-section="about" data-i18n="nav.about">협업 · 소개</a><a class="nav-link" href="#edu" data-section="edu" data-i18n="nav.edu">학력 / 어학</a>
           
           
           
@@ -382,7 +382,7 @@
           <button class="nav-hamburger" id="nav-hamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav-drawer"><span></span><span></span><span></span></button>
         </div>
       </div>
-      <div class="nav-drawer" id="nav-drawer"><a class="drawer-link" href="#projects"><span data-i18n="nav.projects">프로젝트</span></a><a class="drawer-link" href="#hint"><span data-i18n="nav.hint">현재 실습</span></a><a class="drawer-link" href="#skills"><span data-i18n="nav.skills">기술 · 경험</span></a><a class="drawer-link" href="#about"><span data-i18n="nav.about">협업 · 소개</span></a><a class="drawer-link" href="#edu"><span data-i18n="nav.edu">학력 / 어학</span></a>
+      <div class="nav-drawer" id="nav-drawer"><a class="drawer-link" href="#projects"><span data-i18n="nav.projects">프로젝트</span></a><a class="drawer-link" href="#hint"><span data-i18n="nav.hint">교육 · 실습</span></a><a class="drawer-link" href="#skills"><span data-i18n="nav.skills">기술 · 경험</span></a><a class="drawer-link" href="#about"><span data-i18n="nav.about">협업 · 소개</span></a><a class="drawer-link" href="#edu"><span data-i18n="nav.edu">학력 / 어학</span></a>
         
         
         
@@ -788,29 +788,37 @@
           </div></article>
 </div>
             <div class="ongoing-projects">
-              <h3 class="ongoing-heading" data-i18n="ring.section">진행 중인 프로젝트</h3>
+              <h3 class="ongoing-heading" data-i18n="ring.section">임베디드 프로젝트</h3>
               <article class="ongoing-card" id="ringpilot" aria-labelledby="ringpilot-title" data-testid="ringpilot-project-card">
                 <div class="ongoing-copy">
-                  <div class="ongoing-meta"><span class="ongoing-badge" data-i18n="ring.badge">개발 중</span><span data-i18n="ring.period">2026.09 – 현재</span></div>
+                  <div class="ongoing-meta"><span class="ongoing-badge" data-i18n="ring.badge">실기기 동작 확인 · 개선 중</span><span data-i18n="ring.period">2026.09 – 현재</span></div>
                   <h4 id="ringpilot-title" data-i18n="ring.title">RingPilot · BLE 스마트링 리모컨</h4>
-                  <p class="ongoing-summary" data-i18n="ring.summary">손가락 움직임으로 스마트폰의 포인터·클릭·스와이프를 제어하기 위한 검지 착용형 리모컨을 개발하고 있습니다.</p>
+                  <p class="ongoing-summary" data-i18n="ring.summary">손가락 제스처를 링에서 인식해 BLE로 Android 스마트폰의 스와이프를 제어하는 시제품입니다.</p>
                   <p class="ongoing-scope"><strong data-i18n="ring.scope.label">본인 담당</strong><span data-i18n="ring.scope">IMU 기반 제스처 모델 설계·비교 실험, 정검출·오발행 중심의 평가 기준 정리</span></p>
                   <dl class="ongoing-status">
-                    <div><dt data-i18n="ring.verified.label">확인한 기능</dt><dd data-i18n="ring.verified">프로젝트에서 HID 포인터·클릭과 GATT 동시 동작, BLE 센서 수집, 스위치 입력·배터리 구동을 확인했습니다.</dd></div>
-                    <div><dt data-i18n="ring.current.label">현재 단계</dt><dd data-i18n="ring.current">센서와 앱의 설정을 맞춘 조건으로 학습 데이터를 다시 수집하는 단계입니다.</dd></div>
-                    <div><dt data-i18n="ring.next.label">다음 검증</dt><dd data-i18n="ring.next">새 데이터로 모델 재평가, 보드 추론과 착용 상태에서 전체 조작 검증</dd></div>
+                    <div><dt data-i18n="ring.verified.label">실기기 동작</dt><dd data-i18n="ring.verified">보드 추론 → BLE → Android 접근성 스와이프를 연결해 유튜브·네이버 시리즈 조작을 확인했습니다. 위·아래 제스처로 조작하고, 좌우 제스처로 조작 축을 전환합니다.</dd></div>
+                    <div><dt data-i18n="ring.current.label">모델·보드</dt><dd data-i18n="ring.current">자이로·회전각 6채널 TCN을 C 추론 코드로 옮겨 nRF52840에서 실행합니다. 센서 수집은 FreeRTOS 태스크로 분리했습니다.</dd></div>
+                    <div><dt data-i18n="ring.next.label">실사용 개선</dt><dd data-i18n="ring.next">인식되지 않은 동작이 입력 창에 남아 후속 동작까지 놓치는 문제를, 움직임 종료 후 입력 이력을 초기화하는 방식으로 개선했습니다.</dd></div>
                   </dl>
-                  <p class="ongoing-technologies">nRF52840 · Arduino · BLE · Android · TensorFlow/Keras</p>
-                  <div class="ongoing-footer"><a class="button" href="https://github.com/HINTRingPilot/RingPilot" target="_blank" rel="noopener noreferrer" data-i18n="project.repo" data-testid="ringpilot-repository-link">프로젝트 저장소 ↗</a><span data-i18n="ring.asof">2026.10.23 기록 기준</span></div>
+                  <details class="implementation-details ring-details">
+                    <summary data-i18n="ring.details">개선 과정 · 측정 근거</summary>
+                    <div class="implementation-body">
+                      <div><h5 class="minor-title" data-i18n="ring.measure.title">수집과 추론을 분리한 이유</h5><p class="body-text" data-i18n="ring.measure.text">추론 중 센서 읽기가 지연돼 같은 IMU 샘플을 다시 읽었습니다. 읽기 태스크를 분리한 뒤, 10월 31일 앱 연결·구독 상태에서 움직임을 포함한 약 3분 시험에서 재읽기 0/18,078회, 판정 시간 p95 22.88 ms를 기록했습니다. 이는 보드 판정 시간이며 화면 반응까지의 전체 지연은 아닙니다.</p></div>
+                      <div><h5 class="minor-title" data-i18n="ring.improvement.title">모델 재학습보다 입력 이력을 먼저 수정</h5><p class="body-text" data-i18n="ring.improvement.text">명령 발행 150 ms 뒤 입력을 지우고, 명령 없이 끝난 큰 움직임도 150 ms 정지 후 입력에서 지웠습니다. 같은 66초 기록의 동작 후보 49개에서, 이전 규칙의 PC 재생은 31개, 수정 후 보드는 46개가 정상 방향에 대응했습니다. 수정 규칙의 PC 재생도 보드 발행 50건과 시각·방향이 일치했습니다.</p></div>
+                      <p class="hint-note" data-i18n="ring.limit">검증 범위: 한 사람의 짧은 사용 기록이며 동작 후보는 사람이 확인한 정답이 아닙니다. 46/49를 인식률로 사용하지 않습니다. 빠른 연속 동작, 장시간 연결·전력, 독립 데이터 평가는 남아 있습니다. 11월 5일 앱 재디자인은 에뮬레이터 확인까지 진행했습니다.</p>
+                    </div>
+                  </details>
+                  <p class="ongoing-technologies">nRF52840 · C · FreeRTOS · BLE · Android · TensorFlow/Keras</p>
+                  <div class="ongoing-footer"><a class="button" href="https://github.com/HINTRingPilot/RingPilot" target="_blank" rel="noopener noreferrer" data-i18n="project.repo" data-testid="ringpilot-repository-link">프로젝트 저장소 ↗</a><span data-i18n="ring.asof">2026.11.05 개발 기록 기준</span></div>
                 </div>
                 <figure class="ongoing-visual" aria-labelledby="ringpilot-flow-caption">
-                  <span class="ongoing-flow-label" data-i18n="ring.flow.label">수집부터 모델 평가까지</span>
+                  <span class="ongoing-flow-label" data-i18n="ring.flow.label">링에서 인식하고 스마트폰에서 실행</span>
                   <ol class="ongoing-flow">
-                    <li><strong>XIAO nRF52840 Sense</strong><span data-i18n="ring.flow.sensor">6축 IMU · BLE 스트리밍</span></li>
-                    <li><strong>Android</strong><span data-i18n="ring.flow.app">무선 수집 앱 · 세션 기록</span></li>
-                    <li><strong>Python · TensorFlow/Keras</strong><span data-i18n="ring.flow.model">로컬 모델 학습 · 평가</span></li>
+                    <li><strong>XIAO nRF52840 Sense</strong><span data-i18n="ring.flow.sensor">IMU 100 Hz 수집 · FreeRTOS 태스크</span></li>
+                    <li><strong>C · TCN</strong><span data-i18n="ring.flow.model">자이로·회전각 입력 · 보드에서 제스처 판정</span></li>
+                    <li><strong>BLE · Android</strong><span data-i18n="ring.flow.app">모드 전환 · 접근성 스와이프 · 일시정지</span></li>
                   </ol>
-                  <figcaption id="ringpilot-flow-caption" data-i18n="ring.flow.goal">목표: 링에서 제스처를 인식해 스마트폰 조작</figcaption>
+                  <figcaption id="ringpilot-flow-caption" data-i18n="ring.flow.goal">팀 구현 흐름 · 모델 설계·비교 실험과 평가 기준을 담당</figcaption>
                 </figure>
               </article>
             </div>
@@ -818,9 +826,9 @@
         </div>
       </section><section id="hint" class="section">
         <div class="container">
-          <h2 class="section-heading" data-i18n="section.hint">현재 학습 · 실습</h2>
+          <h2 class="section-heading" data-i18n="section.hint">임베디드 교육 · 실습</h2>
           <div class="section-body">
-          <p class="body-text hint-lead" data-i18n="hint.intro">현대자동차그룹 K-뉴딜 아카데미 HINT 임베디드 SW 과정(2026.07 – 2026.10)을 듣고 있습니다. OS 과제에서 시뮬레이터로만 다뤘던 인터럽트와 동기화를 실제 하드웨어에서 확인하고 싶어 선택했습니다.</p>
+          <p class="body-text hint-lead" data-i18n="hint.intro">현대자동차그룹 K-뉴딜 아카데미 HINT 임베디드 SW 과정(2026.07 – 2026.10)을 수료했습니다. OS 과제에서 시뮬레이터로만 다뤘던 인터럽트와 동기화를 실제 하드웨어에서 확인하고 싶어 선택했습니다.</p>
           <div class="about-grid">
             <article class="about-card">
               <h3 data-i18n="hint.a.h">인터럽트를 하드웨어에서 다시 보기</h3>
@@ -831,14 +839,14 @@
               <p class="body-text" data-i18n="hint.b.t">OS 파이프에서는 매핑 순서 조정과 판정 재시도로 거짓 EOF를 처리했습니다. STM32 RTOS 실습에서는 Task를 나누고 Mutex·Semaphore로 공유 자원을 보호하고 Task 간 동기화를 구현했습니다. 두 환경을 비교하며 중간 상태를 안전하게 만드는 순서와 락의 획득·해제 시점을 살폈습니다.</p>
             </article>
           </div>
-          <p class="hint-note" data-i18n="hint.next">교육 예정 내용: CAN 통신 · 차량 사이버보안(TARA) · 임베디드 Linux. 아래 기술 목록에는 수행한 실습만 기재했습니다.</p>
+          <p class="hint-note" data-i18n="hint.next">아래 기술 목록은 교육 과정과 프로젝트에서 직접 사용한 기술을 기준으로 정리했습니다.</p>
           </div>
         </div>
       </section><section id="skills" class="section">
         <div class="container">
           <h2 class="section-heading" data-i18n="section.skills">기술과 사용 경험</h2>
           <div class="section-body">
-          <div class="skill-grid"><article class="skill-panel"><div class="skill-label" data-i18n="skills.sys">시스템 구현</div><div class="skill-content"><p class="skill-names">C · C++ · MIPS Assembly</p><a class="skill-use" data-i18n="skills.sys.use" href="#project-1">MIPS OS의 메모리·프로세스 구현, SysY 파서·VM 구현</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.be">백엔드 · 테스트</div><div class="skill-content"><p class="skill-names">Java · Spring Boot · FastAPI · JUnit · Mockito</p><a class="skill-use" data-i18n="skills.be.use" href="#project-3">학술 플랫폼의 검색·관계망 서비스와 컨트롤러 테스트, CareLink 추론 API</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.ai">AI 모델</div><div class="skill-content"><p class="skill-names">Python · PyTorch</p><a class="skill-use" data-i18n="skills.ai.use" href="#project-4">ECG 분류 모델 학습·비교 실험과 추론 서비스 연동</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.fe">웹 · 모바일</div><div class="skill-content"><p class="skill-names">Vue 3 · TypeScript · React Native</p><a class="skill-use" data-i18n="skills.fe.use" href="#project-4">학술 플랫폼 웹 프로젝트, CareLink 모바일 앱</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.infra">배포 · 데이터</div><div class="skill-content"><p class="skill-names">Docker · GitHub Actions · EC2 · PostgreSQL · Elasticsearch · Redis</p><a class="skill-use" data-i18n="skills.infra.use" href="#project-4">컨테이너 구성, 이미지 빌드·배포, 데이터 저장·검색</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.emb">현재 실습</div><div class="skill-content"><p class="skill-names">STM32 (Cortex-M0+) · RTOS</p><a class="skill-use" data-i18n="skills.emb.use" href="#hint">인터럽트·디바운싱, Task 분리와 Mutex·Semaphore 동기화</a></div></article></div>
+          <div class="skill-grid"><article class="skill-panel"><div class="skill-label" data-i18n="skills.sys">시스템 구현</div><div class="skill-content"><p class="skill-names">C · C++ · MIPS Assembly</p><a class="skill-use" data-i18n="skills.sys.use" href="#project-1">MIPS OS의 메모리·프로세스 구현, SysY 파서·VM 구현</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.be">백엔드 · 테스트</div><div class="skill-content"><p class="skill-names">Java · Spring Boot · FastAPI · JUnit · Mockito</p><a class="skill-use" data-i18n="skills.be.use" href="#project-3">학술 플랫폼의 검색·관계망 서비스와 컨트롤러 테스트, CareLink 추론 API</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.ai">AI 모델</div><div class="skill-content"><p class="skill-names">Python · PyTorch</p><a class="skill-use" data-i18n="skills.ai.use" href="#project-4">ECG 분류 모델 학습·비교 실험과 추론 서비스 연동</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.fe">웹 · 모바일</div><div class="skill-content"><p class="skill-names">Vue 3 · TypeScript · React Native</p><a class="skill-use" data-i18n="skills.fe.use" href="#project-4">학술 플랫폼 웹 프로젝트, CareLink 모바일 앱</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.infra">배포 · 데이터</div><div class="skill-content"><p class="skill-names">Docker · GitHub Actions · EC2 · PostgreSQL · Elasticsearch · Redis</p><a class="skill-use" data-i18n="skills.infra.use" href="#project-4">컨테이너 구성, 이미지 빌드·배포, 데이터 저장·검색</a></div></article><article class="skill-panel"><div class="skill-label" data-i18n="skills.emb">임베디드 실습</div><div class="skill-content"><p class="skill-names">STM32 (Cortex-M0+) · RTOS</p><a class="skill-use" data-i18n="skills.emb.use" href="#hint">인터럽트·디바운싱, Task 분리와 Mutex·Semaphore 동기화</a></div></article></div>
           </div>
         </div>
       </section><section id="about" class="section">
@@ -875,8 +883,8 @@
               <div class="timeline"><div class="timeline-item">
                   <span class="timeline-point">●</span>
                   <h4 data-i18n="edu.hint.title">현대자동차그룹 K-뉴딜 아카데미 HINT</h4>
-                  <p data-i18n="edu.hint.p">임베디드 SW 과정 · 교육생</p>
-                  <small data-i18n="edu.hint.small">2026.07.27 – 2026.10.22 (수강 중)</small>
+                  <p data-i18n="edu.hint.p">임베디드 SW 과정</p>
+                  <small data-i18n="edu.hint.small">2026.07.27 – 2026.10.22 (수료)</small>
                   <div><span class="tag accent" data-i18n="edu.hint.tag">실습: STM32 · RTOS</span></div>
                 </div>
 <div class="timeline-item">
@@ -939,7 +947,7 @@
             <div class="footer-copy pii" data-i18n="footer.graduation">BUAA 2026.07 졸업</div>
           </div>
           <div></div>
-          <nav class="footer-nav"><a href="#projects" data-i18n="nav.projects">프로젝트</a><a href="#hint" data-i18n="nav.hint">현재 실습</a><a href="#skills" data-i18n="nav.skills">기술 · 경험</a><a href="#about" data-i18n="nav.about">협업 · 소개</a><a href="#edu" data-i18n="nav.edu">학력 / 어학</a>
+          <nav class="footer-nav"><a href="#projects" data-i18n="nav.projects">프로젝트</a><a href="#hint" data-i18n="nav.hint">교육 · 실습</a><a href="#skills" data-i18n="nav.skills">기술 · 경험</a><a href="#about" data-i18n="nav.about">협업 · 소개</a><a href="#edu" data-i18n="nav.edu">학력 / 어학</a>
             
             
           </nav>
@@ -977,7 +985,7 @@
     "nav.edu": "학력 / 어학",
     "nav.about": "협업 · 소개",
     "nav.skills": "기술 · 경험",
-    "nav.hint": "현재 실습",
+    "nav.hint": "교육 · 실습",
     "nav.projects": "프로젝트",
     "hero.intro": "<strong>비정상 상황에서 시스템이 어떻게 동작해야 하는지 고민합니다.</strong>",
     "hero.cta.projects": "프로젝트 보기",
@@ -988,8 +996,8 @@
     "edu.school2.p": "软件学院 (School of Software) · 학사",
     "edu.school2.small": "2020.09 – 2026.07 (졸업)",
     "edu.hint.title": "현대자동차그룹 K-뉴딜 아카데미 HINT",
-    "edu.hint.p": "임베디드 SW 과정 · 교육생",
-    "edu.hint.small": "2026.07.27 – 2026.10.22 (수강 중)",
+    "edu.hint.p": "임베디드 SW 과정",
+    "edu.hint.small": "2026.07.27 – 2026.10.22 (수료)",
     "edu.hint.tag": "실습: STM32 · RTOS",
     "edu.lang": "어학",
     "edu.tsc.title": "TSC 중국어 회화 <span class=\"tag green\">Level 6</span>",
@@ -1012,13 +1020,13 @@
     "about.tag3a": "클라이밍",
     "about.tag3b": "루트파인딩",
     "section.skills": "기술과 사용 경험",
-    "section.hint": "현재 학습 · 실습",
-    "hint.intro": "현대자동차그룹 K-뉴딜 아카데미 HINT 임베디드 SW 과정(2026.07 – 2026.10)을 듣고 있습니다. OS 과제에서 시뮬레이터로만 다뤘던 인터럽트와 동기화를 실제 하드웨어에서 확인하고 싶어 선택했습니다.",
+    "section.hint": "임베디드 교육 · 실습",
+    "hint.intro": "현대자동차그룹 K-뉴딜 아카데미 HINT 임베디드 SW 과정(2026.07 – 2026.10)을 수료했습니다. OS 과제에서 시뮬레이터로만 다뤘던 인터럽트와 동기화를 실제 하드웨어에서 확인하고 싶어 선택했습니다.",
     "hint.a.h": "인터럽트를 하드웨어에서 다시 보기",
     "hint.a.t": "STM32(Cortex-M0+)에서 버튼을 누르는 동안 LED가 200ms 간격으로 토글되도록 코드를 고치며 Polling과 Interrupt를 비교했습니다. OS에서는 예외 벡터와 핸들러만 봤다면, 여기서는 버튼 → EXTI → NVIC → ISR 경로를 레퍼런스 매뉴얼로 따라가고, 디바운싱처럼 시뮬레이터에는 없던 물리 입력의 문제를 다뤘습니다.",
     "hint.b.h": "락이 없던 환경과 있는 환경",
     "hint.b.t": "OS 파이프에서는 매핑 순서 조정과 판정 재시도로 거짓 EOF를 처리했습니다. STM32 RTOS 실습에서는 Task를 나누고 Mutex·Semaphore로 공유 자원을 보호하고 Task 간 동기화를 구현했습니다. 두 환경을 비교하며 중간 상태를 안전하게 만드는 순서와 락의 획득·해제 시점을 살폈습니다.",
-    "hint.next": "교육 예정 내용: CAN 통신 · 차량 사이버보안(TARA) · 임베디드 Linux. 아래 기술 목록에는 수행한 실습만 기재했습니다.",
+    "hint.next": "아래 기술 목록은 교육 과정과 프로젝트에서 직접 사용한 기술을 기준으로 정리했습니다.",
     "skill.sys": "시스템 / 로우레벨",
     "skill.be": "백엔드 / 데이터베이스",
     "skill.fe": "프론트엔드 (웹 / 모바일)",
@@ -1117,7 +1125,7 @@
     "skills.fe.use": "학술 플랫폼 웹 프로젝트, CareLink 모바일 앱",
     "skills.infra": "배포 · 데이터",
     "skills.infra.use": "컨테이너 구성, 이미지 빌드·배포, 데이터 저장·검색",
-    "skills.emb": "현재 실습",
+    "skills.emb": "임베디드 실습",
     "skills.emb.use": "인터럽트·디바운싱, Task 분리와 Mutex·Semaphore 동기화",
     "care.intro": "노인의 건강 기록과 심전도 분석을 돕기 위해 혼자 진행한 졸업논문 프로젝트입니다. 모바일 앱·백엔드·ECG 모델을 구현하며, <strong>모델이 결과를 내도 되는 입력의 조건과 제한된 서버에서 실행할 방법</strong>을 함께 다뤘습니다.",
     "care.scope.title": "담당 범위",
@@ -1172,7 +1180,7 @@
     "nav.edu": "Education & Languages",
     "nav.about": "About",
     "nav.skills": "Skills",
-    "nav.hint": "Current learning",
+    "nav.hint": "Training & practice",
     "nav.projects": "Projects",
     "hero.intro": "<strong>I focus on how systems should behave when things go wrong.</strong>",
     "hero.cta.projects": "View Projects",
@@ -1183,8 +1191,8 @@
     "edu.school2.p": "School of Software · Bachelor's",
     "edu.school2.small": "2020.09 – 2026.07 (Graduated)",
     "edu.hint.title": "Hyundai Motor Group K-New Deal Academy HINT",
-    "edu.hint.p": "Embedded SW course · Trainee",
-    "edu.hint.small": "2026.07.27 – 2026.10.22 (In progress)",
+    "edu.hint.p": "Embedded SW course",
+    "edu.hint.small": "2026.07.27 – 2026.10.22 (Completed)",
     "edu.hint.tag": "Practice: STM32 · RTOS",
     "edu.lang": "Languages",
     "edu.tsc.title": "TSC Chinese Oral Proficiency <span class=\"tag green\">Level 6</span>",
@@ -1207,13 +1215,13 @@
     "about.tag3a": "Climbing",
     "about.tag3b": "Route-finding",
     "section.skills": "Skills in practice",
-    "section.hint": "Current learning & practice",
-    "hint.intro": "I am taking the Hyundai Motor Group K-New Deal Academy HINT embedded SW course (2026.07 – 2026.10). I chose it to see on real hardware the interrupts and synchronization I had only handled on a simulator in my OS coursework.",
+    "section.hint": "Embedded training & practice",
+    "hint.intro": "I completed the Hyundai Motor Group K-New Deal Academy HINT embedded SW course (2026.07 – 2026.10). I chose it to see on real hardware the interrupts and synchronization I had only handled on a simulator in my OS coursework.",
     "hint.a.h": "Interrupts, seen again on hardware",
     "hint.a.t": "On an STM32 (Cortex-M0+) I modified code so an LED toggles every 200 ms while a button is held, comparing polling with interrupts. In the OS I had only seen exception vectors and handlers; here I traced the path button → EXTI → NVIC → ISR through the reference manual and dealt with problems of physical input, such as debouncing, that a simulator never shows.",
     "hint.b.h": "Without locks, and with them",
     "hint.b.t": "In the OS pipe, I handled false EOF through mapping order and retrying the check. In STM32 RTOS practice, I split work into tasks and used mutexes and semaphores for shared resources and synchronization. I compared safe intermediate states with the timing of lock acquisition and release.",
-    "hint.next": "Upcoming coursework: CAN, vehicle cybersecurity (TARA), and embedded Linux. The skills below list completed practice only.",
+    "hint.next": "The skills below reflect technologies I used in coursework and projects.",
     "skill.sys": "Systems / Low-level",
     "skill.be": "Backend / Database",
     "skill.fe": "Frontend (Web / Mobile)",
@@ -1312,7 +1320,7 @@
     "skills.fe.use": "Academic web platform; CareLink mobile app",
     "skills.infra": "Deployment & data",
     "skills.infra.use": "Container configuration, image build/deployment, storage and search",
-    "skills.emb": "Current practice",
+    "skills.emb": "Embedded practice",
     "skills.emb.use": "Interrupts, debouncing, task separation and mutex/semaphore synchronization",
     "care.intro": "An individual graduation-thesis project for older adults’ health records and ECG analysis. I built the mobile app, backend and ECG model, addressing both <strong>when an input is valid for inference and how to run the service with limited resources</strong>.",
     "care.scope.title": "My implementation scope",
@@ -1367,7 +1375,7 @@
     "nav.edu": "学历 & 语言",
     "nav.about": "协作与介绍",
     "nav.skills": "技术与经验",
-    "nav.hint": "当前实践",
+    "nav.hint": "培训与实践",
     "nav.projects": "项目",
     "hero.intro": "<strong>我关注系统在异常情况下应当如何运行。</strong>",
     "hero.cta.projects": "查看项目",
@@ -1378,8 +1386,8 @@
     "edu.school2.p": "软件学院 · 学士",
     "edu.school2.small": "2020.09 – 2026.07（已毕业）",
     "edu.hint.title": "现代汽车集团 K-New Deal 学院 HINT",
-    "edu.hint.p": "嵌入式软件课程 · 学员",
-    "edu.hint.small": "2026.07.27 – 2026.10.22（进行中）",
+    "edu.hint.p": "嵌入式软件课程",
+    "edu.hint.small": "2026.07.27 – 2026.10.22（已结业）",
     "edu.hint.tag": "实践：STM32 · RTOS",
     "edu.lang": "语言",
     "edu.tsc.title": "TSC 中文口语 <span class=\"tag green\">Level 6</span>",
@@ -1402,13 +1410,13 @@
     "about.tag3a": "攀岩",
     "about.tag3b": "路线分析",
     "section.skills": "技术与使用经验",
-    "section.hint": "当前学习与实践",
-    "hint.intro": "我正在参加现代汽车集团 K-New Deal 学院 HINT 嵌入式软件课程（2026.07 – 2026.10）。选择它，是想在真实硬件上验证在 OS 课程中只在模拟器里处理过的中断与同步。",
+    "section.hint": "嵌入式培训与实践",
+    "hint.intro": "我已完成现代汽车集团 K-New Deal 学院 HINT 嵌入式软件课程（2026.07 – 2026.10）。选择它，是想在真实硬件上验证在 OS 课程中只在模拟器里处理过的中断与同步。",
     "hint.a.h": "在硬件上重新认识中断",
     "hint.a.t": "在 STM32（Cortex-M0+）上修改代码，使按住按键时 LED 每 200ms 翻转一次，并对比了轮询与中断。在 OS 中我只看过异常向量与处理程序；这里则借助参考手册追踪按键 → EXTI → NVIC → ISR 的路径，并处理了消抖这类模拟器中不存在的物理输入问题。",
     "hint.b.h": "没有锁的环境与有锁的环境",
     "hint.b.t": "在 OS 管道中，通过调整映射顺序和重新判定处理错误 EOF。在 STM32 RTOS 实践中划分 Task，使用 Mutex 和 Semaphore 保护共享资源并实现同步，对比安全的中间状态与锁的获取、释放时机。",
-    "hint.next": "后续课程：CAN 通信、车辆网络安全（TARA）及嵌入式 Linux。下方技术列表仅列出已实践内容。",
+    "hint.next": "下方技术列表以课程及项目中实际使用的技术为准。",
     "skill.sys": "系统 / 底层开发",
     "skill.be": "后端 / 数据库",
     "skill.fe": "前端 (Web / 移动)",
@@ -1507,7 +1515,7 @@
     "skills.fe.use": "学术平台网页项目；CareLink 移动应用",
     "skills.infra": "部署与数据",
     "skills.infra.use": "容器配置、镜像构建与部署、数据存储与检索",
-    "skills.emb": "当前实践",
+    "skills.emb": "嵌入式实践",
     "skills.emb.use": "中断、消抖、Task 划分与 Mutex、Semaphore 同步",
     "care.intro": "为帮助老年人记录健康数据并分析心电而独立完成的毕业论文项目。我实现了移动应用、后端与 ECG 模型，同时处理<strong>什么输入可以进行推理，以及如何在资源有限的服务器上运行服务</strong>。",
     "care.scope.title": "个人实现范围",
@@ -1570,67 +1578,85 @@ Object.assign(TRANSLATIONS.en, {"academic.arch.label": "TEAM ARCHITECTURE", "aca
 Object.assign(TRANSLATIONS.zh, {"academic.arch.label": "团队整体架构", "academic.arch.web": "学术成果检索与详情页面", "academic.arch.api": "请求处理 · 服务 · 认证", "academic.arch.scope": "本人：关系网络 · 检索 · 公告 · 单元测试", "academic.arch.pg": "学术与合作关系数据", "academic.arch.es": "成果文档检索", "academic.arch.redis": "缓存与浏览量统计", "academic.arch.minio": "文件存储", "academic.arch.fanout": "↓ 后端分别连接各项服务", "academic.arch.caption": "团队整体架构概要 · 本人实现范围标注于后端", "academic.arch.detail": "Spring Boot 分别连接关系型数据、文档检索、缓存和文件存储。本人实现学者关系网络、检索与公告服务，并编写相关服务层和控制器单元测试。", "p3_intro": "这是一个团队项目：将 Vue 3 SPA 与 Spring Boot、PostgreSQL、Elasticsearch、Redis、MinIO 集成，提供学术成果检索、查看与分析功能。我在后端<strong>实现了学者关系网络、检索和公告服务，并用 JUnit、Mockito 编写单元测试</strong>。上方结构图为团队整体架构；Redis 浏览量统计、OpenAlex 同步、文件存储、统一响应封装与 AI 检索功能由其他队员实现。"});
 
 Object.assign(TRANSLATIONS.ko, {
-  'ring.section': '진행 중인 프로젝트',
-  'ring.badge': '개발 중',
-  'ring.period': '2026.09 – 현재',
-  'ring.title': 'RingPilot · BLE 스마트링 리모컨',
-  'ring.summary': '손가락 움직임으로 스마트폰의 포인터·클릭·스와이프를 제어하기 위한 검지 착용형 리모컨을 개발하고 있습니다.',
-  'ring.scope.label': '본인 담당',
-  'ring.scope': 'IMU 기반 제스처 모델 설계·비교 실험, 정검출·오발행 중심의 평가 기준 정리',
-  'ring.verified.label': '확인한 기능',
-  'ring.verified': '프로젝트에서 HID 포인터·클릭과 GATT 동시 동작, BLE 센서 수집, 스위치 입력·배터리 구동을 확인했습니다.',
-  'ring.current.label': '현재 단계',
-  'ring.current': '센서와 앱의 설정을 맞춘 조건으로 학습 데이터를 다시 수집하는 단계입니다.',
-  'ring.next.label': '다음 검증',
-  'ring.next': '새 데이터로 모델 재평가, 보드 추론과 착용 상태에서 전체 조작 검증',
-  'ring.asof': '2026.10.23 기록 기준',
-  'ring.flow.label': '수집부터 모델 평가까지',
-  'ring.flow.sensor': '6축 IMU · BLE 스트리밍',
-  'ring.flow.app': '무선 수집 앱 · 세션 기록',
-  'ring.flow.model': '로컬 모델 학습 · 평가',
-  'ring.flow.goal': '목표: 링에서 제스처를 인식해 스마트폰 조작'
+  "ring.section": "임베디드 프로젝트",
+  "ring.badge": "실기기 동작 확인 · 개선 중",
+  "ring.period": "2026.09 – 현재",
+  "ring.title": "RingPilot · BLE 스마트링 리모컨",
+  "ring.summary": "손가락 제스처를 링에서 인식해 BLE로 Android 스마트폰의 스와이프를 제어하는 시제품입니다.",
+  "ring.scope.label": "본인 담당",
+  "ring.scope": "IMU 기반 제스처 모델 설계·비교 실험, 정검출·오발행 중심의 평가 기준 정리",
+  "ring.verified.label": "실기기 동작",
+  "ring.verified": "보드 추론 → BLE → Android 접근성 스와이프를 연결해 유튜브·네이버 시리즈 조작을 확인했습니다. 위·아래 제스처로 조작하고, 좌우 제스처로 조작 축을 전환합니다.",
+  "ring.current.label": "모델·보드",
+  "ring.current": "자이로·회전각 6채널 TCN을 C 추론 코드로 옮겨 nRF52840에서 실행합니다. 센서 수집은 FreeRTOS 태스크로 분리했습니다.",
+  "ring.next.label": "실사용 개선",
+  "ring.next": "인식되지 않은 동작이 입력 창에 남아 후속 동작까지 놓치는 문제를, 움직임 종료 후 입력 이력을 초기화하는 방식으로 개선했습니다.",
+  "ring.asof": "2026.11.05 개발 기록 기준",
+  "ring.flow.label": "링에서 인식하고 스마트폰에서 실행",
+  "ring.flow.sensor": "IMU 100 Hz 수집 · FreeRTOS 태스크",
+  "ring.flow.model": "자이로·회전각 입력 · 보드에서 제스처 판정",
+  "ring.flow.app": "모드 전환 · 접근성 스와이프 · 일시정지",
+  "ring.flow.goal": "팀 구현 흐름 · 모델 설계·비교 실험과 평가 기준을 담당",
+  "ring.details": "개선 과정 · 측정 근거",
+  "ring.measure.title": "수집과 추론을 분리한 이유",
+  "ring.measure.text": "추론 중 센서 읽기가 지연돼 같은 IMU 샘플을 다시 읽었습니다. 읽기 태스크를 분리한 뒤, 10월 31일 앱 연결·구독 상태에서 움직임을 포함한 약 3분 시험에서 재읽기 0/18,078회, 판정 시간 p95 22.88 ms를 기록했습니다. 이는 보드 판정 시간이며 화면 반응까지의 전체 지연은 아닙니다.",
+  "ring.improvement.title": "모델 재학습보다 입력 이력을 먼저 수정",
+  "ring.improvement.text": "명령 발행 150 ms 뒤 입력을 지우고, 명령 없이 끝난 큰 움직임도 150 ms 정지 후 입력에서 지웠습니다. 같은 66초 기록의 동작 후보 49개에서, 이전 규칙의 PC 재생은 31개, 수정 후 보드는 46개가 정상 방향에 대응했습니다. 수정 규칙의 PC 재생도 보드 발행 50건과 시각·방향이 일치했습니다.",
+  "ring.limit": "검증 범위: 한 사람의 짧은 사용 기록이며 동작 후보는 사람이 확인한 정답이 아닙니다. 46/49를 인식률로 사용하지 않습니다. 빠른 연속 동작, 장시간 연결·전력, 독립 데이터 평가는 남아 있습니다. 11월 5일 앱 재디자인은 에뮬레이터 확인까지 진행했습니다."
 });
 Object.assign(TRANSLATIONS.en, {
-  'ring.section': 'Work in progress',
-  'ring.badge': 'IN DEVELOPMENT',
-  'ring.period': '2026.09 – Present',
-  'ring.title': 'RingPilot · BLE Smart Ring Remote',
-  'ring.summary': 'An index-finger remote being developed to control smartphone pointing, clicks and swipes with finger movements.',
-  'ring.scope.label': 'My scope',
-  'ring.scope': 'IMU gesture-model design and comparison experiments; evaluation of detected commands and false triggers',
-  'ring.verified.label': 'Verified functions',
-  'ring.verified': 'Project tests confirmed simultaneous HID pointing/clicks and GATT, BLE sensor collection, switch inputs and battery operation.',
-  'ring.current.label': 'Current stage',
-  'ring.current': 'Recollecting training data with matching sensor and app settings.',
-  'ring.next.label': 'Next validation',
-  'ring.next': 'Reevaluate models on new data, then validate on-board inference and the complete interaction while worn.',
-  'ring.asof': 'As recorded on 2026.10.23',
-  'ring.flow.label': 'FROM COLLECTION TO MODEL EVALUATION',
-  'ring.flow.sensor': '6-axis IMU · BLE streaming',
-  'ring.flow.app': 'Wireless collection app · Session recording',
-  'ring.flow.model': 'Local model training · Evaluation',
-  'ring.flow.goal': 'Goal: recognize gestures on the ring to control a smartphone'
+  "ring.section": "Embedded project",
+  "ring.badge": "Hardware demo verified · Iterating",
+  "ring.period": "2026.09 – Present",
+  "ring.title": "RingPilot · BLE Smart Ring Remote",
+  "ring.summary": "A prototype that recognizes finger gestures on the ring and controls Android swipes over BLE.",
+  "ring.scope.label": "My scope",
+  "ring.scope": "IMU gesture model design and comparative experiments; evaluation criteria for correct detections and unintended commands",
+  "ring.verified.label": "Hardware demo",
+  "ring.verified": "On-board inference → BLE → Android accessibility swipes were verified in YouTube and Naver Series. Up/down gestures control swipes; either lateral gesture switches the control axis.",
+  "ring.current.label": "Model & board",
+  "ring.current": "A six-channel TCN using gyroscope and rotation-angle inputs runs as C inference code on nRF52840. Sensor sampling runs in a separate FreeRTOS task.",
+  "ring.next.label": "Usage fix",
+  "ring.next": "A missed movement could remain in the input window and suppress later gestures. Clearing the input history after the movement ends reduced this failure.",
+  "ring.asof": "Based on development records through 2026.11.05",
+  "ring.flow.label": "RECOGNIZE ON THE RING · ACT ON THE PHONE",
+  "ring.flow.sensor": "100 Hz IMU sampling · FreeRTOS task",
+  "ring.flow.model": "Gyroscope and angle inputs · On-board decisions",
+  "ring.flow.app": "Axis switching · Accessibility swipes · Pause",
+  "ring.flow.goal": "Team implementation · My scope is model design, experiments and evaluation criteria",
+  "ring.details": "Improvement process & measurement evidence",
+  "ring.measure.title": "Why sampling and inference were separated",
+  "ring.measure.text": "Inference delayed sensor reads, causing repeated IMU samples. After separating the sampling task, an approximately three-minute trial on October 31 with movement and the app connected and subscribed recorded 0 repeated reads out of 18,078 and a decision-time p95 of 22.88 ms. This is on-board processing time, not end-to-end screen response latency.",
+  "ring.improvement.title": "Fixing input history before retraining",
+  "ring.improvement.text": "History is cleared 150 ms after a command, or after a large movement ends without a command and is followed by 150 ms of stillness. Among 49 motion candidates in the same 66-second recording, PC replay of the previous rule matched 31 correctly; the updated board matched 46. PC replay of the updated rule also matched the timing and direction of all 50 board commands.",
+  "ring.limit": "Scope: a short recording from one person; motion candidates are not human-verified ground truth. The 46/49 result is not a recognition accuracy. Fast successive gestures, long-term connectivity, power consumption and independent-data evaluation remain unverified. The November 5 app redesign was checked in an emulator only."
 });
 Object.assign(TRANSLATIONS.zh, {
-  'ring.section': '进行中的项目',
-  'ring.badge': '开发中',
-  'ring.period': '2026.09 – 至今',
-  'ring.title': 'RingPilot · BLE 智能指环遥控器',
-  'ring.summary': '正在开发佩戴于食指的遥控器，通过手指动作控制智能手机的指针、点击与滑动。',
-  'ring.scope.label': '本人职责',
-  'ring.scope': '基于 IMU 的手势模型设计与对比实验，整理以命令检出与误触发为核心的评价标准',
-  'ring.verified.label': '已验证功能',
-  'ring.verified': '项目已验证 HID 指针与点击和 GATT 同时运行、BLE 传感器数据采集、开关输入及电池供电。',
-  'ring.current.label': '当前阶段',
-  'ring.current': '在传感器与应用设置一致的条件下，重新采集训练数据。',
-  'ring.next.label': '下一步验证',
-  'ring.next': '使用新数据重新评估模型，验证板端推理与佩戴状态下的完整操作。',
-  'ring.asof': '依据 2026.10.23 的记录',
-  'ring.flow.label': '从采集到模型评估',
-  'ring.flow.sensor': '六轴 IMU · BLE 数据流',
-  'ring.flow.app': '无线采集应用 · 会话记录',
-  'ring.flow.model': '本地模型训练与评估',
-  'ring.flow.goal': '目标：在指环上识别手势，控制智能手机'
+  "ring.section": "嵌入式项目",
+  "ring.badge": "已验证实机操作 · 持续改进",
+  "ring.period": "2026.09 – 至今",
+  "ring.title": "RingPilot · BLE 智能指环遥控器",
+  "ring.summary": "在指环端识别手指动作，通过 BLE 控制 Android 手机滑动的原型。",
+  "ring.scope.label": "本人职责",
+  "ring.scope": "基于 IMU 的手势模型设计与对比实验，整理以命令检出与误触发为核心的评价标准",
+  "ring.verified.label": "实机操作",
+  "ring.verified": "已验证板端推理 → BLE → Android 无障碍滑动链路，可操作 YouTube 与 Naver Series。上下手势控制滑动，任一左右手势切换操作轴。",
+  "ring.current.label": "模型与板端",
+  "ring.current": "将陀螺仪与旋转角六通道 TCN 转为 C 推理代码，在 nRF52840 上运行。传感器采样由独立的 FreeRTOS 任务负责。",
+  "ring.next.label": "使用改进",
+  "ring.next": "未识别动作残留在输入窗口中，会使后续动作也被漏检。通过在动作结束后清空输入历史，改善连续漏检。",
+  "ring.asof": "依据截至 2026.11.05 的开发记录",
+  "ring.flow.label": "指环端识别 · 手机端执行",
+  "ring.flow.sensor": "IMU 100 Hz 采样 · FreeRTOS 任务",
+  "ring.flow.model": "陀螺仪与旋转角输入 · 板端手势判定",
+  "ring.flow.app": "切换操作轴 · 无障碍滑动 · 暂停",
+  "ring.flow.goal": "团队实现流程 · 本人负责模型设计、对比实验与评价标准",
+  "ring.details": "改进过程与测量依据",
+  "ring.measure.title": "为何分离采样与推理",
+  "ring.measure.text": "推理延迟了传感器读取，导致重复读取同一 IMU 样本。分离采样任务后，在 10 月 31 日应用已连接并订阅、包含动作的约三分钟试验中，18,078 次读取无重复，判定时间 p95 为 22.88 ms。这是板端处理时间，并非到屏幕响应为止的总延迟。",
+  "ring.improvement.title": "先修正输入历史，再考虑重新训练",
+  "ring.improvement.text": "发出命令 150 ms 后清空历史；大幅动作结束但未发出命令时，也在静止 150 ms 后清空。对同一段 66 秒记录中的 49 个动作候选，旧规则 PC 回放有 31 个与正确方向对应，修改后的板端为 46 个。新规则 PC 回放的全部 50 次命令在时间和方向上也与板端一致。",
+  "ring.limit": "验证范围：一人的短时记录，动作候选并非人工确认的真值，46/49 不作为识别准确率。快速连续动作、长时连接、功耗及独立数据评估尚待验证。11 月 5 日的应用改版仅在模拟器中检查。"
 });
 
 function getSavedLang(){try{return localStorage.getItem('portfolio-language')}catch{return null}}
